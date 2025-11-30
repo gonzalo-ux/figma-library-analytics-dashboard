@@ -1,0 +1,12 @@
+Product,Category,Units Sold,Price,Total Revenue
+Laptop,Electronics,120,899.99,107998.80
+Mouse,Electronics,450,29.99,13495.50
+Keyboard,Electronics,320,79.99,25596.80
+Monitor,Electronics,180,299.99,53998.20
+Headphones,Electronics,280,149.99,41997.20
+Desk Chair,Furniture,95,199.99,18999.05
+Desk,Furniture,45,399.99,17999.55
+Lamp,Furniture,150,49.99,7498.50
+Notebook,Office,500,9.99,4995.00
+Pen Set,Office,800,12.99,10392.00
+

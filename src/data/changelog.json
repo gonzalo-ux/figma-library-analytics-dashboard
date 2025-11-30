@@ -1,0 +1,187 @@
+[
+  {
+    "version": "7.7.6",
+    "date": "2025-11-14",
+    "description": "❖ Buttons group in action sheet and dialog\nChange to primary button first order"
+  },
+  {
+    "version": "7.7.5",
+    "date": "2025-11-12",
+    "description": "❖ Logo\nUpdate Zalando lounge and prive logos"
+  },
+  {
+    "version": "7.7.5",
+    "date": "2025-10-24",
+    "description": "❖ Icon\nAvatar Add, Pin outlined, Pin filled\n♥︎ General\nUpdate r400 to #F8323C"
+  },
+  {
+    "version": "7.7.4",
+    "date": "2025-09-19",
+    "description": "❖ Icon\nAdd modelSparkle"
+  },
+  {
+    "version": "7.7.3",
+    "date": "2025-08-27",
+    "description": "❖ Tab\nRemove vertical dividers"
+  },
+  {
+    "version": "7.7.2",
+    "date": "2025-08-19",
+    "description": "❖ Footer\nChange background to tertiary and add an additional divider"
+  },
+  {
+    "version": "7.7.1",
+    "date": "2025-08-14",
+    "description": "❖ Image ratio\nFix layers order"
+  },
+  {
+    "version": "7.7.0",
+    "date": "2025-08-11",
+    "description": "❖ Scrim gradient\nScrim gradient added"
+  },
+  {
+    "version": "7.6.2",
+    "date": "2025-08-05",
+    "description": "❖ Action Sheet\nDrawer handle added"
+  },
+  {
+    "version": "7.6.1",
+    "date": "2025-07-31",
+    "description": "♥︎ General\nIntroduce r400 in the palette\nUpdate sale color tokens on Dark mode to fix contrast\nUpdate opacity.disabled token on Dark mode to 40%\nPause Bars icon added\nto be used in the new Icon Button - Video Control Overlay"
+  },
+  {
+    "version": "7.5.1",
+    "date": "2025-07-24",
+    "description": "♥︎ General\nUpdate opacity disabled token on DM to 40%"
+  },
+  {
+    "version": "7.5.2",
+    "date": "2025-07-24",
+    "description": "♥︎ General\nTest product card tokens"
+  },
+  {
+    "version": "7.5.0",
+    "date": "2025-07-21",
+    "description": "Add hanger sparkle and view items"
+  },
+  {
+    "version": "7.4.0",
+    "date": "2025-07-17",
+    "description": "❖ Flag \nAdd text label properties"
+  },
+  {
+    "version": "7.3.0",
+    "date": "2025-06-26",
+    "description": "Add new Plus icon\n❖ Plus logos\nAdd new Plus loyalty logos\nDeprecate old Plus components\nVersion 7.3.0 rollout and Migration guide"
+  },
+  {
+    "version": "7.2.0",
+    "date": "2025-06-03",
+    "description": "Add Compare Outlined icon"
+  },
+  {
+    "version": "7.1.2",
+    "date": "2025-05-26",
+    "description": "❖ Flag tokens\nFix Flags component tokens for Designer theme"
+  },
+  {
+    "version": "7.1.1",
+    "date": "2025-05-20",
+    "description": "❖ Nav bar\nFix badge position"
+  },
+  {
+    "version": "7.1.0",
+    "date": "2025-05-19",
+    "description": "❖ Badge\nSet black badge\n\n❖ Image ratio\nFix layer order\n\n❖ Flag\nFix layout behaviour"
+  },
+  {
+    "version": "7.0.3",
+    "date": "2025-05-12",
+    "description": "♥︎ General\nMake interactive states color tokens public"
+  },
+  {
+    "version": "6.0.7",
+    "date": "2025-04-15",
+    "description": "❖ Navigation bar\nFix badge position"
+  },
+  {
+    "version": "6.0.6",
+    "date": "2025-04-08",
+    "description": "❖ Notification\nAdd close button property"
+  },
+  {
+    "version": "6.0.5",
+    "date": "2025-04-04",
+    "description": "❖ Link\nFix touch area size\n\n♥︎ General\nMake interactive tokens public (hover, selected, pressed, focus)"
+  },
+  {
+    "version": "6.0.4",
+    "date": "2025-03-14",
+    "description": "❖ Link\nFix colour variables and remove max/min width\n\n❖ Top bar (iOS & android)\nFix colour variables to support dark colour scheme\n\n♥︎ General\nFix colour variables assigned to Icons to use text.primary"
+  },
+  {
+    "version": "6.0.2",
+    "date": "2025-03-12",
+    "description": "❖ Progress Stepper (NEW VERSION)\nFixed unused properties"
+  },
+  {
+    "version": "6.0.3",
+    "date": "2025-03-12",
+    "description": "❖ Button\nAdd CLT border-radius"
+  },
+  {
+    "version": "6.0.2",
+    "date": "2025-03-07",
+    "description": "♥︎ Multiple fixes in components, updated for Dynamic size\n\n❖ Header\n❖ Action sheet\n❖ Checkbox\n❖ Dropdown trigger\n❖ Input message\n❖ List - Item\n❖ Panel\n❖ Radio button\n❖ Range slider\n❖ Text input"
+  },
+  {
+    "version": "5.2.1",
+    "date": "2025-02-19",
+    "description": "❖ Accordion\nFix text style \nReset mode"
+  },
+  {
+    "version": "5.0.1",
+    "date": "2025-01-07",
+    "description": "♥︎ General\nFix Dynamic Text mode"
+  },
+  {
+    "version": "4.4.0",
+    "date": "2024-11-07",
+    "description": "♥︎ General\nUpdate orange and black colors for brand refresh"
+  },
+  {
+    "version": "4.2.0",
+    "date": "2024-08-12",
+    "description": "❖ Plus loyalty logo\nAdded the white variant"
+  },
+  {
+    "version": "3.3.5",
+    "date": "2024-05-21",
+    "description": "❖ Navigation bar (Layout)\nFixed Wishlist Badge position"
+  },
+  {
+    "version": "3.3.3",
+    "date": "2024-05-09",
+    "description": "❖ Navigation bar (Layout)\nAdded props\nAdded autolayout"
+  },
+  {
+    "version": "3.1.1",
+    "date": "2024-03-11",
+    "description": "❖ Follow button\nFix no Icon variant\n\n❖ Accordion\nFix hover token on Hover state variant"
+  },
+  {
+    "version": "3.1.0",
+    "date": "2024-01-25",
+    "description": "❖ Countdown\nAdded autolayout\nAdded component properties"
+  },
+  {
+    "version": "2.0.4",
+    "date": "2023-11-17",
+    "description": "❖ Button\nUpdated hover and selected states\n\n❖ Checkbox\nUpdated hover and selected states"
+  },
+  {
+    "version": "2.0.1",
+    "date": "2023-10-20",
+    "description": "♥︎ General\n[Not published] Added colour tokens (text, border, background) for interactive states:\nHover\nSelected\nPressed\nFocus\n\nThese tokens are private to this library.\n--\n\n♥︎ General\nFixed color.text.secondary value on Designer Theme. From n900 to n700 as Base theme.\n\n❖ Accordion\nUpdated hover state colour tokens"
+  }
+]

@@ -1,0 +1,665 @@
+import React, { useState, useEffect, useCallback } from "react"
+import Papa from "papaparse"
+import { FileText, BarChart3, TrendingUp } from "lucide-react"
+import { Button } from "./ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { ChartContainer } from "./ChartContainer"
+import { DetachmentsChart } from "./DetachmentsChart"
+import { InsertionsLineChart } from "./InsertionsLineChart"
+import { DataTable } from "./DataTable"
+import { IconsTable } from "./IconsTable"
+import { UsagesTable } from "./UsagesTable"
+import { FileUsagesTable } from "./FileUsagesTable"
+import { ChangelogTable } from "./ChangelogTable"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs"
+import { Slider } from "./ui/slider"
+import { Sidebar } from "./Sidebar"
+
+const CSV_FILES = [
+  { name: "actions_by_component.csv", label: "Components" },
+  { name: "icons", label: "Icons" },
+  { name: "variable_actions_by_variable.csv", label: "Variables" },
+]
+
+export function Dashboard() {
+  const [data, setData] = useState(null)
+  const [fileUsageData, setFileUsageData] = useState(null)
+  const [componentUsagesData, setComponentUsagesData] = useState(null)
+  const [fileName, setFileName] = useState("")
+  const [selectedFile, setSelectedFile] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [days, setDays] = useState(90)
+  const [sliderValue, setSliderValue] = useState(0) // Will be set to maxInsertions when data loads
+
+  const handleFileSelect = useCallback(async (csvFileName) => {
+    setLoading(true)
+    setError("")
+    setSelectedFile(csvFileName)
+    setFileName(csvFileName)
+    setFileUsageData(null) // Reset file usage data when switching files
+    setComponentUsagesData(null) // Reset component usages data when switching files
+
+    // Handle icons - use actions_by_component.csv but mark as icons
+    const actualFileName = csvFileName === "icons" ? "actions_by_component.csv" : csvFileName
+
+    try {
+      const response = await fetch(`/csv/${actualFileName}`)
+      if (!response.ok) {
+        throw new Error(`Failed to load file: ${response.statusText}`)
+      }
+
+      const text = await response.text()
+      
+      Papa.parse(text, {
+        header: true,
+        skipEmptyLines: true,
+        complete: async (results) => {
+          if (results.errors.length > 0) {
+            setError("Error parsing CSV: " + results.errors.map(e => e.message).join(", "))
+            setLoading(false)
+            return
+          }
+          setData(results.data)
+          
+          // If loading actions_by_component.csv (and not icons), also load usages_by_component.csv and usages_by_file.csv
+          if (csvFileName === "actions_by_component.csv") {
+            try {
+              // Load usages_by_component.csv
+              const usagesResponse = await fetch(`/csv/usages_by_component.csv`)
+              if (usagesResponse.ok) {
+                const usagesText = await usagesResponse.text()
+                Papa.parse(usagesText, {
+                  header: true,
+                  skipEmptyLines: true,
+                  complete: async (usagesResults) => {
+                    if (usagesResults.errors.length === 0) {
+                      setComponentUsagesData(usagesResults.data)
+                      
+                      // Also load usages_by_file.csv
+                      try {
+                        const fileResponse = await fetch(`/csv/usages_by_file.csv`)
+                        if (fileResponse.ok) {
+                          const fileText = await fileResponse.text()
+                          Papa.parse(fileText, {
+                            header: true,
+                            skipEmptyLines: true,
+                            complete: (fileResults) => {
+                              if (fileResults.errors.length === 0) {
+                                setFileUsageData(fileResults.data)
+                              }
+                              setLoading(false)
+                            },
+                            error: () => {
+                              setLoading(false)
+                            }
+                          })
+                        } else {
+                          setLoading(false)
+                        }
+                      } catch {
+                        setLoading(false)
+                      }
+                    } else {
+                      setLoading(false)
+                    }
+                  },
+                  error: () => {
+                    setLoading(false)
+                  }
+                })
+              } else {
+                setLoading(false)
+              }
+            } catch {
+              setLoading(false)
+            }
+          } else {
+            setLoading(false)
+          }
+        },
+        error: (error) => {
+          setError("Error reading file: " + error.message)
+          setLoading(false)
+        }
+      })
+    } catch (error) {
+      setError("Error loading file: " + error.message)
+      setLoading(false)
+    }
+  }, [])
+
+  // Load first file by default
+  useEffect(() => {
+    if (!selectedFile && CSV_FILES.length > 0) {
+      handleFileSelect(CSV_FILES[0].name)
+    }
+  }, [selectedFile, handleFileSelect])
+
+  // Calculate max insertions for icons to set slider max
+  const maxInsertions = React.useMemo(() => {
+    if (!data || data.length === 0) return 0
+
+    const today = new Date()
+    const daysAgo = new Date(today)
+    daysAgo.setDate(today.getDate() - days)
+
+    const iconData = data
+      .filter((row) => {
+        if (!row.week || !row.insertions || !row.component_name) return false
+        const componentName = row.component_name || ""
+        if (!componentName.trim().startsWith("Icon -") && !componentName.trim().toLowerCase().includes("icon -")) {
+          return false
+        }
+        const weekDate = new Date(row.week)
+        if (isNaN(weekDate.getTime())) return false
+        return weekDate >= daysAgo
+      })
+      .map((row) => parseFloat(row.insertions) || 0)
+
+    return Math.max(...iconData, 0)
+  }, [data, days])
+
+  // Reset slider to max when days changes or data loads
+  React.useEffect(() => {
+    if (maxInsertions > 0) {
+      setSliderValue(maxInsertions)
+    }
+  }, [days, maxInsertions])
+
+  // Slider filters by maximum insertions
+  // When sliderValue = maxInsertions (left): show all icons (no max filter)
+  // When sliderValue is between max and 0: show icons with insertions <= sliderValue
+  // When sliderValue = 0 (right): show only icons with 0 insertions
+  const minInsertionsFilter = 0
+  const maxInsertionsFilter = sliderValue === maxInsertions ? null : sliderValue
+
+  return (
+    <div className="min-h-screen bg-background flex">
+      <Sidebar selectedFile={selectedFile} onFileSelect={handleFileSelect} />
+      <div className="flex-1 ml-64 p-4 md:p-8">
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight">ZDS Figma Components Library analytics</h1>
+              <h2 className="text-muted-foreground mt-2 text-2xl">
+                {selectedFile ? CSV_FILES.find(f => f.name === selectedFile)?.label : "Select a CSV file to visualize data"}
+              </h2>
+            </div>
+          </div>
+
+          {loading && !data && (
+            <Card>
+              <CardContent className="py-8">
+                <p className="text-sm text-muted-foreground text-center">
+                  Loading file...
+                </p>
+              </CardContent>
+            </Card>
+          )}
+
+          {error && (
+            <Card>
+              <CardContent className="py-8">
+                <p className="text-sm text-destructive text-center">{error}</p>
+              </CardContent>
+            </Card>
+          )}
+
+          {data && !loading && (
+            <>
+            {selectedFile === "icons" ? (
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <CardTitle>Icons</CardTitle>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                      <div className="inline-flex rounded-md border border-input" role="group">
+                        <Button
+                          variant={days === 30 ? "default" : "ghost"}
+                          size="sm"
+                          onClick={() => setDays(30)}
+                          className="rounded-r-none border-r border-input"
+                        >
+                          30 days
+                        </Button>
+                        <Button
+                          variant={days === 60 ? "default" : "ghost"}
+                          size="sm"
+                          onClick={() => setDays(60)}
+                          className="rounded-none border-r border-input"
+                        >
+                          60 days
+                        </Button>
+                        <Button
+                          variant={days === 90 ? "default" : "ghost"}
+                          size="sm"
+                          onClick={() => setDays(90)}
+                          className="rounded-l-none"
+                        >
+                          90 days
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                  <CardDescription>All inserted icons sorted by insertions (top to bottom)</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-medium">
+                          Filter: {maxInsertionsFilter === null ? "All icons" : maxInsertionsFilter === 0 ? "Only 0 insertions" : `Insertions ≤ ${sliderValue.toLocaleString()}`}
+                        </label>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span>{maxInsertions.toLocaleString()}</span>
+                          <span className="text-xs">→</span>
+                          <span>0</span>
+                        </div>
+                      </div>
+                      <Slider
+                        value={sliderValue}
+                        onChange={setSliderValue}
+                        min={0}
+                        max={maxInsertions}
+                        step={Math.max(1, Math.floor(maxInsertions / 100))}
+                      />
+                    </div>
+                    <IconsTable data={data} days={days} minInsertions={minInsertionsFilter} maxInsertions={maxInsertionsFilter} />
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+            <Tabs defaultValue="components" className="w-full">
+              <TabsList>
+                <TabsTrigger value="components">Components</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="components" className="space-y-6 mt-6">
+                {fileName === "actions_by_component.csv" ? (
+                      <div className="grid grid-cols-3 gap-6">
+                        {/* Left side - 2/3 width */}
+                        <div className="col-span-2 space-y-6">
+                          <Card>
+                            <CardHeader>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <TrendingUp className="h-5 w-5" />
+                                  <CardTitle>Total Insertions Over Time</CardTitle>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                  <div className="inline-flex rounded-md border border-input" role="group">
+                                    <Button
+                                      variant={days === 30 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(30)}
+                                      className="rounded-r-none border-r border-input"
+                                    >
+                                      30 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 60 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(60)}
+                                      className="rounded-none border-r border-input"
+                                    >
+                                      60 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 90 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(90)}
+                                      className="rounded-l-none"
+                                    >
+                                      90 days
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                              <CardDescription>Total insertions by component sets over time (excluding icons)</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <InsertionsLineChart data={data} days={days} />
+                            </CardContent>
+                          </Card>
+
+                          <div className="grid grid-cols-2 gap-6">
+                            <Card>
+                              <CardHeader>
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-2">
+                                    <BarChart3 className="h-5 w-5" />
+                                    <CardTitle>Top 10 Components by Insertions</CardTitle>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                    <div className="inline-flex rounded-md border border-input" role="group">
+                                      <Button
+                                        variant={days === 30 ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => setDays(30)}
+                                        className="rounded-r-none border-r border-input"
+                                      >
+                                        30 days
+                                      </Button>
+                                      <Button
+                                        variant={days === 60 ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => setDays(60)}
+                                        className="rounded-none border-r border-input"
+                                      >
+                                        60 days
+                                      </Button>
+                                      <Button
+                                        variant={days === 90 ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => setDays(90)}
+                                        className="rounded-l-none"
+                                      >
+                                        90 days
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <CardDescription>Components with the most insertions in the last {days} days (excluding icons)</CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <ChartContainer data={data} days={days} />
+                              </CardContent>
+                            </Card>
+
+                            <Card>
+                              <CardHeader>
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-2">
+                                    <BarChart3 className="h-5 w-5" />
+                                    <CardTitle>Top 10 Components by Detachments</CardTitle>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                    <div className="inline-flex rounded-md border border-input" role="group">
+                                      <Button
+                                        variant={days === 30 ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => setDays(30)}
+                                        className="rounded-r-none border-r border-input"
+                                      >
+                                        30 days
+                                      </Button>
+                                      <Button
+                                        variant={days === 60 ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => setDays(60)}
+                                        className="rounded-none border-r border-input"
+                                      >
+                                        60 days
+                                      </Button>
+                                      <Button
+                                        variant={days === 90 ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => setDays(90)}
+                                        className="rounded-l-none"
+                                      >
+                                        90 days
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <CardDescription>Components with the most detachments in the last {days} days (excluding icons)</CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <DetachmentsChart data={data} days={days} />
+                              </CardContent>
+                            </Card>
+                          </div>
+
+                          <Card>
+                            <CardHeader>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <CardTitle>List of Components and Variants</CardTitle>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                  <div className="inline-flex rounded-md border border-input" role="group">
+                                    <Button
+                                      variant={days === 30 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(30)}
+                                      className="rounded-r-none border-r border-input"
+                                    >
+                                      30 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 60 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(60)}
+                                      className="rounded-none border-r border-input"
+                                    >
+                                      60 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 90 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(90)}
+                                      className="rounded-l-none"
+                                    >
+                                      90 days
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                              <CardDescription>View and explore your data in tabular format (sorted by insertions, excluding icons)</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <DataTable data={data} days={days} />
+                            </CardContent>
+                          </Card>
+
+                          {componentUsagesData && (
+                            <div className="grid grid-cols-2 gap-6">
+                              <Card>
+                                <CardHeader>
+                                  <div className="flex items-center gap-2">
+                                    <FileText className="h-5 w-5" />
+                                    <CardTitle>Component Usages</CardTitle>
+                                  </div>
+                                  <CardDescription>
+                                    Overview of component usage across files, teams, and total instances
+                                  </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                  <UsagesTable data={componentUsagesData} />
+                                </CardContent>
+                              </Card>
+                              <Card>
+                                <CardHeader>
+                                  <div className="flex items-center gap-2">
+                                    <FileText className="h-5 w-5" />
+                                    <CardTitle>File Usages</CardTitle>
+                                  </div>
+                                  <CardDescription>
+                                    All files using the library with team names and total instances per file
+                                  </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                  {fileUsageData ? (
+                                    <FileUsagesTable data={fileUsageData} />
+                                  ) : (
+                                    <div className="text-muted-foreground">Loading file usage data...</div>
+                                  )}
+                                </CardContent>
+                              </Card>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Right side - 1/3 width */}
+                        <div className="col-span-1">
+                          <Card>
+                            <CardHeader>
+                              <div className="flex items-center gap-2">
+                                <FileText className="h-5 w-5" />
+                                <CardTitle>Changelog</CardTitle>
+                              </div>
+                              <CardDescription>
+                                Component library version history and updates
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <ChangelogTable />
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="grid grid-cols-2 gap-6">
+                          <Card>
+                            <CardHeader>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <BarChart3 className="h-5 w-5" />
+                                  <CardTitle>Top 10 Components by Insertions</CardTitle>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                  <div className="inline-flex rounded-md border border-input" role="group">
+                                    <Button
+                                      variant={days === 30 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(30)}
+                                      className="rounded-r-none border-r border-input"
+                                    >
+                                      30 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 60 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(60)}
+                                      className="rounded-none border-r border-input"
+                                    >
+                                      60 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 90 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(90)}
+                                      className="rounded-l-none"
+                                    >
+                                      90 days
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                              <CardDescription>Components with the most insertions in the last {days} days (excluding icons)</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <ChartContainer data={data} days={days} />
+                            </CardContent>
+                          </Card>
+
+                          <Card>
+                            <CardHeader>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <BarChart3 className="h-5 w-5" />
+                                  <CardTitle>Top 10 Components by Detachments</CardTitle>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                  <div className="inline-flex rounded-md border border-input" role="group">
+                                    <Button
+                                      variant={days === 30 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(30)}
+                                      className="rounded-r-none border-r border-input"
+                                    >
+                                      30 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 60 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(60)}
+                                      className="rounded-none border-r border-input"
+                                    >
+                                      60 days
+                                    </Button>
+                                    <Button
+                                      variant={days === 90 ? "default" : "ghost"}
+                                      size="sm"
+                                      onClick={() => setDays(90)}
+                                      className="rounded-l-none"
+                                    >
+                                      90 days
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                              <CardDescription>Components with the most detachments in the last {days} days (excluding icons)</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <DetachmentsChart data={data} days={days} />
+                            </CardContent>
+                          </Card>
+                        </div>
+
+                        <Card>
+                          <CardHeader>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <CardTitle>List of Components and Variants</CardTitle>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <span className="text-sm text-muted-foreground mr-2">Period:</span>
+                                <div className="inline-flex rounded-md border border-input" role="group">
+                                  <Button
+                                    variant={days === 30 ? "default" : "ghost"}
+                                    size="sm"
+                                    onClick={() => setDays(30)}
+                                    className="rounded-r-none border-r border-input"
+                                  >
+                                    30 days
+                                  </Button>
+                                  <Button
+                                    variant={days === 60 ? "default" : "ghost"}
+                                    size="sm"
+                                    onClick={() => setDays(60)}
+                                    className="rounded-none border-r border-input"
+                                  >
+                                    60 days
+                                  </Button>
+                                  <Button
+                                    variant={days === 90 ? "default" : "ghost"}
+                                    size="sm"
+                                    onClick={() => setDays(90)}
+                                    className="rounded-l-none"
+                                  >
+                                    90 days
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
+                            <CardDescription>View and explore your data in tabular format (sorted by insertions, excluding icons)</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <DataTable data={data} days={days} />
+                          </CardContent>
+                        </Card>
+                      </>
+                    )}
+              </TabsContent>
+            </Tabs>
+            )}
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
