@@ -9,16 +9,16 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sync-changelog": "node scripts/sync-changelog.js",
+    "sync-branches": "node scripts/sync-branches.js",
     "discover-rows": "node scripts/discover-row-ids.js"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "papaparse": "^5.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "chart.js": "^4.4.6",
-    "react-chartjs-2": "^5.3.0",
-    "papaparse": "^5.4.1",
-    "lucide-react": "^0.468.0",
-    "clsx": "^2.1.1",
+    "recharts": "^3.5.1",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {

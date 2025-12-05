@@ -1,4 +1,12 @@
 import React, { useMemo } from "react"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table"
 
 export function IconsTable({ data, days = 90, minInsertions = 0, maxInsertions = null }) {
   const filteredAndSortedData = useMemo(() => {
@@ -59,37 +67,30 @@ export function IconsTable({ data, days = 90, minInsertions = 0, maxInsertions =
 
   return (
     <div className="rounded-md border overflow-auto max-h-[600px]">
-      <table className="w-full">
-        <thead className="bg-muted">
-          <tr>
+      <Table>
+        <TableHeader>
+          <TableRow>
             {columns.map((column) => (
-              <th
-                key={column}
-                className="px-4 py-3 text-left text-sm font-medium text-foreground border-b"
-              >
+              <TableHead key={column}>
                 {column.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-              </th>
+              </TableHead>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {filteredAndSortedData.map((row, index) => (
-            <tr
-              key={index}
-              className="border-b hover:bg-muted/50 transition-colors"
-            >
+            <TableRow key={index}>
               {columns.map((column) => (
-                <td
-                  key={column}
-                  className="px-4 py-3 text-sm text-foreground"
-                >
-                  {row[column] || "-"}
-                </td>
+                <TableCell key={column}>
+                  {column === 'insertions' || column === 'detachments'
+                    ? typeof row[column] === 'number' ? row[column].toLocaleString() : row[column] || "-"
+                    : row[column] || "-"}
+                </TableCell>
               ))}
-            </tr>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
       <div className="px-4 py-2 text-sm text-muted-foreground bg-muted">
         Showing {filteredAndSortedData.length} icon{filteredAndSortedData.length !== 1 ? 's' : ''}
       </div>

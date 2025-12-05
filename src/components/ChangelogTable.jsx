@@ -181,15 +181,15 @@ const FALLBACK_CHANGELOG_DATA = [
 
 export function ChangelogTable({ data = changelogData || FALLBACK_CHANGELOG_DATA }) {
   return (
-    <div className="w-full border border-[#d0d1d3] rounded-md overflow-hidden">
+    <div className="w-full border border-border rounded-md overflow-hidden">
       {/* Header */}
-      <div className="flex items-start border-b border-[#d0d1d3] bg-background min-h-[56px]">
-        <div className="w-[96px] p-4 border-r border-[#d0d1d3] flex-shrink-0">
+      <div className="flex items-start border-b border-border bg-background min-h-[56px]">
+        <div className="w-[96px] p-4 border-r border-border flex-shrink-0">
           <p className="text-base font-bold leading-6 text-foreground tracking-[-0.16px]">
             Version
           </p>
         </div>
-        <div className="w-[141px] p-4 border-r border-[#d0d1d3] flex-shrink-0">
+        <div className="w-[141px] p-4 border-r border-border flex-shrink-0">
           <p className="text-base font-bold leading-6 text-foreground tracking-[-0.16px]">
             Date
           </p>
@@ -202,23 +202,23 @@ export function ChangelogTable({ data = changelogData || FALLBACK_CHANGELOG_DATA
       </div>
 
       {/* Rows */}
-      <div className="divide-y divide-[#d0d1d3]">
+      <div className="divide-y divide-border">
         {data.map((entry, index) => (
           <div
             key={index}
-            className="flex items-start border-b border-[#d0d1d3] last:border-b-0"
+            className="flex items-stretch border-b border-border last:border-b-0"
           >
-            <div className="w-[96px] p-4 border-r border-[#d0d1d3] flex-shrink-0 min-h-[56px] flex items-center">
+            <div className="w-[96px] p-4 border-r border-border flex-shrink-0 flex items-start">
               <p className="text-base leading-6 text-foreground tracking-[-0.16px]">
                 {entry.version}
               </p>
             </div>
-            <div className="w-[141px] p-4 border-r border-[#d0d1d3] flex-shrink-0 min-h-[56px] flex items-center">
+            <div className="w-[141px] p-4 border-r border-border flex-shrink-0 flex items-start">
               <p className="text-base leading-6 text-foreground tracking-[-0.16px]">
                 {entry.date}
               </p>
             </div>
-            <div className="flex-1 min-w-0 p-4 py-4">
+            <div className="flex-1 min-w-0 p-4">
               <div className="text-base leading-6 text-foreground tracking-[-0.16px]">
                 {typeof entry.description === "string" ? (
                   parseChangelogDescription(entry.description)

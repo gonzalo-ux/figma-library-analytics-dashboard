@@ -1,33 +1,46 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useState, useEffect, useId } from "react"
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js"
-import { Line } from "react-chartjs-2"
+  Area,
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip as RechartsTooltip,
+  Legend as RechartsLegend,
+  ResponsiveContainer,
+} from "recharts"
+import { ChartContainer, ChartTooltipContent, ChartLegendContent } from "./ui/chart-container"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { getCSSVariable } from "../lib/utils"
+import { useTheme } from "../lib/useTheme"
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend
-)
+const chartConfig = {
+  total: {
+    label: "Total Insertions",
+    color: "hsl(var(--chart-1))",
+  },
+}
 
-export function InsertionsLineChart({ data, days = 90 }) {
+export function InsertionsLineChart({ data, days = 90, title, description, headerActions }) {
+  const isDark = useTheme()
+  const gradientId = useId()
+  
+  // Use theme-specific blue colors directly from CSS variables
+  // Light mode: hsl(221.2, 83.2%, 53.3%) - Blue
+  // Dark mode: hsl(217.2, 91.2%, 59.8%) - Lighter Blue
+  const chartColor = isDark 
+    ? "hsl(217.2, 91.2%, 59.8%)" 
+    : "hsl(221.2, 83.2%, 53.3%)"
+
+  // Grid color - use a more visible color based on theme
+  // Light mode: use border color, Dark mode: use a lighter color for contrast
+  const gridColor = isDark 
+    ? "hsl(0, 0%, 25%)"  // Lighter gray for better visibility in dark mode
+    : "hsl(0, 0%, 85%)"  // Darker gray for better visibility in light mode
+
   const chartData = useMemo(() => {
     if (!data || data.length === 0) {
-      return {
-        labels: [],
-        datasets: [],
-      }
+      return []
     }
 
     // Calculate date N days ago
@@ -80,88 +93,123 @@ export function InsertionsLineChart({ data, days = 90 }) {
       .map(([week, total]) => ({ week, total }))
       .sort((a, b) => new Date(a.week) - new Date(b.week))
 
-    // Extract labels and data
-    const labels = weeksArray.map(item => {
-      const date = new Date(item.week)
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-    })
-    const insertionsData = weeksArray.map(item => item.total)
-
-    return {
-      labels,
-      datasets: [
-        {
-          label: "Total Insertions",
-          data: insertionsData,
-          borderColor: "rgba(16, 185, 129, 1)",
-          backgroundColor: "rgba(16, 185, 129, 0.4)",
-          borderWidth: 2,
-          fill: 'origin',
-          tension: 0.4,
-          pointRadius: 4,
-          pointBackgroundColor: "rgba(255, 255, 255, 1)",
-          pointBorderColor: "rgba(16, 185, 129, 1)",
-          pointBorderWidth: 2,
-        },
-      ],
-    }
+    // Convert to Recharts format - use ISO date string for proper formatting
+    return weeksArray.map(item => ({
+      date: item.week,
+      total: item.total,
+    }))
   }, [data, days])
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: "top",
-      },
-      tooltip: {
-        mode: "index",
-        intersect: false,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        min: 0,
-        title: {
-          display: true,
-          text: "Total Insertions",
-        },
-        grid: {
-          display: true,
-        },
-      },
-      x: {
-        title: {
-          display: true,
-          text: "Date",
-        },
-        grid: {
-          display: true,
-        },
-      },
-    },
-    elements: {
-      point: {
-        radius: 4,
-        hoverRadius: 6,
-      },
-    },
-  }
-
-  if (chartData.datasets.length === 0 || chartData.labels.length === 0) {
-    return (
+  const chartContent = !chartData || chartData.length === 0 ? (
       <div className="h-[300px] w-full flex items-center justify-center text-muted-foreground">
         No data found for the last {days} days
       </div>
-    )
-  }
+  ) : (
+    <ChartContainer 
+      config={chartConfig} 
+      className="h-[300px] w-full" 
+      key={`chart-${isDark}`}
+    >
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={chartData} key={`area-chart-${isDark}-${chartColor}`}>
+          <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor={chartColor}
+                stopOpacity={0.8}
+              />
+              <stop
+                offset="95%"
+                stopColor={chartColor}
+                stopOpacity={0}
+              />
+            </linearGradient>
+          </defs>
+          <CartesianGrid 
+            strokeDasharray="3 3" 
+            stroke={gridColor}
+            strokeWidth={1}
+            horizontal={true}
+            vertical={false}
+          />
+          <XAxis
+            dataKey="date"
+            tickLine={false}
+            axisLine={{ stroke: gridColor, strokeWidth: 1 }}
+            tickMargin={8}
+            minTickGap={32}
+            tick={{ fill: "hsl(var(--muted-foreground))" }}
+            tickFormatter={(value) => {
+              const date = new Date(value)
+              return date.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              })
+            }}
+          />
+          <YAxis
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            tick={{ fill: "hsl(var(--muted-foreground))" }}
+            tickFormatter={(value) => {
+              if (value >= 1000) {
+                return `${(value / 1000).toFixed(1)}k`
+              }
+              return value.toString()
+            }}
+          />
+          <RechartsTooltip
+            cursor={false}
+            content={
+              <ChartTooltipContent
+                labelFormatter={(value) => {
+                  return new Date(value).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                  })
+                }}
+                indicator="dot"
+              />
+            }
+          />
+          <Area
+            dataKey="total"
+            type="natural"
+            fill={`url(#${gradientId})`}
+            stroke={chartColor}
+            strokeWidth={2}
+            fillOpacity={1}
+          />
+          <RechartsLegend content={<ChartLegendContent />} />
+        </AreaChart>
+      </ResponsiveContainer>
+    </ChartContainer>
+  )
 
   return (
-    <div className="h-[300px] w-full">
-      <Line data={chartData} options={options} />
-    </div>
+    <Card>
+      {(title || headerActions) && (
+        <CardHeader>
+          {headerActions ? (
+            <div className="flex items-center justify-between">
+              {title && (
+                <div className="flex items-center gap-2">
+                  <CardTitle>{title}</CardTitle>
+                </div>
+              )}
+              {headerActions}
+            </div>
+          ) : (
+            title && <CardTitle>{title}</CardTitle>
+          )}
+        </CardHeader>
+      )}
+      <CardContent>
+        {chartContent}
+      </CardContent>
+    </Card>
   )
 }
 
