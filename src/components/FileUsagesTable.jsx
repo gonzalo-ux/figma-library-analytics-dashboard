@@ -1,4 +1,12 @@
 import React, { useMemo } from "react"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table"
 
 export function FileUsagesTable({ data }) {
   const processedData = useMemo(() => {
@@ -58,39 +66,30 @@ export function FileUsagesTable({ data }) {
   return (
     <div className="space-y-4">
       <div className="rounded-md border overflow-auto max-h-[600px]">
-        <table className="w-full">
-          <thead className="bg-muted">
-            <tr>
+        <Table>
+          <TableHeader>
+            <TableRow>
               {columns.map((column) => (
-                <th
-                  key={column.key}
-                  className="px-4 py-3 text-left text-sm font-medium text-foreground border-b"
-                >
+                <TableHead key={column.key}>
                   {column.label}
-                </th>
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {processedData.map((row, index) => (
-              <tr
-                key={index}
-                className="border-b hover:bg-muted/50 transition-colors"
-              >
+              <TableRow key={index}>
                 {columns.map((column) => (
-                  <td
-                    key={column.key}
-                    className="px-4 py-3 text-sm text-foreground"
-                  >
+                  <TableCell key={column.key}>
                     {column.key === "num_instances"
                       ? row[column.key].toLocaleString()
                       : row[column.key] || "-"}
-                  </td>
+                  </TableCell>
                 ))}
-              </tr>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
         {processedData.length > 0 && (
           <div className="px-4 py-2 text-sm text-muted-foreground bg-muted">
             Showing {processedData.length} file{processedData.length !== 1 ? "s" : ""}

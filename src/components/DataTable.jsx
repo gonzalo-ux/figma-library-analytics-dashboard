@@ -1,4 +1,13 @@
 import React, { useMemo, useState } from "react"
+import { Input } from "./ui/input"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table"
 
 export function DataTable({ data, days = 90 }) {
   const [searchTerm, setSearchTerm] = useState("")
@@ -140,48 +149,41 @@ export function DataTable({ data, days = 90 }) {
   return (
     <div className="space-y-4">
       <div className="relative">
-        <input
+        <Input
           type="text"
           placeholder="Search by component name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 text-sm border border-input rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         />
       </div>
       <div className="grid grid-cols-2 gap-6">
         <div className="space-y-2">
           <div className="rounded-md border overflow-auto max-h-[500px]">
-            <table className="w-full">
-              <thead className="bg-muted">
-                <tr>
+            <Table>
+              <TableHeader>
+                <TableRow>
                   {columns.map((column) => (
-                    <th
-                      key={column.key}
-                      className="px-4 py-3 text-left text-sm font-medium text-foreground border-b"
-                    >
+                    <TableHead key={column.key}>
                       {column.label}
-                    </th>
+                    </TableHead>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {processedData.slice(0, 100).map((row, index) => (
-                  <tr
+                  <TableRow
                     key={index}
                     onClick={() => setSelectedComponentSet(
                       selectedComponentSet === row.component_set_name ? null : row.component_set_name
                     )}
-                    className={`border-b transition-colors cursor-pointer ${
+                    className={`cursor-pointer ${
                       selectedComponentSet === row.component_set_name
                         ? "bg-primary/10 hover:bg-primary/20"
-                        : "hover:bg-muted/50"
+                        : ""
                     }`}
                   >
                     {columns.map((column) => (
-                      <td
-                        key={column.key}
-                        className="px-4 py-3 text-sm text-foreground"
-                      >
+                      <TableCell key={column.key}>
                         {column.key === 'insertions' 
                           ? row[column.key].toLocaleString()
                           : column.key === 'variants'
@@ -189,12 +191,12 @@ export function DataTable({ data, days = 90 }) {
                             ? "No variants"
                             : row[column.key].toLocaleString()
                           : row[column.key] || "-"}
-                      </td>
+                      </TableCell>
                     ))}
-                  </tr>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
           {processedData.length > 100 && (
             <div className="px-4 py-2 text-sm text-muted-foreground bg-muted rounded-md">
@@ -217,39 +219,24 @@ export function DataTable({ data, days = 90 }) {
               </button>
             </div>
             <div className="rounded-md border overflow-auto max-h-[500px]">
-              <table className="w-full">
-                <thead className="bg-muted">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-foreground border-b">
-                      Variant Name
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-foreground border-b">
-                      Insertions
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-foreground border-b">
-                      Detachments
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Variant Name</TableHead>
+                    <TableHead>Insertions</TableHead>
+                    <TableHead>Detachments</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {variantDetails.map((variant, index) => (
-                    <tr
-                      key={index}
-                      className="border-b hover:bg-muted/50 transition-colors"
-                    >
-                      <td className="px-4 py-3 text-sm text-foreground">
-                        {variant.component_name || "-"}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-foreground">
-                        {variant.insertions.toLocaleString()}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-foreground">
-                        {variant.detachments.toLocaleString()}
-                      </td>
-                    </tr>
+                    <TableRow key={index}>
+                      <TableCell>{variant.component_name || "-"}</TableCell>
+                      <TableCell>{variant.insertions.toLocaleString()}</TableCell>
+                      <TableCell>{variant.detachments.toLocaleString()}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
           </div>
         )}
