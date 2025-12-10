@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import changelogData from "../data/changelog.json"
 import { parseChangelogDescription } from "../lib/parseChangelogDescription"
+import { createChangelogAdapter } from "../lib/changelog"
+import { loadConfigSync } from "../lib/config"
 
 // Fallback data if JSON file is not available
 const FALLBACK_CHANGELOG_DATA = [
@@ -23,7 +25,7 @@ const FALLBACK_CHANGELOG_DATA = [
       <>
         ❖ Logo
         <ul className="list-disc ml-6 mt-1">
-          <li>Update Zalando lounge and prive logos</li>
+          <li>Update brand logos</li>
         </ul>
       </>
     ),
@@ -179,7 +181,59 @@ const FALLBACK_CHANGELOG_DATA = [
   },
 ]
 
-export function ChangelogTable({ data = changelogData || FALLBACK_CHANGELOG_DATA }) {
+export function ChangelogTable({ data: propData }) {
+  const [data, setData] = useState(propData || changelogData || FALLBACK_CHANGELOG_DATA)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    // If data is provided as prop, use it
+    if (propData) {
+      setData(propData)
+      return
+    }
+
+    // Otherwise, try to load from configured source
+    const loadChangelog = async () => {
+      try {
+        const config = loadConfigSync()
+        const source = config?.changelog?.source || 'figma'
+        
+        if (source === 'figma') {
+          // Use existing changelog.json
+          setData(changelogData || FALLBACK_CHANGELOG_DATA)
+          return
+        }
+
+        // Try to fetch from adapter
+        setLoading(true)
+        const adapter = createChangelogAdapter(source, config?.changelog?.config || {})
+        const entries = await adapter.fetch()
+        if (entries && entries.length > 0) {
+          setData(entries)
+        } else {
+          setData(changelogData || FALLBACK_CHANGELOG_DATA)
+        }
+      } catch (error) {
+        console.error('Failed to load changelog:', error)
+        setData(changelogData || FALLBACK_CHANGELOG_DATA)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadChangelog()
+  }, [propData])
+
+  if (loading) {
+    return (
+      <div className="w-full border border-border rounded-md overflow-hidden">
+        <div className="p-8 text-center text-muted-foreground">
+          Loading changelog...
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full border border-border rounded-md overflow-hidden">
       {/* Header */}

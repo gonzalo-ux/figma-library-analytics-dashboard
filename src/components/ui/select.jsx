@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { cn } from "../../lib/utils"
 
 const Select = React.forwardRef(({ className, children, ...props }, ref) => (
@@ -15,5 +15,27 @@ const Select = React.forwardRef(({ className, children, ...props }, ref) => (
 ))
 Select.displayName = "Select"
 
-export { Select }
+const SelectTrigger = React.forwardRef(({ className, children, ...props }, ref) => (
+  <Select ref={ref} className={className} {...props}>
+    {children}
+  </Select>
+))
+SelectTrigger.displayName = "SelectTrigger"
 
+const SelectValue = ({ placeholder, ...props }) => {
+  return <option value="" {...props}>{placeholder}</option>
+}
+
+const SelectContent = React.forwardRef(({ className, children, ...props }, ref) => {
+  return <>{children}</>
+})
+SelectContent.displayName = "SelectContent"
+
+const SelectItem = React.forwardRef(({ className, children, value, ...props }, ref) => (
+  <option ref={ref} value={value} className={className} {...props}>
+    {children}
+  </option>
+))
+SelectItem.displayName = "SelectItem"
+
+export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem }

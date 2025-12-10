@@ -1,5 +1,5 @@
 {
-  "name": "zds-figma-anlytics",
+  "name": "figma-analytics-dashboard",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "sync-changelog": "node scripts/sync-changelog.js",
     "sync-branches": "node scripts/sync-branches.js",
-    "discover-rows": "node scripts/discover-row-ids.js"
+    "discover-rows": "node scripts/discover-row-ids.js",
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev"
   },
   "dependencies": {
     "clsx": "^2.1.1",

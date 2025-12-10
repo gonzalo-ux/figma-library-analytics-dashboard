@@ -137,10 +137,11 @@ export function DetachmentsChart({ data, days = 90, title, description, headerAc
   ) : (
     <ShadcnChartContainer 
       config={chartConfig} 
-      className="h-[400px] w-full" 
+      className="h-[400px] w-full min-w-0" 
       key={`chart-${isDark}`}
+      style={{ minWidth: 0, minHeight: 400 }}
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" minHeight={400}>
         <BarChart 
           data={chartData} 
           layout="vertical"

@@ -71,9 +71,10 @@ export function ChartContainer({
     <div
       ref={chartRef}
       className={cn(
-        "w-full h-full",
+        "w-full h-full min-w-0 min-h-0",
         className
       )}
+      style={{ minWidth: 0, minHeight: 0 }}
       {...props}
     >
       {children}

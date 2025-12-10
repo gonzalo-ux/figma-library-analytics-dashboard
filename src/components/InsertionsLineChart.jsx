@@ -107,10 +107,11 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
   ) : (
     <ChartContainer 
       config={chartConfig} 
-      className="h-[300px] w-full" 
+      className="h-[300px] w-full min-w-0" 
       key={`chart-${isDark}`}
+      style={{ minWidth: 0, minHeight: 300 }}
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" minHeight={300}>
         <AreaChart data={chartData} key={`area-chart-${isDark}-${chartColor}`}>
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">

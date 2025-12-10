@@ -24,9 +24,27 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const FIGMA_FILE_KEY = 'CizdSWIpNAplH7UkBcGqUC';
+// Load config to get Figma file key
+let FIGMA_FILE_KEY = process.env.FIGMA_FILE_KEY || 'CizdSWIpNAplH7UkBcGqUC';
 const CHANGELOG_FRAME_ID = '29368:8608';
 const OUTPUT_FILE = path.join(__dirname, '../src/data/changelog.json');
+
+// Try to load from config.json if it exists
+try {
+  const configPath = path.join(__dirname, '../config.json');
+  if (fs.existsSync(configPath)) {
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+    if (config.figma?.libraryUrl) {
+      // Extract file key from URL (e.g., https://www.figma.com/file/ABC123XYZ/Name)
+      const urlMatch = config.figma.libraryUrl.match(/\/file\/([^\/]+)/);
+      if (urlMatch) {
+        FIGMA_FILE_KEY = urlMatch[1];
+      }
+    }
+  }
+} catch (error) {
+  // Use default if config doesn't exist
+}
 
 /**
  * Recursively finds all row nodes in the document tree
@@ -51,9 +69,23 @@ function findRowNodes(node, rowNodes = []) {
  * Fetches the file structure and discovers all row IDs
  */
 async function discoverRowIds() {
-  const token = process.env.FIGMA_ACCESS_TOKEN;
+  let token = process.env.FIGMA_ACCESS_TOKEN || process.env.VITE_FIGMA_ACCESS_TOKEN;
+  
+  // Try to load from config.json if not in env
   if (!token) {
-    throw new Error('FIGMA_ACCESS_TOKEN environment variable is required');
+    try {
+      const configPath = path.join(__dirname, '../config.json');
+      if (fs.existsSync(configPath)) {
+        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        token = config.figma?.accessToken;
+      }
+    } catch (error) {
+      // Continue to error below
+    }
+  }
+  
+  if (!token) {
+    throw new Error('FIGMA_ACCESS_TOKEN environment variable or config.json accessToken is required');
   }
 
   const url = `https://api.figma.com/v1/files/${FIGMA_FILE_KEY}`;
@@ -106,9 +138,23 @@ async function discoverRowIds() {
  * Fetches a node from Figma API
  */
 async function fetchFigmaNode(nodeId) {
-  const token = process.env.FIGMA_ACCESS_TOKEN;
+  let token = process.env.FIGMA_ACCESS_TOKEN || process.env.VITE_FIGMA_ACCESS_TOKEN;
+  
+  // Try to load from config.json if not in env
   if (!token) {
-    throw new Error('FIGMA_ACCESS_TOKEN environment variable is required');
+    try {
+      const configPath = path.join(__dirname, '../config.json');
+      if (fs.existsSync(configPath)) {
+        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        token = config.figma?.accessToken;
+      }
+    } catch (error) {
+      // Continue to error below
+    }
+  }
+  
+  if (!token) {
+    throw new Error('FIGMA_ACCESS_TOKEN environment variable or config.json accessToken is required');
   }
 
   const url = `https://api.figma.com/v1/files/${FIGMA_FILE_KEY}/nodes?ids=${nodeId}`;

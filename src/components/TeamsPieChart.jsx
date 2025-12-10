@@ -191,9 +191,10 @@ export function TeamsPieChart({ data }) {
       <div className="flex-1">
         <ShadcnChartContainer 
           config={chartConfig} 
-          className="h-[400px] w-full"
+          className="h-[400px] w-full min-w-0"
+          style={{ minWidth: 0, minHeight: 400 }}
         >
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height="100%" minHeight={400}>
             <PieChart key={`pie-chart-${isDark}`}>
               <Pie
                 data={chartData}

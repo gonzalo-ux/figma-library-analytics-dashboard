@@ -1,0 +1,29 @@
+{
+  "name": "Blue",
+  "colors": {
+    "--background": "222 47% 11%",
+    "--foreground": "213 31% 91%",
+    "--card": "222 47% 11%",
+    "--card-foreground": "213 31% 91%",
+    "--popover": "224 71% 4%",
+    "--popover-foreground": "215 20% 65%",
+    "--primary": "217 91% 60%",
+    "--primary-foreground": "222 47% 11%",
+    "--secondary": "215 28% 17%",
+    "--secondary-foreground": "213 31% 91%",
+    "--muted": "215 28% 17%",
+    "--muted-foreground": "217 10% 65%",
+    "--accent": "215 28% 17%",
+    "--accent-foreground": "213 31% 91%",
+    "--destructive": "0 63% 31%",
+    "--destructive-foreground": "213 31% 91%",
+    "--border": "215 28% 17%",
+    "--input": "215 28% 17%",
+    "--ring": "217 91% 60%",
+    "--chart-1": "217 91% 60%",
+    "--chart-2": "197 37% 24%",
+    "--chart-3": "43 74% 66%",
+    "--chart-4": "27 87% 67%",
+    "--chart-5": "12 76% 61%"
+  }
+}

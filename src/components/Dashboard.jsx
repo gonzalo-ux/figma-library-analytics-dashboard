@@ -16,6 +16,15 @@ import { BranchesTable } from "./BranchesTable"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
 import { Slider } from "./ui/slider"
 import { Header } from "./Header"
+import { useEditMode } from "./EditModeProvider"
+import { EditableText } from "./EditableText"
+import { ChartFactory } from "./charts/ChartFactory"
+import { ChartTypeSelector } from "./ChartTypeSelector"
+import { ThemeEditor } from "./ThemeEditor"
+import { CustomThemeEditor } from "./CustomThemeEditor"
+import { ChangelogConfig } from "./ChangelogConfig"
+import { TypographyEditor } from "./TypographyEditor"
+import { loadConfigSync } from "../lib/config"
 
 const CSV_FILES = [
   { name: "actions_by_component.csv", label: "Components" },
@@ -25,6 +34,8 @@ const CSV_FILES = [
 ]
 
 export function Dashboard() {
+  const { preferences, updatePreference, isEditMode } = useEditMode()
+  const config = loadConfigSync()
   const [data, setData] = useState(null)
   const [fileUsageData, setFileUsageData] = useState(null)
   const [componentUsagesData, setComponentUsagesData] = useState(null)
@@ -336,10 +347,28 @@ export function Dashboard() {
 
                         {/* Left side - 2/3 width */}
                         <div className="col-span-2 space-y-6">
+                          {isEditMode && (
+                            <div className="space-y-4">
+                              <TypographyEditor />
+                              <ThemeEditor />
+                              <CustomThemeEditor />
+                              <ChangelogConfig />
+                            </div>
+                          )}
                           <div className="space-y-2">
                             <div>
-                              <h2 className="text-2xl font-semibold">Total Insertions Over Time</h2>
-                              <p className="text-sm text-muted-foreground mt-1">Total insertions by component sets over time (excluding icons)</p>
+                              <EditableText
+                                value={config?.content?.titles?.totalInsertions || "Total Insertions Over Time"}
+                                onChange={(value) => updatePreference('content.titles.totalInsertions', value)}
+                                as="h2"
+                                className="text-2xl font-semibold"
+                              />
+                              <EditableText
+                                value={config?.content?.descriptions?.totalInsertions || "Total insertions by component sets over time (excluding icons)"}
+                                onChange={(value) => updatePreference('content.descriptions.totalInsertions', value)}
+                                as="p"
+                                className="text-sm text-muted-foreground mt-1"
+                              />
                             </div>
                             <InsertionsLineChart 
                               data={data} 
@@ -349,23 +378,55 @@ export function Dashboard() {
 
                           <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
+                              {isEditMode && (
+                                <ChartTypeSelector chartKey="insertions" label="Chart Type for Insertions" />
+                              )}
                               <div>
-                                <h2 className="text-2xl font-semibold">Top 10 Components by Insertions</h2>
-                                <p className="text-sm text-muted-foreground mt-1">{`Components with the most insertions in the last ${days} days (excluding icons)`}</p>
+                                <EditableText
+                                  value={config?.content?.titles?.topInsertions || "Top 10 Components by Insertions"}
+                                  onChange={(value) => updatePreference('content.titles.topInsertions', value)}
+                                  as="h2"
+                                  className="text-2xl font-semibold"
+                                />
+                                <EditableText
+                                  value={(config?.content?.descriptions?.topInsertions || "Components with the most insertions in the last {days} days (excluding icons)").replace('{days}', days)}
+                                  onChange={(value) => updatePreference('content.descriptions.topInsertions', value)}
+                                  as="p"
+                                  className="text-sm text-muted-foreground mt-1"
+                                />
                               </div>
-                              <ChartContainer 
-                                data={data} 
+                              <ChartFactory
+                                type={preferences?.charts?.insertions || 'bar'}
+                                data={data}
+                                dataKey="insertions"
+                                nameKey="name"
                                 days={days}
                               />
                             </div>
 
                             <div className="space-y-2">
+                              {isEditMode && (
+                                <ChartTypeSelector chartKey="detachments" label="Chart Type for Detachments" />
+                              )}
                               <div>
-                                <h2 className="text-2xl font-semibold">Top 10 Components by Detachments</h2>
-                                <p className="text-sm text-muted-foreground mt-1">{`Components with the most detachments in the last ${days} days (excluding icons)`}</p>
+                                <EditableText
+                                  value={config?.content?.titles?.topDetachments || "Top 10 Components by Detachments"}
+                                  onChange={(value) => updatePreference('content.titles.topDetachments', value)}
+                                  as="h2"
+                                  className="text-2xl font-semibold"
+                                />
+                                <EditableText
+                                  value={(config?.content?.descriptions?.topDetachments || "Components with the most detachments in the last {days} days (excluding icons)").replace('{days}', days)}
+                                  onChange={(value) => updatePreference('content.descriptions.topDetachments', value)}
+                                  as="p"
+                                  className="text-sm text-muted-foreground mt-1"
+                                />
                               </div>
-                              <DetachmentsChart
+                              <ChartFactory
+                                type={preferences?.charts?.detachments || 'bar'}
                                 data={data}
+                                dataKey="detachments"
+                                nameKey="name"
                                 days={days}
                               />
                             </div>
@@ -373,8 +434,18 @@ export function Dashboard() {
 
                           <div className="space-y-2">
                             <div>
-                              <h2 className="text-2xl font-semibold">List of Components and Variants</h2>
-                              <p className="text-sm text-muted-foreground mt-1">View and explore your data in tabular format (sorted by insertions, excluding icons)</p>
+                              <EditableText
+                                value={config?.content?.titles?.componentsList || "List of Components and Variants"}
+                                onChange={(value) => updatePreference('content.titles.componentsList', value)}
+                                as="h2"
+                                className="text-2xl font-semibold"
+                              />
+                              <EditableText
+                                value={config?.content?.descriptions?.componentsList || "View and explore your data in tabular format (sorted by insertions, excluding icons)"}
+                                onChange={(value) => updatePreference('content.descriptions.componentsList', value)}
+                                as="p"
+                                className="text-sm text-muted-foreground mt-1"
+                              />
                             </div>
                             <Card>
                               <CardContent>
@@ -387,13 +458,35 @@ export function Dashboard() {
                             <>
                               {fileUsageData && (
                                 <div className="space-y-2">
+                                  {isEditMode && (
+                                    <ChartTypeSelector chartKey="teams" label="Chart Type for Teams" />
+                                  )}
                                   <div>
-                                    <h2 className="text-2xl font-semibold">Team Instances Distribution</h2>
-                                    <p className="text-sm text-muted-foreground mt-1">Distribution of component instances across teams (top 10 teams shown, rest grouped as Other)</p>
+                                    <EditableText
+                                      value={config?.content?.titles?.teamInstances || "Team Instances Distribution"}
+                                      onChange={(value) => updatePreference('content.titles.teamInstances', value)}
+                                      as="h2"
+                                      className="text-2xl font-semibold"
+                                    />
+                                    <EditableText
+                                      value={config?.content?.descriptions?.teamInstances || "Distribution of component instances across teams (top 10 teams shown, rest grouped as Other)"}
+                                      onChange={(value) => updatePreference('content.descriptions.teamInstances', value)}
+                                      as="p"
+                                      className="text-sm text-muted-foreground mt-1"
+                                    />
                                   </div>
                                   <Card>
                                     <CardContent className="pt-6">
-                                      <TeamsPieChart data={fileUsageData} />
+                                      {preferences?.charts?.teams === 'radial' ? (
+                                        <ChartFactory
+                                          type="radial"
+                                          data={fileUsageData}
+                                          dataKey="value"
+                                          nameKey="name"
+                                        />
+                                      ) : (
+                                        <TeamsPieChart data={fileUsageData} />
+                                      )}
                                     </CardContent>
                                   </Card>
                                 </div>
@@ -440,8 +533,18 @@ export function Dashboard() {
                         <div className="col-span-1">
                           <div className="space-y-2">
                             <div>
-                              <h2 className="text-2xl font-semibold">Changelog</h2>
-                              <p className="text-sm text-muted-foreground mt-1">Component library version history and updates</p>
+                              <EditableText
+                                value={config?.content?.titles?.changelog || "Changelog"}
+                                onChange={(value) => updatePreference('content.titles.changelog', value)}
+                                as="h2"
+                                className="text-2xl font-semibold"
+                              />
+                              <EditableText
+                                value={config?.content?.descriptions?.changelog || "Component library version history and updates"}
+                                onChange={(value) => updatePreference('content.descriptions.changelog', value)}
+                                as="p"
+                                className="text-sm text-muted-foreground mt-1"
+                              />
                             </div>
                             <Card>
                               <CardContent>
@@ -488,23 +591,55 @@ export function Dashboard() {
 
                         <div className="grid grid-cols-2 gap-6">
                           <div className="space-y-2">
+                            {isEditMode && (
+                              <ChartTypeSelector chartKey="insertions" label="Chart Type for Insertions" />
+                            )}
                             <div>
-                              <h2 className="text-2xl font-semibold">Top 10 Components by Insertions</h2>
-                              <p className="text-sm text-muted-foreground mt-1">{`Components with the most insertions in the last ${days} days (excluding icons)`}</p>
+                              <EditableText
+                                value={config?.content?.titles?.topInsertions || "Top 10 Components by Insertions"}
+                                onChange={(value) => updatePreference('content.titles.topInsertions', value)}
+                                as="h2"
+                                className="text-2xl font-semibold"
+                              />
+                              <EditableText
+                                value={(config?.content?.descriptions?.topInsertions || "Components with the most insertions in the last {days} days (excluding icons)").replace('{days}', days)}
+                                onChange={(value) => updatePreference('content.descriptions.topInsertions', value)}
+                                as="p"
+                                className="text-sm text-muted-foreground mt-1"
+                              />
                             </div>
-                            <ChartContainer 
-                              data={data} 
+                            <ChartFactory
+                              type={preferences?.charts?.insertions || 'bar'}
+                              data={data}
+                              dataKey="insertions"
+                              nameKey="name"
                               days={days}
                             />
                           </div>
 
                           <div className="space-y-2">
+                            {isEditMode && (
+                              <ChartTypeSelector chartKey="detachments" label="Chart Type for Detachments" />
+                            )}
                             <div>
-                              <h2 className="text-2xl font-semibold">Top 10 Components by Detachments</h2>
-                              <p className="text-sm text-muted-foreground mt-1">{`Components with the most detachments in the last ${days} days (excluding icons)`}</p>
+                              <EditableText
+                                value={config?.content?.titles?.topDetachments || "Top 10 Components by Detachments"}
+                                onChange={(value) => updatePreference('content.titles.topDetachments', value)}
+                                as="h2"
+                                className="text-2xl font-semibold"
+                              />
+                              <EditableText
+                                value={(config?.content?.descriptions?.topDetachments || "Components with the most detachments in the last {days} days (excluding icons)").replace('{days}', days)}
+                                onChange={(value) => updatePreference('content.descriptions.topDetachments', value)}
+                                as="p"
+                                className="text-sm text-muted-foreground mt-1"
+                              />
                             </div>
-                            <DetachmentsChart
+                            <ChartFactory
+                              type={preferences?.charts?.detachments || 'bar'}
                               data={data}
+                              dataKey="detachments"
+                              nameKey="name"
                               days={days}
                             />
                           </div>
@@ -512,8 +647,18 @@ export function Dashboard() {
 
                         <div className="space-y-2">
                           <div>
-                            <h2 className="text-2xl font-semibold">List of Components and Variants</h2>
-                            <p className="text-sm text-muted-foreground mt-1">View and explore your data in tabular format (sorted by insertions, excluding icons)</p>
+                            <EditableText
+                              value={config?.content?.titles?.componentsList || "List of Components and Variants"}
+                              onChange={(value) => updatePreference('content.titles.componentsList', value)}
+                              as="h2"
+                              className="text-2xl font-semibold"
+                            />
+                            <EditableText
+                              value={config?.content?.descriptions?.componentsList || "View and explore your data in tabular format (sorted by insertions, excluding icons)"}
+                              onChange={(value) => updatePreference('content.descriptions.componentsList', value)}
+                              as="p"
+                              className="text-sm text-muted-foreground mt-1"
+                            />
                           </div>
                           <Card>
                             <CardContent>
