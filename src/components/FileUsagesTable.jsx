@@ -21,7 +21,8 @@ export function FileUsagesTable({ data }) {
       const teamName = row.team_name || ""
       const fileName = row.file_name || ""
       const workspaceName = row.workspace_name || ""
-      const numInstances = parseInt(row.num_instances) || 0
+      // Support both 'total_instances' (from CSV) and 'num_instances' (legacy format)
+      const numInstances = parseInt(row.num_instances || row.total_instances) || 0
 
       // Create a unique key for team + file combination
       const key = `${teamName}|||${fileName}`

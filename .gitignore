@@ -28,3 +28,9 @@ dist-ssr
 
 # Cursor-specific files
 cursor/
+
+# Config
+config.json
+
+# Python
+python-api/__pycache__/

@@ -140,7 +140,7 @@ app.post('/api/generate-csv', async (req, res) => {
         return reject(new Error(`Python process exited with code ${code}. ${stderr || stdout || 'No error message'}`))
       }
 
-      // Check if CSV files were generated
+      // Check if CSV files were generated and have data
       const csvFiles = [
         'actions_by_component.csv',
         'actions_by_team.csv',
@@ -150,18 +150,44 @@ app.post('/api/generate-csv', async (req, res) => {
         'variable_actions_by_variable.csv'
       ]
 
-      const generatedFiles = csvFiles.filter(file => 
-        fs.existsSync(path.join(outputDir, file))
-      )
+      const generatedFiles = []
+      const filesWithData = []
+      let totalRows = 0
+
+      for (const file of csvFiles) {
+        const filePath = path.join(outputDir, file)
+        if (fs.existsSync(filePath)) {
+          generatedFiles.push(file)
+          // Check if file has data (more than just header)
+          try {
+            const content = fs.readFileSync(filePath, 'utf-8')
+            const lines = content.trim().split('\n')
+            const rowCount = lines.length - 1 // Subtract header
+            if (rowCount > 0) {
+              filesWithData.push(file)
+              totalRows += rowCount
+            }
+          } catch (err) {
+            console.error(`Error reading ${file}:`, err)
+          }
+        }
+      }
 
       if (generatedFiles.length === 0) {
         return reject(new Error('No CSV files were generated. Check Python script output.'))
       }
 
+      const message = filesWithData.length === 0
+        ? `Generated ${generatedFiles.length} CSV files, but all are empty (headers only). Library Analytics API may not be available. Check Python output for details.`
+        : `Generated ${generatedFiles.length} CSV files with ${totalRows} total data rows`
+
       resolve({
         success: true,
         files: generatedFiles,
-        message: `Generated ${generatedFiles.length} CSV files`
+        filesWithData: filesWithData.length,
+        totalRows: totalRows,
+        message: message,
+        warning: filesWithData.length === 0 ? 'All CSV files are empty. Library Analytics API may require Enterprise plan.' : null
       })
     })
 

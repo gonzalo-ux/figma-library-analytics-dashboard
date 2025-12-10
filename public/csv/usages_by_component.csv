@@ -1,1 +1,1682 @@
 component_name,component_set_name,file_name,instances
+"Thickness=1px, Colour=Grey",Divider (Horizontal),Unknown File,0
+"Platform=Web, Size=Large (48x48), Outline=No, State=Deselected",Icon button - Wishlist,Unknown File,0
+Type=Sale,Flag,Unknown File,0
+Type=Default,🚧 [DEPRECATED] Plus short,Unknown File,0
+Type=Positive,Flag,Unknown File,0
+Type=Strong (Designer),Flag,Unknown File,0
+Icon - Star (Filled),,Unknown File,0
+Platform=iOS: iPhone X (and newer),Status bar,Unknown File,0
+Icon -  Add,,Unknown File,0
+Pill,,Unknown File,0
+Icon - Heart (Outlined),,Unknown File,0
+Icon - Chevron Down,,Unknown File,0
+Icon - Information,,Unknown File,0
+Icon - Share (iOS),,Unknown File,0
+"State=Default, Type=Default",🚧 [DEPRECATED] Selector,Unknown File,0
+Icon - Placeholder,,Unknown File,0
+Icon - Cross (X),,Unknown File,0
+Icon -  Arrow (Right),,Unknown File,0
+"Viewport=iOS: 375+, Selected tab=Home",Navigation bar,Unknown File,0
+Icon - Checkmark,,Unknown File,0
+"Expanded=Off, State=Default, Style=Bold",Accordion (Default),Unknown File,0
+Icon - Chevron Right,,Unknown File,0
+Icon -  Arrow (Left),,Unknown File,0
+Icon - Play,,Unknown File,0
+Icon -  Avatar A,,Unknown File,0
+Size=24px (M),Spacer,Unknown File,0
+Icon - Heart (Filled),,Unknown File,0
+Type=Light mode,Home indicator (iOS),Unknown File,0
+"Platform=Web, Type=Standard link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"With icon=True, State=Default, Size=Small",Follow button,Unknown File,0
+Type=Right,Icon button - Navigation arrow,Unknown File,0
+Icon - Enhancing,,Unknown File,0
+"Left action=Back (Arrow), Action=None",Top bar (iOS),Unknown File,0
+"Platform=App, State=Deselected",Icon button - Reminder,Unknown File,0
+Icon - Zalando Logo Mark (Filled),,Unknown File,0
+Icon - Shopping bag (empty),,Unknown File,0
+Icon - Finish,,Unknown File,0
+"Type=Primary, State=Default, Size=Default",Button,Unknown File,0
+Icon - Star (Half),,Unknown File,0
+"Type=Single/Multi-select, Lines=Single, State=Deselected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Size=8px (XXS),Spacer,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Default, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Bell (Outlined),,Unknown File,0
+Icon - More,,Unknown File,0
+Type=Informative,Input message,Unknown File,0
+"Type=Secondary, State=Default, Size=Default",Button,Unknown File,0
+Icon - Truck,,Unknown File,0
+Icon - Chevron Up,,Unknown File,0
+Size=16px (S),Spacer,Unknown File,0
+Icon - Long Lasting,,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Default, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Zalando Logo Mark (Outlined),,Unknown File,0
+"Platform=Web, Type=Standard link, State=Default, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Magnifying glass,,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Size=4px (XXXS),Spacer,Unknown File,0
+Icon - Shopping bag (Full),,Unknown File,0
+Icon - Plump,,Unknown File,0
+"Number=Single, Resize=Original",Badge,Unknown File,0
+"Number=Triple, Resize=Original",Badge,Unknown File,0
+Icon - Box,,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Default, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+"Type=Read (Static), State=Default",Rating stars,Unknown File,0
+Divider (Vertical),,Unknown File,0
+Icon - Box Trade-in,,Unknown File,0
+Size=12px (XS),Spacer,Unknown File,0
+Layer=Foreground,Page control,Unknown File,0
+Icon - Globe,,Unknown File,0
+Platform=App,Icon button - More,Unknown File,0
+"Type=Tertiary, State=Default, Size=Small",Button,Unknown File,0
+State=Deselected,Radio button,Unknown File,0
+"Type=Logo, Color=Original",Zalando Logo,Unknown File,0
+Icon - Protection,,Unknown File,0
+"State=Default, Platform=App & mWeb",Filter Dropdown Trigger,Unknown File,0
+Breakpoint=Mobile 375 <-> 767,Carousel Header (Web),Unknown File,0
+Icon - Moisturizing,,Unknown File,0
+"Checked=Off, State=Default",Checkbox,Unknown File,0
+"Platform=iOS, Type=Standard link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Default, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+Layer=Background,Page control,Unknown File,0
+Icon - Lock Closed,,Unknown File,0
+"Platform=iOS, Type=Icon link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+Platform=iOS,Top bar catalogue,Unknown File,0
+Icon - Box Transit,,Unknown File,0
+"Number=Double, Resize=Original",Badge,Unknown File,0
+"Thickness=1px, Colour=Black",Divider (Horizontal),Unknown File,0
+Overlay,,Unknown File,0
+"State=Default, Platform=Web",Filter Dropdown Trigger,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Help,,Unknown File,0
+"With icon=True, State=Default, Size=Default",Follow button,Unknown File,0
+"State=Default, Size=Large",Text buttons,Unknown File,0
+Icon - Truck (Fast),,Unknown File,0
+Breakpoints=1280+,Footer,Unknown File,0
+Icon - Equalizer,,Unknown File,0
+"Left action=Back (Arrow), Action=Icon",Top bar (iOS),Unknown File,0
+Type=Left,Icon button - Navigation arrow,Unknown File,0
+Type=Subtle,🚧 [DEPRECATED] Plus short,Unknown File,0
+"Type=Tertiary, State=Default, Size=Default",Button,Unknown File,0
+"Platform=Web, Outline=Off",Icon button - Remove Close,Unknown File,0
+Size=36px (L),Spacer,Unknown File,0
+"Platform=App, State=Deselected",Icon button - Reminder,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Star (Outlined),,Unknown File,0
+Icon - Pencil,,Unknown File,0
+Type=Short Link,Message,Unknown File,0
+"Platform=App, Outline=Off",Icon button - Remove Close,Unknown File,0
+Icon - Magnifying glass with lines,,Unknown File,0
+Icon - Email,,Unknown File,0
+"State=Deselected, Description=Off, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Platform=Web, Type=Standard link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Default, Type=Swatch",🚧 [DEPRECATED] Selector,Unknown File,0
+Breakpoints=375 - 1023,Header,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=iOS, Type=Standard link, State=Default, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Hanger,,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Default, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+State=Selected,Reminder button,Unknown File,0
+Color=No,Divider - Dashed (Progress Stepper Only),Unknown File,0
+Icon - Gift Card,,Unknown File,0
+Icon - Credit Card,,Unknown File,0
+Platform=App / mWeb,List - Headers,Unknown File,0
+"Left action=Back (Arrow), Number of titles=1, Right Action=None",Top bar (Android),Unknown File,0
+Icon - Eye Open,,Unknown File,0
+"Platform=iOS, Type=Icon link, State=Default, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Copy,,Unknown File,0
+"Checked=On, State=Selected",Checkbox,Unknown File,0
+"State=Selected, Type=Default",🚧 [DEPRECATED] Selector,Unknown File,0
+Breakpoints=1280+,Footer,Unknown File,0
+Icon - Pause,,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Success,,Unknown File,0
+Icon - Running,,Unknown File,0
+Icon - Chat,,Unknown File,0
+Platform=App,Icon button - More,Unknown File,0
+Platform=Web,Icon button - More,Unknown File,0
+Icon - Postbox,,Unknown File,0
+"On/off=No, State=Enabled",Switch,Unknown File,0
+"Platform=App, Size=Small (40x40), Outline=No, State=Deselected",Icon button - Wishlist,Unknown File,0
+Icon - Sale,,Unknown File,0
+"Viewport=iOS: 375+, Selected tab=Categories",Navigation bar,Unknown File,0
+Icon - Cross (X) (Circle - Outlined),,Unknown File,0
+Icon - Currency ,,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"State=Default, Size=Medium",Text buttons,Unknown File,0
+Icon - Shapes (Grid),,Unknown File,0
+"Platform=iOS, Type=Standard link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+Icon - Star Sparkle,,Unknown File,0
+Icon - Calendar Star,,Unknown File,0
+"Platform=Web, Size=Large (48x48), Outline=Yes, State=Deselected",Icon button - Wishlist,Unknown File,0
+Icon - Barcode,,Unknown File,0
+Icon - Chevron Left,,Unknown File,0
+"Thickness=2px, Colour=Black",Divider (Horizontal),Unknown File,0
+"Expanded=Off, State=Default, Style=Regular",Accordion (Default),Unknown File,0
+Icon - Bell Set (Filled),,Unknown File,0
+"State=Default, Size=Small",Text buttons,Unknown File,0
+"State=Selected, Description=Off, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+mWeb / Safari search bar,,Unknown File,0
+Breakpoints=320 - 479,Footer,Unknown File,0
+Icon - Wallet,,Unknown File,0
+Icon - Clothing,,Unknown File,0
+"States=Completed, Type=Icon, Orientation=Horizontal, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Partner Brands,,Unknown File,0
+"Left action=Close (X), Action=None",Top bar (iOS),Unknown File,0
+"Type=Default, State=Default, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - Returns,,Unknown File,0
+"Platform=App, Size=Large (48x48), Outline=No, State=Deselected",Icon button - Wishlist,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Default, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+Breakpoint=Desktop 1024 <-> +1280,Carousel Header (Web),Unknown File,0
+"States=Disabled, Type=Number, Orientation=Horizontal, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"State=Default, Badge=No",Dropdown Icon Trigger,Unknown File,0
+Pill highlight,,Unknown File,0
+Icon - Play Triangle,,Unknown File,0
+State=Default,.Breadcrumb link,Unknown File,0
+Icon - Eye Closed,,Unknown File,0
+"Left action=Back (Arrow), Action=Text action",Top bar (iOS),Unknown File,0
+Icon - Burger Menu Left,,Unknown File,0
+Size=48px (XL),Spacer,Unknown File,0
+"Type=Single/Multi-select, Lines=Single, State=Selected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"On/off=Yes, State=Enabled",Switch,Unknown File,0
+Top bar=On,Action sheet,Unknown File,0
+Icon - Location,,Unknown File,0
+Icon - Gear,,Unknown File,0
+Icon - Search History,,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Type=Single/Multi-select, Lines=Single, State=Deselected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Type=Long Link,Message,Unknown File,0
+"Platform=Web, Size=Large (48x48), Outline=No, State=Selected",Icon button - Wishlist,Unknown File,0
+Icon - View grid,,Unknown File,0
+Icon - Face Strong Positive (Outlined),,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Hover (web), Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Default, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+Icon - Dresses (Women),,Unknown File,0
+Country=Austria (AT),Country flag,Unknown File,0
+Icon - Size Fit,,Unknown File,0
+Icon - Chat sparkle,,Unknown File,0
+"Platform=Web, State=Deselected",Icon button - Reminder,Unknown File,0
+"Platform=App, Size=Large (48x48), Outline=Yes, State=Deselected",Icon button - Wishlist,Unknown File,0
+State=Default,.Breadcrumb link,Unknown File,0
+Icon - Cross (X) (Circle - Filled),,Unknown File,0
+Icon - Gift Box,,Unknown File,0
+"State=Default, Badge=Yes",Dropdown Icon Trigger,Unknown File,0
+"Left action=None, Action=None",Top bar (iOS),Unknown File,0
+Icon - Shoes (Sports shoes),,Unknown File,0
+Icon - Factory,,Unknown File,0
+Icon - Size Body,,Unknown File,0
+Icon - Truck (Premium) ,,Unknown File,0
+Icon - Share (Android),,Unknown File,0
+Icon - Download,,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Default, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+Icon - Phone,,Unknown File,0
+"Platform=App, State=Transient",Icon button - Add to bag,Unknown File,0
+"Platform=iOS, Type=Icon link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Platform=Android,Status bar,Unknown File,0
+Icon - Order Received,,Unknown File,0
+Icon - Radio,,Unknown File,0
+"Type=Primary, State=Loading, Size=Default",Button,Unknown File,0
+Icon - Trash,,Unknown File,0
+"Platform=Mobile/App, Link color=Black, Overlay=Off",Embedded Navigation,Unknown File,0
+Country=Germany (DE),Country flag,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Default, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+Icon - T-shirts,,Unknown File,0
+Icon - Rising trend,,Unknown File,0
+Icon - bottle Rotate,,Unknown File,0
+Icon - Headset,,Unknown File,0
+Icon - Yoga Mat,,Unknown File,0
+Icon - Express Checkout,,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Disabled, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Icon link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Active, Platform=App & mWeb",Filter Dropdown Trigger,Unknown File,0
+Icon - Face Positive (Outlined),,Unknown File,0
+"Platform=Web, Size=Large",Countdown,Unknown File,0
+"Platform=App, Size=Large (48x48), Outline=No, State=Selected",Icon button - Wishlist,Unknown File,0
+Icon - Flag,,Unknown File,0
+Icon - Cloud,,Unknown File,0
+Icon - Secure Payment,,Unknown File,0
+Icon - Thumbs Up (outline),,Unknown File,0
+Icon - Recycle,,Unknown File,0
+"States=Selected, Type=Number, Orientation=Horizontal, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Headset Plus,,Unknown File,0
+Icon - Bodycare,,Unknown File,0
+"With icon=True, State=Selected, Size=Small",Follow button,Unknown File,0
+"Type=Brandmark, Color=Original",Zalando Logo,Unknown File,0
+Icon - Play (Outline),,Unknown File,0
+Icon - Qualities,,Unknown File,0
+Icon -  Arrow (Up),,Unknown File,0
+Table column,,Unknown File,0
+Icon - Home,,Unknown File,0
+Type=Custom - Background,Dropdown Menu (Desktop),Unknown File,0
+Icon - Blouses & Tunics (Women),,Unknown File,0
+"Platform=Web, Size=Small (40x40), Outline=No, State=Deselected",Icon button - Wishlist,Unknown File,0
+Icon - Bell Set (Outlined),,Unknown File,0
+"States=Disabled, Type=Icon, Orientation=Horizontal, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Platform=Web,Icon button - More,Unknown File,0
+Icon - Audio Off (Mute),,Unknown File,0
+State=Default,.Breadcrumb link,Unknown File,0
+Icon - Exclusive Zalando,,Unknown File,0
+"Type=Wordmark, Color=Original",Zalando Logo,Unknown File,0
+Icon - Bags,,Unknown File,0
+Icon - Calendar Blank,,Unknown File,0
+Icon - Trousers,,Unknown File,0
+"Type=Tertiary, State=Selected, Size=Default",Button,Unknown File,0
+Color=Original,🚧 [DEPRECATED] Zalando Plus Pill Logo (Wordmark),Unknown File,0
+Icon - Thumbhole,,Unknown File,0
+Type=Read,Linear scale,Unknown File,0
+Icon - Fire,,Unknown File,0
+Icon - Jeans,,Unknown File,0
+Icon - Confetti,,Unknown File,0
+"Platform=Web, State=Deselected",Icon button - Reminder,Unknown File,0
+Icon - Backpacks,,Unknown File,0
+"States=Selected, Type=Icon, Orientation=Horizontal, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Ruler,,Unknown File,0
+"Type=Default, State=Default",Dropdown Trigger (default),Unknown File,0
+"Platform=App, Outline=Off, State=Unmute",Icon button - Mute sound,Unknown File,0
+"Viewport=Android, Selected tab=Home",Navigation bar,Unknown File,0
+Platform=Web,Icon button - More,Unknown File,0
+"Left action=Close (X), Action=Text action",Top bar (iOS),Unknown File,0
+Icon - Thumbs Down (outline),,Unknown File,0
+Progress Stepper Caret,,Unknown File,0
+Progress Stepper Message,,Unknown File,0
+Icon - Jackets,,Unknown File,0
+Platform=App,Icon button - More,Unknown File,0
+Color=Yes,Divider - Dashed (Progress Stepper Only),Unknown File,0
+Icon - Share (Web),,Unknown File,0
+"Type=Secondary, State=Loading, Size=Default",Button,Unknown File,0
+Icon - Face Neutral (Outlined),,Unknown File,0
+Zalando Homescreen Logo (Filled),,Unknown File,0
+Icon - Sweatshirts,,Unknown File,0
+Icon - Face Strong Negative (Outlined),,Unknown File,0
+"State=Selected, Platform=Web",Filter Dropdown Trigger,Unknown File,0
+"Platform=App, Type=Default, Icon (Optional)=On, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Clock,,Unknown File,0
+Icon - Spinner,,Unknown File,0
+"Type=Default, State=Default, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Platform=App, Size=Large",Countdown,Unknown File,0
+mWeb / Safari toolbar,,Unknown File,0
+Icon - View mondrian,,Unknown File,0
+"Type=Primary, State=Disabled, Size=Default",Button,Unknown File,0
+"Platform=Web, Size=Small",Countdown,Unknown File,0
+"Type=Category, Platform=Desktop, State=Default",Search bar,Unknown File,0
+Icon - Cycle,,Unknown File,0
+Breakpoints=320 - 374,Header,Unknown File,0
+"State=Selected, Label=Yes, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+Platform=iOS: iPhone X (and newer),Status bar,Unknown File,0
+Size=64 px (XXL),Spacer,Unknown File,0
+"Viewport=iOS: 375+, Selected tab=Wishlist",Navigation bar,Unknown File,0
+Icon - Photo,,Unknown File,0
+Icon - Expand,,Unknown File,0
+"Type=Follow button, Lines=Single, State=Deselected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Audio On,,Unknown File,0
+Icon - Shapes (Rhombus),,Unknown File,0
+Icon - Weights,,Unknown File,0
+Icon - Face Negative (Outlined),,Unknown File,0
+"State=Selected, Type=Swatch",🚧 [DEPRECATED] Selector,Unknown File,0
+"Platform=Web, Type=Standard, Size=Medium, State=Default",Link,Unknown File,0
+Type=Down,Icon button - Navigation arrow,Unknown File,0
+"Platform=Web, Type=Standard link, State=Hover (web), Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Selected, Platform=App & mWeb",Filter Dropdown Trigger,Unknown File,0
+Icon - Skincare,,Unknown File,0
+Icon - Select,,Unknown File,0
+Icon - Email Approved,,Unknown File,0
+"With icon=True, State=Selected, Size=Default",Follow button,Unknown File,0
+"States=Completed, Type=Number, Orientation=Horizontal, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Truck Plus,,Unknown File,0
+"Platform=App, Size=Large (48x48), Outline=Yes, State=Selected",Icon button - Wishlist,Unknown File,0
+Type=Error,Input message,Unknown File,0
+Icon - Magnifying glass with plus,,Unknown File,0
+Background colour=Grey,Table cells,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Hover (web), Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Default, Optional=No, Message=None",Text area,Unknown File,0
+Icon - Price info,,Unknown File,0
+Icon - Beauty Mother&Baby,,Unknown File,0
+Platform=iOS: iPhone 6/7/8/SE,Status bar,Unknown File,0
+"Platform=App, State=Default",Icon button - Trade-in,Unknown File,0
+Icon - Camera,,Unknown File,0
+"Type=Default, State=Selected, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Orientation=Vertical, State=Initial",Video (Web),Unknown File,0
+Icon -  Arrow (Down),,Unknown File,0
+"Type=Default, State=Active, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - Expand Arrow,,Unknown File,0
+Icon - Burger Menu Right,,Unknown File,0
+Icon - Haircare,,Unknown File,0
+Type=Default,🚧 [DEPRECATED] Plus short,Unknown File,0
+"Platform=App, Size=Small",Countdown,Unknown File,0
+Icon - Store,,Unknown File,0
+"With icon=False, State=Default, Size=Default",Follow button,Unknown File,0
+Icon - Heart Sparks,,Unknown File,0
+Icon - Calendar (100 days),,Unknown File,0
+Icon - Shoes (Trainers),,Unknown File,0
+Icon - Bulb,,Unknown File,0
+Icon - Underwear (Undershirts),,Unknown File,0
+Icon - Packstation,,Unknown File,0
+Icon - Sportswear,,Unknown File,0
+Icon - Open External,,Unknown File,0
+Icon - Instagram,,Unknown File,0
+Icon - Sports Accessories,,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=None, Icon=Trailing",Text input,Unknown File,0
+Icon - Bell Plus (Outlined),,Unknown File,0
+"Left action=Back (Arrow), Number of titles=1, Right Action=Text action",Top bar (Android),Unknown File,0
+Icon - Make Up,,Unknown File,0
+"State=Selected w/ Badge, Type=Default",🚧 [DEPRECATED] Selector,Unknown File,0
+Type=Vertical,Checkbox group,Unknown File,0
+Icon - Truck (Long Distance),,Unknown File,0
+Type=3 Levels,Breadcrumbs,Unknown File,0
+"States=Completed, Type=Icon, Orientation=Horizontal, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Platform=App,Icon button - More,Unknown File,0
+"Expanded=off, Level=Level 1, State=Default",Accordion (Large),Unknown File,0
+Icon - Highlight,,Unknown File,0
+Icon - Shoes (Other),,Unknown File,0
+Icon - Hourglass Rotating,,Unknown File,0
+Icon - Donate,,Unknown File,0
+Icon - Loungewear,,Unknown File,0
+"Left action=Close (X), Action=Icon",Top bar (iOS),Unknown File,0
+"State=Deselected, Description=On, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+Type=4 Levels,Breadcrumbs,Unknown File,0
+"Type=Single/Multi-select, Lines=Multi, State=Deselected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Diamond,,Unknown File,0
+"State=Default, Level=1",List - Item (Large),Unknown File,0
+Icon - Outdoor,,Unknown File,0
+Icon - Pullovers & Knitwear,,Unknown File,0
+"Viewport=iOS: 320-374, Selected tab=Home",Navigation bar,Unknown File,0
+"Platform=Desktop, Link color=Black, Overlay=Off",Embedded Navigation,Unknown File,0
+Icon - Swimwear (Women),,Unknown File,0
+"Type=Color swatch, State=Selected, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=None, Icon=None",Text input,Unknown File,0
+Icon - Mirror,,Unknown File,0
+"Orientation=Horizontal, State=Initial",Video (Web),Unknown File,0
+Icon - Dresses (Kids),,Unknown File,0
+Background colour=White,Table cells,Unknown File,0
+Icon - Bike,,Unknown File,0
+"State=Disabled, Description=Off, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+Icon - Handshake,,Unknown File,0
+Icon - Ingredients,,Unknown File,0
+Type=1. Portrait,Image ratio,Unknown File,0
+"Platform=App, Type=Success, Icon (Optional)=On, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Platform=App, Type=Success, Icon (Optional)=On, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Platform=Web, Type=Icon, Size=Large, State=Default",Link,Unknown File,0
+"State=Hover (Web only), Description=Off, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+Alignment=Auto-width,Tabs group,Unknown File,0
+Icon - Shoes (Pumps),,Unknown File,0
+Icon - Coats (Men),,Unknown File,0
+"Platform=Web, Type=Icon link, State=Hover (web), Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+State=Deselected,Radio button,Unknown File,0
+Icon - Rocket,,Unknown File,0
+State=Selected,Reminder button,Unknown File,0
+Icon - Clapping (Outlined),,Unknown File,0
+"Viewport=iOS: 375+, Selected tab=User account",Navigation bar,Unknown File,0
+Platform=iOS: iPad OS,Status bar,Unknown File,0
+Meter/Foreground,,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+Type=8. Square,Image ratio,Unknown File,0
+Alignment=Fixed,Tabs group,Unknown File,0
+Icon - Sachet,,Unknown File,0
+"Type=Write (Interactive), State=Default",Rating stars,Unknown File,0
+Icon -  Avatar B,,Unknown File,0
+Top bar=Off,Action sheet,Unknown File,0
+Icon - Encrypted,,Unknown File,0
+"Platform=Web, Type=Standard, Size=Large, State=Default",Link,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"State=Active, Platform=Web",Filter Dropdown Trigger,Unknown File,0
+Country=Italy (IT),Country flag,Unknown File,0
+Icon - Shirts (Men),,Unknown File,0
+"On/off=No, State=Focus",Switch,Unknown File,0
+"Type=Filter, Platform=Desktop, State=Default",Search bar,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Informative, Icon=None",Text input,Unknown File,0
+Icon - 3D,,Unknown File,0
+"Type=Default, State=Default, Label=On, Optional=No, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Meter/Background,,Unknown File,0
+Icon -  Arrow (Diagonal),,Unknown File,0
+"Expanded=On, State=Default, Style=Bold",Accordion (Default),Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Error, Icon=None",Text input,Unknown File,0
+"Platform=App, Type=Default, Icon (Optional)=Off, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Skirts (Women),,Unknown File,0
+Icon - Accessories (Men),,Unknown File,0
+Icon - Clothing Set (Kids),,Unknown File,0
+Icon - Twitter,,Unknown File,0
+Icon - Pinterest,,Unknown File,0
+Type=5 Levels,Breadcrumbs,Unknown File,0
+Icon - Shoes (High Heels),,Unknown File,0
+"Platform=Web, Type=Icon, Size=Medium, State=Default",Link,Unknown File,0
+"Type=Single/Multi-select, Lines=Single, State=Selected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+"State=Default, Level=2",List - Item (Large),Unknown File,0
+"Platform=Web, Type=Navigation link, State=Hover (web), Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Left action=Close (X), Number of titles=1, Right Action=None",Top bar (Android),Unknown File,0
+Country=Ireland (IE),Country flag,Unknown File,0
+Icon - Shorts (Men),,Unknown File,0
+"Expanded=off, Level=Level 2, State=Default",Accordion (Large),Unknown File,0
+Type=Vertical,Checkbox group,Unknown File,0
+Type=3 Levels,Breadcrumbs,Unknown File,0
+Icon - Footprint,,Unknown File,0
+State=Collapsed,🚧 [DEPRECATED] Expandable container,Unknown File,0
+Icon - Cactus,,Unknown File,0
+Icon - Truck (Returns),,Unknown File,0
+Icon - Clapping (Filled),,Unknown File,0
+"Platform=Web, Size=Large (48x48), Outline=Yes, State=Selected",Icon button - Wishlist,Unknown File,0
+"Type=Color swatch, State=Default, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Default, State=Selected",Dropdown Trigger (default),Unknown File,0
+Icon - Sunrise Plus,,Unknown File,0
+"Left action=None, Action=Icon",Top bar (iOS),Unknown File,0
+Icon - Color Palette,,Unknown File,0
+"State=Selected, Description=On, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+Icon - Shoes (Business - Men),,Unknown File,0
+Icon - Radio dashed,,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Disabled, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Jackets & Coats (Kids),,Unknown File,0
+Icon - Underwear (Men),,Unknown File,0
+Icon - Shoes (Lace-Ups),,Unknown File,0
+Icon - Fragances,,Unknown File,0
+Icon - Football,,Unknown File,0
+Alignment=Scrollable,Tabs group,Unknown File,0
+Icon - Newsletter,,Unknown File,0
+"State=Disabled, Type=Default",🚧 [DEPRECATED] Selector,Unknown File,0
+Icon - Infinite,,Unknown File,0
+Icon - Facecare,,Unknown File,0
+"Type=Default, State=Disabled, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - Zalando Plus,,Unknown File,0
+Type=Write,Linear scale,Unknown File,0
+Icon -  Avatar E,,Unknown File,0
+"Platform=Web, Type=Standard, Size=Small, State=Default",Link,Unknown File,0
+"Range=Half, State=Default",Range slider,Unknown File,0
+Breakpoints=1024 - 1279,Footer,Unknown File,0
+Type=Dark mode,Home indicator (iOS),Unknown File,0
+"Type=Default, State=Selected, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - Box Mixed,,Unknown File,0
+"Platform=App, Type=Error, Icon (Optional)=On, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Type=Category, Platform=Mobile web, State=Default",🚧 [DEPRECATED] Search bar,Unknown File,0
+Icon - Shaving (Men),,Unknown File,0
+"Platform=App, Type=Default, Icon (Optional)=Off, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Platform=iOS, CTA Length=Short, Intention=Ping",Dialog (App),Unknown File,0
+Icon - Bra,,Unknown File,0
+"Platform=App, Type=Success, Icon (Optional)=Off, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Feather,,Unknown File,0
+Icon - Inspiration (Other),,Unknown File,0
+Icon - Avocado,,Unknown File,0
+Icon - Shoes (Ballet Pumps),,Unknown File,0
+"On/off=No, State=Disabled",Switch,Unknown File,0
+Icon - Sunglasses,,Unknown File,0
+Icon -  Avatar C,,Unknown File,0
+"State=Max length, Optional=No, Message=None",Text area,Unknown File,0
+"Type=With label, State=Default",Rating stars,Unknown File,0
+Platform=Web,Icon button - More,Unknown File,0
+Icon - Thumbs Up (filled),,Unknown File,0
+"Type=Logo, Color=White",Zalando Logo,Unknown File,0
+"Type=Default, State=Hover, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Type=Native - Item,Dropdown Menu (Desktop),Unknown File,0
+Type=2. Almost square,Image ratio,Unknown File,0
+"Platform=App, Type=Standard, Size=Small, State=Default",Link,Unknown File,0
+"Platform=Web, State=Default",Icon button - Trade-in,Unknown File,0
+"States=Selected, Type=Number, Orientation=Vertical, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Hoodies,,Unknown File,0
+"Type=Switch, Lines=Multi, State=Deselected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Country=Switzerland (CH),Country flag,Unknown File,0
+Type=Prix Mini,Flag,Unknown File,0
+"States=Completed, Type=Icon, Orientation=Vertical, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Checked=Off, State=Disabled",Checkbox,Unknown File,0
+Icon - Shoes (Sports shoes - Kids),,Unknown File,0
+Type=Success,Input message,Unknown File,0
+Icon - Bug,,Unknown File,0
+Icon - Shoes (Sandals),,Unknown File,0
+Icon - Football American,,Unknown File,0
+"Type=Default, State=Default",Dropdown Trigger (default),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"On/off=Yes, State=Disabled",Switch,Unknown File,0
+Icon - Set (Women),,Unknown File,0
+Pill animated,,Unknown File,0
+"Type=Single/Multiselect, State=Deselected",List - Controls,Unknown File,0
+Icon - Bandaid,,Unknown File,0
+Icon - Shoes (Ankle Boots),,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Disabled, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Full Length Mirror,,Unknown File,0
+Icon - Waterproof,,Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+Platform=iOS,Top bar catalogue,Unknown File,0
+"Platform=App, Type=Error, Icon (Optional)=On, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Direction=Horizontal, Text=None, State=Inactive, Type=Icon",Progress Stepper,Unknown File,0
+Icon - TikTok,,Unknown File,0
+Icon - Chemicals Bubbles,,Unknown File,0
+"With icon=False, State=Default, Size=Small",Follow button,Unknown File,0
+Icon - Jumpsuits (Women),,Unknown File,0
+Icon - Shoes (Outdoor Shoes),,Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+Icon - Suncare,,Unknown File,0
+Country=Poland (PL),Country flag,Unknown File,0
+Icon - Homescreen Logo,,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Error, Icon=Trailing",Text input,Unknown File,0
+Icon - Bell (Filled),,Unknown File,0
+Icon - Lock Open,,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Informative, Icon=Trailing",Text input,Unknown File,0
+Icon - Tent,,Unknown File,0
+Icon - Umbrella,,Unknown File,0
+Icon - Lip Care,,Unknown File,0
+Icon - Breathable fabric,,Unknown File,0
+"State=Disabled, Description=On, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+"State=Deselected, Description=Off, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0
+Icon - Jumpsuits (Kids),,Unknown File,0
+"Platform=Desktop, Link color=White, Overlay=Off",Embedded Navigation,Unknown File,0
+"Platform=App, Type=Icon, Size=Small, State=Default",Link,Unknown File,0
+Country=United Kingdom (UK),Country flag,Unknown File,0
+State=Selected,Reminder button,Unknown File,0
+"State=Selected, Label=Yes, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+"Left action=Back (Arrow), Number of titles=2, Right Action=1 icon",Top bar (Android),Unknown File,0
+Icon - Digital Review,,Unknown File,0
+Type=Next (First Page),Pagination (Web),Unknown File,0
+Size=Medium,Plus Logo,Unknown File,0
+Country=Netherlands (NL),Country flag,Unknown File,0
+"State=Deselected, Description=Off, Message=Informative",🚧 [DEPRECATED] Radio button,Unknown File,0
+Icon - Shorts (Women),,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"State=Hover (Web only), Description=On, Message=None",🚧 [DEPRECATED] Radio button,Unknown File,0
+Country=Spain (ES),Country flag,Unknown File,0
+Platform=Android,Status bar,Unknown File,0
+Type=2 Levels,Category tree,Unknown File,0
+Icon - Chemicals Leaf,,Unknown File,0
+Country=France (FR),Country flag,Unknown File,0
+"State=Hover, Size=Medium",Text buttons,Unknown File,0
+Icon - Volleyball,,Unknown File,0
+Icon - View square,,Unknown File,0
+Icon - Butterfly,,Unknown File,0
+Country=Finland (FI),Country flag,Unknown File,0
+Icon - Nails,,Unknown File,0
+Icon - Suits (Women),,Unknown File,0
+Icon - Space,,Unknown File,0
+"Platform=Web, Type=Default, Icon (Optional)=Off, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Type=Up,Icon button - Navigation arrow,Unknown File,0
+"Buttons=None, Visual=None",Tooltip,Unknown File,0
+"Type=Secondary, State=Disabled, Size=Default",Button,Unknown File,0
+"States=Disabled, Type=Number, Orientation=Horizontal, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Shoes (Lace-Up Boots),,Unknown File,0
+"Type=Tertiary, State=Disabled, Size=Small",Button,Unknown File,0
+Icon - Calendar (30 days),,Unknown File,0
+"Platform=App, Type=Success, Icon (Optional)=Off, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+Country=Sweden (SE),Country flag,Unknown File,0
+Country=Norway (NO),Country flag,Unknown File,0
+Country=Denmark (DK),Country flag,Unknown File,0
+"Panel=Default, State=Expanded, Optional=Off, Subtext=Off, Static content=On",Panel,Unknown File,0
+Type=Negative,Flag,Unknown File,0
+Colour=Original,🚧 [DEPRECATED] Zalando Plus Pill Logo,Unknown File,0
+Icon - Mascara,,Unknown File,0
+Icon - Basketball,,Unknown File,0
+Icon -  Avatar F,,Unknown File,0
+"State=Disabled, Size=Large",Text buttons,Unknown File,0
+"State=Disabled, Label=Yes, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+"Platform=App, Type=Default",Notifications,Unknown File,0
+"Platform=App, Type=Error",Notifications,Unknown File,0
+"Platform=Mobile/App, Link color=Black, Overlay=On",Embedded Navigation,Unknown File,0
+"Platform=App, Type=Standard, Size=Medium, State=Default",Link,Unknown File,0
+Country=Czech (CZ),Country flag,Unknown File,0
+"Active=Active, Size=Small",Plus Points Logo,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+Icon - Cardigan (Men),,Unknown File,0
+Icon - Durable fabric,,Unknown File,0
+Icon - Cardigan (Women),,Unknown File,0
+Icon - Sports Equipment,,Unknown File,0
+"States=Selected, Type=Number, Orientation=Horizontal, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Code,,Unknown File,0
+Icon - Scarves & Shawls,,Unknown File,0
+"Direction=Vertical, Text=None, State=Completed, Type=Number",Progress Stepper,Unknown File,0
+"Platform=Web, Type=Default, Icon (Optional)=Off, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+"State=Selected, Size=Small",Text buttons,Unknown File,0
+Icon - Skirts (Kids),,Unknown File,0
+"Platform=Mobile/App, Link color=White, Overlay=Off",Embedded Navigation,Unknown File,0
+Icon - Necklaces (Women),,Unknown File,0
+Breakpoint=Tablet 768 <-> 1023,Carousel Header (Web),Unknown File,0
+Platform=Android,Status bar,Unknown File,0
+"State=Active, Badge=No",Dropdown Icon Trigger,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - New,,Unknown File,0
+"Direction=Horizontal, Text=None, State=Completed, Type=Icon",Progress Stepper,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Panel=Default, State=Collapsed, Optional=Off, Subtext=Off, Static content=Off",Panel,Unknown File,0
+Icon - Creditcard Scan,,Unknown File,0
+"Platform=Web, Type=Standard link, State=Hover (web), Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Multipacks (Baby),,Unknown File,0
+Type=Vertical,Checkbox group,Unknown File,0
+"Left action=Back (Arrow), Number of titles=2, Right Action=None",Top bar (Android),Unknown File,0
+"With icon=True, State=Hover, Size=Small",Follow button,Unknown File,0
+Icon - Bunny,,Unknown File,0
+"States=Completed, Type=Number, Orientation=Horizontal, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Two Half Layers,,Unknown File,0
+Icon - Headphones,,Unknown File,0
+"Type=Switch, Lines=Single, State=Deselected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Platform=App, Outline=Off, State=Mute",Icon button - Mute sound,Unknown File,0
+Type=Default,🚧 [DEPRECATED] Plus short,Unknown File,0
+Icon - Suits (Men),,Unknown File,0
+"Type=Tertiary, State=Selected, Size=Small",Button,Unknown File,0
+"Type=Color swatch, State=Active, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - Shoes (Boots),,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Informative, Icon=Leading",Text input,Unknown File,0
+Icon - Shopping Bag Plus,,Unknown File,0
+State=Active,Sorting Dropdown Trigger,Unknown File,0
+Icon - Rings,,Unknown File,0
+Breakpoints=768 - 1023,Footer,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Elephant,,Unknown File,0
+Icon - Baby Gifts (Kids),,Unknown File,0
+Icon - Microphone,,Unknown File,0
+"Platform=Web, Type=Icon link, State=Hover (web), Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=App, Type=Icon, Size=Medium, State=Default",Link,Unknown File,0
+"Type=Filter, Platform=mWeb, State=Focused filled",Search bar,Unknown File,0
+"Type=Category, Platform=Android, State=Default",Search bar,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Dentalcare,,Unknown File,0
+Icon - T-shirts (Kids),,Unknown File,0
+"Type=Primary, State=Hover, Size=Default",Button,Unknown File,0
+"State=Max length, Optional=Yes, Message=None",Text area,Unknown File,0
+Icon - Belts,,Unknown File,0
+Type=Default,🚧 [DEPRECATED] Plus short,Unknown File,0
+State=Hover,Reminder button,Unknown File,0
+Icon - Set (Men),,Unknown File,0
+"Type=Category, Platform=iOS, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Type=Default, State=Default, Label=On, Optional=No, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Platform=App, State=Selected",Icon button - Reminder,Unknown File,0
+Icon - Wine Glass,,Unknown File,0
+Icon - Shell,,Unknown File,0
+"Type=Color swatch, State=Hover, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Direction=Vertical, Text=None, State=Inactive, Type=Number",Progress Stepper,Unknown File,0
+Icon - Underwear (Swimming pants - Men),,Unknown File,0
+Icon - Watch,,Unknown File,0
+Icon - Socks,,Unknown File,0
+Size=Small,Plus Wordmark,Unknown File,0
+"States=Selected, Type=Icon, Orientation=Horizontal, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Platform=Web, Type=Success",Notifications,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=None, Icon=Leading",Text input,Unknown File,0
+"Type=Single/Multiselect, State=Selected",List - Controls,Unknown File,0
+"Expanded=On, State=Default, Style=Regular",Accordion (Default),Unknown File,0
+"Type=Single/Multi-select, Lines=Multi, State=Selected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Cactus & Avocado,,Unknown File,0
+Icon - Three Layers,,Unknown File,0
+"State=Selected, Size=Medium",Text buttons,Unknown File,0
+"Platform=App, Type=Error, Icon (Optional)=Off, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Country=Slovakia (SK),Country flag,Unknown File,0
+Icon - Face Strong Positive (Filled),,Unknown File,0
+"Platform=Web, Type=Standard link, State=Hover (web), Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Two Layers,,Unknown File,0
+Icon - Rose,,Unknown File,0
+"Type=Secondary, State=Hover, Size=Default",Button,Unknown File,0
+"State=Hover, Type=Default",🚧 [DEPRECATED] Selector,Unknown File,0
+"Type=Single/Multi-select, Lines=Single, State=Disabled, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Type=Single/Multi-select, Lines=Multi, State=Deselected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Ruler vertical,,Unknown File,0
+Country=Romania (RO),Country flag,Unknown File,0
+Icon - Snow,,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Disabled, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+Icon - Goose,,Unknown File,0
+"Viewport=iOS: 375+, Selected tab=Bag",Navigation bar,Unknown File,0
+"Platform=App, Type=Success",Notifications,Unknown File,0
+"States=Selected, Type=Number, Orientation=Horizontal, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Country=Estonia (EE),Country flag,Unknown File,0
+Icon - Sports Bags,,Unknown File,0
+Icon - Shoulder bags,,Unknown File,0
+Icon - Plus Size,,Unknown File,0
+"Direction=Horizontal, Text=None, State=Selected, Type=Icon",Progress Stepper,Unknown File,0
+"Type=Follow button, Lines=Single, State=Selected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+icon - Glasses,,Unknown File,0
+"Type=Filter, Platform=iOS, State=Default",Search bar,Unknown File,0
+Country=Lithuania (LT),Country flag,Unknown File,0
+Country=Latvia (LV),Country flag,Unknown File,0
+"Type=Category, Platform=iOS, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"States=Disabled, Type=Icon, Orientation=Horizontal, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=Single/Multi-select, Lines=Multi, State=Disabled, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Type=3. Halftime,Image ratio,Unknown File,0
+"State=Hover (Web only), Platform=Web",Filter Dropdown Trigger,Unknown File,0
+"Platform=Web, State=Selected",Icon button - Reminder,Unknown File,0
+"Type=Filter, Platform=Android, State=Default",Search bar,Unknown File,0
+Size=Large,Plus Wordmark,Unknown File,0
+"Platform=Web, Type=Success, Icon (Optional)=Off, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"States=Disabled, Type=Number, Orientation=Horizontal, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=Tertiary, State=Disabled, Size=Default",Button,Unknown File,0
+Country=Belgium (BE),Country flag,Unknown File,0
+State=Expanded,🚧 [DEPRECATED] Expandable container,Unknown File,0
+Icon - Tall,,Unknown File,0
+"Type=Switch, Lines=Multi, State=Deselected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Christmas Tree,,Unknown File,0
+"Platform=Web, Type=Error, Icon (Optional)=On, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Panel=Default, State=Collapsed, Optional=On, Subtext=Off, Static content=Off",Panel,Unknown File,0
+"Platform=Web, Type=Icon link, State=Hover (web), Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Thumbs Down (filled),,Unknown File,0
+"Type=Tertiary, State=Hover, Size=Default",Button,Unknown File,0
+Icon - Sleeping bag (Babies),,Unknown File,0
+"Platform=Web, Type=Default, Icon (Optional)=On, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Invitation Card,,Unknown File,0
+Icon - Hat,,Unknown File,0
+Icon - Tag,,Unknown File,0
+"Type=Single/Multi-select, Lines=Multi, State=Selected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Platform=Web, State=Disabled",Icon button - Trade-in,Unknown File,0
+"Type=Switch, Lines=Single, State=Deselected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Underwear (Bra - Sports),,Unknown File,0
+"Expanded=false, State=Default",Expandable container [Based on current component],Unknown File,0
+Icon - Briefcase,,Unknown File,0
+"Left action=Back (Arrow), Number of titles=1, Right Action=3 icons",Top bar (Android),Unknown File,0
+"Platform=Web, Type=Default",Notifications,Unknown File,0
+"State=Hover, Size=Large",Text buttons,Unknown File,0
+Icon - Shoes (Basketball),,Unknown File,0
+Icon - Petite,,Unknown File,0
+Icon - Leaf,,Unknown File,0
+"State=Hover, Size=Small",Text buttons,Unknown File,0
+"Type=Wordmark, Color=White",Zalando Logo,Unknown File,0
+Icon - Underwear (Women),,Unknown File,0
+Icon - Surfboard,,Unknown File,0
+State=Hover,Reminder button,Unknown File,0
+"Platform=iOS, CTA Length=Long, Intention=Ping",Dialog (App),Unknown File,0
+"Platform=Web, Type=Navigation, Size=Large, State=Default",Link,Unknown File,0
+"Platform=Android, Type=Standard link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"With icon=False, State=Selected, Size=Default",Follow button,Unknown File,0
+"Type=Switch, Lines=Single, State=Selected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Panel=Default, State=Expanded, Optional=Off, Subtext=On, Static content=Off",Panel,Unknown File,0
+"Checked=Off, State=Hover (web)",Checkbox,Unknown File,0
+Icon - Face Positive (Filled),,Unknown File,0
+Type=4 Levels,Breadcrumbs,Unknown File,0
+"Platform=App, Type=Default, Icon (Optional)=On, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Three, Style=Bold, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Ellipse with arrow,,Unknown File,0
+"Buttons=Vertical, Visual=Icon",Tooltip,Unknown File,0
+Icon - Underwear (Nightwear),,Unknown File,0
+Meter/With label,,Unknown File,0
+"Platform=Web, Type=Icon, Size=Small, State=Default",Link,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"States=Disabled, Type=Number, Orientation=Vertical, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+Icon - Sportswear (Kids),,Unknown File,0
+"Direction=Vertical, Text=None, State=Selected, Type=Number",Progress Stepper,Unknown File,0
+Icon - Underwear (Swimming trunks - Men),,Unknown File,0
+Icon - Fingerprint,,Unknown File,0
+Type=Native - Background,Dropdown Menu (Desktop),Unknown File,0
+Breakpoints=1024 - 1279,Footer,Unknown File,0
+"Type=Primary, State=Pressed, Size=Default",Button,Unknown File,0
+Icon - Swimwear (Men),,Unknown File,0
+Icon - Contrast ,,Unknown File,0
+"States=Selected, Type=Number, Orientation=Vertical, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=Category, Platform=iOS, State=Default",Search bar,Unknown File,0
+Icon - Maternity,,Unknown File,0
+Icon - Underwear (Bathrobes),,Unknown File,0
+"Panel=Price, State=Expanded, Optional=Off, Subtext=Off, Static content=Off",Panel,Unknown File,0
+"Platform=App, Type=Icon, Size=Large, State=Default",Link,Unknown File,0
+Type=4. Third Party,Image ratio,Unknown File,0
+"Type=Filter, Platform=Mobile web, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+Icon - Underwear (Other),,Unknown File,0
+"Orientation=Horizontal, State=Paused",Video (Web),Unknown File,0
+"State=Active, Optional=No, Message=None",Text area,Unknown File,0
+Icon - Armpit zipper,,Unknown File,0
+"Type=Filter, Platform=Desktop, State=Default",Search bar,Unknown File,0
+Icon - Tennisball,,Unknown File,0
+Icon - Pretzel,,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+Icon - CVC (no line),,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Success, Icon (Optional)=On, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Informative, Icon=Leading",Text input,Unknown File,0
+"Type=Tertiary, State=Loading, Size=Default",Button,Unknown File,0
+"Type=Color swatch, State=Disabled, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - Face Strong Negative (Filled),,Unknown File,0
+State=Hover/Focus,Tabs,Unknown File,0
+"Type=Filter, Platform=Desktop, State=Focused filled",Search bar,Unknown File,0
+Icon - Water resistant,,Unknown File,0
+"Left action=Back (Arrow), Number of titles=2, Right Action=3 icons",Top bar (Android),Unknown File,0
+Icon - Hair Accessories,,Unknown File,0
+"Buttons=Horizontal, Visual=None",Tooltip,Unknown File,0
+Type=Horizontal,Checkbox group,Unknown File,0
+Page loader,,Unknown File,0
+Icon - Telescope,,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Type=Scrollable,Drawer,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Two, Style=Bold, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Type=Filter, Platform=Desktop, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+Icon - Tracksuits,,Unknown File,0
+"Platform=Web, Type=Error, Icon (Optional)=On, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+"With icon=True, State=Hover, Size=Default",Follow button,Unknown File,0
+Icon - Accessories Baby,,Unknown File,0
+Icon - Stockings,,Unknown File,0
+"Orientation=Horizontal, State=Playing",Video (Web),Unknown File,0
+"State=Default, Optional=Yes, Message=None",Text area,Unknown File,0
+Icon -  Avatar G,,Unknown File,0
+"Platform=App, Type=Error, Icon (Optional)=Off, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Gloves,,Unknown File,0
+"Buttons=Single, Visual=None",Tooltip,Unknown File,0
+Icon - Hot Air Balloon,,Unknown File,0
+Icon - tops,,Unknown File,0
+Icon - Shoes (Open Shoes - Kids),,Unknown File,0
+"Left action=Back (Arrow), Number of titles=1, Right Action=1 icon",Top bar (Android),Unknown File,0
+Icon - Clutches,,Unknown File,0
+"Platform=Web, Type=Error, Icon (Optional)=Off, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Panel=Default, State=Collapsed, Optional=On, Subtext=On, Static content=On",Panel,Unknown File,0
+Icon - Dance,,Unknown File,0
+"Type=Switch, Lines=Multi, State=Selected, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+Icon - Pool,,Unknown File,0
+"Type=Switch, State=Selected",List - Controls,Unknown File,0
+Icon - Facebook,,Unknown File,0
+"Type=Color swatch, State=Default, Label=On, Optional=No, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Expanded=on, Level=Level 1, State=Default",Accordion (Large),Unknown File,0
+Icon - Shoes (Slippers),,Unknown File,0
+"Type=Color swatch, State=Default, Label=On, Optional=No, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Checked=On, State=Disabled",Checkbox,Unknown File,0
+"Platform=Android, Type=Icon link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Buttons=Vertical, Visual=Zingdings",Tooltip,Unknown File,0
+"State=Selected, Size=Large",Text buttons,Unknown File,0
+"Type=Filter, Platform=Mobile web, State=Default",🚧 [DEPRECATED] Search bar,Unknown File,0
+"State=Active, Badge=Yes",Dropdown Icon Trigger,Unknown File,0
+"Platform=iOS, CTA Length=Short, Intention=Inform",Dialog (App),Unknown File,0
+Icon - Beer,,Unknown File,0
+"Level=4 Superstar, Size=Small",Plus Levels Logo,Unknown File,0
+Icon - Pause Bars,,Unknown File,0
+"Buttons=Horizontal, Visual=Icon",Tooltip,Unknown File,0
+"Left action=Back (Arrow), Number of titles=1, Right Action=2 icons",Top bar (Android),Unknown File,0
+Icon - T-shirt Recycled,,Unknown File,0
+Icon - Necklaces (Men),,Unknown File,0
+"Type=Tertiary, State=Hover, Size=Small",Button,Unknown File,0
+"Type=Primary, State=Focus, Size=Default",Button,Unknown File,0
+"Panel=Default, State=Expanded, Optional=On, Subtext=On, Static content=On",Panel,Unknown File,0
+"State=Disabled, Size=Small",Text buttons,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Error, Icon=Trailing",Text input,Unknown File,0
+Icon - Stretch fabric,,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Default, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+Icon - Two rings,,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Informative, Icon=Trailing",Text input,Unknown File,0
+Icon - Shoes (Beach),,Unknown File,0
+Type=Horizontal,Checkbox group,Unknown File,0
+Icon - skiing,,Unknown File,0
+"Type=Category, Platform=Mobile web, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+State=Disabled,.Breadcrumb link,Unknown File,0
+State=Disabled,.Breadcrumb link,Unknown File,0
+"Platform=App, Outline=On",Icon button - Remove Close,Unknown File,0
+ic_eyeClosedDottedLine,,Unknown File,0
+"Platform=iOS, CTA Length=Long, Intention=Inform",Dialog (App),Unknown File,0
+"Buttons=Horizontal, Visual=Zingdings",Tooltip,Unknown File,0
+Icon - Watering Can,,Unknown File,0
+Icon - Travel Bag,,Unknown File,0
+"On/off=Yes, State=Focus",Switch,Unknown File,0
+Icon - Portrait Acne,,Unknown File,0
+Icon - Chemicals,,Unknown File,0
+Icon - Swimwear (Kids - Boys),,Unknown File,0
+"Platform=App, State=Loading",Icon button - Add to bag,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Success, Icon=None",Text input,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Buttons=None, Visual=Icon",Tooltip,Unknown File,0
+"Type=Category, Platform=Android, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Buttons=Single, Visual=Icon",Tooltip,Unknown File,0
+Icon - Ties,,Unknown File,0
+Icon - Underwear (Nightwear - Kids),,Unknown File,0
+Icon - Eye Line,,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Hover (Web), Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Face Negative (Filled),,Unknown File,0
+"Type=Filter, Platform=Android, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Direction=Horizontal, Text=2 Rows, State=Selected, Type=Icon",Progress Stepper,Unknown File,0
+Platform=Android,Status bar,Unknown File,0
+Icon - Tech Audio,,Unknown File,0
+State=Selected,Reminder button,Unknown File,0
+"State=Hover, Label=Yes, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+"States=Selected, Type=Icon, Orientation=Vertical, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Direction=Vertical, Text=2 Rows, State=Selected, Type=Number",Progress Stepper,Unknown File,0
+"Platform=App, Size=Small (40x40), Outline=No, State=Selected",Icon button - Wishlist,Unknown File,0
+"States=Completed, Type=Number, Orientation=Vertical, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=Switch, Lines=Single, State=Selected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Panel=Default, State=Expanded, Optional=Off, Subtext=Off, Static content=Off",Panel,Unknown File,0
+Icon - Bottle Dashed,,Unknown File,0
+Icon - Shoes (Soccer),,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Informative, Icon=None",Text input,Unknown File,0
+Icon - CVC (line),,Unknown File,0
+"State=Disabled, Platform=Web",Filter Dropdown Trigger,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Disabled, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Type=Color Swatch, State=Default",Dropdown Trigger (default),Unknown File,0
+Icon - Shoes (Mules),,Unknown File,0
+"Direction=Vertical, Text=2 Rows, State=Selected, Type=Icon",Progress Stepper,Unknown File,0
+Icon - Two in One,,Unknown File,0
+"Platform=App, State=Selected",Icon button - Reminder,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Default, State=Disabled, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Disabled, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Direction=Horizontal, Text=2 Rows, State=Selected, Type=Number",Progress Stepper,Unknown File,0
+Icon - Shoes (Crawlers - Kids),,Unknown File,0
+"State=Selected Hover (Web only), Platform=Web",Filter Dropdown Trigger,Unknown File,0
+Icon - Yin Yang,,Unknown File,0
+"State=Hover, Badge=Yes",Dropdown Icon Trigger,Unknown File,0
+Icon - Chemicals Drop,,Unknown File,0
+"Type=Follow, State=Selected",List - Controls,Unknown File,0
+"Platform=Web, Type=Success, Icon (Optional)=On, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Underwear (Multipacks - Men),,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=None, Icon=Trailing",Text input,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Error, Icon=Leading",Text input,Unknown File,0
+"Type=Filter, Platform=Android, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Platform=Mobile/App, Link color=White, Overlay=On",Embedded Navigation,Unknown File,0
+Icon - Face Neutral (Filled),,Unknown File,0
+Breakpoints=480 - 767,Footer,Unknown File,0
+"Platform=Web, Type=Error, Icon (Optional)=Off, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+"Platform=Web, Type=Success, Icon (Optional)=Off, Text link (Optional)=On",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Underwear (Boxer shorts - Men),,Unknown File,0
+Country=Hungary (HU),Country flag,Unknown File,0
+"Platform=App, State=Disabled",Icon button - Trade-in,Unknown File,0
+Icon - Golf,,Unknown File,0
+"Type=Filter, Platform=iOS, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+Icon - Accessories (Shoes),,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Portrait Dark Spots,,Unknown File,0
+"Expanded=Off, State=Hover (web), Style=Bold",Accordion (Default),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Informative, Icon=None",Text input,Unknown File,0
+"Viewport=Android, Selected tab=User account",Navigation bar,Unknown File,0
+Icon - Bell Set Plus (Outlined),,Unknown File,0
+Icon - Suits (Kids),,Unknown File,0
+Icon - Underwear (Bodies - Women),,Unknown File,0
+"Platform=Android, CTA Length=Long, Intention=Ping",Dialog (App),Unknown File,0
+Icon - Life Ring,,Unknown File,0
+"State=Deselected, Description=On, Message=Informative",🚧 [DEPRECATED] Radio button,Unknown File,0
+"State=Hover, Type=Swatch",🚧 [DEPRECATED] Selector,Unknown File,0
+"Type=Category, Platform=Desktop, State=Focused (Filled)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Type=Category, Platform=Mobile web, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Buttons=Vertical, Visual=None",Tooltip,Unknown File,0
+"State=Active, Optional=Yes, Message=None",Text area,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Beanie,,Unknown File,0
+"Left action=None, Action=Text action",Top bar (iOS),Unknown File,0
+Icon - CVC Dots Back,,Unknown File,0
+Icon - Pin (Filled),,Unknown File,0
+"Platform=Web, Type=Default, Icon (Optional)=On, Text link (Optional)=Off",🚧 [DEPRECATED] Notifications,Unknown File,0
+Icon - Face Mask,,Unknown File,0
+"Direction=Vertical, Text=1 Row, State=Inactive, Type=Number",Progress Stepper,Unknown File,0
+Icon - Handball,,Unknown File,0
+"Platform=Desktop, Link color=White, Overlay=On",Embedded Navigation,Unknown File,0
+"Type=Default, State=Selected w/Badge",Selector,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=One, Style=Bold, States=Default, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Cooking Pot,,Unknown File,0
+"Platform=Web, State=Selected",Icon button - Reminder,Unknown File,0
+"Platform=Android, Type=Icon link, State=Default, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - model sparkle,,Unknown File,0
+"Type=Icon, State=Default",Dropdown Trigger (default),Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+Type=Horizontal,Checkbox group,Unknown File,0
+Icon - Earrings,,Unknown File,0
+Icon - Windproof,,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+Icon - Hairband,,Unknown File,0
+"Active=Active, Size=Large",Plus Points Logo,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Underwear (Bra - Wire),,Unknown File,0
+"States=Selected, Type=Icon, Orientation=Vertical, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Bracelet,,Unknown File,0
+Icon - Eye Wrinkles,,Unknown File,0
+Icon - Cufflinks,,Unknown File,0
+"Panel=Default, State=Collapsed, Optional=On, Subtext=On, Static content=Off",Panel,Unknown File,0
+"Type=Tertiary, State=Loading, Size=Small",Button,Unknown File,0
+"Platform=Android, Type=Icon link, State=Default, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Reflective elements,,Unknown File,0
+"Platform=Web, Type=Icon, Size=Large, State=Hover",Link,Unknown File,0
+"State=Default, Optional=No, Message=Error",Text area,Unknown File,0
+"State=Disabled, Size=Medium",Text buttons,Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Informative, Icon=Leading",Text input,Unknown File,0
+Colour=Black,🚧 [DEPRECATED] Plus Loyalty,Unknown File,0
+Colour=White,🚧 [DEPRECATED] Zalando Plus Pill Logo,Unknown File,0
+"Type=Category, Platform=iOS, State=Focused filled",Search bar,Unknown File,0
+Icon - Swimwear (Kids - Girls),,Unknown File,0
+Icon - Nose Blackheads,,Unknown File,0
+Icon - Shoes (Loafers),,Unknown File,0
+"Viewport=Android, Selected tab=Wishlist",Navigation bar,Unknown File,0
+"Platform=Web, State=Transient",Icon button - Add to bag,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=None, Icon=None",Text input,Unknown File,0
+Icon - Pumpkin,,Unknown File,0
+"State=Disabled, Type=Swatch",🚧 [DEPRECATED] Selector,Unknown File,0
+"Type=Tertiary, State=Pressed, Size=Default",Button,Unknown File,0
+"State=Disabled, Label=Yes, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+Icon - Wheelchair,,Unknown File,0
+Icon - Carafe,,Unknown File,0
+"Type=Secondary, State=Pressed, Size=Default",Button,Unknown File,0
+Icon - Underwear (Kids),,Unknown File,0
+"Type=Single/Multi-select, Lines=Multi, State=Disabled, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Type=Follow, State=Deselected",List - Controls,Unknown File,0
+Icon - Shoes (Wide Fit),,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Platform=App, Outline=On, State=Mute",Icon button - Mute sound,Unknown File,0
+"Type=Tertiary, State=Focus, Size=Default",Button,Unknown File,0
+"Platform=App, Outline=On, State=Unmute",Icon button - Mute sound,Unknown File,0
+Icon - Underwear (Shapewear - Women),,Unknown File,0
+Icon - Helmet compatible,,Unknown File,0
+"States=Completed, Type=Icon, Orientation=Horizontal, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"State=Selected, Label=Yes, Optional=On, Message=None, Icon=Leading",Text input,Unknown File,0
+"Viewport=Android, Selected tab=Categories",Navigation bar,Unknown File,0
+"Type=Tertiary, State=Pressed, Size=Small",Button,Unknown File,0
+Icon - Underwear (Briefs - Women),,Unknown File,0
+Icon - Underwear (Corsets - Women),,Unknown File,0
+Icon - Leggings,,Unknown File,0
+Icon - Underwear (Multipacks - Women),,Unknown File,0
+"States=Selected, Type=Number, Orientation=Vertical, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Direction=Vertical, Text=1 Row, State=Completed, Type=Number",Progress Stepper,Unknown File,0
+Icon - YouTube,,Unknown File,0
+Icon - Smartwatch,,Unknown File,0
+Icon - Hypoallergenic,,Unknown File,0
+Icon - Wind resistant,,Unknown File,0
+Icon - Shoes (Thong Sandals),,Unknown File,0
+"Type=Filter, Platform=Desktop, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Type=Swatch, State=Selected w/Badge",Selector,Unknown File,0
+"Type=Tertiary, State=Focus, Size=Small",Button,Unknown File,0
+Icon - Bag Recycle,,Unknown File,0
+"States=Selected, Type=Icon, Orientation=Horizontal, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Icon - Windows,,Unknown File,0
+"Type=Category, Platform=Android, State=Focused filled",Search bar,Unknown File,0
+"Platform=Web, Type=Standard, Size=Small, State=Hover",Link,Unknown File,0
+Icon - Underwear (Multipack - Kids),,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Pressed, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Underwear (Slips - Men),,Unknown File,0
+"Left action=Close (X), Number of titles=1, Right Action=1 icon",Top bar (Android),Unknown File,0
+"Range=Low, State=Default",Range slider,Unknown File,0
+"State=Disabled, Platform=App & mWeb",Filter Dropdown Trigger,Unknown File,0
+Icon - Underwear (Suspenders - Women),,Unknown File,0
+Icon - Underwear (Gstring - Women),,Unknown File,0
+"Platform=Web, Type=Standard, Size=Medium, State=Hover",Link,Unknown File,0
+Icon - Water Glass,,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Waterproof Zipper,,Unknown File,0
+"Platform=Web, Size=Large (48x48), Outline=No, State=Hover",Icon button - Wishlist,Unknown File,0
+"Platform=Web, Size=Small (40x40), Outline=No, State=Hover",Icon button - Wishlist,Unknown File,0
+Icon - Taped seams,,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Filter, Platform=iOS, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Platform=Web, Size=Small (40x40), Outline=No, State=Selected",Icon button - Wishlist,Unknown File,0
+"Type=Secondary, State=Focus, Size=Default",Button,Unknown File,0
+"States=Completed, Type=Number, Orientation=Horizontal, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"States=Disabled, Type=Number, Orientation=Vertical, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"State=Default, Optional=Yes, Message=Informative",Text area,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Viewport=iOS: 320-374, Selected tab=Bag",Navigation bar,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Expanded=On, State=Hover (web), Style=Bold",Accordion (Default),Unknown File,0
+"Type=Filter, Platform=Mobile web, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Type=Category, Platform=Android, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+"Expanded=Off, State=Hover (web), Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=On, State=Hover (web), Style=Regular",Accordion (Default),Unknown File,0
+"Platform=Web, Type=Standard link, State=Pressed, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+Type=10. Four By Five,Image ratio,Unknown File,0
+"Platform=Web, Type=Icon link, State=Disabled, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"States=Selected, Type=Icon, Orientation=Vertical, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=Default, State=Disabled",Dropdown Trigger (default),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Direction=Vertical, Text=None, State=Selected, Type=Icon",Progress Stepper,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=One, Style=Bold, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Direction=Vertical, Text=1 Row, State=Selected, Type=Number",Progress Stepper,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Deselected, Description=On, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Viewport=Android, Selected tab=Bag",Navigation bar,Unknown File,0
+"State=Default, Optional=No, Message=Informative",Text area,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=One, Style=Bold, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Three, Style=Bold, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Hover (Web), Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Android, CTA Length=Long, Intention=Inform",Dialog (App),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Two, Style=Bold, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"State=Disabled, Label=Yes, Optional=On, Message=None, Icon=Trailing",Text input,Unknown File,0
+"Expanded=Off, State=Pressed, Style=Bold",Accordion (Default),Unknown File,0
+"Platform=Web, Type=Navigation link, State=Disabled, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Viewport=iOS: 320-374, Selected tab=Wishlist",Navigation bar,Unknown File,0
+"State=Selected, Optional=No, Message=None",Text area,Unknown File,0
+"Level=4 Superstar, Size=Medium",Plus Levels Logo,Unknown File,0
+"Type=Category, Platform=Desktop, State=Focused (Empty)",🚧 [DEPRECATED] Search bar,Unknown File,0
+Icons - View Items,,Unknown File,0
+"State=Hover, Optional=No, Message=None",Text area,Unknown File,0
+"Panel=Default, State=Collapsed, Optional=Off, Subtext=On, Static content=Off",Panel,Unknown File,0
+Platform=Web,Icon button - More,Unknown File,0
+"Expanded=Off, State=Focus (web), Style=Bold",Accordion (Default),Unknown File,0
+Icon - Bum Bag,,Unknown File,0
+Icon - Footprint Toes,,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=One, Style=Bold, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Left action=Back (Arrow), Number of titles=2, Right Action=Text action",Top bar (Android),Unknown File,0
+"Type=Color swatch, State=Default, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"States=Completed, Type=Number, Orientation=Vertical, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Read (Static), State=Disabled",Rating stars,Unknown File,0
+Icon - Hanger Sparkle,,Unknown File,0
+"State=Disabled, Optional=No, Message=None",Text area,Unknown File,0
+"Panel=Default, State=Collapsed, Optional=Off, Subtext=Off, Static content=On",Panel,Unknown File,0
+"Panel=Default, State=Expanded, Optional=On, Subtext=Off, Static content=Off",Panel,Unknown File,0
+"Direction=Horizontal, Text=1 Row, State=Completed, Type=Number",Progress Stepper,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Disabled, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"State=Hover, Label=Yes, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+"Direction=Vertical, Text=None, State=Inactive, Type=Icon",Progress Stepper,Unknown File,0
+"Type=Default, State=Default, Label=Off, Optional=No, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Color swatch, State=Selected, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+Icon - CVC Dots Front,,Unknown File,0
+"Expanded=on, Level=Level 2, State=Default",Accordion (Large),Unknown File,0
+"Type=Default, State=Active, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Platform=App, State=Disabled",Icon button - Trade-in,Unknown File,0
+"Type=Default, State=Hover, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Platform=Web, Type=Navigation link, State=Pressed, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Error, Icon=None",Text input,Unknown File,0
+Country=Slovenia (SI),Country flag,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Small, State=Hover",Link,Unknown File,0
+"Platform=Android, CTA Length=Short, Intention=Ping",Dialog (App),Unknown File,0
+"Direction=Horizontal, Text=1 Row, State=Inactive, Type=Number",Progress Stepper,Unknown File,0
+"Left action=Close (X), Number of titles=1, Right Action=Text action",Top bar (Android),Unknown File,0
+"Left action=Close (X), Number of titles=2, Right Action=2 icons",Top bar (Android),Unknown File,0
+"Panel=Default, State=Expanded, Optional=On, Subtext=On, Static content=Off",Panel,Unknown File,0
+"Platform=App, State=Pressed",Icon button - Add to bag,Unknown File,0
+"Expanded=Off, State=Pressed, Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=Off, State=Disabled, Style=Bold",Accordion (Default),Unknown File,0
+"Type=Default, State=Default, Label=Off, Optional=No, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Expanded=On, State=Disabled, Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=On, State=Focus (web), Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=Off, State=Focus (web), Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=On, State=Pressed, Style=Bold",Accordion (Default),Unknown File,0
+Platform=iOS: iPhone 8,Keyboard,Unknown File,0
+"Expanded=Off, State=Disabled, Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=On, State=Pressed, Style=Regular",Accordion (Default),Unknown File,0
+"Expanded=On, State=Disabled, Style=Bold",Accordion (Default),Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Disabled, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+Colour=White,🚧 [DEPRECATED] Zalando Plus Pill Logo,Unknown File,0
+"Expanded=On, State=Focus (web), Style=Bold",Accordion (Default),Unknown File,0
+"Checked=On, State=Hover (web)",Checkbox,Unknown File,0
+Icon - Key Chain,,Unknown File,0
+"Type=Color swatch, State=Default, Label=Off, Optional=No, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Color swatch, State=Disabled, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Color swatch, State=Active, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Default, Optional=Yes, Message=Error",Text area,Unknown File,0
+"Type=Color swatch, State=Hover, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+State=Disabled,.Breadcrumb link,Unknown File,0
+"State=Selected, Description=On, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Type=Color swatch, State=Default, Label=Off, Optional=No, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Disabled, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Level=3 Star, Size=Medium",Plus Levels Logo,Unknown File,0
+"Type=Single/Multi-select, Lines=Single, State=Disabled, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Left action=Close (X), Number of titles=2, Right Action=1 icon",Top bar (Android),Unknown File,0
+"Orientation=Vertical, State=Playing",Video (Web),Unknown File,0
+"Type=Filter, Platform=mWeb, State=Focused empty",Search bar,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"With icon=False, State=Selected, Size=Small",Follow button,Unknown File,0
+"With icon=True, State=Disabled, Size=Default",Follow button,Unknown File,0
+"State=Selected, Description=On, Message=Informative",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Left action=Close (X), Number of titles=2, Right Action=Text action",Top bar (Android),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Platform=Web, Size=Large (48x48), Outline=Yes, State=Hover",Icon button - Wishlist,Unknown File,0
+Color=White,🚧 [DEPRECATED] Zalando Plus Pill Logo (Wordmark),Unknown File,0
+"Orientation=Vertical, State=Paused",Video (Web),Unknown File,0
+"Type=Write (Interactive), State=Disabled",Rating stars,Unknown File,0
+"Platform=Android, CTA Length=Short, Intention=Inform",Dialog (App),Unknown File,0
+"Left action=Back (Arrow), Number of titles=2, Right Action=2 icons",Top bar (Android),Unknown File,0
+"State=Selected, Label=Yes, Optional=On, Message=None, Icon=None",Text input,Unknown File,0
+"States=Completed, Type=Icon, Orientation=Vertical, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Platform=Web, Type=Icon link, State=Focus (web), Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Level=3 Star, Size=Large",Plus Levels Logo,Unknown File,0
+"Left action=Close (X), Number of titles=2, Right Action=None",Top bar (Android),Unknown File,0
+Color=Black,🚧 [DEPRECATED] Zalando Plus Pill Logo (Wordmark),Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Hover (Web), Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Disabled, Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+"Viewport=iOS: 320-374, Selected tab=Categories",Navigation bar,Unknown File,0
+"State=Selected, Label=Yes, Optional=On, Message=None, Icon=Trailing",Text input,Unknown File,0
+Icon - Graduation hat,,Unknown File,0
+"Platform=Web, Type=Standard link, State=Pressed, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Left action=Close (X), Number of titles=2, Right Action=3 icons",Top bar (Android),Unknown File,0
+"State=Hover, Label=Yes, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"States=Completed, Type=Icon, Orientation=Vertical, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Small, State=Default",Link,Unknown File,0
+"States=Disabled, Type=Icon, Orientation=Vertical, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Platform=Web, Type=Standard, Size=Large, State=Hover",Link,Unknown File,0
+"States=Disabled, Type=Number, Orientation=Vertical, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Type=Switch, Lines=Single, State=Disabled, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"States=Completed, Type=Number, Orientation=Vertical, Text=None (Zero)",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Direction=Vertical, Text=1 Row, State=Selected, Type=Icon",Progress Stepper,Unknown File,0
+"Left action=Close (X), Number of titles=1, Right Action=3 icons",Top bar (Android),Unknown File,0
+"Panel=Default, State=Collapsed, Optional=Off, Subtext=On, Static content=On",Panel,Unknown File,0
+"State=Disabled, Label=Yes, Optional=On, Message=None, Icon=Leading",Text input,Unknown File,0
+"State=Selected, Label=Yes, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Left action=Close (X), Number of titles=1, Right Action=2 icons",Top bar (Android),Unknown File,0
+Icon - Pin (Outlined),,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Hover (Web), Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"Type=Default, State=Default, Label=On, Optional=Yes, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Selected, Optional=Yes, Message=None",Text area,Unknown File,0
+"State=Disabled, Label=Yes, Optional=On, Message=None, Icon=None",Text input,Unknown File,0
+"State=Disabled, Label=Yes, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"State=Hover, Label=Yes, Optional=On, Message=None, Icon=Leading",Text input,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Error, Icon=Leading",Text input,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=None, Icon=Leading",Text input,Unknown File,0
+"Level=4 Superstar, Size=Large",Plus Levels Logo,Unknown File,0
+"State=Hover, Label=Yes, Optional=On, Message=None, Icon=None",Text input,Unknown File,0
+"State=Disabled, Optional=Yes, Message=None",Text area,Unknown File,0
+"State=Hover, Label=Yes, Optional=On, Message=None, Icon=Trailing",Text input,Unknown File,0
+"Type=Switch, Lines=Single, State=Disabled, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"State=Hover, Optional=Yes, Message=None",Text area,Unknown File,0
+"Platform=Web, State=Disabled",Icon button - Trade-in,Unknown File,0
+"Direction=Vertical, Text=1 Row, State=Inactive, Type=Icon",Progress Stepper,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"State=Disabled, Level=1",List - Item (Large),Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Disabled, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Standard link, State=Focus (web), Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Pressed, Size=Small",Text buttons,Unknown File,0
+"Type=Default, State=Default, Label=On, Optional=Yes, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Viewport=iOS: 320-374, Selected tab=User account",Navigation bar,Unknown File,0
+Icon - Motion,,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Platform=Web, Type=Standard link, State=Focus (web), Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Focus, Size=Small",Text buttons,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Informative, Icon=None",Text input,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Focus (web), Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+State=Pressed,Reminder button,Unknown File,0
+"Platform=iOS, Type=Standard link, State=Disabled, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+Icon - Bottoms,,Unknown File,0
+"Platform=Desktop, Link color=Black, Overlay=On",Embedded Navigation,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Platform=Web, Type=Icon link, State=Focus (web), Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Standard link, State=Disabled, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Focus, Size=Large",Text buttons,Unknown File,0
+"State=Selected, Description=Off, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Disabled, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Swatch, State=Selected",Selector,Unknown File,0
+"State=Hover (Web only), Description=On, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0
+"State=Disabled, Description=On, Message=Informative",🚧 [DEPRECATED] Radio button,Unknown File,0
+"State=Pressed, Size=Large",Text buttons,Unknown File,0
+"State=Hover (Web only), Description=On, Message=Informative",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Level=2 Shine, Size=Medium",Plus Levels Logo,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Hover (Web), Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+Type=5. Quarterback,Image ratio,Unknown File,0
+"State=Disabled, Description=On, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Disabled, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Hover (Web), Icon=True, Chevron=True",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Three, Style=Bold, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Navigation link, State=Disabled, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+State=Focus,Reminder button,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Disabled, Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Icon link, State=Focus (web), Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"State=Pressed, Size=Medium",Text buttons,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Disabled, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Error",Notifications,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Three, Style=Bold, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+Icon -  Avatar D,,Unknown File,0
+"Type=List Item, Lines=Three, Style=Bold, States=Disabled, Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Standard link, State=Disabled, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Focus, Size=Medium",Text buttons,Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+"Platform=Web, Type=Navigation link, State=Pressed, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=iOS, Type=Icon link, State=Disabled, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Disabled, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=iOS, Type=Standard link, State=Disabled, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Disabled, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Android, Type=Icon link, State=Disabled, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Pressed, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Focus (web), Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Android, Type=Icon link, State=Disabled, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=iOS, Type=Icon link, State=Disabled, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Standard link, State=Disabled, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=iOS, Type=Standard link, State=Disabled, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Pressed, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=iOS, Type=Icon link, State=Disabled, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Focus (web), Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Standard link, State=Focus (web), Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Navigation link, State=Disabled, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Android, Type=Icon link, State=Disabled, Size=Small",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Standard link, State=Pressed, Size=Large",🚧 [DEPRECATED] Link,Unknown File,0
+"Platform=Web, Type=Icon link, State=Pressed, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Success, Icon=None",Text input,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Direction=Horizontal, Text=1 Row, State=Selected, Type=Number",Progress Stepper,Unknown File,0
+"States=Disabled, Type=Icon, Orientation=Vertical, Text=One",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+Type=Disabled,Pagination (Web),Unknown File,0
+"States=Disabled, Type=Icon, Orientation=Vertical, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Panel=Default, State=Expanded, Optional=Off, Subtext=On, Static content=On",Panel,Unknown File,0
+Icon - Bell Set Plus (Filled),,Unknown File,0
+Type=Subtle,🚧 [DEPRECATED] Plus short,Unknown File,0
+"States=Disabled, Type=Icon, Orientation=Horizontal, Text=Two",🚧 [DEPRECATED] Progress Stepper,Unknown File,0
+"Checked=On, State=Pressed",Checkbox,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Error, Icon=None",Text input,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+Platform=iOS: iPhone SE,Keyboard,Unknown File,0
+"Checked=Off, State=Focus (web)",Checkbox,Unknown File,0
+"Direction=Vertical, Text=2 Rows, State=Completed, Type=Number",Progress Stepper,Unknown File,0
+"Checked=On, State=Focus (web)",Checkbox,Unknown File,0
+"Checked=Off, State=Pressed",Checkbox,Unknown File,0
+Type=Previous (Last Page),Pagination (Web),Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Disabled, Badge=No",Dropdown Icon Trigger,Unknown File,0
+"Level=1 Light, Size=Large",Plus Levels Logo,Unknown File,0
+"Direction=Vertical, Text=1 Row, State=Completed, Type=Icon",Progress Stepper,Unknown File,0
+"Type=Default, State=Default, Label=On, Optional=Yes, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Expanded=on, Level=Level 1, State=Hover (web)",Accordion (Large),Unknown File,0
+"Expanded=on, Level=Level 2, State=Hover (web)",Accordion (Large),Unknown File,0
+Type=Default,🚧 [DEPRECATED] Plus short,Unknown File,0
+"Expanded=off, Level=Level 2, State=Pressed",Accordion (Large),Unknown File,0
+"Expanded=off, Level=Level 1, State=Disabled",Accordion (Large),Unknown File,0
+"Expanded=off, Level=Level 1, State=Pressed",Accordion (Large),Unknown File,0
+"Expanded=on, Level=Level 2, State=Focus (web)",Accordion (Large),Unknown File,0
+"Expanded=off, Level=Level 2, State=Disabled",Accordion (Large),Unknown File,0
+"Expanded=off, Level=Level 2, State=Hover (web)",Accordion (Large),Unknown File,0
+"Expanded=on, Level=Level 1, State=Disabled",Accordion (Large),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Expanded=off, Level=Level 2, State=Focus (web)",Accordion (Large),Unknown File,0
+"Expanded=on, Level=Level 2, State=Disabled",Accordion (Large),Unknown File,0
+"Expanded=on, Level=Level 2, State=Pressed",Accordion (Large),Unknown File,0
+"Expanded=off, Level=Level 1, State=Hover (web)",Accordion (Large),Unknown File,0
+"Expanded=on, Level=Level 1, State=Pressed",Accordion (Large),Unknown File,0
+"Type=Filter, Platform=mWeb, State=Default",Search bar,Unknown File,0
+"Expanded=off, Level=Level 1, State=Focus (web)",Accordion (Large),Unknown File,0
+"Direction=Vertical, Text=2 Rows, State=Inactive, Type=Number",Progress Stepper,Unknown File,0
+"Expanded=true, State=Default",Expandable container [Based on current component],Unknown File,0
+"Expanded=on, Level=Level 1, State=Focus (web)",Accordion (Large),Unknown File,0
+Size=Small,Plus Wordmark,Unknown File,0
+"State=Selected, Label=No, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Buttons=Single, Visual=Zingdings",Tooltip,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"With icon=False, State=Hover, Size=Small",Follow button,Unknown File,0
+"Type=Swatch, State=Default",Selector,Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Error, Icon=None",Text input,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Error, Icon=None",Text input,Unknown File,0
+"Level=2 Shine, Size=Large",Plus Levels Logo,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=On, Optional=Yes, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Direction=Horizontal, Text=2 Rows, State=Completed, Type=Number",Progress Stepper,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Range=Full, State=Default",Range slider,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Platform=Web, Type=Navigation, Size=Medium, State=Default",Link,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Disabled, Level=2",List - Item (Large),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+Type=7. Achtung,Image ratio,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+State=Collapsed hover,🚧 [DEPRECATED] Expandable container,Unknown File,0
+"State=Disabled, Badge=Yes",Dropdown Icon Trigger,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Informative, Icon=Trailing",Text input,Unknown File,0
+"State=Hover, Badge=No",Dropdown Icon Trigger,Unknown File,0
+State=Hover,Reminder button,Unknown File,0
+"Direction=Horizontal, Text=1 Row, State=Selected, Type=Icon",Progress Stepper,Unknown File,0
+"Direction=Vertical, Text=2 Rows, State=Inactive, Type=Icon",Progress Stepper,Unknown File,0
+"Type=Switch, State=Deselected",List - Controls,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Level=3 Star, Size=Small",Plus Levels Logo,Unknown File,0
+"Type=Color Swatch, State=Selected",Dropdown Trigger (default),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=On, Title (Optional)=On, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"With icon=False, State=Hover, Size=Default",Follow button,Unknown File,0
+State=Disabled,.Breadcrumb link,Unknown File,0
+State=Expanded hover,🚧 [DEPRECATED] Expandable container,Unknown File,0
+"State=Selected, Description=Off, Message=Informative",🚧 [DEPRECATED] Radio button,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Success, Icon=None",Text input,Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Success, Icon=None",Text input,Unknown File,0
+"Platform=Web, Type=Icon, Size=Small, State=Disabled",Link,Unknown File,0
+Icon - Dumbbell,,Unknown File,0
+"Type=Switch, Lines=Multi, State=Disabled, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Platform=Web, Type=Icon, Size=Large, State=Disabled",Link,Unknown File,0
+"Direction=Horizontal, Text=2 Rows, State=Inactive, Type=Number",Progress Stepper,Unknown File,0
+"Platform=Web, Type=Icon, Size=Medium, State=Disabled",Link,Unknown File,0
+Type=6. Sixth Sense,Image ratio,Unknown File,0
+"Direction=Vertical, Text=None, State=Completed, Type=Icon",Progress Stepper,Unknown File,0
+"Type=Category, Platform=iOS, State=Focused empty",Search bar,Unknown File,0
+"With icon=True, State=Disabled, Size=Small",Follow button,Unknown File,0
+Country=Croatia (HR),Country flag,Unknown File,0
+"Platform=Web, Type=Standard, Size=Medium, State=Disabled",Link,Unknown File,0
+"Type=Icon (In Progress), State=Selected, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Error, Icon=Leading",Text input,Unknown File,0
+"State=Selected, Label=No, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"Direction=Horizontal, Text=1 Row, State=Inactive, Type=Icon",Progress Stepper,Unknown File,0
+"Direction=Horizontal, Text=2 Rows, State=Inactive, Type=Icon",Progress Stepper,Unknown File,0
+"Active=Pending, Size=Small",Plus Points Logo,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+Icon - Compare Outlined,,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Error, Icon=Trailing",Text input,Unknown File,0
+"State=Selected, Label=No, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+State=Disabled,.Breadcrumb link,Unknown File,0
+"Platform=Web, Type=Standard, Size=Small, State=Disabled",Link,Unknown File,0
+"Range=Half, State=Disabled",Range slider,Unknown File,0
+"Platform=Web, Type=Standard, Size=Large, State=Disabled",Link,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Success, Icon=Trailing",Text input,Unknown File,0
+"Type=Default, State=Selected",Dropdown Trigger (default),Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Success, Icon=None",Text input,Unknown File,0
+"Platform=Android, Type=Standard link, State=Default, Size=Medium",🚧 [DEPRECATED] Link,Unknown File,0
+"Type=Switch, Lines=Multi, State=Selected, With icon=No",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Direction=Vertical, Text=2 Rows, State=Completed, Type=Icon",Progress Stepper,Unknown File,0
+Type=White,🚧 [DEPRECATED] Plus short,Unknown File,0
+"Direction=Horizontal, Text=None, State=Completed, Type=Number",Progress Stepper,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Small, State=Pressed",Link,Unknown File,0
+Type=12. Sixteen By Nine,Image ratio,Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Error, Icon=Trailing",Text input,Unknown File,0
+Type=Blend,Scrim gradient,Unknown File,0
+"Platform=App, Type=Standard, Size=Large, State=Default",Link,Unknown File,0
+"Buttons=None, Visual=Zingdings",Tooltip,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Error, Icon=Trailing",Text input,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Informative, Icon=None",Text input,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Medium, State=Hover",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Large, State=Pressed",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Large, State=Hover",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Small, State=Disabled",Link,Unknown File,0
+"Platform=Web, Type=Standard, Size=Medium, State=Pressed",Link,Unknown File,0
+"Platform=Web, Type=Standard, Size=Large, State=Pressed",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Medium, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Large, State=Pressed",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Medium, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Large, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Standard, Size=Medium, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Small, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Standard, Size=Small, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Small, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Large, State=Disabled",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Medium, State=Disabled",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Small, State=Pressed",Link,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Informative, Icon=Leading",Text input,Unknown File,0
+"Platform=Web, Type=Standard, Size=Small, State=Pressed",Link,Unknown File,0
+"Platform=Web, Type=Standard, Size=Large, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Navigation, Size=Medium, State=Pressed",Link,Unknown File,0
+"Platform=Web, Outline=Off, State=Mute",Icon button - Mute sound,Unknown File,0
+"Platform=Web, Type=Icon, Size=Medium, State=Pressed",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Large, State=Focus",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Medium, State=Hover",Link,Unknown File,0
+"Platform=Web, Type=Icon, Size=Small, State=Hover",Link,Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=On, Optional=Yes, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Level=1 Light, Size=Medium",Plus Levels Logo,Unknown File,0
+"Direction=Horizontal, Text=None, State=Inactive, Type=Number",Progress Stepper,Unknown File,0
+"Type=List Item, Lines=One, Style=Bold, States=Hover (Web), Icon=False, Chevron=True",List - Item (Default),Unknown File,0
+Icon - Lunchbox,,Unknown File,0
+"Type=Color Swatch, State=Disabled",Dropdown Trigger (default),Unknown File,0
+"Direction=Horizontal, Text=None, State=Selected, Type=Number",Progress Stepper,Unknown File,0
+Icon - Pencilcase,,Unknown File,0
+"With icon=False, State=Disabled, Size=Small",Follow button,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Level=2 Shine, Size=Small",Plus Levels Logo,Unknown File,0
+Type=11. Nine By Sixteen,Image ratio,Unknown File,0
+"Platform=Web, Outline=Off, State=Unmute",Icon button - Mute sound,Unknown File,0
+"With icon=False, State=Disabled, Size=Default",Follow button,Unknown File,0
+"Type=Default, State=Disabled",Dropdown Trigger (default),Unknown File,0
+"Type=Single/Multiselect, State=Disabled",List - Controls,Unknown File,0
+"Type=Default, State=Disabled, Label=On, Optional=Yes, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Default, State=Selected, Label=On, Optional=Yes, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Switch, Lines=Multi, State=Disabled, With icon=Yes",🚧 [DEPRECATED] List - Controls,Unknown File,0
+"Type=Default, State=Hover, Label=On, Optional=Yes, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Default, State=Active, Label=On, Optional=Yes, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Active, Optional=No, Message=Informative",Text area,Unknown File,0
+"Type=Filter, Platform=iOS, State=Default",Search bar,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Error, Icon=Leading",Text input,Unknown File,0
+"State=Default, Label=Yes, Optional=Off, Message=Success, Icon=Leading",Text input,Unknown File,0
+"Type=Default, State=Active",Dropdown Trigger (default),Unknown File,0
+"Type=List Item, Lines=Two, Style=Bold, States=Hover (Web), Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"Type=Icon (In Progress), State=Hover, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+State=Pressed,Reminder button,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Success, Icon=Trailing",Text input,Unknown File,0
+"Type=Color Swatch, State=Active",Dropdown Trigger (default),Unknown File,0
+"State=Active, Optional=Yes, Message=Informative",Text area,Unknown File,0
+"Type=Category, Platform=mWeb, State=Default",Search bar,Unknown File,0
+"Level=1 Light, Size=Small",Plus Levels Logo,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Error, Icon=None",Text input,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Informative, Icon=Trailing",Text input,Unknown File,0
+State=Focus,Reminder button,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Two, Style=Bold, States=Default, Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Informative, Icon=Leading",Text input,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Success, Icon=Leading",Text input,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Filter, Platform=iOS, State=Focused empty",Search bar,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Error, Icon=Leading",Text input,Unknown File,0
+"State=Active, Label=Yes, Optional=Off, Message=Informative, Icon=Leading",Text input,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Informative, Icon=Trailing",Text input,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Success, Icon=None",Text input,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Active, Optional=No, Message=Success",Text area,Unknown File,0
+"State=Disabled, Label=No, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Category, Platform=Android, State=Focused empty",Search bar,Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=On, Optional=No, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Expanded=true, State=Hover",Expandable container [Based on current component],Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Panel=Default, State=Collapsed, Optional=On, Subtext=Off, Static content=On",Panel,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Informative, Icon=Trailing",Text input,Unknown File,0
+"Type=Swatch, State=Hover",Selector,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Platform=App, Type=Icon, Size=Small, State=Disabled",Link,Unknown File,0
+"Panel=Default, State=Expanded, Optional=On, Subtext=Off, Static content=On",Panel,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Success, Icon=Leading",Text input,Unknown File,0
+"State=Hover, Label=No, Optional=Off, Message=None, Icon=Trailing",Text input,Unknown File,0
+"State=Disabled, Label=No, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"Type=Category, Platform=mWeb, State=Focused empty",Search bar,Unknown File,0
+"Type=Default, State=Error",Dropdown Trigger (default),Unknown File,0
+"Type=Icon (In Progress), State=Active, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Category, Platform=Android, State=Default",Search bar,Unknown File,0
+"With icon=False, State=Focus, Size=Small",Follow button,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"With icon=False, State=Pressed, Size=Small",Follow button,Unknown File,0
+"Type=Icon, State=Active",Dropdown Trigger (default),Unknown File,0
+"State=Default, Label=No, Optional=Off, Message=Success, Icon=Trailing",Text input,Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Success, Icon=Leading",Text input,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=On, Optional=No, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Hover, Label=No, Optional=Off, Message=None, Icon=Leading",Text input,Unknown File,0
+"Type=Icon, State=Error",Dropdown Trigger (default),Unknown File,0
+"State=Active, Optional=Yes, Message=Success",Text area,Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Success, Icon=Trailing",Text input,Unknown File,0
+"Type=Icon (In Progress), State=Hover, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Color Swatch, State=Hover",Dropdown Trigger (default),Unknown File,0
+"Expanded=false, State=Hover",Expandable container [Based on current component],Unknown File,0
+"Platform=App, Type=Icon, Size=Medium, State=Disabled",Link,Unknown File,0
+"Type=Icon (In Progress), State=Active, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"With icon=True, State=Focus, Size=Default",Follow button,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Icon, State=Disabled",Dropdown Trigger (default),Unknown File,0
+"With icon=True, State=Pressed, Size=Small",Follow button,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"With icon=True, State=Focus, Size=Small",Follow button,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Success, Icon=Leading",Text input,Unknown File,0
+"Platform=App, Type=Standard, Size=Large, State=Disabled",Link,Unknown File,0
+"Type=Category, Platform=iOS, State=Default",Search bar,Unknown File,0
+"State=Default, Optional=Yes, Message=Success",Text area,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Switch, State=Disabled",List - Controls,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Informative, Icon=None",Text input,Unknown File,0
+"Type=Filter, Platform=Android, State=Default",Search bar,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Default, State=Hover",Dropdown Trigger (default),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Filter, Platform=Android, State=Focused empty",Search bar,Unknown File,0
+"Platform=App, Type=Standard, Size=Small, State=Disabled",Link,Unknown File,0
+"Type=List Item, Lines=One, Style=Regular, States=Hover (Web), Icon=True, Chevron=False",List - Item (Default),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"With icon=True, State=Pressed, Size=Default",Follow button,Unknown File,0
+"Type=🚧 [DEPRECATED] Logo, Lines=Two, Style=Bold, States=Hover (Web), Icon=False, Chevron=False",List - Item (Default),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Icon (In Progress), State=Disabled, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"State=Hover, Label=No, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+"Direction=Horizontal, Text=2 Rows, State=Completed, Type=Icon",Progress Stepper,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Icon, State=Hover",Dropdown Trigger (default),Unknown File,0
+"Active=+100, Size=Small",Plus Points Logo,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Success, Icon=Trailing",Text input,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Filter, Platform=Android, State=Focused filled",Search bar,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Filter, Platform=iOS, State=Focused filled",Search bar,Unknown File,0
+"State=Default, Optional=No, Message=Success",Text area,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Small, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Disabled, Label=No, Optional=Off, Message=None, Icon=None",Text input,Unknown File,0
+"Type=Icon, State=Selected",Dropdown Trigger (default),Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Breakpoint=768 (Tablet), Size=Small, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Breakpoint=375 (Mobile), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Color Swatch, State=Error",Dropdown Trigger (default),Unknown File,0
+"State=Active, Label=Yes, Optional=On, Message=Success, Icon=Trailing",Text input,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Error, Icon=Trailing",Text input,Unknown File,0
+"Breakpoint=480 (Phablet), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Swatch, State=Disabled",Selector,Unknown File,0
+State=Hover (Web only),Radio button,Unknown File,0
+"Breakpoint=1280+ (Desktop), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"State=Default, Label=Yes, Optional=On, Message=Success, Icon=Leading",Text input,Unknown File,0
+"Platform=App, Type=Icon, Size=Large, State=Disabled",Link,Unknown File,0
+"Type=Category, Platform=Desktop, State=Default",Search bar,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Medium, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Platform=App, Type=Standard, Size=Medium, State=Disabled",Link,Unknown File,0
+"Type=Category, Platform=Desktop, State=Focused filled",Search bar,Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=Off, Optional=No, Message=Error",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Icon (In Progress), State=Disabled, Label=On, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Direction=Horizontal, Text=1 Row, State=Completed, Type=Icon",Progress Stepper,Unknown File,0
+"Breakpoint=375 (Mobile), Size=Large, Header (Optional)=Off, Title (Optional)=Off, Footer (Optional)=On",Dialog (Web),Unknown File,0
+"Type=Filter, Platform=Desktop, State=Focused empty",Search bar,Unknown File,0
+"Type=Icon (In Progress), State=Default, Label=Off, Optional=No, Message=Informative",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Type=Default, State=Hover",Dropdown Trigger (default),Unknown File,0
+"Type=Category, Platform=mWeb, State=Focused filled",Search bar,Unknown File,0
+"Platform=Web, Outline=On, State=Mute",Icon button - Mute sound,Unknown File,0
+"State=Active, Label=No, Optional=Off, Message=Error, Icon=Leading",Text input,Unknown File,0
+"With icon=False, State=Pressed, Size=Default",Follow button,Unknown File,0
+"Breakpoint=1024 (Desktop), Size=Large, Header (Optional)=On, Title (Optional)=Off, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"With icon=False, State=Focus, Size=Default",Follow button,Unknown File,0
+"Type=Category, Platform=Desktop, State=Focused empty",Search bar,Unknown File,0
+"Breakpoint=768 (Tablet), Size=Large, Header (Optional)=Off, Title (Optional)=On, Footer (Optional)=Off",Dialog (Web),Unknown File,0
+"Type=Zalando Lounge, Colour=Original",Zalando Lounge/Prive Logo,Unknown File,0
+"Type=Icon (In Progress), State=Selected, Label=Off, Optional=No, Message=None",🚧 [DEPRECATED] Dropdown Trigger (Default),Unknown File,0
+"Platform=Web, Outline=On, State=Unmute",Icon button - Mute sound,Unknown File,0
+"Type=Prive, Colour=White",Zalando Lounge/Prive Logo,Unknown File,0
+"Type=Zalando Lounge, Colour=White",Zalando Lounge/Prive Logo,Unknown File,0
+Icon - AI Skincare,,Unknown File,0
+Size=Large,Plus Wordmark,Unknown File,0
+"Type=Prive, Colour=Original",Zalando Lounge/Prive Logo,Unknown File,0
+"State=Disabled, Description=Off, Message=Error",🚧 [DEPRECATED] Radio button,Unknown File,0

@@ -15,15 +15,15 @@ export function UsagesTable({ data }) {
     }
 
     // Process and aggregate data by component_name
-    // If the same component_name appears multiple times (different variants),
-    // we aggregate instances and take the max of teams/files
+    // CSV format: component_name, component_set_name, file_name, instances
+    // We need to aggregate instances and count unique files per component
     const componentMap = new Map()
 
     data.forEach((row) => {
       const componentName = row.component_name || ""
-      const numInstances = parseInt(row.num_instances) || 0
-      const numTeams = parseInt(row.num_teams_using) || 0
-      const numFiles = parseInt(row.num_files_using) || 0
+      // Support both 'instances' (from CSV) and 'num_instances' (legacy format)
+      const numInstances = parseInt(row.num_instances || row.instances) || 0
+      const fileName = row.file_name || ""
 
       if (!componentName.trim()) {
         return
@@ -32,16 +32,37 @@ export function UsagesTable({ data }) {
       if (componentMap.has(componentName)) {
         const existing = componentMap.get(componentName)
         existing.num_instances += numInstances
-        // Take the maximum since these represent unique teams/files per variant
-        existing.num_teams_using = Math.max(existing.num_teams_using, numTeams)
-        existing.num_files_using = Math.max(existing.num_files_using, numFiles)
+        // Track unique files
+        if (fileName) {
+          existing.files.add(fileName)
+        }
+        // Support legacy format with explicit team/file counts
+        if (row.num_teams_using) {
+          existing.num_teams_using = Math.max(existing.num_teams_using, parseInt(row.num_teams_using) || 0)
+        }
+        if (row.num_files_using) {
+          existing.num_files_using = Math.max(existing.num_files_using, parseInt(row.num_files_using) || 0)
+        }
       } else {
+        const files = new Set()
+        if (fileName) {
+          files.add(fileName)
+        }
         componentMap.set(componentName, {
           component_name: componentName,
           num_instances: numInstances,
-          num_teams_using: numTeams,
-          num_files_using: numFiles,
+          num_teams_using: parseInt(row.num_teams_using) || 0,
+          num_files_using: parseInt(row.num_files_using) || files.size,
+          files: files,
         })
+      }
+    })
+
+    // Convert file sets to counts
+    componentMap.forEach((value) => {
+      if (value.files) {
+        value.num_files_using = value.files.size
+        delete value.files
       }
     })
 
