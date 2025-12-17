@@ -382,9 +382,6 @@ export function Dashboard() {
 
                           <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
-                              {isEditMode && (
-                                <ChartTypeSelector chartKey="insertions" label="Chart Type for Insertions" />
-                              )}
                               <div>
                                 <EditableText
                                   value={config?.content?.titles?.topInsertions || "Top 10 Components by Insertions"}
@@ -399,19 +396,25 @@ export function Dashboard() {
                                   className="text-sm text-muted-foreground mt-1"
                                 />
                               </div>
-                              <ChartFactory
-                                type={preferences?.charts?.insertions || 'bar'}
-                                data={data}
-                                dataKey="insertions"
-                                nameKey="name"
-                                days={days}
-                              />
+                              <Card>
+                                <CardContent>
+                                  {isEditMode && (
+                                    <div className="mb-4">
+                                      <ChartTypeSelector chartKey="insertions" label="Chart Type for Insertions" />
+                                    </div>
+                                  )}
+                                  <ChartFactory
+                                    type={preferences?.charts?.insertions || 'bar'}
+                                    data={data}
+                                    dataKey="insertions"
+                                    nameKey="name"
+                                    days={days}
+                                  />
+                                </CardContent>
+                              </Card>
                             </div>
 
                             <div className="space-y-2">
-                              {isEditMode && (
-                                <ChartTypeSelector chartKey="detachments" label="Chart Type for Detachments" />
-                              )}
                               <div>
                                 <EditableText
                                   value={config?.content?.titles?.topDetachments || "Top 10 Components by Detachments"}
@@ -426,13 +429,22 @@ export function Dashboard() {
                                   className="text-sm text-muted-foreground mt-1"
                                 />
                               </div>
-                              <ChartFactory
-                                type={preferences?.charts?.detachments || 'bar'}
-                                data={data}
-                                dataKey="detachments"
-                                nameKey="name"
-                                days={days}
-                              />
+                              <Card>
+                                <CardContent>
+                                  {isEditMode && (
+                                    <div className="mb-4">
+                                      <ChartTypeSelector chartKey="detachments" label="Chart Type for Detachments" />
+                                    </div>
+                                  )}
+                                  <ChartFactory
+                                    type={preferences?.charts?.detachments || 'bar'}
+                                    data={data}
+                                    dataKey="detachments"
+                                    nameKey="name"
+                                    days={days}
+                                  />
+                                </CardContent>
+                              </Card>
                             </div>
                           </div>
 
@@ -595,9 +607,6 @@ export function Dashboard() {
 
                         <div className="grid grid-cols-2 gap-6">
                           <div className="space-y-2">
-                            {isEditMode && (
-                              <ChartTypeSelector chartKey="insertions" label="Chart Type for Insertions" />
-                            )}
                             <div>
                               <EditableText
                                 value={config?.content?.titles?.topInsertions || "Top 10 Components by Insertions"}
@@ -612,19 +621,25 @@ export function Dashboard() {
                                 className="text-sm text-muted-foreground mt-1"
                               />
                             </div>
-                            <ChartFactory
-                              type={preferences?.charts?.insertions || 'bar'}
-                              data={data}
-                              dataKey="insertions"
-                              nameKey="name"
-                              days={days}
-                            />
+                            <Card>
+                              <CardContent>
+                                {isEditMode && (
+                                  <div className="mb-4">
+                                    <ChartTypeSelector chartKey="insertions" label="Chart Type for Insertions" />
+                                  </div>
+                                )}
+                                <ChartFactory
+                                  type={preferences?.charts?.insertions || 'bar'}
+                                  data={data}
+                                  dataKey="insertions"
+                                  nameKey="name"
+                                  days={days}
+                                />
+                              </CardContent>
+                            </Card>
                           </div>
 
                           <div className="space-y-2">
-                            {isEditMode && (
-                              <ChartTypeSelector chartKey="detachments" label="Chart Type for Detachments" />
-                            )}
                             <div>
                               <EditableText
                                 value={config?.content?.titles?.topDetachments || "Top 10 Components by Detachments"}
@@ -639,13 +654,22 @@ export function Dashboard() {
                                 className="text-sm text-muted-foreground mt-1"
                               />
                             </div>
-                            <ChartFactory
-                              type={preferences?.charts?.detachments || 'bar'}
-                              data={data}
-                              dataKey="detachments"
-                              nameKey="name"
-                              days={days}
-                            />
+                            <Card>
+                              <CardContent>
+                                {isEditMode && (
+                                  <div className="mb-4">
+                                    <ChartTypeSelector chartKey="detachments" label="Chart Type for Detachments" />
+                                  </div>
+                                )}
+                                <ChartFactory
+                                  type={preferences?.charts?.detachments || 'bar'}
+                                  data={data}
+                                  dataKey="detachments"
+                                  nameKey="name"
+                                  days={days}
+                                />
+                              </CardContent>
+                            </Card>
                           </div>
                         </div>
 
