@@ -529,7 +529,7 @@ def generate_variable_actions_by_variable_csv(output_dir: str, token: str, file_
     filtered_count = 0
     with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
-        writer.writerow(['variable_name', 'actions', 'week'])
+        writer.writerow(['variable_key', 'week', 'detachments', 'insertions', 'variable_name', 'variable_type', 'collection_key', 'collection_name'])
         
         if analytics_data:
             data_list = []
@@ -541,9 +541,15 @@ def generate_variable_actions_by_variable_csv(output_dir: str, token: str, file_
             for item in data_list:
                 if not isinstance(item, dict):
                     continue
-                variable_name = item.get('variable_name', 'Unknown Variable')
-                actions = item.get('actions', 0)
+                
+                variable_key = item.get('variable_key', '')
                 week = item.get('week', '')
+                detachments = item.get('detachments', 0)
+                insertions = item.get('insertions', 0)
+                variable_name = item.get('variable_name', '')
+                variable_type = item.get('variable_type', '')
+                collection_key = item.get('collection_key', '')
+                collection_name = item.get('collection_name', '')
                 
                 # Filter by date range if provided
                 if start_date and end_date and week:
@@ -568,7 +574,7 @@ def generate_variable_actions_by_variable_csv(output_dir: str, token: str, file_
                         print(f"   ⚠️  Could not parse date '{week}': {e}")
                         pass
                 
-                writer.writerow([variable_name, actions, week])
+                writer.writerow([variable_key, week, detachments, insertions, variable_name, variable_type, collection_key, collection_name])
                 row_count += 1
     
     if filtered_count > 0:

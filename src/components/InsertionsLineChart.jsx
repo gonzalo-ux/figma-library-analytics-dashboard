@@ -16,11 +16,15 @@ import { useTheme } from "../lib/useTheme"
 const chartConfig = {
   components: {
     label: "Components",
-    color: "var(--chart-themed-4)",
+    color: "var(--chart-themed-6)",
+  },
+  icons: {
+    label: "Icons",
+    color: "var(--chart-themed-2)",
   },
   variables: {
     label: "Variables",
-    color: "var(--chart-themed-5)",
+    color: "var(--chart-themed-4)",
   },
 }
 
@@ -33,6 +37,7 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
     const result = []
     if (data && data.length > 0) {
       result.push({ dataKey: "components" })
+      result.push({ dataKey: "icons" })
     }
     if (variableData && variableData.length > 0) {
       result.push({ dataKey: "variables" })
@@ -67,8 +72,9 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
     const daysAgo = new Date(today)
     daysAgo.setDate(today.getDate() - days)
 
-    // Process component data
+    // Process component data (separate components and icons)
     const componentsWeekMap = new Map()
+    const iconsWeekMap = new Map()
     if (data && data.length > 0) {
       data.forEach((row) => {
         // Check if row has required columns
@@ -76,15 +82,53 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
           return
         }
 
-        // Skip icon components
         const componentName = row.component_name || ""
-        if (componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")) {
+        const isIcon = componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")
+
+        // For non-icon components, only include rows with a component_set_name (not empty)
+        if (!isIcon) {
+          const componentSetName = row.component_set_name || ""
+          if (!componentSetName.trim()) {
+            return
+          }
+        }
+
+        // Parse the week date
+        const weekDate = new Date(row.week)
+        if (isNaN(weekDate.getTime())) {
           return
         }
 
-        // Only include rows with a component_set_name (not empty)
-        const componentSetName = row.component_set_name || ""
-        if (!componentSetName.trim()) {
+        // Filter by last N days
+        if (weekDate >= daysAgo) {
+          const weekKey = row.week
+          const insertions = parseFloat(row.insertions) || 0
+
+          if (isIcon) {
+            // Add to icons map
+            if (iconsWeekMap.has(weekKey)) {
+              iconsWeekMap.set(weekKey, iconsWeekMap.get(weekKey) + insertions)
+            } else {
+              iconsWeekMap.set(weekKey, insertions)
+            }
+          } else {
+            // Add to components map
+            if (componentsWeekMap.has(weekKey)) {
+              componentsWeekMap.set(weekKey, componentsWeekMap.get(weekKey) + insertions)
+            } else {
+              componentsWeekMap.set(weekKey, insertions)
+            }
+          }
+        }
+      })
+    }
+
+    // Process variable data
+    const variablesWeekMap = new Map()
+    if (variableData && variableData.length > 0) {
+      variableData.forEach((row) => {
+        // Check if row has required columns
+        if (!row.week || !row.insertions) {
           return
         }
 
@@ -99,47 +143,19 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
           const weekKey = row.week
           const insertions = parseFloat(row.insertions) || 0
 
-          if (componentsWeekMap.has(weekKey)) {
-            componentsWeekMap.set(weekKey, componentsWeekMap.get(weekKey) + insertions)
-          } else {
-            componentsWeekMap.set(weekKey, insertions)
-          }
-        }
-      })
-    }
-
-    // Process variable data
-    const variablesWeekMap = new Map()
-    if (variableData && variableData.length > 0) {
-      variableData.forEach((row) => {
-        // Check if row has required columns
-        if (!row.week || !row.variable_name) {
-          return
-        }
-
-        // Parse the week date
-        const weekDate = new Date(row.week)
-        if (isNaN(weekDate.getTime())) {
-          return
-        }
-
-        // Filter by last N days
-        if (weekDate >= daysAgo) {
-          const weekKey = row.week
-          const actions = parseFloat(row.actions) || 0
-
           if (variablesWeekMap.has(weekKey)) {
-            variablesWeekMap.set(weekKey, variablesWeekMap.get(weekKey) + actions)
+            variablesWeekMap.set(weekKey, variablesWeekMap.get(weekKey) + insertions)
           } else {
-            variablesWeekMap.set(weekKey, actions)
+            variablesWeekMap.set(weekKey, insertions)
           }
         }
       })
     }
 
-    // Get all unique weeks from both maps
+    // Get all unique weeks from all maps
     const allWeeks = new Set([
       ...Array.from(componentsWeekMap.keys()),
+      ...Array.from(iconsWeekMap.keys()),
       ...Array.from(variablesWeekMap.keys())
     ])
 
@@ -148,6 +164,7 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
       .map(week => ({
         week,
         components: componentsWeekMap.get(week) || 0,
+        icons: iconsWeekMap.get(week) || 0,
         variables: variablesWeekMap.get(week) || 0,
       }))
       .sort((a, b) => new Date(a.week) - new Date(b.week))
@@ -156,6 +173,7 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
     return weeksArray.map(item => ({
       date: item.week,
       components: item.components,
+      icons: item.icons,
       variables: item.variables,
     }))
   }, [data, variableData, days])
