@@ -43,6 +43,7 @@ export function Dashboard() {
   const [fileUsageData, setFileUsageData] = useState(null)
   const [componentUsagesData, setComponentUsagesData] = useState(null)
   const [teamInsertionsData, setTeamInsertionsData] = useState(null)
+  const [variableInsertionsData, setVariableInsertionsData] = useState(null)
   const [fileName, setFileName] = useState("")
   const [selectedFile, setSelectedFile] = useState("")
   const [error, setError] = useState("")
@@ -58,6 +59,7 @@ export function Dashboard() {
     setFileUsageData(null) // Reset file usage data when switching files
     setComponentUsagesData(null) // Reset component usages data when switching files
     setTeamInsertionsData(null) // Reset team insertions data when switching files
+    setVariableInsertionsData(null) // Reset variable insertions data when switching files
 
     // Handle branches - no CSV file needed
     if (csvFileName === "branches") {
@@ -123,18 +125,65 @@ export function Dashboard() {
                                   Papa.parse(teamText, {
                                     header: true,
                                     skipEmptyLines: true,
-                                    complete: (teamResults) => {
+                                    complete: async (teamResults) => {
                                       if (teamResults.errors.length === 0) {
                                         setTeamInsertionsData(teamResults.data)
                                       }
-                                      setLoading(false)
+                                      
+                                      // Also load variable_actions_by_variable.csv for variable insertions
+                                      try {
+                                        const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
+                                        if (variableResponse.ok) {
+                                          const variableText = await variableResponse.text()
+                                          Papa.parse(variableText, {
+                                            header: true,
+                                            skipEmptyLines: true,
+                                            complete: (variableResults) => {
+                                              if (variableResults.errors.length === 0) {
+                                                setVariableInsertionsData(variableResults.data)
+                                              }
+                                              setLoading(false)
+                                            },
+                                            error: () => {
+                                              setLoading(false)
+                                            }
+                                          })
+                                        } else {
+                                          setLoading(false)
+                                        }
+                                      } catch {
+                                        setLoading(false)
+                                      }
                                     },
                                     error: () => {
                                       setLoading(false)
                                     }
                                   })
                                 } else {
-                                  setLoading(false)
+                                  // If actions_by_team.csv fails, still try to load variable_actions_by_variable.csv
+                                  try {
+                                    const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
+                                    if (variableResponse.ok) {
+                                      const variableText = await variableResponse.text()
+                                      Papa.parse(variableText, {
+                                        header: true,
+                                        skipEmptyLines: true,
+                                        complete: (variableResults) => {
+                                          if (variableResults.errors.length === 0) {
+                                            setVariableInsertionsData(variableResults.data)
+                                          }
+                                          setLoading(false)
+                                        },
+                                        error: () => {
+                                          setLoading(false)
+                                        }
+                                      })
+                                    } else {
+                                      setLoading(false)
+                                    }
+                                  } catch {
+                                    setLoading(false)
+                                  }
                                 }
                               } catch {
                                 setLoading(false)
@@ -153,18 +202,65 @@ export function Dashboard() {
                               Papa.parse(teamText, {
                                 header: true,
                                 skipEmptyLines: true,
-                                complete: (teamResults) => {
+                                complete: async (teamResults) => {
                                   if (teamResults.errors.length === 0) {
                                     setTeamInsertionsData(teamResults.data)
                                   }
-                                  setLoading(false)
+                                  
+                                  // Also load variable_actions_by_variable.csv for variable insertions
+                                  try {
+                                    const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
+                                    if (variableResponse.ok) {
+                                      const variableText = await variableResponse.text()
+                                      Papa.parse(variableText, {
+                                        header: true,
+                                        skipEmptyLines: true,
+                                        complete: (variableResults) => {
+                                          if (variableResults.errors.length === 0) {
+                                            setVariableInsertionsData(variableResults.data)
+                                          }
+                                          setLoading(false)
+                                        },
+                                        error: () => {
+                                          setLoading(false)
+                                        }
+                                      })
+                                    } else {
+                                      setLoading(false)
+                                    }
+                                  } catch {
+                                    setLoading(false)
+                                  }
                                 },
                                 error: () => {
                                   setLoading(false)
                                 }
                               })
                             } else {
-                              setLoading(false)
+                              // If actions_by_team.csv fails, still try to load variable_actions_by_variable.csv
+                              try {
+                                const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
+                                if (variableResponse.ok) {
+                                  const variableText = await variableResponse.text()
+                                  Papa.parse(variableText, {
+                                    header: true,
+                                    skipEmptyLines: true,
+                                    complete: (variableResults) => {
+                                      if (variableResults.errors.length === 0) {
+                                        setVariableInsertionsData(variableResults.data)
+                                      }
+                                      setLoading(false)
+                                    },
+                                    error: () => {
+                                      setLoading(false)
+                                    }
+                                  })
+                                } else {
+                                  setLoading(false)
+                                }
+                              } catch {
+                                setLoading(false)
+                              }
                             }
                           } catch {
                             setLoading(false)
@@ -425,6 +521,7 @@ export function Dashboard() {
                             </div>
                             <InsertionsLineChart 
                               data={data} 
+                              variableData={variableInsertionsData}
                               days={days}
                             />
                           </div>

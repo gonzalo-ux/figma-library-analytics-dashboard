@@ -14,92 +14,151 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { useTheme } from "../lib/useTheme"
 
 const chartConfig = {
-  total: {
-    label: "Total Insertions",
-    color: "var(--chart-themed-3)",
+  components: {
+    label: "Components",
+    color: "var(--chart-themed-4)",
+  },
+  variables: {
+    label: "Variables",
+    color: "var(--chart-themed-5)",
   },
 }
 
-export function InsertionsLineChart({ data, days = 90, title, description, headerActions, areas = [{ dataKey: "total" }] }) {
+export function InsertionsLineChart({ data, variableData, days = 90, title, description, headerActions, areas }) {
   const { isDark, themePreset } = useTheme()
   const baseGradientId = useId()
   
+  // Determine which areas to show based on available data
+  const activeAreas = useMemo(() => {
+    const result = []
+    if (data && data.length > 0) {
+      result.push({ dataKey: "components" })
+    }
+    if (variableData && variableData.length > 0) {
+      result.push({ dataKey: "variables" })
+    }
+    // If areas prop is provided, use it instead
+    return areas || result
+  }, [data, variableData, areas])
+  
   // Generate gradient IDs for each area
   const gradientIds = useMemo(() => 
-    areas.map((_, index) => `${baseGradientId}-${index}`),
-    [baseGradientId, areas.length]
+    activeAreas.map((_, index) => `${baseGradientId}-${index}`),
+    [baseGradientId, activeAreas.length]
   )
   
   // Grid color - use border color from theme
   const gridColor = "hsl(var(--border))"
   
-  // Stroke color is always --chart-themed-3
-  const strokeColor = "var(--chart-themed-4)"
+  // Helper to get stroke color for each area
+  const getStrokeColor = (dataKey) => {
+    return chartConfig[dataKey]?.color || "var(--chart-themed-4)"
+  }
   
   // Helper to get themed color by index for gradients (starts at 4)
-  const getGradientColor = (index) => `var(--chart-themed-${4 + index})`
+  const getGradientColor = (index) => {
+    const dataKey = activeAreas[index]?.dataKey
+    return chartConfig[dataKey]?.color || `var(--chart-themed-${4 + index})`
+  }
 
   const chartData = useMemo(() => {
-    if (!data || data.length === 0) {
-      return []
-    }
-
     // Calculate date N days ago
     const today = new Date()
     const daysAgo = new Date(today)
     daysAgo.setDate(today.getDate() - days)
 
-    // Filter data from last N days, exclude icons, and group by week
-    const weekMap = new Map()
-
-    data.forEach((row) => {
-      // Check if row has required columns
-      if (!row.week || !row.insertions || !row.component_name) {
-        return
-      }
-
-      // Skip icon components
-      const componentName = row.component_name || ""
-      if (componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")) {
-        return
-      }
-
-      // Only include rows with a component_set_name (not empty)
-      const componentSetName = row.component_set_name || ""
-      if (!componentSetName.trim()) {
-        return
-      }
-
-      // Parse the week date
-      const weekDate = new Date(row.week)
-      if (isNaN(weekDate.getTime())) {
-        return
-      }
-
-      // Filter by last N days
-      if (weekDate >= daysAgo) {
-        const weekKey = row.week // Use week as key
-        const insertions = parseFloat(row.insertions) || 0
-
-        if (weekMap.has(weekKey)) {
-          weekMap.set(weekKey, weekMap.get(weekKey) + insertions)
-        } else {
-          weekMap.set(weekKey, insertions)
+    // Process component data
+    const componentsWeekMap = new Map()
+    if (data && data.length > 0) {
+      data.forEach((row) => {
+        // Check if row has required columns
+        if (!row.week || !row.insertions || !row.component_name) {
+          return
         }
-      }
-    })
+
+        // Skip icon components
+        const componentName = row.component_name || ""
+        if (componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")) {
+          return
+        }
+
+        // Only include rows with a component_set_name (not empty)
+        const componentSetName = row.component_set_name || ""
+        if (!componentSetName.trim()) {
+          return
+        }
+
+        // Parse the week date
+        const weekDate = new Date(row.week)
+        if (isNaN(weekDate.getTime())) {
+          return
+        }
+
+        // Filter by last N days
+        if (weekDate >= daysAgo) {
+          const weekKey = row.week
+          const insertions = parseFloat(row.insertions) || 0
+
+          if (componentsWeekMap.has(weekKey)) {
+            componentsWeekMap.set(weekKey, componentsWeekMap.get(weekKey) + insertions)
+          } else {
+            componentsWeekMap.set(weekKey, insertions)
+          }
+        }
+      })
+    }
+
+    // Process variable data
+    const variablesWeekMap = new Map()
+    if (variableData && variableData.length > 0) {
+      variableData.forEach((row) => {
+        // Check if row has required columns
+        if (!row.week || !row.variable_name) {
+          return
+        }
+
+        // Parse the week date
+        const weekDate = new Date(row.week)
+        if (isNaN(weekDate.getTime())) {
+          return
+        }
+
+        // Filter by last N days
+        if (weekDate >= daysAgo) {
+          const weekKey = row.week
+          const actions = parseFloat(row.actions) || 0
+
+          if (variablesWeekMap.has(weekKey)) {
+            variablesWeekMap.set(weekKey, variablesWeekMap.get(weekKey) + actions)
+          } else {
+            variablesWeekMap.set(weekKey, actions)
+          }
+        }
+      })
+    }
+
+    // Get all unique weeks from both maps
+    const allWeeks = new Set([
+      ...Array.from(componentsWeekMap.keys()),
+      ...Array.from(variablesWeekMap.keys())
+    ])
 
     // Convert to array and sort by week (ascending)
-    const weeksArray = Array.from(weekMap.entries())
-      .map(([week, total]) => ({ week, total }))
+    const weeksArray = Array.from(allWeeks)
+      .map(week => ({
+        week,
+        components: componentsWeekMap.get(week) || 0,
+        variables: variablesWeekMap.get(week) || 0,
+      }))
       .sort((a, b) => new Date(a.week) - new Date(b.week))
 
     // Convert to Recharts format - use ISO date string for proper formatting
     return weeksArray.map(item => ({
       date: item.week,
-      total: item.total,
+      components: item.components,
+      variables: item.variables,
     }))
-  }, [data, days])
+  }, [data, variableData, days])
 
   const chartContent = !chartData || chartData.length === 0 ? (
       <div className="h-[300px] w-full flex items-center justify-center text-muted-foreground">
@@ -115,7 +174,7 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
       <ResponsiveContainer width="100%" height="100%" minHeight={300}>
         <AreaChart data={chartData} key={`area-chart-${isDark}-${themePreset}`}>
           <defs>
-            {areas.map((area, index) => {
+            {activeAreas.map((area, index) => {
               const gradientColor = getGradientColor(index)
               return (
                 <linearGradient key={gradientIds[index]} id={gradientIds[index]} x1="0" y1="0" x2="0" y2="1">
@@ -181,13 +240,13 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
               />
             }
           />
-          {areas.map((area, index) => (
+          {activeAreas.map((area, index) => (
             <Area
               key={area.dataKey || `area-${index}`}
               dataKey={area.dataKey}
               type="natural"
               fill={`url(#${gradientIds[index]})`}
-              stroke={strokeColor}
+              stroke={getStrokeColor(area.dataKey)}
               strokeWidth={2}
               fillOpacity={1}
             />
