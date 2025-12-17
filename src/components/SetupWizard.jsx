@@ -16,7 +16,7 @@ export function SetupWizard({ onComplete }) {
       libraryUrl: ''
     },
     theme: {
-      preset: 'default',
+      preset: 'blue',
       customCss: '',
       typography: {
         fontFamily: 'Inter',

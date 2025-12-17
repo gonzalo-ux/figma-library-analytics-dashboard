@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useId } from "react"
+import React, { useMemo, useId } from "react"
 import {
   Area,
   AreaChart,
@@ -11,32 +11,33 @@ import {
 } from "recharts"
 import { ChartContainer, ChartTooltipContent, ChartLegendContent } from "./ui/chart-container"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
-import { getCSSVariable } from "../lib/utils"
 import { useTheme } from "../lib/useTheme"
 
 const chartConfig = {
   total: {
     label: "Total Insertions",
-    color: "hsl(var(--chart-1))",
+    color: "var(--chart-themed-3)",
   },
 }
 
-export function InsertionsLineChart({ data, days = 90, title, description, headerActions }) {
-  const isDark = useTheme()
-  const gradientId = useId()
+export function InsertionsLineChart({ data, days = 90, title, description, headerActions, areas = [{ dataKey: "total" }] }) {
+  const { isDark, themePreset } = useTheme()
+  const baseGradientId = useId()
   
-  // Use theme-specific blue colors directly from CSS variables
-  // Light mode: hsl(221.2, 83.2%, 53.3%) - Blue
-  // Dark mode: hsl(217.2, 91.2%, 59.8%) - Lighter Blue
-  const chartColor = isDark 
-    ? "hsl(217.2, 91.2%, 59.8%)" 
-    : "hsl(221.2, 83.2%, 53.3%)"
-
-  // Grid color - use a more visible color based on theme
-  // Light mode: use border color, Dark mode: use a lighter color for contrast
-  const gridColor = isDark 
-    ? "hsl(0, 0%, 25%)"  // Lighter gray for better visibility in dark mode
-    : "hsl(0, 0%, 85%)"  // Darker gray for better visibility in light mode
+  // Generate gradient IDs for each area
+  const gradientIds = useMemo(() => 
+    areas.map((_, index) => `${baseGradientId}-${index}`),
+    [baseGradientId, areas.length]
+  )
+  
+  // Grid color - use border color from theme
+  const gridColor = "hsl(var(--border))"
+  
+  // Stroke color is always --chart-themed-3
+  const strokeColor = "var(--chart-themed-4)"
+  
+  // Helper to get themed color by index for gradients (starts at 4)
+  const getGradientColor = (index) => `var(--chart-themed-${4 + index})`
 
   const chartData = useMemo(() => {
     if (!data || data.length === 0) {
@@ -108,24 +109,29 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
     <ChartContainer 
       config={chartConfig} 
       className="h-[300px] w-full min-w-0" 
-      key={`chart-${isDark}`}
+      key={`chart-${isDark}-${themePreset}`}
       style={{ minWidth: 0, minHeight: 300 }}
     >
       <ResponsiveContainer width="100%" height="100%" minHeight={300}>
-        <AreaChart data={chartData} key={`area-chart-${isDark}-${chartColor}`}>
+        <AreaChart data={chartData} key={`area-chart-${isDark}-${themePreset}`}>
           <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop
-                offset="5%"
-                stopColor={chartColor}
-                stopOpacity={0.8}
-              />
-              <stop
-                offset="95%"
-                stopColor={chartColor}
-                stopOpacity={0}
-              />
-            </linearGradient>
+            {areas.map((area, index) => {
+              const gradientColor = getGradientColor(index)
+              return (
+                <linearGradient key={gradientIds[index]} id={gradientIds[index]} x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor={gradientColor}
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={gradientColor}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              )
+            })}
           </defs>
           <CartesianGrid 
             strokeDasharray="3 3" 
@@ -140,7 +146,7 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
             axisLine={{ stroke: gridColor, strokeWidth: 1 }}
             tickMargin={8}
             minTickGap={32}
-            tick={{ fill: "hsl(var(--muted-foreground))" }}
+            tick={{ fill: "hsl(var(--card-foreground))" }}
             tickFormatter={(value) => {
               const date = new Date(value)
               return date.toLocaleDateString("en-US", {
@@ -153,7 +159,7 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
             tickLine={false}
             axisLine={false}
             tickMargin={8}
-            tick={{ fill: "hsl(var(--muted-foreground))" }}
+            tick={{ fill: "hsl(var(--card-foreground))" }}
             tickFormatter={(value) => {
               if (value >= 1000) {
                 return `${(value / 1000).toFixed(1)}k`
@@ -175,14 +181,17 @@ export function InsertionsLineChart({ data, days = 90, title, description, heade
               />
             }
           />
-          <Area
-            dataKey="total"
-            type="natural"
-            fill={`url(#${gradientId})`}
-            stroke={chartColor}
-            strokeWidth={2}
-            fillOpacity={1}
-          />
+          {areas.map((area, index) => (
+            <Area
+              key={area.dataKey || `area-${index}`}
+              dataKey={area.dataKey}
+              type="natural"
+              fill={`url(#${gradientIds[index]})`}
+              stroke={strokeColor}
+              strokeWidth={2}
+              fillOpacity={1}
+            />
+          ))}
           <RechartsLegend content={<ChartLegendContent />} />
         </AreaChart>
       </ResponsiveContainer>

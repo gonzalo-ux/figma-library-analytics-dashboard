@@ -1,17 +1,6 @@
-import defaultTheme from '../themes/default.json'
-import darkTheme from '../themes/dark.json'
-import blueTheme from '../themes/blue.json'
-import greenTheme from '../themes/green.json'
-
-const THEMES = {
-  default: defaultTheme,
-  dark: darkTheme,
-  blue: blueTheme,
-  green: greenTheme
-}
-
 /**
- * Loads a theme preset and applies it to the document
+ * Loads a theme preset and applies it to the document using CSS classes
+ * Only blue and green themes are supported. Dark mode is controlled by the .dark class.
  */
 export function loadTheme(presetName) {
   if (presetName === 'custom') {
@@ -19,41 +8,33 @@ export function loadTheme(presetName) {
     return
   }
 
-  const theme = THEMES[presetName] || THEMES.default
+  // Remove all theme classes first (but keep .dark class as it's controlled by header toggle)
+  document.documentElement.classList.remove('theme-blue', 'theme-green')
 
-  // Apply theme colors to document root
-  Object.entries(theme.colors).forEach(([key, value]) => {
-    document.documentElement.style.setProperty(key, value)
-  })
-
-  // Apply theme class if needed
-  if (presetName === 'dark') {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-
-  if (presetName === 'blue') {
+  // Apply theme class based on preset
+  // Note: 'default' and 'dark' are no longer valid - default to 'blue'
+  if (presetName === 'blue' || presetName === 'default' || presetName === 'dark') {
     document.documentElement.classList.add('theme-blue')
-  } else {
-    document.documentElement.classList.remove('theme-blue')
-  }
-
-  if (presetName === 'green') {
+  } else if (presetName === 'green') {
     document.documentElement.classList.add('theme-green')
   } else {
-    document.documentElement.classList.remove('theme-green')
+    // Fallback to blue if unknown theme
+    document.documentElement.classList.add('theme-blue')
   }
 }
 
 /**
  * Gets theme colors for a preset
+ * Note: This function is deprecated. Themes are now defined in CSS classes only.
+ * Use getComputedStyle to read CSS variables directly if needed.
  */
 export function getThemeColors(presetName) {
   if (presetName === 'custom') {
     return null
   }
-  return THEMES[presetName]?.colors || THEMES.default.colors
+  // Return null as themes are now CSS-only
+  // To get theme colors, read CSS variables from getComputedStyle(document.documentElement)
+  return null
 }
 
 /**

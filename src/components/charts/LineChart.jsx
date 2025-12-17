@@ -27,11 +27,10 @@ export function LineChart({
   description,
   headerActions
 }) {
-  const isDark = useTheme()
+  const { isDark } = useTheme()
   
-  const gridColor = isDark 
-    ? "hsl(0, 0%, 25%)"
-    : "hsl(0, 0%, 85%)"
+  // Grid color - use border color from theme
+  const gridColor = "hsl(var(--border))"
 
   const chartContent = !data || data.length === 0 ? (
     <div className="h-[400px] w-full flex items-center justify-center text-muted-foreground">
@@ -55,13 +54,13 @@ export function LineChart({
             tickLine={false}
             axisLine={{ stroke: gridColor, strokeWidth: 1 }}
             tickMargin={8}
-            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+            tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
           />
           <YAxis
             tickLine={false}
             axisLine={false}
             tickMargin={8}
-            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+            tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
             tickFormatter={(value) => {
               if (value >= 1000) {
                 return `${(value / 1000).toFixed(1)}k`
@@ -76,7 +75,7 @@ export function LineChart({
           <Line
             type="monotone"
             dataKey={dataKey}
-            stroke="hsl(var(--chart-1))"
+            stroke="var(--chart-themed-1)"
             strokeWidth={2}
             dot={false}
           />

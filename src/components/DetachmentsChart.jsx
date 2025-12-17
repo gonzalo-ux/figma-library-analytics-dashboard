@@ -11,61 +11,23 @@ import {
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "./ui/chart-container"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { useTheme } from "../lib/useTheme"
+import { CHART_COLORS } from "../lib/chartColors"
 
 const chartConfig = {
   detachments: {
     label: "Detachments",
-    color: "hsl(var(--destructive))",
+    color: "hsl(var(--chart-1))",
   },
 }
 
 export function DetachmentsChart({ data, days = 90, title, description, headerActions }) {
-  const isDark = useTheme()
+  const { isDark } = useTheme()
   
-  // Create color array from darker (top) to lighter (bottom)
-  // Light mode: hsl(0, 84.2%, 60.2%) - from --destructive
-  // Dark mode: hsl(0, 62.8%, 30.6%) - from --destructive
-  const getColorArray = (baseHue, baseSaturation, isDarkMode) => {
-    if (isDarkMode) {
-      // Dark mode: darker (lower lightness) at top, lighter at bottom
-      return [
-        `hsl(${baseHue}, ${baseSaturation}%, 20%)`,  // Darkest (top)
-        `hsl(${baseHue}, ${baseSaturation}%, 25%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 30%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 30.6%)`,  // Base color
-        `hsl(${baseHue}, ${baseSaturation}%, 35%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 40%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 45%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60%)`,  // Lightest (bottom)
-      ]
-    } else {
-      // Light mode: darker at top, lighter at bottom
-      return [
-        `hsl(${baseHue}, ${baseSaturation}%, 50%)`,  // Darkest (top)
-        `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60.2%)`,  // Base color
-        `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 80%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 85%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 90%)`,  // Lightest (bottom)
-      ]
-    }
-  }
+  // Use shared chart colors (supports both --chart-* and --chart-themed-* variables)
+  const colorArray = CHART_COLORS
 
-  const colorArray = isDark 
-    ? getColorArray(0, 62.8, true)   // Dark mode: red
-    : getColorArray(0, 84.2, false)   // Light mode: red
-
-  // Grid color - use a more visible color based on theme
-  // Light mode: use border color, Dark mode: use a lighter color for contrast
-  const gridColor = isDark 
-    ? "hsl(0, 0%, 25%)"  // Lighter gray for better visibility in dark mode
-    : "hsl(0, 0%, 85%)"  // Darker gray for better visibility in light mode
+  // Grid color - use border color from theme
+  const gridColor = "hsl(var(--border))"
 
   const chartData = useMemo(() => {
     if (!data || data.length === 0) {
@@ -152,7 +114,7 @@ export function DetachmentsChart({ data, days = 90, title, description, headerAc
             tickLine={false}
             axisLine={{ stroke: gridColor, strokeWidth: 1 }}
             tickMargin={8}
-            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+            tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
             tickFormatter={(value) => {
               if (value >= 1000) {
                 return `${(value / 1000).toFixed(1)}k`
@@ -167,7 +129,7 @@ export function DetachmentsChart({ data, days = 90, title, description, headerAc
             axisLine={false}
             tickMargin={8}
             width={150}
-            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+            tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
           />
           <RechartsTooltip
             cursor={false}

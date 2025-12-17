@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { getPreferences, savePreferences } from '../lib/preferences'
 import { initTypography } from '../lib/typographyLoader'
+import { loadTheme } from '../lib/themeLoader'
 
 const EditModeContext = createContext()
 
@@ -17,8 +18,17 @@ export function EditModeProvider({ children }) {
         setPreferences(prefs)
         // Initialize typography
         initTypography(prefs)
+        // Load theme
+        if (prefs?.theme?.preset) {
+          loadTheme(prefs.theme.preset)
+        } else {
+          // Default to blue theme if no preset is set
+          loadTheme('blue')
+        }
       } catch (error) {
         console.error('Failed to load preferences:', error)
+        // Fallback to blue theme on error
+        loadTheme('blue')
       } finally {
         setIsLoading(false)
       }
@@ -50,6 +60,10 @@ export function EditModeProvider({ children }) {
     // Update typography if typography preference changed
     if (key.startsWith('theme.typography')) {
       initTypography(newPrefs)
+    }
+    // Update theme if theme preset changed
+    if (key === 'theme.preset') {
+      loadTheme(value)
     }
   }
 

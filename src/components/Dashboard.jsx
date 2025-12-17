@@ -24,6 +24,8 @@ import { ThemeEditor } from "./ThemeEditor"
 import { CustomThemeEditor } from "./CustomThemeEditor"
 import { ChangelogConfig } from "./ChangelogConfig"
 import { TypographyEditor } from "./TypographyEditor"
+import { AdminSidebar } from "./AdminSidebar"
+import { useAdminMode } from "./AdminModeProvider"
 import { loadConfigSync } from "../lib/config"
 
 const CSV_FILES = [
@@ -35,6 +37,7 @@ const CSV_FILES = [
 
 export function Dashboard() {
   const { preferences, updatePreference, isEditMode } = useEditMode()
+  const { isAdminMode } = useAdminMode()
   const config = loadConfigSync()
   const [data, setData] = useState(null)
   const [fileUsageData, setFileUsageData] = useState(null)
@@ -200,6 +203,7 @@ export function Dashboard() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header selectedFileLabel={selectedFileLabel} />
+      <AdminSidebar />
       <div className="border-b border-border">
         <div className="px-4 md:px-8">
           <Tabs 
@@ -221,7 +225,7 @@ export function Dashboard() {
           </Tabs>
         </div>
       </div>
-      <div className="flex-1 p-4 md:p-8">
+      <div className={`flex-1 p-4 md:p-8 transition-all duration-300 ${isAdminMode ? 'pr-[28rem]' : ''}`}>
         <div className="space-y-6">
 
           {loading && !data && selectedFile !== "branches" && (

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Dashboard } from "./components/Dashboard"
 import { EditModeProvider } from "./components/EditModeProvider"
+import { AdminModeProvider } from "./components/AdminModeProvider"
 import { SetupWizard } from "./components/SetupWizard"
 import { loadConfigSync } from "./lib/config"
 import { initTypography } from "./lib/typographyLoader"
@@ -42,27 +43,31 @@ function App() {
 
   if (showSetup) {
     return (
-      <EditModeProvider>
-        <SetupWizard 
-          onComplete={async (config) => {
-            // Mark setup as completed
-            if (typeof window !== 'undefined') {
-              localStorage.setItem('setupCompleted', 'true')
-            }
-            // Reload config after setup completes
-            const updatedConfig = loadConfigSync()
-            initTypography(updatedConfig)
-            setShowSetup(false)
-          }} 
-        />
-      </EditModeProvider>
+      <AdminModeProvider>
+        <EditModeProvider>
+          <SetupWizard 
+            onComplete={async (config) => {
+              // Mark setup as completed
+              if (typeof window !== 'undefined') {
+                localStorage.setItem('setupCompleted', 'true')
+              }
+              // Reload config after setup completes
+              const updatedConfig = loadConfigSync()
+              initTypography(updatedConfig)
+              setShowSetup(false)
+            }} 
+          />
+        </EditModeProvider>
+      </AdminModeProvider>
     )
   }
 
   return (
-    <EditModeProvider>
-      <Dashboard />
-    </EditModeProvider>
+    <AdminModeProvider>
+      <EditModeProvider>
+        <Dashboard />
+      </EditModeProvider>
+    </AdminModeProvider>
   )
 }
 

@@ -6,7 +6,7 @@ import { Button } from './ui/button'
 import { loadTypography, getAvailableFonts } from '../lib/typographyLoader'
 
 export function TypographyEditor() {
-  const { preferences, updatePreference, isEditMode } = useEditMode()
+  const { preferences, updatePreference } = useEditMode()
   const [fontFamily, setFontFamily] = useState('Inter')
   const [fontWeights, setFontWeights] = useState('300;400;500;600;700')
 
@@ -16,8 +16,6 @@ export function TypographyEditor() {
       setFontWeights(preferences.theme.typography.fontWeights || '300;400;500;600;700')
     }
   }, [preferences])
-
-  if (!isEditMode) return null
 
   const availableFonts = getAvailableFonts()
 

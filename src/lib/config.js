@@ -53,11 +53,26 @@ export async function saveConfig(config) {
     } catch (error) {
       console.warn('Failed to save config to localStorage:', error)
     }
+
+    // Save to server (config.json file) so changes are visible to all users
+    try {
+      const response = await fetch('/api/config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(config),
+      })
+      
+      if (!response.ok) {
+        console.warn('Failed to save config to server:', response.statusText)
+      }
+    } catch (error) {
+      console.warn('Failed to save config to server:', error)
+      // Continue even if server save fails - localStorage is still saved
+    }
   }
 
-  // Save to config.json file (via API endpoint in production)
-  // For now, we'll rely on localStorage and manual config.json editing
-  // In production, this could call a backend endpoint to save the file
   return config
 }
 

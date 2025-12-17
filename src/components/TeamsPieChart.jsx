@@ -8,7 +8,7 @@ import {
 } from "recharts"
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "./ui/chart-container"
 import { useTheme } from "../lib/useTheme"
-import { getCSSVariable } from "../lib/utils"
+import { CHART_COLORS } from "../lib/chartColors"
 
 const chartConfig = {
   instances: {
@@ -18,89 +18,15 @@ const chartConfig = {
 }
 
 export function TeamsPieChart({ data }) {
-  const isDark = useTheme()
+  const { isDark } = useTheme()
 
-  // Create color array using blue theme from CSS variables - same approach as ChartContainer
-  // Use variations of the blue color (--chart-1) with different lightness values
+  // Use shared chart colors and add muted-foreground for "Other"
   const colorArray = useMemo(() => {
-    // Get base color from CSS variable
-    const baseColor = getCSSVariable('--chart-1')
-    
-    // Extract hue and saturation from the base color
-    const hslMatch = baseColor.match(/hsl\(([\d.]+),\s*([\d.]+)%,\s*([\d.]+)%\)/)
-    if (!hslMatch) {
-      // Fallback if parsing fails
-      const baseHue = isDark ? 220 : 12
-      const baseSaturation = isDark ? 70 : 76
-      
-      if (isDark) {
-        // Dark mode: variations of blue (hue 220, saturation 70)
-        return [
-          `hsl(${baseHue}, ${baseSaturation}%, 35%)`,  // Darkest
-          `hsl(${baseHue}, ${baseSaturation}%, 40%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 45%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 80%)`,  // Lightest
-          getCSSVariable('--muted-foreground'), // Gray for "Other"
-        ]
-      } else {
-        // Light mode: variations of orange/red (hue 12, saturation 76)
-        return [
-          `hsl(${baseHue}, ${baseSaturation}%, 45%)`,  // Darkest
-          `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 61%)`,  // Base color
-          `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 80%)`,
-          `hsl(${baseHue}, ${baseSaturation}%, 85%)`,  // Lightest
-          getCSSVariable('--muted-foreground'), // Gray for "Other"
-        ]
-      }
-    }
-    
-    const baseHue = parseFloat(hslMatch[1])
-    const baseSaturation = parseFloat(hslMatch[2])
-    
-    if (isDark) {
-      // Dark mode: variations of blue with different lightness
-      return [
-        `hsl(${baseHue}, ${baseSaturation}%, 35%)`,  // Darkest
-        `hsl(${baseHue}, ${baseSaturation}%, 40%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 45%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 80%)`,  // Lightest
-        getCSSVariable('--muted-foreground'), // Gray for "Other"
-      ]
-    } else {
-      // Light mode: variations with different lightness
-      return [
-        `hsl(${baseHue}, ${baseSaturation}%, 45%)`,  // Darkest
-        `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 61%)`,  // Base color
-        `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 80%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 85%)`,  // Lightest
-        getCSSVariable('--muted-foreground'), // Gray for "Other"
-      ]
-    }
-  }, [isDark])
+    return [
+      ...CHART_COLORS,
+      "hsl(var(--muted-foreground))", // Gray for "Other"
+    ]
+  }, [])
 
   const chartData = useMemo(() => {
     if (!data || data.length === 0) {

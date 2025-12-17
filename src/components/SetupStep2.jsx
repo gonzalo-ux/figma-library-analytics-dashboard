@@ -7,14 +7,12 @@ import { Switch } from './ui/switch'
 import { loadTheme } from '../lib/themeLoader'
 
 const THEME_PRESETS = [
-  { value: 'default', label: 'Default', description: 'Clean and minimal' },
-  { value: 'dark', label: 'Dark', description: 'Dark mode theme' },
   { value: 'blue', label: 'Blue', description: 'Blue accent theme' },
   { value: 'green', label: 'Green', description: 'Green accent theme' }
 ]
 
 export function SetupStep2({ config, onNext, onBack }) {
-  const [selectedTheme, setSelectedTheme] = useState(config?.theme?.preset || 'default')
+  const [selectedTheme, setSelectedTheme] = useState(config?.theme?.preset || 'blue')
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {

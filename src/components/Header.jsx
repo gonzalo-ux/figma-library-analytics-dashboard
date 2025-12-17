@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Settings } from "lucide-react"
 import { Switch } from "./ui/switch"
 import { EditModeToggle } from "./EditModeToggle"
 import { GenerateCSVButton } from "./GenerateCSVButton"
 import { useEditMode } from "./EditModeProvider"
+import { useAdminMode } from "./AdminModeProvider"
+import { Button } from "./ui/button"
 import { loadConfigSync } from "../lib/config"
 
 export function Header({ selectedFileLabel }) {
   const { isEditMode } = useEditMode()
+  const { isAdminMode, toggleAdminMode } = useAdminMode()
   const config = loadConfigSync()
   const dashboardTitle = config?.content?.dashboardTitle || "Figma Components Library Analytics"
   const [isDark, setIsDark] = useState(false)
@@ -60,6 +63,14 @@ export function Header({ selectedFileLabel }) {
         <div className="flex items-center gap-3">
           <GenerateCSVButton />
           {isEditMode && <EditModeToggle />}
+          <Button
+            variant={isAdminMode ? "default" : "ghost"}
+            size="icon"
+            onClick={toggleAdminMode}
+            title="Admin Mode - Configure preferences"
+          >
+            <Settings className="h-4 w-4" />
+          </Button>
           <Sun className="h-4 w-4 text-muted-foreground" />
           <Switch checked={isDark} onCheckedChange={toggleDarkMode} />
           <Moon className="h-4 w-4 text-muted-foreground" />

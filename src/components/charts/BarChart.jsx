@@ -10,6 +10,7 @@ import {
 } from "recharts"
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "../ui/chart-container"
 import { useTheme } from "../../lib/useTheme"
+import { CHART_COLORS } from "../../lib/chartColors"
 
 const chartConfig = {
   value: {
@@ -28,45 +29,13 @@ export function BarChart({
   headerActions,
   orientation = "vertical" // "vertical" or "horizontal"
 }) {
-  const isDark = useTheme()
+  const { isDark } = useTheme()
   
-  const getColorArray = (baseHue, baseSaturation, isDarkMode) => {
-    if (isDarkMode) {
-      return [
-        `hsl(${baseHue}, ${baseSaturation}%, 35%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 40%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 45%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 80%)`,
-      ]
-    } else {
-      return [
-        `hsl(${baseHue}, ${baseSaturation}%, 45%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 50%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 55%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 60%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 61%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 65%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 70%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 75%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 80%)`,
-        `hsl(${baseHue}, ${baseSaturation}%, 85%)`,
-      ]
-    }
-  }
+  // Use shared chart colors (supports both --chart-* and --chart-themed-* variables)
+  const colorArray = CHART_COLORS
 
-  const colorArray = isDark 
-    ? getColorArray(220, 70, true)
-    : getColorArray(12, 76, false)
-
-  const gridColor = isDark 
-    ? "hsl(0, 0%, 25%)"
-    : "hsl(0, 0%, 85%)"
+  // Grid color - use border color from theme
+  const gridColor = "hsl(var(--border))"
 
   const chartContent = !data || data.length === 0 ? (
     <div className="h-[400px] w-full flex items-center justify-center text-muted-foreground">
@@ -92,7 +61,7 @@ export function BarChart({
                 tickLine={false}
                 axisLine={{ stroke: gridColor, strokeWidth: 1 }}
                 tickMargin={8}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
                 tickFormatter={(value) => {
                   if (value >= 1000) {
                     return `${(value / 1000).toFixed(1)}k`
@@ -107,7 +76,7 @@ export function BarChart({
                 axisLine={false}
                 tickMargin={8}
                 width={150}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
               />
             </>
           ) : (
@@ -118,14 +87,14 @@ export function BarChart({
                 tickLine={false}
                 axisLine={{ stroke: gridColor, strokeWidth: 1 }}
                 tickMargin={8}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
               />
               <YAxis
                 type="number"
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
                 tickFormatter={(value) => {
                   if (value >= 1000) {
                     return `${(value / 1000).toFixed(1)}k`

@@ -21,7 +21,7 @@ export function ChartContainer({
         // Resolve CSS variables if needed
         let colorValue = configItem.color
         if (colorValue.includes('var(')) {
-          // Extract the CSS variable name
+          // Extract the CSS variable name (handles both var(--name) and hsl(var(--name)))
           const varMatch = colorValue.match(/var\(([^)]+)\)/)
           if (varMatch) {
             const varName = varMatch[1].trim()
@@ -29,12 +29,18 @@ export function ChartContainer({
               .getPropertyValue(varName)
               .trim()
             if (resolved) {
-              // Convert HSL values to HSL string format
-              const hslValues = resolved.split(' ').map(v => v.trim())
-              if (hslValues.length === 3) {
-                colorValue = `hsl(${hslValues[0]}, ${hslValues[1]}%, ${hslValues[2]}%)`
-              } else {
+              // If the value is already a complete color function, use it directly
+              // Otherwise, if it's HSL values, wrap them in hsl()
+              if (resolved.startsWith('hsl(') || resolved.startsWith('rgb(') || resolved.startsWith('#')) {
                 colorValue = resolved
+              } else {
+                // Convert HSL values to HSL string format
+                const hslValues = resolved.split(' ').map(v => v.trim()).filter(v => v)
+                if (hslValues.length === 3) {
+                  colorValue = `hsl(${hslValues[0]} ${hslValues[1]} ${hslValues[2]})`
+                } else {
+                  colorValue = resolved
+                }
               }
             }
           }

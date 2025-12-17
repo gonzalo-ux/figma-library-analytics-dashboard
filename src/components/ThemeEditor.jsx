@@ -6,19 +6,15 @@ import { loadTheme } from '../lib/themeLoader'
 import { initTypography } from '../lib/typographyLoader'
 
 const THEME_PRESETS = [
-  { value: 'default', label: 'Default' },
-  { value: 'dark', label: 'Dark' },
   { value: 'blue', label: 'Blue' },
   { value: 'green', label: 'Green' },
   { value: 'custom', label: 'Custom CSS' }
 ]
 
 export function ThemeEditor() {
-  const { preferences, updatePreference, isEditMode } = useEditMode()
+  const { preferences, updatePreference } = useEditMode()
 
-  if (!isEditMode) return null
-
-  const currentTheme = preferences?.theme?.preset || 'default'
+  const currentTheme = preferences?.theme?.preset || 'blue'
 
   useEffect(() => {
     // Apply theme when preferences change
