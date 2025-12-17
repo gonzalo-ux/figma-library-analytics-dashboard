@@ -42,6 +42,7 @@ export function Dashboard() {
   const [data, setData] = useState(null)
   const [fileUsageData, setFileUsageData] = useState(null)
   const [componentUsagesData, setComponentUsagesData] = useState(null)
+  const [teamInsertionsData, setTeamInsertionsData] = useState(null)
   const [fileName, setFileName] = useState("")
   const [selectedFile, setSelectedFile] = useState("")
   const [error, setError] = useState("")
@@ -56,6 +57,7 @@ export function Dashboard() {
     setFileName(csvFileName)
     setFileUsageData(null) // Reset file usage data when switching files
     setComponentUsagesData(null) // Reset component usages data when switching files
+    setTeamInsertionsData(null) // Reset team insertions data when switching files
 
     // Handle branches - no CSV file needed
     if (csvFileName === "branches") {
@@ -108,18 +110,65 @@ export function Dashboard() {
                           Papa.parse(fileText, {
                             header: true,
                             skipEmptyLines: true,
-                            complete: (fileResults) => {
+                            complete: async (fileResults) => {
                               if (fileResults.errors.length === 0) {
                                 setFileUsageData(fileResults.data)
                               }
-                              setLoading(false)
+                              
+                              // Also load actions_by_team.csv for team insertions
+                              try {
+                                const teamResponse = await fetch(`/csv/actions_by_team.csv`)
+                                if (teamResponse.ok) {
+                                  const teamText = await teamResponse.text()
+                                  Papa.parse(teamText, {
+                                    header: true,
+                                    skipEmptyLines: true,
+                                    complete: (teamResults) => {
+                                      if (teamResults.errors.length === 0) {
+                                        setTeamInsertionsData(teamResults.data)
+                                      }
+                                      setLoading(false)
+                                    },
+                                    error: () => {
+                                      setLoading(false)
+                                    }
+                                  })
+                                } else {
+                                  setLoading(false)
+                                }
+                              } catch {
+                                setLoading(false)
+                              }
                             },
                             error: () => {
                               setLoading(false)
                             }
                           })
                         } else {
-                          setLoading(false)
+                          // If usages_by_file.csv fails, still try to load actions_by_team.csv
+                          try {
+                            const teamResponse = await fetch(`/csv/actions_by_team.csv`)
+                            if (teamResponse.ok) {
+                              const teamText = await teamResponse.text()
+                              Papa.parse(teamText, {
+                                header: true,
+                                skipEmptyLines: true,
+                                complete: (teamResults) => {
+                                  if (teamResults.errors.length === 0) {
+                                    setTeamInsertionsData(teamResults.data)
+                                  }
+                                  setLoading(false)
+                                },
+                                error: () => {
+                                  setLoading(false)
+                                }
+                              })
+                            } else {
+                              setLoading(false)
+                            }
+                          } catch {
+                            setLoading(false)
+                          }
                         }
                       } catch {
                         setLoading(false)
@@ -472,7 +521,7 @@ export function Dashboard() {
 
                           {componentUsagesData && (
                             <>
-                              {fileUsageData && (
+                              {teamInsertionsData && (
                                 <div className="space-y-2">
                                   {isEditMode && (
                                     <ChartTypeSelector chartKey="teams" label="Chart Type for Teams" />
@@ -485,7 +534,7 @@ export function Dashboard() {
                                       className="text-2xl font-semibold"
                                     />
                                     <EditableText
-                                      value={config?.content?.descriptions?.teamInstances || "Distribution of component instances across teams (top 10 teams shown, rest grouped as Other)"}
+                                      value={(config?.content?.descriptions?.teamInstances || "Component insertions by team in the last {days} days (top 10 teams shown, rest grouped as Other)").replace('{days}', days)}
                                       onChange={(value) => updatePreference('content.descriptions.teamInstances', value)}
                                       as="p"
                                       className="text-sm text-muted-foreground mt-1"
@@ -496,51 +545,54 @@ export function Dashboard() {
                                       {preferences?.charts?.teams === 'radial' ? (
                                         <ChartFactory
                                           type="radial"
-                                          data={fileUsageData}
+                                          data={teamInsertionsData}
                                           dataKey="value"
                                           nameKey="name"
+                                          days={days}
                                         />
                                       ) : (
-                                        <TeamsPieChart data={fileUsageData} />
+                                        <TeamsPieChart data={teamInsertionsData} days={days} />
                                       )}
                                     </CardContent>
                                   </Card>
                                 </div>
                               )}
-                              <div className="grid grid-cols-2 gap-6">
-                                <Card>
-                                  <CardHeader>
-                                    <div className="flex items-center gap-2">
-                                      <FileText className="h-5 w-5" />
-                                      <CardTitle>Component Usages</CardTitle>
-                                    </div>
-                                    <CardDescription>
-                                      Overview of component usage across files, teams, and total instances
-                                    </CardDescription>
-                                  </CardHeader>
-                                  <CardContent>
-                                    <UsagesTable data={componentUsagesData} />
-                                  </CardContent>
-                                </Card>
-                                <Card>
-                                  <CardHeader>
-                                    <div className="flex items-center gap-2">
-                                      <FileText className="h-5 w-5" />
-                                      <CardTitle>File Usages</CardTitle>
-                                    </div>
-                                    <CardDescription>
-                                      All files using the library with team names and total instances per file
-                                    </CardDescription>
-                                  </CardHeader>
-                                  <CardContent>
-                                    {fileUsageData ? (
-                                      <FileUsagesTable data={fileUsageData} />
-                                    ) : (
-                                      <div className="text-muted-foreground">Loading file usage data...</div>
-                                    )}
-                                  </CardContent>
-                                </Card>
-                              </div>
+                              {fileUsageData && (
+                                <div className="grid grid-cols-2 gap-6">
+                                  <Card>
+                                    <CardHeader>
+                                      <div className="flex items-center gap-2">
+                                        <FileText className="h-5 w-5" />
+                                        <CardTitle>Component Usages</CardTitle>
+                                      </div>
+                                      <CardDescription>
+                                        Overview of component usage across files, teams, and total instances
+                                      </CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                      <UsagesTable data={componentUsagesData} />
+                                    </CardContent>
+                                  </Card>
+                                  <Card>
+                                    <CardHeader>
+                                      <div className="flex items-center gap-2">
+                                        <FileText className="h-5 w-5" />
+                                        <CardTitle>File Usages</CardTitle>
+                                      </div>
+                                      <CardDescription>
+                                        All files using the library with team names and total instances per file
+                                      </CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                      {fileUsageData ? (
+                                        <FileUsagesTable data={fileUsageData} />
+                                      ) : (
+                                        <div className="text-muted-foreground">Loading file usage data...</div>
+                                      )}
+                                    </CardContent>
+                                  </Card>
+                                </div>
+                              )}
                             </>
                           )}
                         </div>

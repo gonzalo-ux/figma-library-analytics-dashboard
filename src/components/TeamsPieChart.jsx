@@ -8,22 +8,30 @@ import {
 } from "recharts"
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "./ui/chart-container"
 import { useTheme } from "../lib/useTheme"
-import { CHART_COLORS } from "../lib/chartColors"
 
 const chartConfig = {
   instances: {
     label: "Instances",
-    color: "hsl(var(--chart-1))",
+    color: "var(--chart-themed-1)",
   },
 }
 
-export function TeamsPieChart({ data }) {
+export function TeamsPieChart({ data, days = 90 }) {
   const { isDark } = useTheme()
 
-  // Use shared chart colors and add muted-foreground for "Other"
+  // Use chart-themed colors (10-1, darker to lighter) for top 10 teams, plus muted-foreground for "Other"
   const colorArray = useMemo(() => {
     return [
-      ...CHART_COLORS,
+      "var(--chart-themed-10)",
+      "var(--chart-themed-9)",
+      "var(--chart-themed-8)",
+      "var(--chart-themed-7)",
+      "var(--chart-themed-6)",
+      "var(--chart-themed-5)",
+      "var(--chart-themed-4)",
+      "var(--chart-themed-3)",
+      "var(--chart-themed-2)",
+      "var(--chart-themed-1)",
       "hsl(var(--muted-foreground))", // Gray for "Other"
     ]
   }, [])
@@ -33,22 +41,47 @@ export function TeamsPieChart({ data }) {
       return []
     }
 
-    // Aggregate instances by team_name, ignoring "<Drafts>"
+    // Filter by days period if week column exists (for insertions data)
+    const today = new Date()
+    const daysAgo = new Date(today)
+    daysAgo.setDate(today.getDate() - days)
+
+    // Check if this is insertions data (has week and insertions columns) or instances data (has num_instances)
+    const isInsertionsData = data[0]?.week !== undefined && data[0]?.insertions !== undefined
+
+    // Aggregate by team_name, ignoring "<Drafts>"
     const teamMap = new Map()
 
     data.forEach((row) => {
       const teamName = (row.team_name || "").trim()
-      const numInstances = parseInt(row.num_instances) || 0
-
+      
       // Ignore "<Drafts>" team
       if (teamName === "<Drafts>" || teamName === "") {
         return
       }
 
-      if (teamMap.has(teamName)) {
-        teamMap.set(teamName, teamMap.get(teamName) + numInstances)
+      // Filter by date if this is insertions data
+      if (isInsertionsData) {
+        if (row.week) {
+          const weekDate = new Date(row.week)
+          if (isNaN(weekDate.getTime()) || weekDate < daysAgo) {
+            return
+          }
+        }
+        const insertions = parseInt(row.insertions) || 0
+        if (teamMap.has(teamName)) {
+          teamMap.set(teamName, teamMap.get(teamName) + insertions)
+        } else {
+          teamMap.set(teamName, insertions)
+        }
       } else {
-        teamMap.set(teamName, numInstances)
+        // Legacy instances data
+        const numInstances = parseInt(row.num_instances) || 0
+        if (teamMap.has(teamName)) {
+          teamMap.set(teamName, teamMap.get(teamName) + numInstances)
+        } else {
+          teamMap.set(teamName, numInstances)
+        }
       }
     })
 
@@ -90,7 +123,7 @@ export function TeamsPieChart({ data }) {
         ? `Other (${item.teamCount} team${item.teamCount !== 1 ? 's' : ''})`
         : item.name.replace(/^\d+_/, '') // Remove leading numbers and underscore
     }))
-  }, [data])
+  }, [data, days])
 
   const chartContent = !chartData || chartData.length === 0 ? (
     <div className="h-[400px] w-full flex items-center justify-center text-muted-foreground">
