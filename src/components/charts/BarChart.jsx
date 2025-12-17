@@ -27,12 +27,13 @@ export function BarChart({
   title,
   description,
   headerActions,
-  orientation = "vertical" // "vertical" or "horizontal"
+  orientation = "vertical", // "vertical" or "horizontal"
+  barColor // Optional: single color for all bars (CSS variable)
 }) {
   const { isDark } = useTheme()
   
-  // Use shared chart colors (supports both --chart-* and --chart-themed-* variables)
-  const colorArray = CHART_COLORS
+  // If barColor is provided, use it for all bars. Otherwise, cycle through colors
+  const colorArray = barColor ? [barColor] : CHART_COLORS
 
   // Grid color - use border color from theme
   const gridColor = "hsl(var(--border))"
@@ -111,9 +112,13 @@ export function BarChart({
           <Bar
             dataKey={dataKey}
             radius={orientation === "vertical" ? [0, 4, 4, 0] : [4, 4, 0, 0]}
+            fill={barColor || undefined}
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colorArray[index % colorArray.length]} />
+              <Cell 
+                key={`cell-${index}`} 
+                fill={barColor || colorArray[index % colorArray.length]}
+              />
             ))}
           </Bar>
         </RechartsBarChart>

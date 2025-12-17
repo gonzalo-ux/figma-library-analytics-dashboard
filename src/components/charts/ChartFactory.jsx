@@ -64,6 +64,11 @@ export function ChartFactory({
       .slice(0, 10)
   }, [data, dataKey, nameKey, days])
 
+  // Determine bar color based on dataKey for bar charts
+  const barColor = type === 'bar' 
+    ? (dataKey === 'insertions' ? 'var(--chart-themed-5)' : dataKey === 'detachments' ? 'var(--chart-themed-3)' : undefined)
+    : undefined
+
   const chartProps = {
     data: processedData,
     dataKey,
@@ -73,6 +78,7 @@ export function ChartFactory({
     description,
     headerActions,
     orientation,
+    ...(barColor ? { barColor } : {}),
     ...props
   }
 

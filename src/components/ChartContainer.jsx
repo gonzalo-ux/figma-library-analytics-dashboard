@@ -1,33 +1,26 @@
 import React, { useMemo } from "react"
-import {
-  Bar,
-  BarChart,
-  XAxis,
-  YAxis,
-  Tooltip as RechartsTooltip,
-  ResponsiveContainer,
-  Cell,
-} from "recharts"
+import { ResponsiveContainer } from "recharts"
+import { BarChart } from "./charts/BarChart"
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "./ui/chart-container"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { useTheme } from "../lib/useTheme"
-import { CHART_COLORS } from "../lib/chartColors"
+
+// SINGLE SOURCE OF TRUTH: Define bar colors here
+// Can be a single CSS variable (all bars same color) or array (cycling colors)
+const BAR_COLORS = "var(--chart-themed-5)" // Single color for all bars
 
 const chartConfig = {
   insertions: {
     label: "Insertions",
-    color: "hsl(var(--chart-1))",
+    color: BAR_COLORS,
   },
 }
 
 export function ChartContainer({ data, days = 90, title, description, headerActions }) {
   const { isDark } = useTheme()
   
-  // Use shared chart colors (supports both --chart-* and --chart-themed-* variables)
-  const colorArray = CHART_COLORS
-
-  // Grid color - use border color from theme
-  const gridColor = "hsl(var(--border))"
+  // Use single color for all bars
+  const barColor = Array.isArray(BAR_COLORS) ? BAR_COLORS[0] : BAR_COLORS
 
   const chartData = useMemo(() => {
     if (!data || data.length === 0) {
@@ -108,42 +101,8 @@ export function ChartContainer({ data, days = 90, title, description, headerActi
           data={chartData} 
           layout="vertical"
           key={`bar-chart-${isDark}`}
-        >
-          <XAxis
-            type="number"
-            tickLine={false}
-            axisLine={{ stroke: gridColor, strokeWidth: 1 }}
-            tickMargin={8}
-            tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
-            tickFormatter={(value) => {
-              if (value >= 1000) {
-                return `${(value / 1000).toFixed(1)}k`
-              }
-              return value.toString()
-            }}
-          />
-          <YAxis
-            type="category"
-            dataKey="name"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            width={150}
-            tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
-          />
-          <RechartsTooltip
-            cursor={false}
-            content={<ChartTooltipContent />}
-          />
-          <Bar
-            dataKey="insertions"
-            radius={[0, 4, 4, 0]}
-          >
-            {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colorArray[index % colorArray.length]} />
-            ))}
-          </Bar>
-        </BarChart>
+          barColor={barColor}
+        />
       </ResponsiveContainer>
     </ShadcnChartContainer>
   )
