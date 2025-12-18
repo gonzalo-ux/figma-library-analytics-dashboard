@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback, useMemo } from "react"
 import Papa from "papaparse"
-import { FileText } from "lucide-react"
+import { FileText, Component, Bolt, Smile, Type } from "lucide-react"
 import { Button } from "./ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { ChartContainer } from "./ChartContainer"
@@ -44,6 +44,7 @@ export function Dashboard() {
   const [componentUsagesData, setComponentUsagesData] = useState(null)
   const [teamInsertionsData, setTeamInsertionsData] = useState(null)
   const [variableInsertionsData, setVariableInsertionsData] = useState(null)
+  const [stylesData, setStylesData] = useState(null)
   const [fileName, setFileName] = useState("")
   const [selectedFile, setSelectedFile] = useState("")
   const [error, setError] = useState("")
@@ -60,6 +61,7 @@ export function Dashboard() {
     setComponentUsagesData(null) // Reset component usages data when switching files
     setTeamInsertionsData(null) // Reset team insertions data when switching files
     setVariableInsertionsData(null) // Reset variable insertions data when switching files
+    setStylesData(null) // Reset styles data when switching files
 
     // Handle branches - no CSV file needed
     if (csvFileName === "branches") {
@@ -138,18 +140,65 @@ export function Dashboard() {
                                           Papa.parse(variableText, {
                                             header: true,
                                             skipEmptyLines: true,
-                                            complete: (variableResults) => {
+                                            complete: async (variableResults) => {
                                               if (variableResults.errors.length === 0) {
                                                 setVariableInsertionsData(variableResults.data)
                                               }
-                                              setLoading(false)
+                                              
+                                              // Also load styles_actions_by_style.csv for styles
+                                              try {
+                                                const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                                if (stylesResponse.ok) {
+                                                  const stylesText = await stylesResponse.text()
+                                                  Papa.parse(stylesText, {
+                                                    header: true,
+                                                    skipEmptyLines: true,
+                                                    complete: (stylesResults) => {
+                                                      if (stylesResults.errors.length === 0) {
+                                                        setStylesData(stylesResults.data)
+                                                      }
+                                                      setLoading(false)
+                                                    },
+                                                    error: () => {
+                                                      setLoading(false)
+                                                    }
+                                                  })
+                                                } else {
+                                                  setLoading(false)
+                                                }
+                                              } catch {
+                                                setLoading(false)
+                                              }
                                             },
                                             error: () => {
                                               setLoading(false)
                                             }
                                           })
                                         } else {
-                                          setLoading(false)
+                                          // If variable file fails, still try to load styles
+                                          try {
+                                            const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                            if (stylesResponse.ok) {
+                                              const stylesText = await stylesResponse.text()
+                                              Papa.parse(stylesText, {
+                                                header: true,
+                                                skipEmptyLines: true,
+                                                complete: (stylesResults) => {
+                                                  if (stylesResults.errors.length === 0) {
+                                                    setStylesData(stylesResults.data)
+                                                  }
+                                                  setLoading(false)
+                                                },
+                                                error: () => {
+                                                  setLoading(false)
+                                                }
+                                              })
+                                            } else {
+                                              setLoading(false)
+                                            }
+                                          } catch {
+                                            setLoading(false)
+                                          }
                                         }
                                       } catch {
                                         setLoading(false)
@@ -168,18 +217,65 @@ export function Dashboard() {
                                       Papa.parse(variableText, {
                                         header: true,
                                         skipEmptyLines: true,
-                                        complete: (variableResults) => {
+                                        complete: async (variableResults) => {
                                           if (variableResults.errors.length === 0) {
                                             setVariableInsertionsData(variableResults.data)
                                           }
-                                          setLoading(false)
+                                          
+                                          // Also load styles_actions_by_style.csv for styles
+                                          try {
+                                            const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                            if (stylesResponse.ok) {
+                                              const stylesText = await stylesResponse.text()
+                                              Papa.parse(stylesText, {
+                                                header: true,
+                                                skipEmptyLines: true,
+                                                complete: (stylesResults) => {
+                                                  if (stylesResults.errors.length === 0) {
+                                                    setStylesData(stylesResults.data)
+                                                  }
+                                                  setLoading(false)
+                                                },
+                                                error: () => {
+                                                  setLoading(false)
+                                                }
+                                              })
+                                            } else {
+                                              setLoading(false)
+                                            }
+                                          } catch {
+                                            setLoading(false)
+                                          }
                                         },
                                         error: () => {
                                           setLoading(false)
                                         }
                                       })
                                     } else {
-                                      setLoading(false)
+                                      // If variable file fails, still try to load styles
+                                      try {
+                                        const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                        if (stylesResponse.ok) {
+                                          const stylesText = await stylesResponse.text()
+                                          Papa.parse(stylesText, {
+                                            header: true,
+                                            skipEmptyLines: true,
+                                            complete: (stylesResults) => {
+                                              if (stylesResults.errors.length === 0) {
+                                                setStylesData(stylesResults.data)
+                                              }
+                                              setLoading(false)
+                                            },
+                                            error: () => {
+                                              setLoading(false)
+                                            }
+                                          })
+                                        } else {
+                                          setLoading(false)
+                                        }
+                                      } catch {
+                                        setLoading(false)
+                                      }
                                     }
                                   } catch {
                                     setLoading(false)
@@ -215,18 +311,65 @@ export function Dashboard() {
                                       Papa.parse(variableText, {
                                         header: true,
                                         skipEmptyLines: true,
-                                        complete: (variableResults) => {
+                                        complete: async (variableResults) => {
                                           if (variableResults.errors.length === 0) {
                                             setVariableInsertionsData(variableResults.data)
                                           }
-                                          setLoading(false)
+                                          
+                                          // Also load styles_actions_by_style.csv for styles
+                                          try {
+                                            const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                            if (stylesResponse.ok) {
+                                              const stylesText = await stylesResponse.text()
+                                              Papa.parse(stylesText, {
+                                                header: true,
+                                                skipEmptyLines: true,
+                                                complete: (stylesResults) => {
+                                                  if (stylesResults.errors.length === 0) {
+                                                    setStylesData(stylesResults.data)
+                                                  }
+                                                  setLoading(false)
+                                                },
+                                                error: () => {
+                                                  setLoading(false)
+                                                }
+                                              })
+                                            } else {
+                                              setLoading(false)
+                                            }
+                                          } catch {
+                                            setLoading(false)
+                                          }
                                         },
                                         error: () => {
                                           setLoading(false)
                                         }
                                       })
                                     } else {
-                                      setLoading(false)
+                                      // If variable file fails, still try to load styles
+                                      try {
+                                        const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                        if (stylesResponse.ok) {
+                                          const stylesText = await stylesResponse.text()
+                                          Papa.parse(stylesText, {
+                                            header: true,
+                                            skipEmptyLines: true,
+                                            complete: (stylesResults) => {
+                                              if (stylesResults.errors.length === 0) {
+                                                setStylesData(stylesResults.data)
+                                              }
+                                              setLoading(false)
+                                            },
+                                            error: () => {
+                                              setLoading(false)
+                                            }
+                                          })
+                                        } else {
+                                          setLoading(false)
+                                        }
+                                      } catch {
+                                        setLoading(false)
+                                      }
                                     }
                                   } catch {
                                     setLoading(false)
@@ -245,18 +388,65 @@ export function Dashboard() {
                                   Papa.parse(variableText, {
                                     header: true,
                                     skipEmptyLines: true,
-                                    complete: (variableResults) => {
+                                    complete: async (variableResults) => {
                                       if (variableResults.errors.length === 0) {
                                         setVariableInsertionsData(variableResults.data)
                                       }
-                                      setLoading(false)
+                                      
+                                      // Also load styles_actions_by_style.csv for styles
+                                      try {
+                                        const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                        if (stylesResponse.ok) {
+                                          const stylesText = await stylesResponse.text()
+                                          Papa.parse(stylesText, {
+                                            header: true,
+                                            skipEmptyLines: true,
+                                            complete: (stylesResults) => {
+                                              if (stylesResults.errors.length === 0) {
+                                                setStylesData(stylesResults.data)
+                                              }
+                                              setLoading(false)
+                                            },
+                                            error: () => {
+                                              setLoading(false)
+                                            }
+                                          })
+                                        } else {
+                                          setLoading(false)
+                                        }
+                                      } catch {
+                                        setLoading(false)
+                                      }
                                     },
                                     error: () => {
                                       setLoading(false)
                                     }
                                   })
                                 } else {
-                                  setLoading(false)
+                                  // If variable file fails, still try to load styles
+                                  try {
+                                    const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
+                                    if (stylesResponse.ok) {
+                                      const stylesText = await stylesResponse.text()
+                                      Papa.parse(stylesText, {
+                                        header: true,
+                                        skipEmptyLines: true,
+                                        complete: (stylesResults) => {
+                                          if (stylesResults.errors.length === 0) {
+                                            setStylesData(stylesResults.data)
+                                          }
+                                          setLoading(false)
+                                        },
+                                        error: () => {
+                                          setLoading(false)
+                                        }
+                                      })
+                                    } else {
+                                      setLoading(false)
+                                    }
+                                  } catch {
+                                    setLoading(false)
+                                  }
                                 }
                               } catch {
                                 setLoading(false)
@@ -344,6 +534,176 @@ export function Dashboard() {
   const maxInsertionsFilter = sliderValue === maxInsertions ? null : sliderValue
 
   const selectedFileLabel = selectedFile ? CSV_FILES.find(f => f.name === selectedFile)?.label : "Select a CSV file to visualize data"
+
+  // Calculate total components (matching DataTable logic)
+  const totalComponents = useMemo(() => {
+    if (!data || data.length === 0 || fileName !== "actions_by_component.csv") {
+      return 0
+    }
+
+    // Calculate date N days ago
+    const today = new Date()
+    const daysAgo = new Date(today)
+    daysAgo.setDate(today.getDate() - days)
+
+    // Filter and count unique component_set_name values, excluding icons
+    const componentSetSet = new Set()
+
+    data.forEach((row) => {
+      // Check if row has required columns
+      if (!row.week || !row.insertions || !row.component_name) {
+        return
+      }
+
+      // Skip icon components
+      const componentName = row.component_name || ""
+      if (componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")) {
+        return
+      }
+
+      // Only include rows with a component_set_name
+      const componentSetName = row.component_set_name || ""
+      if (!componentSetName.trim()) {
+        return
+      }
+
+      // Parse the week date
+      const weekDate = new Date(row.week)
+      if (isNaN(weekDate.getTime())) {
+        return
+      }
+
+      // Filter by last N days
+      if (weekDate >= daysAgo) {
+        componentSetSet.add(componentSetName)
+      }
+    })
+
+    return componentSetSet.size
+  }, [data, days, fileName])
+
+  // Calculate total variables (from variableInsertionsData)
+  const totalVariables = useMemo(() => {
+    if (!variableInsertionsData || variableInsertionsData.length === 0 || fileName !== "actions_by_component.csv") {
+      return 0
+    }
+
+    // Calculate date N days ago
+    const today = new Date()
+    const daysAgo = new Date(today)
+    daysAgo.setDate(today.getDate() - days)
+
+    // Filter and count unique variable_name values
+    const variableSet = new Set()
+
+    variableInsertionsData.forEach((row) => {
+      // Check if row has required columns
+      if (!row.week || !row.insertions) {
+        return
+      }
+
+      // Get variable identifier (variable_name or variable_key)
+      const variableName = row.variable_name || row.variable_key || ""
+      if (!variableName.trim()) {
+        return
+      }
+
+      // Parse the week date
+      const weekDate = new Date(row.week)
+      if (isNaN(weekDate.getTime())) {
+        return
+      }
+
+      // Filter by last N days
+      if (weekDate >= daysAgo) {
+        variableSet.add(variableName)
+      }
+    })
+
+    return variableSet.size
+  }, [variableInsertionsData, days, fileName])
+
+  // Calculate total icons (components whose names start with "Icon -")
+  const totalIcons = useMemo(() => {
+    if (!data || data.length === 0 || fileName !== "actions_by_component.csv") {
+      return 0
+    }
+
+    // Calculate date N days ago
+    const today = new Date()
+    const daysAgo = new Date(today)
+    daysAgo.setDate(today.getDate() - days)
+
+    // Filter and count unique component_name values that are icons
+    const iconSet = new Set()
+
+    data.forEach((row) => {
+      // Check if row has required columns
+      if (!row.week || !row.insertions || !row.component_name) {
+        return
+      }
+
+      // Only include icon components
+      const componentName = row.component_name || ""
+      if (!componentName.trim().startsWith("Icon -") && !componentName.trim().toLowerCase().includes("icon -")) {
+        return
+      }
+
+      // Parse the week date
+      const weekDate = new Date(row.week)
+      if (isNaN(weekDate.getTime())) {
+        return
+      }
+
+      // Filter by last N days
+      if (weekDate >= daysAgo) {
+        iconSet.add(componentName)
+      }
+    })
+
+    return iconSet.size
+  }, [data, days, fileName])
+
+  // Calculate total text styles (styles with style_type === "TEXT")
+  const totalTextStyles = useMemo(() => {
+    if (!stylesData || stylesData.length === 0 || fileName !== "actions_by_component.csv") {
+      return 0
+    }
+
+    // Calculate date N days ago
+    const today = new Date()
+    const daysAgo = new Date(today)
+    daysAgo.setDate(today.getDate() - days)
+
+    // Filter and count unique style_name values that are TEXT type
+    const textStyleSet = new Set()
+
+    stylesData.forEach((row) => {
+      // Check if row has required columns
+      if (!row.week || !row.insertions || !row.style_name || !row.style_type) {
+        return
+      }
+
+      // Only include TEXT styles
+      const styleType = (row.style_type || "").trim()
+      if (styleType !== "TEXT") {
+        return
+      }
+
+      // Parse the week date
+      const weekDate = new Date(row.week)
+      if (isNaN(weekDate.getTime())) {
+        return
+      }
+
+      // Filter by last N days
+      if (weekDate >= daysAgo) {
+        textStyleSet.add(row.style_name)
+      }
+    })
+
+    return textStyleSet.size
+  }, [stylesData, days, fileName])
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -504,6 +864,60 @@ export function Dashboard() {
                               <ChangelogConfig />
                             </div>
                           )}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Component className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Components</span>
+                                    <span className="text-3xl font-bold text-primary">{totalComponents}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Bolt className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Variables</span>
+                                    <span className="text-3xl font-bold text-primary">{totalVariables}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Smile className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Icons</span>
+                                    <span className="text-3xl font-bold text-primary">{totalIcons}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Type className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Text Styles</span>
+                                    <span className="text-3xl font-bold text-primary">{totalTextStyles}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          </div>
                           <div className="space-y-2">
                             <div>
                               <EditableText

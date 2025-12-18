@@ -147,7 +147,9 @@ app.post('/api/generate-csv', async (req, res) => {
         'usages_by_component.csv',
         'usages_by_file.csv',
         'variable_actions_by_team.csv',
-        'variable_actions_by_variable.csv'
+        'variable_actions_by_variable.csv',
+        'styles_actions_by_style.csv',
+        'styles_usages_by_style.csv'
       ]
 
       const generatedFiles = []

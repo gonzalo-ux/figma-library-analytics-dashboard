@@ -586,6 +586,109 @@ def generate_variable_actions_by_variable_csv(output_dir: str, token: str, file_
         print(f"✅ Generated: variable_actions_by_variable.csv ({row_count} rows)")
 
 
+def generate_styles_actions_by_style_csv(output_dir: str, token: str, file_key: str, start_date: str = None, end_date: str = None):
+    """Generate styles_actions_by_style.csv from style actions grouped by style"""
+    filepath = os.path.join(output_dir, 'styles_actions_by_style.csv')
+    
+    analytics_data = fetch_analytics_data(token, file_key, "style/actions", "style", start_date, end_date)
+    
+    row_count = 0
+    filtered_count = 0
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['style_key', 'week', 'detachments', 'insertions', 'style_name', 'style_type'])
+        
+        if analytics_data:
+            data_list = []
+            if isinstance(analytics_data, dict):
+                data_list = analytics_data.get('data', analytics_data.get('results', []))
+            elif isinstance(analytics_data, list):
+                data_list = analytics_data
+            
+            for item in data_list:
+                if not isinstance(item, dict):
+                    continue
+                
+                style_key = item.get('style_key', '')
+                week = item.get('week', '')
+                detachments = item.get('detachments', 0)
+                insertions = item.get('insertions', 0)
+                style_name = item.get('style_name', '')
+                style_type = item.get('style_type', '')
+                
+                # Filter by date range if provided
+                if start_date and end_date and week:
+                    try:
+                        week_date = datetime.strptime(week, "%Y-%m-%d")
+                        start_dt = datetime.strptime(start_date, "%Y-%m-%d")
+                        end_dt = datetime.strptime(end_date, "%Y-%m-%d")
+                        # Skip if outside date range (inclusive boundaries)
+                        if week_date < start_dt:
+                            filtered_count += 1
+                            if filtered_count <= 3:  # Debug: show first few filtered dates
+                                print(f"   ⚠️  Filtering out {week} (before {start_date})")
+                            continue
+                        if week_date > end_dt:
+                            filtered_count += 1
+                            if filtered_count <= 3:  # Debug: show first few filtered dates
+                                print(f"   ⚠️  Filtering out {week} (after {end_date})")
+                            continue
+                    except (ValueError, TypeError) as e:
+                        # If date parsing fails, include the row (don't filter)
+                        # This handles cases where week might be in a different format
+                        print(f"   ⚠️  Could not parse date '{week}': {e}")
+                        pass
+                
+                writer.writerow([style_key, week, detachments, insertions, style_name, style_type])
+                row_count += 1
+    
+    if filtered_count > 0:
+        print(f"   📅 Filtered out {filtered_count} rows outside date range ({start_date} to {end_date})")
+    
+    if row_count == 0:
+        print(f"⚠️  Generated: styles_actions_by_style.csv (empty - no data available)")
+    else:
+        print(f"✅ Generated: styles_actions_by_style.csv ({row_count} rows)")
+
+
+def generate_styles_usages_by_style_csv(output_dir: str, token: str, file_key: str, start_date: str = None, end_date: str = None):
+    """Generate styles_usages_by_style.csv from style usages grouped by style"""
+    filepath = os.path.join(output_dir, 'styles_usages_by_style.csv')
+    
+    # Fetch data grouped by style to get per-style, per-file breakdown
+    # Note: usages endpoint may not support date filtering, but we'll pass it anyway
+    analytics_data = fetch_analytics_data(token, file_key, "style/usages", "style", start_date, end_date)
+    
+    row_count = 0
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['style_name', 'style_type', 'file_name', 'instances'])
+        
+        if analytics_data:
+            data_list = []
+            if isinstance(analytics_data, dict):
+                data_list = analytics_data.get('data', analytics_data.get('results', []))
+            elif isinstance(analytics_data, list):
+                data_list = analytics_data
+            
+            for item in data_list:
+                if not isinstance(item, dict):
+                    continue
+                style_key = item.get('style_key', '')
+                style_name = item.get('style_name', '')
+                style_type = item.get('style_type', '')
+                file_name = item.get('file_name', 'Unknown File')
+                instances = item.get('instances', 0)
+                
+                writer.writerow([style_name, style_type, file_name, instances])
+                row_count += 1
+    
+    if row_count == 0:
+        print(f"⚠️  Generated: styles_usages_by_style.csv (empty - no data available)")
+    else:
+        print(f"✅ Generated: styles_usages_by_style.csv ({row_count} rows)")
+
+
 def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_key: str):
     """Generate all CSV files from Figma analytics data"""
     
@@ -614,6 +717,8 @@ def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_k
     generate_usages_by_file_csv(output_dir, token, file_key, start_date, end_date)
     generate_variable_actions_by_team_csv(output_dir, token, file_key, start_date, end_date)
     generate_variable_actions_by_variable_csv(output_dir, token, file_key, start_date, end_date)
+    generate_styles_actions_by_style_csv(output_dir, token, file_key, start_date, end_date)
+    generate_styles_usages_by_style_csv(output_dir, token, file_key, start_date, end_date)
     
     print("=" * 60)
     
@@ -624,7 +729,9 @@ def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_k
         'usages_by_component.csv',
         'usages_by_file.csv',
         'variable_actions_by_team.csv',
-        'variable_actions_by_variable.csv'
+        'variable_actions_by_variable.csv',
+        'styles_actions_by_style.csv',
+        'styles_usages_by_style.csv'
     ]
     
     files_with_data = 0
