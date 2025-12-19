@@ -26,9 +26,13 @@ const chartConfig = {
     label: "Variables",
     color: "var(--chart-themed-4)",
   },
+  textStyles: {
+    label: "Text Styles",
+    color: "var(--chart-themed-3)",
+  },
 }
 
-export function InsertionsLineChart({ data, variableData, days = 90, title, description, headerActions, areas }) {
+export function InsertionsLineChart({ data, variableData, textStylesData, days = 90, title, description, headerActions, areas }) {
   const { isDark, themePreset } = useTheme()
   const baseGradientId = useId()
   
@@ -42,9 +46,12 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
     if (variableData && variableData.length > 0) {
       result.push({ dataKey: "variables" })
     }
+    if (textStylesData && textStylesData.length > 0) {
+      result.push({ dataKey: "textStyles" })
+    }
     // If areas prop is provided, use it instead
     return areas || result
-  }, [data, variableData, areas])
+  }, [data, variableData, textStylesData, areas])
   
   // Generate gradient IDs for each area
   const gradientIds = useMemo(() => 
@@ -152,11 +159,47 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
       })
     }
 
+    // Process text styles data (filter for TEXT type only)
+    const textStylesWeekMap = new Map()
+    if (textStylesData && textStylesData.length > 0) {
+      textStylesData.forEach((row) => {
+        // Check if row has required columns
+        if (!row.week || !row.insertions || !row.style_type) {
+          return
+        }
+
+        // Only include TEXT styles
+        const styleType = (row.style_type || "").trim()
+        if (styleType !== "TEXT") {
+          return
+        }
+
+        // Parse the week date
+        const weekDate = new Date(row.week)
+        if (isNaN(weekDate.getTime())) {
+          return
+        }
+
+        // Filter by last N days
+        if (weekDate >= daysAgo) {
+          const weekKey = row.week
+          const insertions = parseFloat(row.insertions) || 0
+
+          if (textStylesWeekMap.has(weekKey)) {
+            textStylesWeekMap.set(weekKey, textStylesWeekMap.get(weekKey) + insertions)
+          } else {
+            textStylesWeekMap.set(weekKey, insertions)
+          }
+        }
+      })
+    }
+
     // Get all unique weeks from all maps
     const allWeeks = new Set([
       ...Array.from(componentsWeekMap.keys()),
       ...Array.from(iconsWeekMap.keys()),
-      ...Array.from(variablesWeekMap.keys())
+      ...Array.from(variablesWeekMap.keys()),
+      ...Array.from(textStylesWeekMap.keys())
     ])
 
     // Convert to array and sort by week (ascending)
@@ -166,6 +209,7 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
         components: componentsWeekMap.get(week) || 0,
         icons: iconsWeekMap.get(week) || 0,
         variables: variablesWeekMap.get(week) || 0,
+        textStyles: textStylesWeekMap.get(week) || 0,
       }))
       .sort((a, b) => new Date(a.week) - new Date(b.week))
 
@@ -175,8 +219,9 @@ export function InsertionsLineChart({ data, variableData, days = 90, title, desc
       components: item.components,
       icons: item.icons,
       variables: item.variables,
+      textStyles: item.textStyles,
     }))
-  }, [data, variableData, days])
+  }, [data, variableData, textStylesData, days])
 
   const chartContent = !chartData || chartData.length === 0 ? (
       <div className="h-[300px] w-full flex items-center justify-center text-muted-foreground">

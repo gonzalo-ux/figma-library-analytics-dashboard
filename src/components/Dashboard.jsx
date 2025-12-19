@@ -711,23 +711,54 @@ export function Dashboard() {
       <AdminSidebar />
       <div className="border-b border-border">
         <div className="px-4 md:px-8">
-          <Tabs 
-            value={selectedFile || "actions_by_component.csv"} 
-            onValueChange={(value) => handleFileSelect(value)} 
-            className="w-full"
-          >
-            <TabsList className="h-auto p-1 bg-transparent">
-              {CSV_FILES.map((file) => (
-                <TabsTrigger
-                  key={file.name}
-                  value={file.name}
-                  className="data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-sm px-3 py-1.5 text-sm font-medium"
+          <div className="flex items-center justify-between w-full">
+            <Tabs 
+              value={selectedFile || "actions_by_component.csv"} 
+              onValueChange={(value) => handleFileSelect(value)} 
+              className="flex-1"
+            >
+              <TabsList className="h-auto p-1 bg-transparent">
+                {CSV_FILES.map((file) => (
+                  <TabsTrigger
+                    key={file.name}
+                    value={file.name}
+                    className="data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-sm px-3 py-1.5 text-sm font-medium"
+                  >
+                    {file.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+            <div className="flex items-center gap-1">
+              <span className="text-sm text-muted-foreground mr-2">Period:</span>
+              <div className="inline-flex rounded-md border border-input" role="group">
+                <Button
+                  variant={days === 30 ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setDays(30)}
+                  className="rounded-r-none border-r border-input"
                 >
-                  {file.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
+                  30 days
+                </Button>
+                <Button
+                  variant={days === 60 ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setDays(60)}
+                  className="rounded-none border-r border-input"
+                >
+                  60 days
+                </Button>
+                <Button
+                  variant={days === 90 ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setDays(90)}
+                  className="rounded-l-none"
+                >
+                  90 days
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={`flex-1 p-4 md:p-8 transition-all duration-300 ${isAdminMode ? 'pr-[28rem]' : ''}`}>
@@ -756,39 +787,8 @@ export function Dashboard() {
             {selectedFile === "icons" ? (
               <Card>
                 <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <CardTitle>Icons</CardTitle>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className="text-sm text-muted-foreground mr-2">Period:</span>
-                      <div className="inline-flex rounded-md border border-input" role="group">
-                        <Button
-                          variant={days === 30 ? "default" : "ghost"}
-                          size="sm"
-                          onClick={() => setDays(30)}
-                          className="rounded-r-none border-r border-input"
-                        >
-                          30 days
-                        </Button>
-                        <Button
-                          variant={days === 60 ? "default" : "ghost"}
-                          size="sm"
-                          onClick={() => setDays(60)}
-                          className="rounded-none border-r border-input"
-                        >
-                          60 days
-                        </Button>
-                        <Button
-                          variant={days === 90 ? "default" : "ghost"}
-                          size="sm"
-                          onClick={() => setDays(90)}
-                          className="rounded-l-none"
-                        >
-                          90 days
-                        </Button>
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <CardTitle>Icons</CardTitle>
                   </div>
                   <CardDescription>All inserted icons sorted by insertions (top to bottom)</CardDescription>
                 </CardHeader>
@@ -821,39 +821,6 @@ export function Dashboard() {
             <div className="w-full space-y-6 mt-6">
                 {fileName === "actions_by_component.csv" ? (
                       <div className="grid grid-cols-3 gap-6">
-                        {/* Period control at the top */}
-                        <div className="col-span-3 mb-4">
-                          <div className="flex items-center justify-end gap-1">
-                            <span className="text-sm text-muted-foreground mr-2">Period:</span>
-                            <div className="inline-flex rounded-md border border-input" role="group">
-                              <Button
-                                variant={days === 30 ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => setDays(30)}
-                                className="rounded-r-none border-r border-input"
-                              >
-                                30 days
-                              </Button>
-                              <Button
-                                variant={days === 60 ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => setDays(60)}
-                                className="rounded-none border-r border-input"
-                              >
-                                60 days
-                              </Button>
-                              <Button
-                                variant={days === 90 ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => setDays(90)}
-                                className="rounded-l-none"
-                              >
-                                90 days
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-
                         {/* Left side - 2/3 width */}
                         <div className="col-span-2 space-y-6">
                           {isEditMode && (
@@ -936,6 +903,7 @@ export function Dashboard() {
                             <InsertionsLineChart 
                               data={data} 
                               variableData={variableInsertionsData}
+                              textStylesData={stylesData}
                               days={days}
                             />
                           </div>
@@ -1135,39 +1103,6 @@ export function Dashboard() {
                       </div>
                     ) : (
                       <>
-                        {/* Period control at the top */}
-                        <div className="mb-4">
-                          <div className="flex items-center justify-end gap-1">
-                            <span className="text-sm text-muted-foreground mr-2">Period:</span>
-                            <div className="inline-flex rounded-md border border-input" role="group">
-                              <Button
-                                variant={days === 30 ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => setDays(30)}
-                                className="rounded-r-none border-r border-input"
-                              >
-                                30 days
-                              </Button>
-                              <Button
-                                variant={days === 60 ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => setDays(60)}
-                                className="rounded-none border-r border-input"
-                              >
-                                60 days
-                              </Button>
-                              <Button
-                                variant={days === 90 ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => setDays(90)}
-                                className="rounded-l-none"
-                              >
-                                90 days
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-
                         <div className="grid grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <div>
