@@ -27,6 +27,7 @@ import { TypographyEditor } from "./TypographyEditor"
 import { AdminSidebar } from "./AdminSidebar"
 import { useAdminMode } from "./AdminModeProvider"
 import { loadConfigSync } from "../lib/config"
+import { DateRangePicker } from "./DateRangePicker"
 
 const CSV_FILES = [
   { name: "actions_by_component.csv", label: "Components" },
@@ -49,8 +50,28 @@ export function Dashboard() {
   const [selectedFile, setSelectedFile] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const [days, setDays] = useState(90)
+  // Initialize with 90 days ago to today
+  const getInitialDateRange = () => {
+    const today = new Date()
+    today.setHours(23, 59, 59, 999)
+    const startDate = new Date(today)
+    startDate.setDate(today.getDate() - 90)
+    startDate.setHours(0, 0, 0, 0)
+    return { startDate, endDate: today }
+  }
+  const [dateRange, setDateRange] = useState(getInitialDateRange())
   const [sliderValue, setSliderValue] = useState(0) // Will be set to maxInsertions when data loads
+
+  // Calculate days from date range for backward compatibility
+  const days = useMemo(() => {
+    const diffTime = Math.abs(dateRange.endDate - dateRange.startDate)
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    return diffDays
+  }, [dateRange])
+
+  const handleDateRangeChange = (startDate, endDate) => {
+    setDateRange({ startDate, endDate })
+  }
 
   const handleFileSelect = useCallback(async (csvFileName) => {
     setLoading(true)
@@ -499,10 +520,6 @@ export function Dashboard() {
   const maxInsertions = React.useMemo(() => {
     if (!data || data.length === 0) return 0
 
-    const today = new Date()
-    const daysAgo = new Date(today)
-    daysAgo.setDate(today.getDate() - days)
-
     const iconData = data
       .filter((row) => {
         if (!row.week || !row.insertions || !row.component_name) return false
@@ -512,19 +529,19 @@ export function Dashboard() {
         }
         const weekDate = new Date(row.week)
         if (isNaN(weekDate.getTime())) return false
-        return weekDate >= daysAgo
+        return weekDate >= dateRange.startDate && weekDate <= dateRange.endDate
       })
       .map((row) => parseFloat(row.insertions) || 0)
 
     return Math.max(...iconData, 0)
-  }, [data, days])
+  }, [data, dateRange])
 
-  // Reset slider to max when days changes or data loads
+  // Reset slider to max when date range changes or data loads
   React.useEffect(() => {
     if (maxInsertions > 0) {
       setSliderValue(maxInsertions)
     }
-  }, [days, maxInsertions])
+  }, [dateRange, maxInsertions])
 
   // Slider filters by maximum insertions
   // When sliderValue = maxInsertions (left): show all icons (no max filter)
@@ -540,11 +557,6 @@ export function Dashboard() {
     if (!data || data.length === 0 || fileName !== "actions_by_component.csv") {
       return 0
     }
-
-    // Calculate date N days ago
-    const today = new Date()
-    const daysAgo = new Date(today)
-    daysAgo.setDate(today.getDate() - days)
 
     // Filter and count unique component_set_name values, excluding icons
     const componentSetSet = new Set()
@@ -573,25 +585,20 @@ export function Dashboard() {
         return
       }
 
-      // Filter by last N days
-      if (weekDate >= daysAgo) {
+      // Filter by date range
+      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
         componentSetSet.add(componentSetName)
       }
     })
 
     return componentSetSet.size
-  }, [data, days, fileName])
+  }, [data, dateRange, fileName])
 
   // Calculate total variables (from variableInsertionsData)
   const totalVariables = useMemo(() => {
     if (!variableInsertionsData || variableInsertionsData.length === 0 || fileName !== "actions_by_component.csv") {
       return 0
     }
-
-    // Calculate date N days ago
-    const today = new Date()
-    const daysAgo = new Date(today)
-    daysAgo.setDate(today.getDate() - days)
 
     // Filter and count unique variable_name values
     const variableSet = new Set()
@@ -614,25 +621,20 @@ export function Dashboard() {
         return
       }
 
-      // Filter by last N days
-      if (weekDate >= daysAgo) {
+      // Filter by date range
+      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
         variableSet.add(variableName)
       }
     })
 
     return variableSet.size
-  }, [variableInsertionsData, days, fileName])
+  }, [variableInsertionsData, dateRange, fileName])
 
   // Calculate total icons (components whose names start with "Icon -")
   const totalIcons = useMemo(() => {
     if (!data || data.length === 0 || fileName !== "actions_by_component.csv") {
       return 0
     }
-
-    // Calculate date N days ago
-    const today = new Date()
-    const daysAgo = new Date(today)
-    daysAgo.setDate(today.getDate() - days)
 
     // Filter and count unique component_name values that are icons
     const iconSet = new Set()
@@ -655,25 +657,20 @@ export function Dashboard() {
         return
       }
 
-      // Filter by last N days
-      if (weekDate >= daysAgo) {
+      // Filter by date range
+      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
         iconSet.add(componentName)
       }
     })
 
     return iconSet.size
-  }, [data, days, fileName])
+  }, [data, dateRange, fileName])
 
   // Calculate total text styles (styles with style_type === "TEXT")
   const totalTextStyles = useMemo(() => {
     if (!stylesData || stylesData.length === 0 || fileName !== "actions_by_component.csv") {
       return 0
     }
-
-    // Calculate date N days ago
-    const today = new Date()
-    const daysAgo = new Date(today)
-    daysAgo.setDate(today.getDate() - days)
 
     // Filter and count unique style_name values that are TEXT type
     const textStyleSet = new Set()
@@ -696,14 +693,14 @@ export function Dashboard() {
         return
       }
 
-      // Filter by last N days
-      if (weekDate >= daysAgo) {
+      // Filter by date range
+      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
         textStyleSet.add(row.style_name)
       }
     })
 
     return textStyleSet.size
-  }, [stylesData, days, fileName])
+  }, [stylesData, dateRange, fileName])
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -729,35 +726,11 @@ export function Dashboard() {
                 ))}
               </TabsList>
             </Tabs>
-            <div className="flex items-center gap-1">
-              <span className="text-sm text-muted-foreground mr-2">Period:</span>
-              <div className="inline-flex rounded-md border border-input" role="group">
-                <Button
-                  variant={days === 30 ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setDays(30)}
-                  className="rounded-r-none border-r border-input"
-                >
-                  30 days
-                </Button>
-                <Button
-                  variant={days === 60 ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setDays(60)}
-                  className="rounded-none border-r border-input"
-                >
-                  60 days
-                </Button>
-                <Button
-                  variant={days === 90 ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setDays(90)}
-                  className="rounded-l-none"
-                >
-                  90 days
-                </Button>
-              </div>
-            </div>
+            <DateRangePicker
+              startDate={dateRange.startDate}
+              endDate={dateRange.endDate}
+              onDateChange={handleDateRangeChange}
+            />
           </div>
         </div>
       </div>
