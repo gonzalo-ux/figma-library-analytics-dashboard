@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { SetupStep1 } from './SetupStep1'
 import { SetupStep2 } from './SetupStep2'
 import { SetupStep3 } from './SetupStep3'
-import { CheckCircle2, Circle } from 'lucide-react'
+import { CheckCircle2, Circle, Moon, Sun } from 'lucide-react'
 import { savePreferences } from '../lib/preferences'
 import { initTypography } from '../lib/typographyLoader'
 import { loadTheme } from '../lib/themeLoader'
+import { Switch } from './ui/switch'
 
 export function SetupWizard({ onComplete }) {
   const [currentStep, setCurrentStep] = useState(1)
+  const [isDark, setIsDark] = useState(false)
   const [config, setConfig] = useState({
     figma: {
       accessToken: '',
@@ -24,6 +26,37 @@ export function SetupWizard({ onComplete }) {
       }
     }
   })
+
+  // Initialize dark mode from user settings
+  useEffect(() => {
+    // Check localStorage for saved theme preference
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark")
+      setIsDark(true)
+    } else if (savedTheme === "light") {
+      document.documentElement.classList.remove("dark")
+      setIsDark(false)
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      if (prefersDark) {
+        document.documentElement.classList.add("dark")
+        setIsDark(true)
+      }
+    }
+  }, [])
+
+  const toggleDarkMode = (checked) => {
+    setIsDark(checked)
+    if (checked) {
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+    }
+  }
 
   const steps = [
     { number: 1, title: 'Figma Credentials' },
@@ -61,12 +94,26 @@ export function SetupWizard({ onComplete }) {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl">
-        <CardHeader>
-          <CardTitle>Welcome to Figma Analytics Dashboard</CardTitle>
-          <CardDescription>Let's set up your dashboard in a few simple steps.</CardDescription>
-        </CardHeader>
+    <div className="min-h-screen bg-background flex flex-col neutral-theme">
+      {/* Header with dark mode toggle */}
+      <header className="w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="flex h-16 items-center justify-between px-4 md:px-8">
+          <h1 className="text-xl font-semibold">Setup Wizard</h1>
+          <div className="flex items-center gap-3">
+            <Sun className="h-4 w-4 text-muted-foreground" />
+            <Switch checked={isDark} onCheckedChange={toggleDarkMode} />
+            <Moon className="h-4 w-4 text-muted-foreground" />
+          </div>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <div className="flex-1 flex items-center justify-center p-4">
+        <Card className="w-full max-w-2xl">
+          <CardHeader>
+            <CardTitle>Welcome to Figma Analytics Dashboard</CardTitle>
+            <CardDescription>Let's set up your dashboard in a few simple steps.</CardDescription>
+          </CardHeader>
         <CardContent>
           {/* Progress indicator */}
           <div className="flex items-center justify-between mb-8">
@@ -118,6 +165,7 @@ export function SetupWizard({ onComplete }) {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   )
 }
