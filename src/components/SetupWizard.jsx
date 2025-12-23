@@ -93,8 +93,17 @@ export function SetupWizard({ onComplete }) {
     }
   }
 
+  // Apply neutral-theme to document.documentElement on mount
+  useEffect(() => {
+    loadTheme('neutral')
+    return () => {
+      // Cleanup: restore default theme when component unmounts
+      // This is optional - you might want to keep the theme
+    }
+  }, [])
+
   return (
-    <div className="min-h-screen bg-background flex flex-col neutral-theme">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header with dark mode toggle */}
       <header className="w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex h-16 items-center justify-between px-4 md:px-8">

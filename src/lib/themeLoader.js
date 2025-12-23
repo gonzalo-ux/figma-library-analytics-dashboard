@@ -1,6 +1,6 @@
 /**
  * Loads a theme preset and applies it to the document using CSS classes
- * Only blue and green themes are supported. Dark mode is controlled by the .dark class.
+ * Supports neutral (default), stone, blue, and green themes. Dark mode is controlled by the .dark class.
  */
 export function loadTheme(presetName) {
   if (presetName === 'custom') {
@@ -9,17 +9,28 @@ export function loadTheme(presetName) {
   }
 
   // Remove all theme classes first (but keep .dark class as it's controlled by header toggle)
-  document.documentElement.classList.remove('theme-blue', 'theme-green')
+  document.documentElement.classList.remove('theme-blue', 'theme-green', 'neutral-theme', 'theme-stone')
 
   // Apply theme class based on preset
-  // Note: 'default' and 'dark' are no longer valid - default to 'blue'
+  let themeClass = null
   if (presetName === 'blue' || presetName === 'default' || presetName === 'dark') {
-    document.documentElement.classList.add('theme-blue')
+    themeClass = 'theme-blue'
   } else if (presetName === 'green') {
-    document.documentElement.classList.add('theme-green')
+    themeClass = 'theme-green'
+  } else if (presetName === 'neutral') {
+    themeClass = 'neutral-theme'
+  } else if (presetName === 'stone') {
+    themeClass = 'theme-stone'
   } else {
-    // Fallback to blue if unknown theme
-    document.documentElement.classList.add('theme-blue')
+    // Fallback to neutral if unknown theme
+    themeClass = 'neutral-theme'
+  }
+  
+  if (themeClass) {
+    document.documentElement.classList.add(themeClass)
+    // Force a reflow to ensure CSS is recalculated
+    document.documentElement.offsetHeight
+    console.log(`Theme loaded: ${presetName} -> class: ${themeClass}`, document.documentElement.className)
   }
 }
 

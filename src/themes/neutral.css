@@ -1,37 +1,7 @@
-@import './themes/neutral.css';
-@import './themes/stone.css';
-@import './themes/blue.css';
-@import './themes/green.css';
+/* Neutral Theme - Default grayscale theme */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  * {
-    border-color: var(--border);
-  }
-  html {
-    background-color: var(--background);
-    color: var(--foreground);
-  }
-  body {
-    @apply bg-background text-foreground;
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-family, 'Inter'), system-ui, -apple-system, sans-serif;
-  }
-}
-
-@layer utilities {
-  .border-border {
-    border-color: var(--border) !important;
-  }
-}
-
-/* Default root variables - these are fallbacks when no theme class is applied */
-/* Note: Theme classes (html.theme-*) have higher specificity and will override these */
-:root {
+html.neutral-theme,
+:root.neutral-theme {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -67,8 +37,8 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark,
-html.dark {
+html.dark.neutral-theme,
+:root.dark.neutral-theme {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -102,3 +72,4 @@ html.dark {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
