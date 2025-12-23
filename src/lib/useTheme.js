@@ -14,6 +14,9 @@ export function useTheme() {
     if (typeof window === "undefined") return "neutral"
     const el = document.documentElement
     if (el.classList.contains("theme-stone")) return "stone"
+    if (el.classList.contains("theme-slate")) return "slate"
+    if (el.classList.contains("theme-zinc")) return "zinc"
+    if (el.classList.contains("theme-gray")) return "gray"
     return "neutral"
   })
 
@@ -22,6 +25,7 @@ export function useTheme() {
     const el = document.documentElement
     if (el.classList.contains("theme-green")) return "green"
     if (el.classList.contains("theme-blue")) return "blue"
+    if (el.classList.contains("theme-orange")) return "orange"
     return null
   })
 
@@ -34,6 +38,12 @@ export function useTheme() {
       // Detect base color
       if (el.classList.contains("theme-stone")) {
         setBaseColor("stone")
+      } else if (el.classList.contains("theme-slate")) {
+        setBaseColor("slate")
+      } else if (el.classList.contains("theme-zinc")) {
+        setBaseColor("zinc")
+      } else if (el.classList.contains("theme-gray")) {
+        setBaseColor("gray")
       } else {
         setBaseColor("neutral")
       }
@@ -43,6 +53,8 @@ export function useTheme() {
         setTheme("green")
       } else if (el.classList.contains("theme-blue")) {
         setTheme("blue")
+      } else if (el.classList.contains("theme-orange")) {
+        setTheme("orange")
       } else {
         setTheme(null)
       }

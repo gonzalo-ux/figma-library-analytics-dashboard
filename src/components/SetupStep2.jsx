@@ -8,13 +8,17 @@ import { loadTheme } from '../lib/themeLoader'
 
 const BASE_COLORS = [
   { value: 'neutral', label: 'Neutral', description: 'Neutral grayscale base (default)' },
-  { value: 'stone', label: 'Stone', description: 'Stone gray base' }
+  { value: 'stone', label: 'Stone', description: 'Stone gray base' },
+  { value: 'slate', label: 'Slate', description: 'Slate cool gray base' },
+  { value: 'zinc', label: 'Zinc', description: 'Zinc neutral base' },
+  { value: 'gray', label: 'Gray', description: 'True gray base' }
 ]
 
 const THEMES = [
   { value: '', label: 'None', description: 'No theme accent' },
   { value: 'blue', label: 'Blue', description: 'Blue accent theme' },
-  { value: 'green', label: 'Green', description: 'Green accent theme' }
+  { value: 'green', label: 'Green', description: 'Green accent theme' },
+  { value: 'orange', label: 'Orange', description: 'Orange accent theme' }
 ]
 
 export function SetupStep2({ config, onNext, onBack }) {
@@ -25,6 +29,9 @@ export function SetupStep2({ config, onNext, onBack }) {
     }
     const preset = config?.theme?.preset
     if (preset === 'stone') return 'stone'
+    if (preset === 'slate') return 'slate'
+    if (preset === 'zinc') return 'zinc'
+    if (preset === 'gray') return 'gray'
     return 'neutral'
   }
 
@@ -35,6 +42,7 @@ export function SetupStep2({ config, onNext, onBack }) {
     const preset = config?.theme?.preset
     if (preset === 'blue') return 'blue'
     if (preset === 'green') return 'green'
+    if (preset === 'orange') return 'orange'
     return ''
   }
 

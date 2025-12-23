@@ -7,13 +7,17 @@ import { initTypography } from '../lib/typographyLoader'
 
 const BASE_COLORS = [
   { value: 'neutral', label: 'Neutral' },
-  { value: 'stone', label: 'Stone' }
+  { value: 'stone', label: 'Stone' },
+  { value: 'slate', label: 'Slate' },
+  { value: 'zinc', label: 'Zinc' },
+  { value: 'gray', label: 'Gray' }
 ]
 
 const THEMES = [
   { value: '', label: 'None' },
   { value: 'blue', label: 'Blue' },
-  { value: 'green', label: 'Green' }
+  { value: 'green', label: 'Green' },
+  { value: 'orange', label: 'Orange' }
 ]
 
 export function ThemeEditor() {
@@ -27,6 +31,9 @@ export function ThemeEditor() {
     // Backward compatibility: check old preset
     const preset = preferences?.theme?.preset
     if (preset === 'stone') return 'stone'
+    if (preset === 'slate') return 'slate'
+    if (preset === 'zinc') return 'zinc'
+    if (preset === 'gray') return 'gray'
     return 'neutral'
   }
 
@@ -38,6 +45,7 @@ export function ThemeEditor() {
     const preset = preferences?.theme?.preset
     if (preset === 'blue') return 'blue'
     if (preset === 'green') return 'green'
+    if (preset === 'orange') return 'orange'
     return ''
   }
 

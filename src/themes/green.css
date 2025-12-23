@@ -1,15 +1,15 @@
 /* Green Theme - Green accent theme */
 :root {
-  --color-green-50: lch(98.16% 6.5 154.3);
-    --color-green-100: lab(96.1861% -13.8464 6.52365);
-    --color-green-300: lab(86.9953% -47.2691 25.0054);
-    --color-green-400: lab(78.503% -64.9265 39.7492);
-    --color-green-500: lab(70.5521% -66.5147 45.8073);
-    --color-green-600: lab(59.0978% -58.6621 41.2579);
-    --color-green-700: lab(47.0329% -47.0239 31.4788);
-    --color-green-800: lab(37.4616% -36.7971 22.9692);
-    --color-green-900: lab(30.797% -29.6927 17.382);
-    --color-green-950: lab(15.6845% -20.4225 11.7249); 
+  --color-green-50: oklch(0.98 0.02 155.77);
+        --color-green-100: oklch(0.96 0.04 156.72);
+        --color-green-300: oklch(0.87 0.15 154.44);
+        --color-green-400: oklch(0.79 0.21 151.71);
+        --color-green-500: oklch(0.72 0.22 149.58);
+        --color-green-600: oklch(0.63 0.19 149.21);
+        --color-green-700: oklch(0.53 0.15 150.07);
+        --color-green-800: oklch(0.45 0.12 151.32);
+        --color-green-900: oklch(0.39 0.09 152.53);
+        --color-green-950: oklch(0.27 0.06 152.93);
 }
 html.theme-green,
 :root.theme-green {

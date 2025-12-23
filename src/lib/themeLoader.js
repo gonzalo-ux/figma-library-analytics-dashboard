@@ -1,12 +1,12 @@
 /**
  * Loads a theme preset and applies it to the document using CSS classes
- * Supports base colors (neutral, stone) and themes (blue, green) that can be combined.
+ * Supports base colors (neutral, stone, slate, zinc, gray) and themes (blue, green, orange) that can be combined.
  * Dark mode is controlled by the .dark class.
  * 
  * @param {string|object} presetOrConfig - Either a preset name (for backward compatibility) 
  *                                         or an object with { baseColor, theme }
- * @param {string} [presetOrConfig.baseColor] - Base color: 'neutral' or 'stone'
- * @param {string} [presetOrConfig.theme] - Theme: 'blue' or 'green' (optional)
+ * @param {string} [presetOrConfig.baseColor] - Base color: 'neutral', 'stone', 'slate', 'zinc', or 'gray'
+ * @param {string} [presetOrConfig.theme] - Theme: 'blue', 'green', or 'orange' (optional)
  */
 export function loadTheme(presetOrConfig) {
   // Handle backward compatibility: if string, treat as old preset
@@ -24,6 +24,8 @@ export function loadTheme(presetOrConfig) {
       theme = 'blue'
     } else if (presetOrConfig === 'green') {
       theme = 'green'
+    } else if (presetOrConfig === 'orange') {
+      theme = 'orange'
     } else if (presetOrConfig === 'neutral') {
       // neutral base, no theme
     } else if (presetOrConfig === 'stone') {
@@ -38,13 +40,26 @@ export function loadTheme(presetOrConfig) {
   // Remove all theme classes first (but keep .dark class as it's controlled by header toggle)
   document.documentElement.classList.remove(
     'theme-blue', 
-    'theme-green', 
+    'theme-green',
+    'theme-orange',
     'neutral-theme', 
-    'theme-stone'
+    'theme-stone',
+    'theme-slate',
+    'theme-zinc',
+    'theme-gray'
   )
 
   // Apply base color class
-  const baseColorClass = baseColor === 'stone' ? 'theme-stone' : 'neutral-theme'
+  let baseColorClass = 'neutral-theme'
+  if (baseColor === 'stone') {
+    baseColorClass = 'theme-stone'
+  } else if (baseColor === 'slate') {
+    baseColorClass = 'theme-slate'
+  } else if (baseColor === 'zinc') {
+    baseColorClass = 'theme-zinc'
+  } else if (baseColor === 'gray') {
+    baseColorClass = 'theme-gray'
+  }
   document.documentElement.classList.add(baseColorClass)
 
   // Apply theme class if provided (theme overrides some colors of base)
@@ -52,6 +67,8 @@ export function loadTheme(presetOrConfig) {
     document.documentElement.classList.add('theme-blue')
   } else if (theme === 'green') {
     document.documentElement.classList.add('theme-green')
+  } else if (theme === 'orange') {
+    document.documentElement.classList.add('theme-orange')
   }
   
   // Force a reflow to ensure CSS is recalculated

@@ -45,10 +45,18 @@ try {
         const preset = prefs.theme.preset
         if (preset === 'stone') {
           themeConfig = { baseColor: 'stone', theme: null }
+        } else if (preset === 'slate') {
+          themeConfig = { baseColor: 'slate', theme: null }
+        } else if (preset === 'zinc') {
+          themeConfig = { baseColor: 'zinc', theme: null }
+        } else if (preset === 'gray') {
+          themeConfig = { baseColor: 'gray', theme: null }
         } else if (preset === 'blue') {
           themeConfig = { baseColor: 'neutral', theme: 'blue' }
         } else if (preset === 'green') {
           themeConfig = { baseColor: 'neutral', theme: 'green' }
+        } else if (preset === 'orange') {
+          themeConfig = { baseColor: 'neutral', theme: 'orange' }
         } else {
           themeConfig = { baseColor: 'neutral', theme: null }
         }
@@ -65,6 +73,12 @@ try {
         const preset = config.theme.preset
         if (preset === 'stone') {
           themeConfig = { baseColor: 'stone', theme: null }
+        } else if (preset === 'slate') {
+          themeConfig = { baseColor: 'slate', theme: null }
+        } else if (preset === 'zinc') {
+          themeConfig = { baseColor: 'zinc', theme: null }
+        } else if (preset === 'gray') {
+          themeConfig = { baseColor: 'gray', theme: null }
         } else if (preset === 'blue') {
           themeConfig = { baseColor: 'neutral', theme: 'blue' }
         } else if (preset === 'green') {
