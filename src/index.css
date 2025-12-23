@@ -1,5 +1,5 @@
-@import './themes/neutral.css';
-@import './themes/stone.css';
+@import './themes/base-color/neutral.css';
+@import './themes/base-color/stone.css';
 @import './themes/blue.css';
 @import './themes/green.css';
 

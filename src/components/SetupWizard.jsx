@@ -18,7 +18,8 @@ export function SetupWizard({ onComplete }) {
       libraryUrl: ''
     },
     theme: {
-      preset: 'blue',
+      baseColor: 'neutral',
+      theme: 'blue',
       customCss: '',
       typography: {
         fontFamily: 'Inter',
@@ -70,7 +71,14 @@ export function SetupWizard({ onComplete }) {
     
     // Apply theme and typography immediately for preview
     if (stepData.theme) {
-      if (stepData.theme.preset) {
+      // Support both new structure and old preset format for backward compatibility
+      if (stepData.theme.baseColor || stepData.theme.theme !== undefined) {
+        loadTheme({
+          baseColor: stepData.theme.baseColor || 'neutral',
+          theme: stepData.theme.theme || null
+        })
+      } else if (stepData.theme.preset) {
+        // Backward compatibility: handle old preset format
         loadTheme(stepData.theme.preset)
       }
       if (stepData.theme.typography) {
@@ -93,9 +101,9 @@ export function SetupWizard({ onComplete }) {
     }
   }
 
-  // Apply neutral-theme to document.documentElement on mount
+  // Apply default theme on mount
   useEffect(() => {
-    loadTheme('neutral')
+    loadTheme({ baseColor: 'neutral', theme: null })
     return () => {
       // Cleanup: restore default theme when component unmounts
       // This is optional - you might want to keep the theme

@@ -1,37 +1,65 @@
 /**
  * Loads a theme preset and applies it to the document using CSS classes
- * Supports neutral (default), stone, blue, and green themes. Dark mode is controlled by the .dark class.
+ * Supports base colors (neutral, stone) and themes (blue, green) that can be combined.
+ * Dark mode is controlled by the .dark class.
+ * 
+ * @param {string|object} presetOrConfig - Either a preset name (for backward compatibility) 
+ *                                         or an object with { baseColor, theme }
+ * @param {string} [presetOrConfig.baseColor] - Base color: 'neutral' or 'stone'
+ * @param {string} [presetOrConfig.theme] - Theme: 'blue' or 'green' (optional)
  */
-export function loadTheme(presetName) {
-  if (presetName === 'custom') {
-    // Custom theme is handled separately
-    return
-  }
-
-  // Remove all theme classes first (but keep .dark class as it's controlled by header toggle)
-  document.documentElement.classList.remove('theme-blue', 'theme-green', 'neutral-theme', 'theme-stone')
-
-  // Apply theme class based on preset
-  let themeClass = null
-  if (presetName === 'blue' || presetName === 'default' || presetName === 'dark') {
-    themeClass = 'theme-blue'
-  } else if (presetName === 'green') {
-    themeClass = 'theme-green'
-  } else if (presetName === 'neutral') {
-    themeClass = 'neutral-theme'
-  } else if (presetName === 'stone') {
-    themeClass = 'theme-stone'
-  } else {
-    // Fallback to neutral if unknown theme
-    themeClass = 'neutral-theme'
+export function loadTheme(presetOrConfig) {
+  // Handle backward compatibility: if string, treat as old preset
+  if (typeof presetOrConfig === 'string') {
+    if (presetOrConfig === 'custom') {
+      // Custom theme is handled separately
+      return
+    }
+    
+    // Map old preset names to new structure
+    let baseColor = 'neutral'
+    let theme = null
+    
+    if (presetOrConfig === 'blue' || presetOrConfig === 'default' || presetOrConfig === 'dark') {
+      theme = 'blue'
+    } else if (presetOrConfig === 'green') {
+      theme = 'green'
+    } else if (presetOrConfig === 'neutral') {
+      // neutral base, no theme
+    } else if (presetOrConfig === 'stone') {
+      baseColor = 'stone'
+    }
+    
+    presetOrConfig = { baseColor, theme }
   }
   
-  if (themeClass) {
-    document.documentElement.classList.add(themeClass)
-    // Force a reflow to ensure CSS is recalculated
-    document.documentElement.offsetHeight
-    console.log(`Theme loaded: ${presetName} -> class: ${themeClass}`, document.documentElement.className)
+  const { baseColor = 'neutral', theme = null } = presetOrConfig
+
+  // Remove all theme classes first (but keep .dark class as it's controlled by header toggle)
+  document.documentElement.classList.remove(
+    'theme-blue', 
+    'theme-green', 
+    'neutral-theme', 
+    'theme-stone'
+  )
+
+  // Apply base color class
+  const baseColorClass = baseColor === 'stone' ? 'theme-stone' : 'neutral-theme'
+  document.documentElement.classList.add(baseColorClass)
+
+  // Apply theme class if provided (theme overrides some colors of base)
+  if (theme === 'blue') {
+    document.documentElement.classList.add('theme-blue')
+  } else if (theme === 'green') {
+    document.documentElement.classList.add('theme-green')
   }
+  
+  // Force a reflow to ensure CSS is recalculated
+  document.documentElement.offsetHeight
+  console.log(
+    `Theme loaded: baseColor=${baseColor}, theme=${theme || 'none'}`, 
+    document.documentElement.className
+  )
 }
 
 /**

@@ -18,17 +18,23 @@ export function EditModeProvider({ children }) {
         setPreferences(prefs)
         // Initialize typography
         initTypography(prefs)
-        // Load theme
-        if (prefs?.theme?.preset) {
+        // Load theme - support both new structure and old preset format
+        if (prefs?.theme?.baseColor || prefs?.theme?.theme !== undefined) {
+          loadTheme({
+            baseColor: prefs.theme.baseColor || 'neutral',
+            theme: prefs.theme.theme || null
+          })
+        } else if (prefs?.theme?.preset) {
+          // Backward compatibility: convert old preset to new structure
           loadTheme(prefs.theme.preset)
         } else {
-          // Default to blue theme if no preset is set
-          loadTheme('blue')
+          // Default to neutral base with blue theme if nothing is set
+          loadTheme({ baseColor: 'neutral', theme: 'blue' })
         }
       } catch (error) {
         console.error('Failed to load preferences:', error)
-        // Fallback to blue theme on error
-        loadTheme('blue')
+        // Fallback to neutral base with blue theme on error
+        loadTheme({ baseColor: 'neutral', theme: 'blue' })
       } finally {
         setIsLoading(false)
       }
@@ -61,8 +67,13 @@ export function EditModeProvider({ children }) {
     if (key.startsWith('theme.typography')) {
       initTypography(newPrefs)
     }
-    // Update theme if theme preset changed
-    if (key === 'theme.preset') {
+    // Update theme if theme configuration changed
+    if (key === 'theme.baseColor' || key === 'theme.theme') {
+      const baseColor = newPrefs?.theme?.baseColor || 'neutral'
+      const theme = newPrefs?.theme?.theme || null
+      loadTheme({ baseColor, theme })
+    } else if (key === 'theme.preset') {
+      // Backward compatibility: handle old preset format
       loadTheme(value)
     }
   }

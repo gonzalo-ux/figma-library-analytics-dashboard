@@ -8,7 +8,8 @@
     "config": {}
   },
   "theme": {
-    "preset": "blue",
+    "baseColor": "neutral",
+    "theme": "blue",
     "customCss": "",
     "typography": {
       "fontFamily": "Inter",
