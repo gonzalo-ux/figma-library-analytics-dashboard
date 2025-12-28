@@ -7,7 +7,6 @@ import { ChartContainer } from "./ChartContainer"
 import { DetachmentsChart } from "./DetachmentsChart"
 import { InsertionsLineChart } from "./InsertionsLineChart"
 import { DataTable } from "./DataTable"
-import { IconsTable } from "./IconsTable"
 import { UsagesTable } from "./UsagesTable"
 import { FileUsagesTable } from "./FileUsagesTable"
 import { ChangelogTable } from "./ChangelogTable"
@@ -15,7 +14,6 @@ import { TeamsPieChart } from "./TeamsPieChart"
 import { BranchesTable } from "./BranchesTable"
 import { PublicationCalendar } from "./PublicationCalendar"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
-import { Slider } from "./ui/slider"
 import { Header } from "./Header"
 import { useEditMode } from "./EditModeProvider"
 import { EditableText } from "./EditableText"
@@ -53,10 +51,9 @@ export function Dashboard() {
     if (pages.length > 0) {
       return pages
     }
-    // Backward compatibility: use legacy CSV_FILES structure
+    // Backward compatibility: use legacy structure
     return [
       { id: 'components', name: 'Components', type: 'components' },
-      { id: 'icons', name: 'Icons', type: 'icons' },
       { id: 'variables', name: 'Variables', type: 'variables' },
       { id: 'branches', name: 'Branches', type: 'branches' }
     ]
@@ -71,7 +68,6 @@ export function Dashboard() {
     return { startDate, endDate: today }
   }
   const [dateRange, setDateRange] = useState(getInitialDateRange())
-  const [sliderValue, setSliderValue] = useState(0) // Will be set to maxInsertions when data loads
 
   // Calculate days from date range for backward compatibility
   const days = useMemo(() => {
@@ -113,7 +109,6 @@ export function Dashboard() {
     let csvFileName = ""
     switch (page.type) {
       case 'components':
-      case 'icons':
         csvFileName = 'actions_by_component.csv'
         setFileName(csvFileName)
         break
@@ -153,8 +148,8 @@ export function Dashboard() {
           const filteredData = filterDataForPage(results.data, config, pageId)
           setData(filteredData)
           
-          // Load additional data files for components/icons pages
-          if (page.type === 'components' || page.type === 'icons') {
+          // Load additional data files for components pages
+          if (page.type === 'components') {
             try {
               // Load usages_by_component.csv
               const usagesResponse = await fetch(`/csv/usages_by_component.csv`)
@@ -260,40 +255,6 @@ export function Dashboard() {
     
     loadVersionHistory()
   }, [])
-
-  // Calculate max insertions for icons to set slider max
-  const maxInsertions = React.useMemo(() => {
-    if (!data || data.length === 0) return 0
-
-    const iconData = data
-      .filter((row) => {
-        if (!row.week || !row.insertions || !row.component_name) return false
-        const componentName = row.component_name || ""
-        if (!componentName.trim().startsWith("Icon -") && !componentName.trim().toLowerCase().includes("icon -")) {
-          return false
-        }
-        const weekDate = new Date(row.week)
-        if (isNaN(weekDate.getTime())) return false
-        return weekDate >= dateRange.startDate && weekDate <= dateRange.endDate
-      })
-      .map((row) => parseFloat(row.insertions) || 0)
-
-    return Math.max(...iconData, 0)
-  }, [data, dateRange])
-
-  // Reset slider to max when date range changes or data loads
-  React.useEffect(() => {
-    if (maxInsertions > 0) {
-      setSliderValue(maxInsertions)
-    }
-  }, [dateRange, maxInsertions])
-
-  // Slider filters by maximum insertions
-  // When sliderValue = maxInsertions (left): show all icons (no max filter)
-  // When sliderValue is between max and 0: show icons with insertions <= sliderValue
-  // When sliderValue = 0 (right): show only icons with 0 insertions
-  const minInsertionsFilter = 0
-  const maxInsertionsFilter = sliderValue === maxInsertions ? null : sliderValue
 
   const selectedPage = selectedPageId ? configuredPages.find(p => p.id === selectedPageId) : null
   const selectedPageLabel = selectedPage?.name || "Select a page to visualize data"
@@ -503,40 +464,6 @@ export function Dashboard() {
 
           {data && !loading && selectedPage?.type !== "branches" && (
             <>
-            {selectedPage?.type === "icons" ? (
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <CardTitle>Icons</CardTitle>
-                  </div>
-                  <CardDescription>All inserted icons sorted by insertions (top to bottom)</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <label className="text-sm font-medium">
-                          Filter: {maxInsertionsFilter === null ? "All icons" : maxInsertionsFilter === 0 ? "Only 0 insertions" : `Insertions ≤ ${sliderValue.toLocaleString()}`}
-                        </label>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>{maxInsertions.toLocaleString()}</span>
-                          <span className="text-xs">→</span>
-                          <span>0</span>
-                        </div>
-                      </div>
-                      <Slider
-                        value={sliderValue}
-                        onChange={setSliderValue}
-                        min={0}
-                        max={maxInsertions}
-                        step={Math.max(1, Math.floor(maxInsertions / 100))}
-                      />
-                    </div>
-                    <IconsTable data={data} days={days} minInsertions={minInsertionsFilter} maxInsertions={maxInsertionsFilter} />
-                  </div>
-                </CardContent>
-              </Card>
-            ) : (
             <div className="w-full space-y-6 mt-6">
                 {selectedPage?.type === "components" ? (
                       <div className="grid grid-cols-3 gap-6">
@@ -936,7 +863,6 @@ export function Dashboard() {
                       </>
                     )}
             </div>
-            )}
             </>
           )}
 

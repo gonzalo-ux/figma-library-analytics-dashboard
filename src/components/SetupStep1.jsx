@@ -20,31 +20,32 @@ export function SetupStep1({ config, onNext }) {
           libraryId: libraries[0].id, 
           type: 'components',
           useFilters: false,
-          filters: { exclude: { prefix: '', suffix: '', contains: '' } }
+          filters: { 
+            include: { prefix: '', suffix: '', contains: '' },
+            exclude: { prefix: '', suffix: '', contains: '' } 
+          }
         },
         { 
           id: '2', 
-          name: 'Icons', 
-          libraryId: libraries[0].id, 
-          type: 'icons',
-          useFilters: false,
-          filters: { exclude: { prefix: '', suffix: '', contains: '' } }
-        },
-        { 
-          id: '3', 
           name: 'Variables', 
           libraryId: libraries[0].id, 
           type: 'variables',
           useFilters: false,
-          filters: { exclude: { prefix: '', suffix: '', contains: '' } }
+          filters: { 
+            include: { prefix: '', suffix: '', contains: '' },
+            exclude: { prefix: '', suffix: '', contains: '' } 
+          }
         },
         { 
-          id: '4', 
+          id: '3', 
           name: 'Styles', 
           libraryId: libraries[0].id, 
           type: 'styles',
           useFilters: false,
-          filters: { exclude: { prefix: '', suffix: '', contains: '' } }
+          filters: { 
+            include: { prefix: '', suffix: '', contains: '' },
+            exclude: { prefix: '', suffix: '', contains: '' } 
+          }
         }
       ]
       setPages(defaultPages)

@@ -21,6 +21,11 @@ export function PageConfig({ pages, libraries, onChange }) {
       type: 'components',
       useFilters: false,
       filters: {
+        include: {
+          prefix: '',
+          suffix: '',
+          contains: ''
+        },
         exclude: {
           prefix: '',
           suffix: '',
@@ -42,14 +47,16 @@ export function PageConfig({ pages, libraries, onChange }) {
   const handlePageChange = (id, field, value) => {
     const updated = localPages.map(page => {
       if (page.id === id) {
-        if (field.startsWith('filters.exclude.')) {
-          const filterField = field.split('.')[2]
+        if (field.startsWith('filters.include.') || field.startsWith('filters.exclude.')) {
+          const parts = field.split('.')
+          const filterType = parts[1] // 'include' or 'exclude'
+          const filterField = parts[2] // 'prefix', 'suffix', or 'contains'
           return {
             ...page,
             filters: {
               ...page.filters,
-              exclude: {
-                ...page.filters.exclude,
+              [filterType]: {
+                ...page.filters[filterType],
                 [filterField]: value
               }
             }
@@ -153,7 +160,6 @@ export function PageConfig({ pages, libraries, onChange }) {
                           className="flex h-9 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
                         >
                           <option value="components">Components</option>
-                          <option value="icons">Icons</option>
                           <option value="variables">Variables</option>
                           <option value="styles">Styles</option>
                         </select>
@@ -185,7 +191,7 @@ export function PageConfig({ pages, libraries, onChange }) {
                           }}
                         />
                         <Label htmlFor={`use-filters-${page.id}`} className="text-sm font-medium cursor-pointer">
-                          Use Exclusion Filters
+                          Use Filters
                         </Label>
                       </div>
                       
@@ -206,51 +212,106 @@ export function PageConfig({ pages, libraries, onChange }) {
                     </div>
 
                     {page.useFilters && expandedPages[page.id] && (
-                      <div className="space-y-2 pl-6">
-                        <p className="text-xs text-muted-foreground">
-                          Exclude components, variables, or styles that match these criteria:
-                        </p>
-                        <div className="grid grid-cols-3 gap-2">
-                          <div className="space-y-1">
-                            <Label htmlFor={`filter-prefix-${page.id}`} className="text-xs">
-                              Starts with
-                            </Label>
-                            <input
-                              id={`filter-prefix-${page.id}`}
-                              type="text"
-                              value={page.filters?.exclude?.prefix || ''}
-                              onChange={(e) => handlePageChange(page.id, 'filters.exclude.prefix', e.target.value)}
-                              className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
-                              placeholder="e.g., Icon -"
-                            />
+                      <div className="space-y-3 pl-6">
+                        {/* Include Filters */}
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium">Include Only (Optional)</Label>
+                          <p className="text-xs text-muted-foreground">
+                            Show only items matching these criteria. Leave empty to include all.
+                          </p>
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="space-y-1">
+                              <Label htmlFor={`filter-include-prefix-${page.id}`} className="text-xs">
+                                Starts with
+                              </Label>
+                              <input
+                                id={`filter-include-prefix-${page.id}`}
+                                type="text"
+                                value={page.filters?.include?.prefix || ''}
+                                onChange={(e) => handlePageChange(page.id, 'filters.include.prefix', e.target.value)}
+                                className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
+                                placeholder="e.g., Button"
+                              />
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <Label htmlFor={`filter-include-suffix-${page.id}`} className="text-xs">
+                                Ends with
+                              </Label>
+                              <input
+                                id={`filter-include-suffix-${page.id}`}
+                                type="text"
+                                value={page.filters?.include?.suffix || ''}
+                                onChange={(e) => handlePageChange(page.id, 'filters.include.suffix', e.target.value)}
+                                className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
+                                placeholder="e.g., /Large"
+                              />
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <Label htmlFor={`filter-include-contains-${page.id}`} className="text-xs">
+                                Contains
+                              </Label>
+                              <input
+                                id={`filter-include-contains-${page.id}`}
+                                type="text"
+                                value={page.filters?.include?.contains || ''}
+                                onChange={(e) => handlePageChange(page.id, 'filters.include.contains', e.target.value)}
+                                className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
+                                placeholder="e.g., icon"
+                              />
+                            </div>
                           </div>
-                          
-                          <div className="space-y-1">
-                            <Label htmlFor={`filter-suffix-${page.id}`} className="text-xs">
-                              Ends with
-                            </Label>
-                            <input
-                              id={`filter-suffix-${page.id}`}
-                              type="text"
-                              value={page.filters?.exclude?.suffix || ''}
-                              onChange={(e) => handlePageChange(page.id, 'filters.exclude.suffix', e.target.value)}
-                              className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
-                              placeholder="e.g., /old"
-                            />
-                          </div>
-                          
-                          <div className="space-y-1">
-                            <Label htmlFor={`filter-contains-${page.id}`} className="text-xs">
-                              Contains
-                            </Label>
-                            <input
-                              id={`filter-contains-${page.id}`}
-                              type="text"
-                              value={page.filters?.exclude?.contains || ''}
-                              onChange={(e) => handlePageChange(page.id, 'filters.exclude.contains', e.target.value)}
-                              className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
-                              placeholder="e.g., temp"
-                            />
+                        </div>
+
+                        {/* Exclude Filters */}
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium">Exclude (Optional)</Label>
+                          <p className="text-xs text-muted-foreground">
+                            Remove items matching these criteria from the results.
+                          </p>
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="space-y-1">
+                              <Label htmlFor={`filter-exclude-prefix-${page.id}`} className="text-xs">
+                                Starts with
+                              </Label>
+                              <input
+                                id={`filter-exclude-prefix-${page.id}`}
+                                type="text"
+                                value={page.filters?.exclude?.prefix || ''}
+                                onChange={(e) => handlePageChange(page.id, 'filters.exclude.prefix', e.target.value)}
+                                className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
+                                placeholder="e.g., _draft"
+                              />
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <Label htmlFor={`filter-exclude-suffix-${page.id}`} className="text-xs">
+                                Ends with
+                              </Label>
+                              <input
+                                id={`filter-exclude-suffix-${page.id}`}
+                                type="text"
+                                value={page.filters?.exclude?.suffix || ''}
+                                onChange={(e) => handlePageChange(page.id, 'filters.exclude.suffix', e.target.value)}
+                                className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
+                                placeholder="e.g., /old"
+                              />
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <Label htmlFor={`filter-exclude-contains-${page.id}`} className="text-xs">
+                                Contains
+                              </Label>
+                              <input
+                                id={`filter-exclude-contains-${page.id}`}
+                                type="text"
+                                value={page.filters?.exclude?.contains || ''}
+                                onChange={(e) => handlePageChange(page.id, 'filters.exclude.contains', e.target.value)}
+                                className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm"
+                                placeholder="e.g., deprecated"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
