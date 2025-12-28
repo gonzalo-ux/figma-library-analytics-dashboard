@@ -8,6 +8,9 @@ A modern, configurable web application for visualizing Figma library analytics w
 - 🎨 **Customizable Themes**: Choose from preset themes or create your own with custom CSS
 - ✏️ **Edit Mode**: Customize titles, descriptions, and chart types directly in the UI
 - 📁 **CSV Data Visualization**: Visualize component usage, insertions, detachments, and more
+- 🏢 **Multi-Library Support**: Track data from multiple Figma libraries with a single access token
+- 🔍 **Advanced Filtering**: Filter components, variables, and styles by prefix, suffix, or content
+- 📑 **Custom Pages**: Create custom dashboard tabs for different data views
 - 🌿 **Branches Management**: View and manage Figma library branches (Active, Archived, Merged)
 - 📝 **Flexible Changelog**: Support for Figma Library, Google Docs, or Notion as changelog sources
 - 📅 **Publication Calendar**: GitHub-style contribution calendar showing library publication activity over the last year
@@ -97,6 +100,23 @@ On first launch, you'll be guided through a setup wizard:
 3. **Generate CSV Files**: Generate initial CSV files from your Figma library
 
 ## Usage
+
+### Multi-Library Support
+
+The dashboard now supports tracking multiple Figma libraries with advanced filtering:
+
+1. **Add Multiple Libraries**: In the setup wizard, add as many Figma libraries as you need
+2. **Configure Filters**: For each library, set exclusion filters:
+   - Prefix: Exclude items starting with specific text (e.g., "Icon -")
+   - Suffix: Exclude items ending with specific text (e.g., "/deprecated")
+   - Contains: Exclude items containing specific text (e.g., "_old")
+
+3. **Create Custom Pages**: Configure dashboard tabs to show different data views:
+   - Each page can pull from a different library
+   - Filter the same library in different ways for multiple pages
+   - Built-in page types: Components, Icons, Variables, Styles, Branches
+
+For detailed information, see the [Multi-Library Guide](docs/MULTI_LIBRARY_GUIDE.md).
 
 ### CSV Data Visualization
 

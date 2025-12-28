@@ -15,8 +15,9 @@ export function SetupWizard({ onComplete }) {
   const [config, setConfig] = useState({
     figma: {
       accessToken: '',
-      libraryUrl: ''
+      libraries: []
     },
+    pages: [],
     theme: {
       baseColor: 'neutral',
       theme: 'blue',
@@ -126,7 +127,7 @@ export function SetupWizard({ onComplete }) {
 
       {/* Main content */}
       <div className="flex-1 flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl">
+        <Card className="w-full max-w-4xl">
           <CardHeader>
             <CardTitle>Welcome to Figma Analytics Dashboard</CardTitle>
             <CardDescription>Let's set up your dashboard in a few simple steps.</CardDescription>

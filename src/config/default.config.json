@@ -1,8 +1,9 @@
 {
   "figma": {
     "accessToken": "",
-    "libraryUrl": ""
+    "libraries": []
   },
+  "pages": [],
   "changelog": {
     "source": "figma",
     "config": {}

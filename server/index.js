@@ -21,11 +21,13 @@ app.use(express.static(path.join(__dirname, '../public')))
  * Generate CSV files using Python API
  */
 app.post('/api/generate-csv', async (req, res) => {
-  const { token, libraryUrl } = req.body
+  const { token, libraryUrl, libraryName, libraryId } = req.body
 
   console.log('Received CSV generation request:', { 
     hasToken: !!token, 
     libraryUrl: libraryUrl,
+    libraryName: libraryName || 'N/A',
+    libraryId: libraryId || 'N/A',
     libraryUrlType: typeof libraryUrl,
     libraryUrlLength: libraryUrl?.length 
   })
@@ -105,6 +107,8 @@ app.post('/api/generate-csv', async (req, res) => {
 
   return new Promise((resolve, reject) => {
     // Spawn Python process
+    // Note: libraryName and libraryId are logged but not yet passed to Python script
+    // Filters are applied client-side per page configuration
     const pythonProcess = spawn('python3', [
       pythonScript,
       '--token', token,
@@ -114,7 +118,9 @@ app.post('/api/generate-csv', async (req, res) => {
       cwd: pythonApiPath,
       env: {
         ...process.env,
-        FIGMA_ACCESS_TOKEN: token
+        FIGMA_ACCESS_TOKEN: token,
+        LIBRARY_NAME: libraryName || '',
+        LIBRARY_ID: libraryId || ''
       }
     })
 

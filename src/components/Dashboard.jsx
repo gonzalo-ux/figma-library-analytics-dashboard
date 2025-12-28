@@ -29,13 +29,7 @@ import { AdminSidebar } from "./AdminSidebar"
 import { useAdminMode } from "./AdminModeProvider"
 import { loadConfigSync } from "../lib/config"
 import { DateRangePicker } from "./DateRangePicker"
-
-const CSV_FILES = [
-  { name: "actions_by_component.csv", label: "Components" },
-  { name: "icons", label: "Icons" },
-  { name: "variable_actions_by_variable.csv", label: "Variables" },
-  { name: "branches", label: "Branches" },
-]
+import { getConfiguredPages, filterDataForPage } from "../lib/dataFilter"
 
 export function Dashboard() {
   const { preferences, updatePreference, isEditMode } = useEditMode()
@@ -49,9 +43,24 @@ export function Dashboard() {
   const [stylesData, setStylesData] = useState(null)
   const [versionHistoryData, setVersionHistoryData] = useState(null)
   const [fileName, setFileName] = useState("")
-  const [selectedFile, setSelectedFile] = useState("")
+  const [selectedPageId, setSelectedPageId] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  
+  // Get configured pages from config, or use legacy defaults for backward compatibility
+  const configuredPages = useMemo(() => {
+    const pages = getConfiguredPages(config)
+    if (pages.length > 0) {
+      return pages
+    }
+    // Backward compatibility: use legacy CSV_FILES structure
+    return [
+      { id: 'components', name: 'Components', type: 'components' },
+      { id: 'icons', name: 'Icons', type: 'icons' },
+      { id: 'variables', name: 'Variables', type: 'variables' },
+      { id: 'branches', name: 'Branches', type: 'branches' }
+    ]
+  }, [config])
   // Initialize with 90 days ago to today
   const getInitialDateRange = () => {
     const today = new Date()
@@ -75,29 +84,55 @@ export function Dashboard() {
     setDateRange({ startDate, endDate })
   }
 
-  const handleFileSelect = useCallback(async (csvFileName) => {
+  const handlePageSelect = useCallback(async (pageId) => {
     setLoading(true)
     setError("")
-    setSelectedFile(csvFileName)
-    setFileName(csvFileName)
-    setFileUsageData(null) // Reset file usage data when switching files
-    setComponentUsagesData(null) // Reset component usages data when switching files
-    setTeamInsertionsData(null) // Reset team insertions data when switching files
-    setVariableInsertionsData(null) // Reset variable insertions data when switching files
-    setStylesData(null) // Reset styles data when switching files
+    setSelectedPageId(pageId)
+    setFileUsageData(null)
+    setComponentUsagesData(null)
+    setTeamInsertionsData(null)
+    setVariableInsertionsData(null)
+    setStylesData(null)
 
-    // Handle branches - no CSV file needed
-    if (csvFileName === "branches") {
+    const page = configuredPages.find(p => p.id === pageId)
+    if (!page) {
+      setError('Page not found')
       setLoading(false)
-      setData(null) // Clear CSV data
       return
     }
 
-    // Handle icons - use actions_by_component.csv but mark as icons
-    const actualFileName = csvFileName === "icons" ? "actions_by_component.csv" : csvFileName
+    // Handle branches - no CSV file needed
+    if (page.type === "branches") {
+      setLoading(false)
+      setData(null)
+      setFileName("")
+      return
+    }
+
+    // Determine CSV file based on page type
+    let csvFileName = ""
+    switch (page.type) {
+      case 'components':
+      case 'icons':
+        csvFileName = 'actions_by_component.csv'
+        setFileName(csvFileName)
+        break
+      case 'variables':
+        csvFileName = 'variable_actions_by_variable.csv'
+        setFileName(csvFileName)
+        break
+      case 'styles':
+        csvFileName = 'styles_actions_by_style.csv'
+        setFileName(csvFileName)
+        break
+      default:
+        setError(`Unknown page type: ${page.type}`)
+        setLoading(false)
+        return
+    }
 
     try {
-      const response = await fetch(`/csv/${actualFileName}`)
+      const response = await fetch(`/csv/${csvFileName}`)
       if (!response.ok) {
         throw new Error(`Failed to load file: ${response.statusText}`)
       }
@@ -113,10 +148,13 @@ export function Dashboard() {
             setLoading(false)
             return
           }
-          setData(results.data)
           
-          // If loading actions_by_component.csv (and not icons), also load usages_by_component.csv and usages_by_file.csv
-          if (csvFileName === "actions_by_component.csv") {
+          // Apply page-specific filters
+          const filteredData = filterDataForPage(results.data, config, pageId)
+          setData(filteredData)
+          
+          // Load additional data files for components/icons pages
+          if (page.type === 'components' || page.type === 'icons') {
             try {
               // Load usages_by_component.csv
               const usagesResponse = await fetch(`/csv/usages_by_component.csv`)
@@ -129,7 +167,7 @@ export function Dashboard() {
                     if (usagesResults.errors.length === 0) {
                       setComponentUsagesData(usagesResults.data)
                       
-                      // Also load usages_by_file.csv
+                      // Load usages_by_file.csv
                       try {
                         const fileResponse = await fetch(`/csv/usages_by_file.csv`)
                         if (fileResponse.ok) {
@@ -142,7 +180,7 @@ export function Dashboard() {
                                 setFileUsageData(fileResults.data)
                               }
                               
-                              // Also load actions_by_team.csv for team insertions
+                              // Load actions_by_team.csv
                               try {
                                 const teamResponse = await fetch(`/csv/actions_by_team.csv`)
                                 if (teamResponse.ok) {
@@ -150,334 +188,25 @@ export function Dashboard() {
                                   Papa.parse(teamText, {
                                     header: true,
                                     skipEmptyLines: true,
-                                    complete: async (teamResults) => {
+                                    complete: (teamResults) => {
                                       if (teamResults.errors.length === 0) {
                                         setTeamInsertionsData(teamResults.data)
                                       }
-                                      
-                                      // Also load variable_actions_by_variable.csv for variable insertions
-                                      try {
-                                        const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
-                                        if (variableResponse.ok) {
-                                          const variableText = await variableResponse.text()
-                                          Papa.parse(variableText, {
-                                            header: true,
-                                            skipEmptyLines: true,
-                                            complete: async (variableResults) => {
-                                              if (variableResults.errors.length === 0) {
-                                                setVariableInsertionsData(variableResults.data)
-                                              }
-                                              
-                                              // Also load styles_actions_by_style.csv for styles
-                                              try {
-                                                const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                                if (stylesResponse.ok) {
-                                                  const stylesText = await stylesResponse.text()
-                                                  Papa.parse(stylesText, {
-                                                    header: true,
-                                                    skipEmptyLines: true,
-                                                    complete: (stylesResults) => {
-                                                      if (stylesResults.errors.length === 0) {
-                                                        setStylesData(stylesResults.data)
-                                                      }
-                                                      setLoading(false)
-                                                    },
-                                                    error: () => {
-                                                      setLoading(false)
-                                                    }
-                                                  })
-                                                } else {
-                                                  setLoading(false)
-                                                }
-                                              } catch {
-                                                setLoading(false)
-                                              }
-                                            },
-                                            error: () => {
-                                              setLoading(false)
-                                            }
-                                          })
-                                        } else {
-                                          // If variable file fails, still try to load styles
-                                          try {
-                                            const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                            if (stylesResponse.ok) {
-                                              const stylesText = await stylesResponse.text()
-                                              Papa.parse(stylesText, {
-                                                header: true,
-                                                skipEmptyLines: true,
-                                                complete: (stylesResults) => {
-                                                  if (stylesResults.errors.length === 0) {
-                                                    setStylesData(stylesResults.data)
-                                                  }
-                                                  setLoading(false)
-                                                },
-                                                error: () => {
-                                                  setLoading(false)
-                                                }
-                                              })
-                                            } else {
-                                              setLoading(false)
-                                            }
-                                          } catch {
-                                            setLoading(false)
-                                          }
-                                        }
-                                      } catch {
-                                        setLoading(false)
-                                      }
-                                    },
-                                    error: () => {
                                       setLoading(false)
-                                    }
+                                    },
+                                    error: () => setLoading(false)
                                   })
                                 } else {
-                                  // If actions_by_team.csv fails, still try to load variable_actions_by_variable.csv
-                                  try {
-                                    const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
-                                    if (variableResponse.ok) {
-                                      const variableText = await variableResponse.text()
-                                      Papa.parse(variableText, {
-                                        header: true,
-                                        skipEmptyLines: true,
-                                        complete: async (variableResults) => {
-                                          if (variableResults.errors.length === 0) {
-                                            setVariableInsertionsData(variableResults.data)
-                                          }
-                                          
-                                          // Also load styles_actions_by_style.csv for styles
-                                          try {
-                                            const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                            if (stylesResponse.ok) {
-                                              const stylesText = await stylesResponse.text()
-                                              Papa.parse(stylesText, {
-                                                header: true,
-                                                skipEmptyLines: true,
-                                                complete: (stylesResults) => {
-                                                  if (stylesResults.errors.length === 0) {
-                                                    setStylesData(stylesResults.data)
-                                                  }
-                                                  setLoading(false)
-                                                },
-                                                error: () => {
-                                                  setLoading(false)
-                                                }
-                                              })
-                                            } else {
-                                              setLoading(false)
-                                            }
-                                          } catch {
-                                            setLoading(false)
-                                          }
-                                        },
-                                        error: () => {
-                                          setLoading(false)
-                                        }
-                                      })
-                                    } else {
-                                      // If variable file fails, still try to load styles
-                                      try {
-                                        const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                        if (stylesResponse.ok) {
-                                          const stylesText = await stylesResponse.text()
-                                          Papa.parse(stylesText, {
-                                            header: true,
-                                            skipEmptyLines: true,
-                                            complete: (stylesResults) => {
-                                              if (stylesResults.errors.length === 0) {
-                                                setStylesData(stylesResults.data)
-                                              }
-                                              setLoading(false)
-                                            },
-                                            error: () => {
-                                              setLoading(false)
-                                            }
-                                          })
-                                        } else {
-                                          setLoading(false)
-                                        }
-                                      } catch {
-                                        setLoading(false)
-                                      }
-                                    }
-                                  } catch {
-                                    setLoading(false)
-                                  }
+                                  setLoading(false)
                                 }
                               } catch {
                                 setLoading(false)
                               }
                             },
-                            error: () => {
-                              setLoading(false)
-                            }
+                            error: () => setLoading(false)
                           })
                         } else {
-                          // If usages_by_file.csv fails, still try to load actions_by_team.csv
-                          try {
-                            const teamResponse = await fetch(`/csv/actions_by_team.csv`)
-                            if (teamResponse.ok) {
-                              const teamText = await teamResponse.text()
-                              Papa.parse(teamText, {
-                                header: true,
-                                skipEmptyLines: true,
-                                complete: async (teamResults) => {
-                                  if (teamResults.errors.length === 0) {
-                                    setTeamInsertionsData(teamResults.data)
-                                  }
-                                  
-                                  // Also load variable_actions_by_variable.csv for variable insertions
-                                  try {
-                                    const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
-                                    if (variableResponse.ok) {
-                                      const variableText = await variableResponse.text()
-                                      Papa.parse(variableText, {
-                                        header: true,
-                                        skipEmptyLines: true,
-                                        complete: async (variableResults) => {
-                                          if (variableResults.errors.length === 0) {
-                                            setVariableInsertionsData(variableResults.data)
-                                          }
-                                          
-                                          // Also load styles_actions_by_style.csv for styles
-                                          try {
-                                            const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                            if (stylesResponse.ok) {
-                                              const stylesText = await stylesResponse.text()
-                                              Papa.parse(stylesText, {
-                                                header: true,
-                                                skipEmptyLines: true,
-                                                complete: (stylesResults) => {
-                                                  if (stylesResults.errors.length === 0) {
-                                                    setStylesData(stylesResults.data)
-                                                  }
-                                                  setLoading(false)
-                                                },
-                                                error: () => {
-                                                  setLoading(false)
-                                                }
-                                              })
-                                            } else {
-                                              setLoading(false)
-                                            }
-                                          } catch {
-                                            setLoading(false)
-                                          }
-                                        },
-                                        error: () => {
-                                          setLoading(false)
-                                        }
-                                      })
-                                    } else {
-                                      // If variable file fails, still try to load styles
-                                      try {
-                                        const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                        if (stylesResponse.ok) {
-                                          const stylesText = await stylesResponse.text()
-                                          Papa.parse(stylesText, {
-                                            header: true,
-                                            skipEmptyLines: true,
-                                            complete: (stylesResults) => {
-                                              if (stylesResults.errors.length === 0) {
-                                                setStylesData(stylesResults.data)
-                                              }
-                                              setLoading(false)
-                                            },
-                                            error: () => {
-                                              setLoading(false)
-                                            }
-                                          })
-                                        } else {
-                                          setLoading(false)
-                                        }
-                                      } catch {
-                                        setLoading(false)
-                                      }
-                                    }
-                                  } catch {
-                                    setLoading(false)
-                                  }
-                                },
-                                error: () => {
-                                  setLoading(false)
-                                }
-                              })
-                            } else {
-                              // If actions_by_team.csv fails, still try to load variable_actions_by_variable.csv
-                              try {
-                                const variableResponse = await fetch(`/csv/variable_actions_by_variable.csv`)
-                                if (variableResponse.ok) {
-                                  const variableText = await variableResponse.text()
-                                  Papa.parse(variableText, {
-                                    header: true,
-                                    skipEmptyLines: true,
-                                    complete: async (variableResults) => {
-                                      if (variableResults.errors.length === 0) {
-                                        setVariableInsertionsData(variableResults.data)
-                                      }
-                                      
-                                      // Also load styles_actions_by_style.csv for styles
-                                      try {
-                                        const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                        if (stylesResponse.ok) {
-                                          const stylesText = await stylesResponse.text()
-                                          Papa.parse(stylesText, {
-                                            header: true,
-                                            skipEmptyLines: true,
-                                            complete: (stylesResults) => {
-                                              if (stylesResults.errors.length === 0) {
-                                                setStylesData(stylesResults.data)
-                                              }
-                                              setLoading(false)
-                                            },
-                                            error: () => {
-                                              setLoading(false)
-                                            }
-                                          })
-                                        } else {
-                                          setLoading(false)
-                                        }
-                                      } catch {
-                                        setLoading(false)
-                                      }
-                                    },
-                                    error: () => {
-                                      setLoading(false)
-                                    }
-                                  })
-                                } else {
-                                  // If variable file fails, still try to load styles
-                                  try {
-                                    const stylesResponse = await fetch(`/csv/styles_actions_by_style.csv`)
-                                    if (stylesResponse.ok) {
-                                      const stylesText = await stylesResponse.text()
-                                      Papa.parse(stylesText, {
-                                        header: true,
-                                        skipEmptyLines: true,
-                                        complete: (stylesResults) => {
-                                          if (stylesResults.errors.length === 0) {
-                                            setStylesData(stylesResults.data)
-                                          }
-                                          setLoading(false)
-                                        },
-                                        error: () => {
-                                          setLoading(false)
-                                        }
-                                      })
-                                    } else {
-                                      setLoading(false)
-                                    }
-                                  } catch {
-                                    setLoading(false)
-                                  }
-                                }
-                              } catch {
-                                setLoading(false)
-                              }
-                            }
-                          } catch {
-                            setLoading(false)
-                          }
+                          setLoading(false)
                         }
                       } catch {
                         setLoading(false)
@@ -486,9 +215,7 @@ export function Dashboard() {
                       setLoading(false)
                     }
                   },
-                  error: () => {
-                    setLoading(false)
-                  }
+                  error: () => setLoading(false)
                 })
               } else {
                 setLoading(false)
@@ -509,14 +236,13 @@ export function Dashboard() {
       setError("Error loading file: " + error.message)
       setLoading(false)
     }
-  }, [])
-
-  // Load first file by default
+  }, [configuredPages, config])
+  // Load first page by default
   useEffect(() => {
-    if (!selectedFile && CSV_FILES.length > 0) {
-      handleFileSelect(CSV_FILES[0].name)
+    if (!selectedPageId && configuredPages.length > 0) {
+      handlePageSelect(configuredPages[0].id)
     }
-  }, [selectedFile, handleFileSelect])
+  }, [selectedPageId, configuredPages, handlePageSelect])
 
   // Load version history data
   useEffect(() => {
@@ -569,11 +295,12 @@ export function Dashboard() {
   const minInsertionsFilter = 0
   const maxInsertionsFilter = sliderValue === maxInsertions ? null : sliderValue
 
-  const selectedFileLabel = selectedFile ? CSV_FILES.find(f => f.name === selectedFile)?.label : "Select a CSV file to visualize data"
+  const selectedPage = selectedPageId ? configuredPages.find(p => p.id === selectedPageId) : null
+  const selectedPageLabel = selectedPage?.name || "Select a page to visualize data"
 
   // Calculate total components (matching DataTable logic)
   const totalComponents = useMemo(() => {
-    if (!data || data.length === 0 || fileName !== "actions_by_component.csv") {
+    if (!data || data.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
@@ -611,11 +338,11 @@ export function Dashboard() {
     })
 
     return componentSetSet.size
-  }, [data, dateRange, fileName])
+  }, [data, dateRange, selectedPage])
 
   // Calculate total variables (from variableInsertionsData)
   const totalVariables = useMemo(() => {
-    if (!variableInsertionsData || variableInsertionsData.length === 0 || fileName !== "actions_by_component.csv") {
+    if (!variableInsertionsData || variableInsertionsData.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
@@ -647,11 +374,11 @@ export function Dashboard() {
     })
 
     return variableSet.size
-  }, [variableInsertionsData, dateRange, fileName])
+  }, [variableInsertionsData, dateRange, selectedPage])
 
   // Calculate total icons (components whose names start with "Icon -")
   const totalIcons = useMemo(() => {
-    if (!data || data.length === 0 || fileName !== "actions_by_component.csv") {
+    if (!data || data.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
@@ -683,11 +410,11 @@ export function Dashboard() {
     })
 
     return iconSet.size
-  }, [data, dateRange, fileName])
+  }, [data, dateRange, selectedPage])
 
   // Calculate total text styles (styles with style_type === "TEXT")
   const totalTextStyles = useMemo(() => {
-    if (!stylesData || stylesData.length === 0 || fileName !== "actions_by_component.csv") {
+    if (!stylesData || stylesData.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
@@ -719,28 +446,28 @@ export function Dashboard() {
     })
 
     return textStyleSet.size
-  }, [stylesData, dateRange, fileName])
+  }, [stylesData, dateRange, selectedPage])
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Header selectedFileLabel={selectedFileLabel} />
+      <Header selectedFileLabel={selectedPageLabel} />
       <AdminSidebar />
       <div className="border-b border-border">
         <div className="px-4 md:px-8">
           <div className="flex items-center justify-between w-full">
             <Tabs 
-              value={selectedFile || "actions_by_component.csv"} 
-              onValueChange={(value) => handleFileSelect(value)} 
+              value={selectedPageId || (configuredPages.length > 0 ? configuredPages[0].id : "")} 
+              onValueChange={(value) => handlePageSelect(value)} 
               className="flex-1"
             >
               <TabsList className="h-auto p-1 bg-transparent">
-                {CSV_FILES.map((file) => (
+                {configuredPages.map((page) => (
                   <TabsTrigger
-                    key={file.name}
-                    value={file.name}
+                    key={page.id}
+                    value={page.id}
                     className="data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-sm px-3 py-1.5 text-sm font-medium"
                   >
-                    {file.label}
+                    {page.name}
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -756,7 +483,7 @@ export function Dashboard() {
       <div className={`flex-1 p-4 md:p-8 transition-all duration-300 ${isAdminMode ? 'pr-[28rem]' : ''}`}>
         <div className="space-y-6">
 
-          {loading && !data && selectedFile !== "branches" && (
+          {loading && !data && selectedPage?.type !== "branches" && (
             <Card>
               <CardContent className="py-8">
                 <p className="text-sm text-muted-foreground text-center">
@@ -774,9 +501,9 @@ export function Dashboard() {
             </Card>
           )}
 
-          {data && !loading && selectedFile !== "branches" && (
+          {data && !loading && selectedPage?.type !== "branches" && (
             <>
-            {selectedFile === "icons" ? (
+            {selectedPage?.type === "icons" ? (
               <Card>
                 <CardHeader>
                   <div className="flex items-center gap-2">
@@ -811,7 +538,7 @@ export function Dashboard() {
               </Card>
             ) : (
             <div className="w-full space-y-6 mt-6">
-                {fileName === "actions_by_component.csv" ? (
+                {selectedPage?.type === "components" ? (
                       <div className="grid grid-cols-3 gap-6">
                         {/* Left side - 2/3 width */}
                         <div className="col-span-2 space-y-6">
@@ -1213,7 +940,7 @@ export function Dashboard() {
             </>
           )}
 
-          {selectedFile === "branches" && (
+          {selectedPage?.type === "branches" && (
             <div className="w-full space-y-6 mt-6">
               <BranchesTable />
             </div>

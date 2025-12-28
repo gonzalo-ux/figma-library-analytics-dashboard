@@ -13,66 +13,99 @@ export function GenerateCSVButton() {
 
     try {
       const config = loadConfigSync()
-      const { accessToken, libraryUrl } = config?.figma || {}
+      const { accessToken, libraries } = config?.figma || {}
 
       console.log('Config loaded:', { 
         hasAccessToken: !!accessToken, 
-        libraryUrl: libraryUrl,
-        libraryUrlType: typeof libraryUrl 
+        librariesCount: libraries?.length || 0
       })
 
-      if (!accessToken || !libraryUrl) {
+      if (!accessToken) {
         setResult({
           success: false,
-          message: 'Figma credentials not configured. Please complete setup or add credentials in Edit Mode.'
+          message: 'Figma access token not configured. Please complete setup or add credentials in Edit Mode.'
         })
         setIsGenerating(false)
         return
       }
 
-      // Ensure libraryUrl is a string
-      const urlToSend = String(libraryUrl).trim()
-      console.log('Sending request with URL:', urlToSend)
-
-      const response = await fetch('/api/generate-csv', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          token: accessToken,
-          libraryUrl: urlToSend
+      if (!libraries || libraries.length === 0) {
+        setResult({
+          success: false,
+          message: 'No libraries configured. Please add at least one library in setup.'
         })
-      })
+        setIsGenerating(false)
+        return
+      }
 
-      const data = await response.json()
+      // Generate CSV files for all libraries
+      const results = []
+      let hasErrors = false
 
-      if (response.ok) {
+      for (const library of libraries) {
+        try {
+          const urlToSend = String(library.url).trim()
+          console.log(`Generating CSV for library: ${library.name} (${urlToSend})`)
+
+          const response = await fetch('/api/generate-csv', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              token: accessToken,
+              libraryUrl: urlToSend,
+              libraryName: library.name,
+              libraryId: library.id
+            })
+          })
+
+          const data = await response.json()
+
+          if (response.ok) {
+            results.push({
+              library: library.name,
+              success: true,
+              files: data.files?.length || 0
+            })
+          } else {
+            hasErrors = true
+            results.push({
+              library: library.name,
+              success: false,
+              error: data.error || 'Unknown error'
+            })
+          }
+        } catch (error) {
+          hasErrors = true
+          results.push({
+            library: library.name,
+            success: false,
+            error: error.message
+          })
+        }
+      }
+
+      // Build result message
+      const successCount = results.filter(r => r.success).length
+      const totalCount = results.length
+      
+      if (hasErrors) {
+        const failedLibraries = results.filter(r => !r.success).map(r => r.library).join(', ')
+        setResult({
+          success: false,
+          message: `Generated CSV files for ${successCount}/${totalCount} libraries. Failed: ${failedLibraries}. Check console for details.`
+        })
+      } else {
         setResult({
           success: true,
-          message: `Successfully generated ${data.files?.length || 0} CSV files. Refresh the page to see updated data.`
+          message: `Successfully generated CSV files for all ${totalCount} libraries. Refresh the page to see updated data.`
         })
         // Clear result after 5 seconds
         setTimeout(() => setResult(null), 5000)
-      } else {
-        // Show detailed error message from server
-        let errorMsg = data.error || 'Failed to generate CSV files. Make sure the backend server is running and Python API is configured.'
-        
-        // Add more context for common errors
-        if (errorMsg.includes('Python API not found')) {
-          errorMsg += '\n\nPlease clone the figma-analytics-api repository or set PYTHON_API_PATH environment variable.'
-        } else if (errorMsg.includes('Python process')) {
-          errorMsg += '\n\nCheck the server console for Python error details.'
-        } else if (errorMsg.includes('No CSV files were generated')) {
-          errorMsg += '\n\nCheck the server console for Python script output.'
-        }
-        
-        setResult({
-          success: false,
-          message: errorMsg
-        })
-        console.error('CSV generation error:', data)
       }
+
+      console.log('Generation results:', results)
     } catch (error) {
       setResult({
         success: false,
