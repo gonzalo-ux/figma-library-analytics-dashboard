@@ -29,7 +29,8 @@
       "topDetachments": "Top 10 Components by Detachments",
       "componentsList": "List of Components and Variants",
       "teamInstances": "Team Instances Distribution",
-      "changelog": "Changelog"
+      "changelog": "Changelog",
+      "publicationActivity": "Publication Activity"
     },
     "descriptions": {
       "totalInsertions": "Total insertions by component sets over time (excluding icons)",
@@ -37,7 +38,8 @@
       "topDetachments": "Components with the most detachments in the last {days} days (excluding icons)",
       "componentsList": "View and explore your data in tabular format (sorted by insertions, excluding icons)",
       "teamInstances": "Distribution of component instances across teams (top 10 teams shown, rest grouped as Other)",
-      "changelog": "Component library version history and updates"
+      "changelog": "Component library version history and updates",
+      "publicationActivity": "Library publication history over the last year"
     }
   }
 }

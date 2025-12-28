@@ -10,6 +10,7 @@ A modern, configurable web application for visualizing Figma library analytics w
 - 📁 **CSV Data Visualization**: Visualize component usage, insertions, detachments, and more
 - 🌿 **Branches Management**: View and manage Figma library branches (Active, Archived, Merged)
 - 📝 **Flexible Changelog**: Support for Figma Library, Google Docs, or Notion as changelog sources
+- 📅 **Publication Calendar**: GitHub-style contribution calendar showing library publication activity over the last year
 - 🔧 **Python API Integration**: Automatic CSV generation from Figma library data
 - 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
 
@@ -128,6 +129,27 @@ The dashboard supports multiple changelog sources:
 - **Notion**: Configure with database ID and integration token
 
 Configure changelog source in Edit Mode.
+
+### Publication Activity Calendar
+
+View your library's publication history in a GitHub-style contribution calendar:
+
+1. **Fetch version history** from Figma:
+   ```bash
+   cd python-api
+   python fetch_versions.py \
+     --token YOUR_FIGMA_TOKEN \
+     --file-key YOUR_FILE_KEY \
+     --output ../public/csv/version_history.json
+   ```
+
+2. The calendar automatically displays:
+   - Last 365 days of publication activity
+   - Color intensity based on publications per day
+   - Interactive tooltips with dates and counts
+   - Monthly labels for easy navigation
+
+For detailed instructions, see [docs/PUBLICATION_CALENDAR.md](docs/PUBLICATION_CALENDAR.md).
 
 ## Configuration
 
