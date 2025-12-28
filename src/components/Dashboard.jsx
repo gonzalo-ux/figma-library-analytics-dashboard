@@ -13,6 +13,7 @@ import { FileUsagesTable } from "./FileUsagesTable"
 import { ChangelogTable } from "./ChangelogTable"
 import { TeamsPieChart } from "./TeamsPieChart"
 import { BranchesTable } from "./BranchesTable"
+import { PublicationCalendar } from "./PublicationCalendar"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
 import { Slider } from "./ui/slider"
 import { Header } from "./Header"
@@ -46,6 +47,7 @@ export function Dashboard() {
   const [teamInsertionsData, setTeamInsertionsData] = useState(null)
   const [variableInsertionsData, setVariableInsertionsData] = useState(null)
   const [stylesData, setStylesData] = useState(null)
+  const [versionHistoryData, setVersionHistoryData] = useState(null)
   const [fileName, setFileName] = useState("")
   const [selectedFile, setSelectedFile] = useState("")
   const [error, setError] = useState("")
@@ -516,6 +518,23 @@ export function Dashboard() {
     }
   }, [selectedFile, handleFileSelect])
 
+  // Load version history data
+  useEffect(() => {
+    const loadVersionHistory = async () => {
+      try {
+        const response = await fetch('/csv/version_history.json')
+        if (response.ok) {
+          const data = await response.json()
+          setVersionHistoryData(data)
+        }
+      } catch (error) {
+        console.error('Failed to load version history:', error)
+      }
+    }
+    
+    loadVersionHistory()
+  }, [])
+
   // Calculate max insertions for icons to set slider max
   const maxInsertions = React.useMemo(() => {
     if (!data || data.length === 0) return 0
@@ -881,6 +900,27 @@ export function Dashboard() {
                             />
                           </div>
 
+                          {/* Publication Calendar */}
+                          <div className="space-y-2">
+                            <div>
+                              <EditableText
+                                value={config?.content?.titles?.publicationActivity || "Publication Activity"}
+                                onChange={(value) => updatePreference('content.titles.publicationActivity', value)}
+                                as="h2"
+                                className="text-2xl font-semibold"
+                              />
+                              <EditableText
+                                value={config?.content?.descriptions?.publicationActivity || "Library publication history over the last year"}
+                                onChange={(value) => updatePreference('content.descriptions.publicationActivity', value)}
+                                as="p"
+                                className="text-sm text-muted-foreground mt-1"
+                              />
+                            </div>
+                            <PublicationCalendar 
+                              versionData={versionHistoryData}
+                            />
+                          </div>
+
                           <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
                               <div>
@@ -1051,6 +1091,7 @@ export function Dashboard() {
 
                         {/* Right side - 1/3 width */}
                         <div className="col-span-1">
+                          {/* Changelog */}
                           <div className="space-y-2">
                             <div>
                               <EditableText

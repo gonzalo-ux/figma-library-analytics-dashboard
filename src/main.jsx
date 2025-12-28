@@ -29,27 +29,87 @@ try {
     ? localStorage.getItem('appPreferences')
     : null
   
-  let themePreset = 'blue'
+  let themeConfig = { baseColor: 'neutral', theme: 'blue' }
   
   if (localStoragePrefs) {
     try {
       const prefs = JSON.parse(localStoragePrefs)
-      themePreset = prefs?.theme?.preset || 'blue'
+      // Support new structure
+      if (prefs?.theme?.baseColor || prefs?.theme?.theme !== undefined) {
+        themeConfig = {
+          baseColor: prefs.theme.baseColor || 'neutral',
+          theme: prefs.theme.theme || null
+        }
+      } else if (prefs?.theme?.preset) {
+        // Backward compatibility: convert old preset to new structure
+        const preset = prefs.theme.preset
+        if (preset === 'stone') {
+          themeConfig = { baseColor: 'stone', theme: null }
+        } else if (preset === 'slate') {
+          themeConfig = { baseColor: 'slate', theme: null }
+        } else if (preset === 'zinc') {
+          themeConfig = { baseColor: 'zinc', theme: null }
+        } else if (preset === 'gray') {
+          themeConfig = { baseColor: 'gray', theme: null }
+        } else if (preset === 'blue') {
+          themeConfig = { baseColor: 'neutral', theme: 'blue' }
+        } else if (preset === 'green') {
+          themeConfig = { baseColor: 'neutral', theme: 'green' }
+        } else if (preset === 'orange') {
+          themeConfig = { baseColor: 'neutral', theme: 'orange' }
+        } else {
+          themeConfig = { baseColor: 'neutral', theme: null }
+        }
+      }
     } catch (e) {
       // If parsing fails, try config.json
       const config = loadConfigSync()
-      themePreset = config?.theme?.preset || 'blue'
+      if (config?.theme?.baseColor || config?.theme?.theme !== undefined) {
+        themeConfig = {
+          baseColor: config.theme.baseColor || 'neutral',
+          theme: config.theme.theme || null
+        }
+      } else if (config?.theme?.preset) {
+        const preset = config.theme.preset
+        if (preset === 'stone') {
+          themeConfig = { baseColor: 'stone', theme: null }
+        } else if (preset === 'slate') {
+          themeConfig = { baseColor: 'slate', theme: null }
+        } else if (preset === 'zinc') {
+          themeConfig = { baseColor: 'zinc', theme: null }
+        } else if (preset === 'gray') {
+          themeConfig = { baseColor: 'gray', theme: null }
+        } else if (preset === 'blue') {
+          themeConfig = { baseColor: 'neutral', theme: 'blue' }
+        } else if (preset === 'green') {
+          themeConfig = { baseColor: 'neutral', theme: 'green' }
+        }
+      }
     }
   } else {
     // Fallback to config.json
     const config = loadConfigSync()
-    themePreset = config?.theme?.preset || 'blue'
+    if (config?.theme?.baseColor || config?.theme?.theme !== undefined) {
+      themeConfig = {
+        baseColor: config.theme.baseColor || 'neutral',
+        theme: config.theme.theme || null
+      }
+    } else if (config?.theme?.preset) {
+      const preset = config.theme.preset
+      if (preset === 'stone') {
+        themeConfig = { baseColor: 'stone', theme: null }
+      } else if (preset === 'blue') {
+        themeConfig = { baseColor: 'neutral', theme: 'blue' }
+      } else if (preset === 'green') {
+        themeConfig = { baseColor: 'neutral', theme: 'green' }
+      }
+    }
   }
   
-  loadTheme(themePreset)
+  loadTheme(themeConfig)
 } catch (error) {
-  // Fallback to blue theme on error
-  loadTheme('blue')
+  // Fallback to neutral base with blue theme on error
+  loadTheme({ baseColor: 'neutral', theme: 'blue' })
 }
 
 createRoot(document.getElementById('root')).render(

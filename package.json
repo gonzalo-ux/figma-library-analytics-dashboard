@@ -11,6 +11,7 @@
     "sync-changelog": "node scripts/sync-changelog.js",
     "sync-branches": "node scripts/sync-branches.js",
     "discover-rows": "node scripts/discover-row-ids.js",
+    "fetch-versions": "cd python-api && python fetch_versions.py",
     "server": "cd server && npm start",
     "server:dev": "cd server && npm run dev"
   },

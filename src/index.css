@@ -1,7 +1,11 @@
-@import './themes/neutral.css';
-@import './themes/stone.css';
+@import './themes/base-color/neutral.css';
+@import './themes/base-color/stone.css';
+@import './themes/base-color/slate.css';
+@import './themes/base-color/zinc.css';
+@import './themes/base-color/gray.css';
 @import './themes/blue.css';
 @import './themes/green.css';
+@import './themes/orange.css';
 
 @tailwind base;
 @tailwind components;

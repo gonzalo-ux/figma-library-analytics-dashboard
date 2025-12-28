@@ -1,0 +1,52 @@
+/* Orange Theme - Orange accent theme */
+:root {
+  --color-orange-50: oklch(0.98 0.02 66.29);
+  --color-orange-100: oklch(0.96 0.04 66.29);
+  --color-orange-300: oklch(0.84 0.13 66.29);
+  --color-orange-400: oklch(0.76 0.18 55.93);
+  --color-orange-500: oklch(0.71 0.21 47.60);
+  --color-orange-600: oklch(0.65 0.22 41.12);
+  --color-orange-700: oklch(0.55 0.20 38.40);
+  --color-orange-800: oklch(0.47 0.16 37.30);
+  --color-orange-900: oklch(0.40 0.13 36.50);
+  --color-orange-950: oklch(0.30 0.10 35.00);
+}
+html.theme-orange,
+:root.theme-orange {
+  --primary: oklch(0.646 0.222 41.116);
+  --primary-foreground: oklch(0.98 0.016 73.684);
+  --ring: oklch(0.75 0.183 55.934);
+  --chart-1: oklch(0.837 0.128 66.29);
+  --chart-2: oklch(0.705 0.213 47.604);
+  --chart-3: oklch(0.646 0.222 41.116);
+  --chart-4: oklch(0.553 0.195 38.402);
+  --chart-5: oklch(0.47 0.157 37.304);
+  --chart-themed-1: var(--color-orange-50);
+  --chart-themed-2: var(--color-orange-100);
+  --chart-themed-3: var(--color-orange-300);
+  --chart-themed-4: var(--color-orange-400);
+  --chart-themed-5: var(--color-orange-500);
+  --chart-themed-6: var(--color-orange-600);
+  --chart-themed-7: var(--color-orange-700);
+  --chart-themed-8: var(--color-orange-800);
+  --chart-themed-9: var(--color-orange-900);
+  --chart-themed-10: var(--color-orange-950);
+  --sidebar-primary: oklch(0.646 0.222 41.116);
+  --sidebar-primary-foreground: oklch(0.98 0.016 73.684);
+}
+
+html.dark.theme-orange,
+:root.dark.theme-orange {
+  --primary: oklch(0.705 0.213 47.604);
+  --primary-foreground: oklch(0.98 0.016 73.684);
+  --ring: oklch(0.408 0.123 38.172);
+  --chart-1: oklch(0.837 0.128 66.29);
+  --chart-2: oklch(0.705 0.213 47.604);
+  --chart-3: oklch(0.646 0.222 41.116);
+  --chart-4: oklch(0.553 0.195 38.402);
+  --chart-5: oklch(0.47 0.157 37.304);
+  --sidebar-primary: oklch(0.705 0.213 47.604);
+  --sidebar-primary-foreground: oklch(0.98 0.016 73.684);
+  --sidebar-ring: oklch(0.408 0.123 38.172);
+}
+  
