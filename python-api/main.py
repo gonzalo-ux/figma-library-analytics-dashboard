@@ -693,7 +693,10 @@ def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_k
     """Generate all CSV files from Figma analytics data"""
     
     # Ensure output directory exists
+    print(f"\n📁 Output directory: {output_dir}")
+    print(f"📁 Output directory (absolute): {os.path.abspath(output_dir)}")
     os.makedirs(output_dir, exist_ok=True)
+    print(f"✅ Output directory created/verified: {os.path.exists(output_dir)}")
     
     print("\n📊 Generating CSV files from Figma Library Analytics API...")
     print("=" * 60)
@@ -767,15 +770,21 @@ def main():
     parser.add_argument('--token', required=True, help='Figma access token')
     parser.add_argument('--file-key', required=True, help='Figma file key')
     parser.add_argument('--output-dir', required=True, help='Output directory for CSV files')
+    parser.add_argument('--library-name', default='', help='Library name for folder organization')
     
     args = parser.parse_args()
+    
+    # Resolve output directory to absolute path to avoid path resolution issues
+    output_dir = os.path.abspath(args.output_dir)
+    print(f"📁 Received output directory: {args.output_dir}")
+    print(f"📁 Resolved to absolute path: {output_dir}")
     
     try:
         # Fetch data from Figma
         data = fetch_figma_data(args.token, args.file_key)
         
-        # Generate CSV files
-        generate_csv_files(data, args.output_dir, args.token, args.file_key)
+        # Generate CSV files (output_dir already includes library folder from server)
+        generate_csv_files(data, output_dir, args.token, args.file_key)
         
         print("\n✅ CSV generation completed successfully!")
         sys.exit(0)

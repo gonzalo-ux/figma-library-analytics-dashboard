@@ -27,7 +27,7 @@ import { AdminSidebar } from "./AdminSidebar"
 import { useAdminMode } from "./AdminModeProvider"
 import { loadConfigSync } from "../lib/config"
 import { DateRangePicker } from "./DateRangePicker"
-import { getConfiguredPages, filterDataForPage } from "../lib/dataFilter"
+import { getConfiguredPages, filterDataForPage, getLibraryForPage } from "../lib/dataFilter"
 
 export function Dashboard() {
   const { preferences, updatePreference, isEditMode } = useEditMode()
@@ -80,6 +80,30 @@ export function Dashboard() {
     setDateRange({ startDate, endDate })
   }
 
+  // Helper function to get CSV path with library folder
+  const getCsvPath = useCallback((fileName, pageId) => {
+    if (!pageId || !config) {
+      return `/csv/${fileName}`
+    }
+    
+    const library = getLibraryForPage(config, pageId)
+    if (!library || !library.name) {
+      return `/csv/${fileName}`
+    }
+    
+    // Sanitize library name to match server-side sanitization
+    const sanitizeLibraryName = (name) => {
+      if (!name || typeof name !== 'string') {
+        return 'default'
+      }
+      // Replace invalid filesystem characters with underscores
+      return name.replace(/[^a-zA-Z0-9_-]/g, '_').trim() || 'default'
+    }
+    
+    const libraryFolder = sanitizeLibraryName(library.name)
+    return `/csv/${libraryFolder}/${fileName}`
+  }, [config])
+
   const handlePageSelect = useCallback(async (pageId) => {
     setLoading(true)
     setError("")
@@ -127,7 +151,8 @@ export function Dashboard() {
     }
 
     try {
-      const response = await fetch(`/csv/${csvFileName}`)
+      const csvPath = getCsvPath(csvFileName, pageId)
+      const response = await fetch(csvPath)
       if (!response.ok) {
         throw new Error(`Failed to load file: ${response.statusText}`)
       }
@@ -152,7 +177,8 @@ export function Dashboard() {
           if (page.type === 'components') {
             try {
               // Load usages_by_component.csv
-              const usagesResponse = await fetch(`/csv/usages_by_component.csv`)
+              const usagesPath = getCsvPath('usages_by_component.csv', pageId)
+              const usagesResponse = await fetch(usagesPath)
               if (usagesResponse.ok) {
                 const usagesText = await usagesResponse.text()
                 Papa.parse(usagesText, {
@@ -164,7 +190,8 @@ export function Dashboard() {
                       
                       // Load usages_by_file.csv
                       try {
-                        const fileResponse = await fetch(`/csv/usages_by_file.csv`)
+                        const filePath = getCsvPath('usages_by_file.csv', pageId)
+                        const fileResponse = await fetch(filePath)
                         if (fileResponse.ok) {
                           const fileText = await fileResponse.text()
                           Papa.parse(fileText, {
@@ -177,7 +204,8 @@ export function Dashboard() {
                               
                               // Load actions_by_team.csv
                               try {
-                                const teamResponse = await fetch(`/csv/actions_by_team.csv`)
+                                const teamPath = getCsvPath('actions_by_team.csv', pageId)
+                                const teamResponse = await fetch(teamPath)
                                 if (teamResponse.ok) {
                                   const teamText = await teamResponse.text()
                                   Papa.parse(teamText, {
@@ -231,7 +259,7 @@ export function Dashboard() {
       setError("Error loading file: " + error.message)
       setLoading(false)
     }
-  }, [configuredPages, config])
+  }, [configuredPages, config, getCsvPath])
   // Load first page by default
   useEffect(() => {
     if (!selectedPageId && configuredPages.length > 0) {
@@ -243,6 +271,7 @@ export function Dashboard() {
   useEffect(() => {
     const loadVersionHistory = async () => {
       try {
+        // version_history.json is stored at the root csv folder (not library-specific)
         const response = await fetch('/csv/version_history.json')
         if (response.ok) {
           const data = await response.json()

@@ -1,0 +1,1088 @@
+component_name,component_set_name,file_name,instances
+"Type=Standard, Sale=False, From (price)=False",Product Card | Catalogue (App),Unknown File,0
+Sponsored indicator,,Unknown File,0
+Type=Plus Premium delivery,Fulfillment flag,Unknown File,0
+"Sale=False, From (price)=False, Breakpoint=1280+",🚧 [deprecated] Product price,Unknown File,0
+"Sale=False, From (price)=False, Breakpoint=375 - 479",🚧 [deprecated] Product price,Unknown File,0
+"Type=Standard, Breakpoints=1280+, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Breakpoints=375 - 479, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Size=375 - 479, Header=Yes",Carousel ,Unknown File,0
+"Type=Standard, Breakpoints=375 - 479, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Sale=True, From (price)=False",Product Card | Catalogue (App),Unknown File,0
+"Sale=True, From (price)=True, Breakpoint=375 - 479",🚧 [deprecated] Product price,Unknown File,0
+Type=Default,Flag,Unknown File,0
+"Type=Standard, Colour=Default, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+Type=Long distance item,Fulfillment flag,Unknown File,0
+Type=Liked - Standard,Product Card | Wardrobe (App),Unknown File,0
+"Platform=App & mWeb, Type=1 - Free Delivery + Returns",USPs,Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Single Size=False, State=Selected",Size Picker - Entry Point,Unknown File,0
+"Type=Standard, Colour=Black, Sale=True, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Platform=iOS, Type=Many images",.Image Gallery (deprecated),Unknown File,0
+"Platform=App & mWeb, Type=3 - Sell it back",USPs,Unknown File,0
+Category=Default,Detail - Box,Unknown File,0
+"Platform=App & mWeb, Ratings=True, Reviews=True, Insightful=False, Pills=False",Reviews/Read/Entry Point,Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+Type=AFC with item,Outfit Cards (App),Unknown File,0
+"Type=Standard, Breakpoints=375 - 479, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Type=Outfit, Size=375 - 479, Header=Yes",Carousel ,Unknown File,0
+"Type=Standard, Sale=False, From (price)=True",Product Card | Catalogue (App),Unknown File,0
+"Type=Standard, Breakpoint=1280+",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Platform=iOS, Rows=One",(DEPRECATED) Colour Picker [MIN 2 Thumbnails],Unknown File,0
+"Platform=App & mWeb, Beauty=False, Sale=False, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Type=Fashion, Sale=False, Flags=False, Delivery Type=Plus",Product Card Email,Unknown File,0
+"Platform=App & mWeb, Type=2 - Returns",USPs,Unknown File,0
+"Platform=App, Description=00, Header=No",Detail - List,Unknown File,0
+"Single Size=False, State=Default",Size Picker - Entry Point,Unknown File,0
+"Platform=Desktop, Type=1 - Free Delivery + Returns",USPs,Unknown File,0
+"Platform=Desktop, Type=2 - Returns",USPs,Unknown File,0
+"Platform=Desktop, Type=3 - Sell it back",USPs,Unknown File,0
+"Type=Fashion, Sale=False, Flags=False, Delivery Type=None",Product Card Email,Unknown File,0
+PDP Accordion / Details,,Unknown File,0
+"Platform=App & mWeb, Rating=High",Reviews/Read/Overview,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Platform=Desktop, Rows=One",(DEPRECATED) Colour Picker [MIN 2 Thumbnails],Unknown File,0
+"Type=Standard, Sale=False, Not available=False",Product Card | Cart,Unknown File,0
+"Type=Default, Sale=Yes, Plus Flag=No",Product Card | Horizontal (Outfits),Unknown File,0
+"Type=Beauty, Sale=False, From (price)=False",Product Card | Catalogue (App),Unknown File,0
+"Type=Standard, Colour=White, Sale=True, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Standard, Breakpoints=1024 - 1279, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Platform=App & mWeb, Sold & shipped=Zalando",Partner information,Unknown File,0
+"Type=Standard, Colour=Black, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+Opened=False,PDP Accordion Base,Unknown File,0
+"Type=Standard, Sale=True, Not available=False",Product Card | Cart,Unknown File,0
+"Platform=Desktop, Type=Many images",.Image Gallery (deprecated),Unknown File,0
+"Type=Standard, Size=1280+, Header=Yes",Carousel ,Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Breakpoints=375 - 479, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+Type=Liked - Beauty,Product Card | Wardrobe (App),Unknown File,0
+"Platform=Apps, Single colour=False",Colour Picker [Thumbnails],Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Platform=App & mWeb, Beauty=False, Sale=True, Price drop=True",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Platform=Desktop, Ratings=True, Reviews=True, Insightful=False, Pills=False",Reviews/Read/Entry Point,Unknown File,0
+Options=False,Newsletter banner (mWeb),Unknown File,0
+"Type=Beauty, Breakpoints=1280+, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Platform=mWeb & Apps,DSA Report a legal concern,Unknown File,0
+Platform=App & mWeb,"Brand + item name, pricing",Unknown File,0
+Platform=App & mWeb,"Brand + item name, pricing",Unknown File,0
+"Sale=False, From (price)=False, Breakpoint=480 - 767",🚧 [deprecated] Product price,Unknown File,0
+Type=Default,Flag,Unknown File,0
+"Type=Standard, Delivery=None, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Platform=App, Real Data?=Yes",Detail - Tile,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Viewport=App/mWeb,Early Access header,Unknown File,0
+"Type=Standard, Colour=White, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+Property 1=Review available,Ratings summary,Unknown File,0
+"Type=Standard, Sale=True, From (price)=True",Product Card | Catalogue (App),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Platform=App & mWeb,"Brand + item name, pricing",Unknown File,0
+PDP Accordion / Material & care,,Unknown File,0
+"Breakpoint=Mobile, Icon=True, Info Button=True, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Platform=Apps, Follows Brand=false",Follow Brand,Unknown File,0
+"Platform=App & mWeb, Returned=False, Size Flag=False, Size Reco=False",Repurchase messaging,Unknown File,0
+"Platform=App, # Items=03, View All=No",Tile,Unknown File,0
+"Platform=mWeb & apps, Status=Fashion - In stock",Size + Primary CTA + Wishlist,Unknown File,0
+"Sale=True, From (price)=False, Breakpoint=375 - 479",🚧 [deprecated] Product price,Unknown File,0
+"Type=Beauty, Breakpoints=375 - 479, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Colour=Black, Sale=True, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+Viewport=mWeb/App,EA PDP Storytelling,Unknown File,0
+Membership linked=false,Nike Exclusives,Unknown File,0
+"Platform=Desktop, Beauty=False, Sale=False, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Type=Default, Sale=Yes, Plus Flag=Yes",Product Card | Horizontal (Outfits),Unknown File,0
+"Type=Default, Breakpoint=1280+",Outfit Cards (Web),Unknown File,0
+"Type=Standard, Breakpoints=1280+, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Device=MobileWeb/Apps, Images=Yes, Illustration=No",CCC Tiles (NCR),Unknown File,0
+Type=Pre-invite,Hyped Articles Message,Unknown File,0
+Type=Mastercard,Payment Logo - square,Unknown File,0
+"Sale=True, From (price)=False, Breakpoint=1280+",🚧 [deprecated] Product price,Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Type=Visa,Payment Logo,Unknown File,0
+Type=Branded,Outfit Cards (App),Unknown File,0
+Message=Size recommendation,Size Advice,Unknown File,0
+Type=American Express,Payment Logo,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Platform=Web, Description=00, Header=No",Detail - List,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Sale=True, From (price)=False, Breakpoint=480 - 767",🚧 [deprecated] Product price,Unknown File,0
+"Type=AFC with item, Breakpoint=375-479",Outfit Cards (Web),Unknown File,0
+Options=False,Newsletter banner (mWeb),Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Standard, Colour=Black, Sale=False, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Standard, Breakpoint=375 - 479",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+Claim Type=Product,Sustainability Pills,Unknown File,0
+"Platform=Desktop, Beauty=False, Sale=True, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+Type=PayPal,Payment Logo,Unknown File,0
+"Sale=False, From (price)=True, Breakpoint=375 - 479",🚧 [deprecated] Product price,Unknown File,0
+"Type=Beauty, Breakpoints=1280+, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+PDP Accordion / Size & fit,,Unknown File,0
+"Platform=App, Description=01, Header=Yes",Detail - List,Unknown File,0
+"Platform=App, Description=01, Header=No",Detail - List,Unknown File,0
+"Platform=App & mWeb, Beauty=False, Sale=True, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+Type=Owned - Standard,Product Card | Wardrobe (App),Unknown File,0
+"Type=Beauty, Colour=Default, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Single Size=True, State=Default",Size Picker - Entry Point,Unknown File,0
+Type=Owned - Beauty,Product Card | Wardrobe (App),Unknown File,0
+"Type=Outfit, Size=1280+, Header=Yes",Carousel ,Unknown File,0
+"Device=App/Mobile, Carousel=Yes",Collection Card,Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Beauty, Sale=False, Not available=False",Product Card | Cart,Unknown File,0
+"Type=Standard, Breakpoints=768 - 1023, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Sale=False, From (price)=False, Breakpoint=1024 - 1279",🚧 [deprecated] Product price,Unknown File,0
+"Type=Beauty, Breakpoints=375 - 479, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=1280+, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+Type=Invoice,Payment Logo,Unknown File,0
+"Type=Standard, Delivery=Plus Premium, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=True, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Type=Pre-owned, Sale=False, From (price)=False",Product Card | Catalogue (App),Unknown File,0
+Type=Diners Club,Payment Logo,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+Type=Discover,Payment Logo,Unknown File,0
+"Type=Pre-owned, Colour=White, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Breakpoint=768 - 1023",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Sale, Platform=App & mWeb",🚧 [DEPRACATED] .Pricing,Unknown File,0
+"Platform=Mobile web, Type=Many images",.Image Gallery (deprecated),Unknown File,0
+"Device=App/Mobile, Label Color=Yes",Filtered View Card,Unknown File,0
+Type=Trade-in - Bought,Product Card | Wardrobe (App),Unknown File,0
+"Device=640, Inverted=Yes, Products=No, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+"Type=Standard, Device=IOS, Sale=False, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+Wardrobe | Title (App + mWeb),,Unknown File,0
+"State=Selected, Type=Price, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Type=Beauty, Size=375 - 479, Header=Yes",Carousel ,Unknown File,0
+"Type=Standard, Breakpoints=1024 - 1279, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+Type=Bank Transfer,Payment Logo,Unknown File,0
+"Device=Big Desktop, Carousel=Yes",Collection Card,Unknown File,0
+"Breakpoint=320 - 479, Type=Standard",Product Card | Cart Web,Unknown File,0
+Type=Eligible,Order Confirmation,Unknown File,0
+"Type=Beauty, Delivery=Plus Premium, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Beauty, Colour=White, Sale=True, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Eligible, Breakpoint=1280+",Product Card | Trade-in (Web),Unknown File,0
+"Type=Fashion - Bought on Zalando, Breakpoint=1280+",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Type=Beauty, Colour=White, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Beauty, Sale=False, Flags=False, Delivery Type=None",Product Card Email,Unknown File,0
+"Type=Beauty, Colour=Black, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=False, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Beauty, Sale=True, From (price)=False",Product Card | Catalogue (App),Unknown File,0
+Property 1=Liked items card,Wardrobe | Overview Cards (App),Unknown File,0
+Type=Apple Pay,Payment Logo,Unknown File,0
+"Type=AFC with item, Breakpoint=1280+",Outfit Cards (Web),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Standard, Size=375 - 479, Header=No",Carousel ,Unknown File,0
+"Type=Beauty, Colour=White, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Platform=Desktop, Type=Few images",.Image Gallery (deprecated),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Platform=App & mWeb, Ratings=False, Reviews=False, Insightful=False, Pills=False",Reviews/Read/Entry Point,Unknown File,0
+"Type=Pre-owned, Breakpoints=375 - 479, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Breakpoint=Desktop, Insightful=False, Text review=True",Reviews/Read/Written Reviews,Unknown File,0
+"Breakpoint=375-478, Type=Standard",Product Card Order Details Webview,Unknown File,0
+"Platform= App & mWeb, Type=Default",🚧 [DEPRACATED] .Pricing,Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=375 - 479, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Default, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Pre-owned, Delivery=None, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Standard, Breakpoints=1280+, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Type=Default, Status=Unchecked",Product card | Returns,Unknown File,0
+"Type=Beauty, Colour=White, Sale=False, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Beauty, Colour=Black, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Breakpoints=1280+, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Proposition=Fashion,PDP - Full page,Unknown File,0
+"Type=Beauty, Breakpoints=375 - 479, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+Type=Klarna,Payment Logo - square,Unknown File,0
+"Platform=App & mWeb, Sold & shipped=Connected retail",Partner information,Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=1280+, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+Type=SEPA,Payment Logo,Unknown File,0
+"Type=Standard, State=Default, Sale=False, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Type=Bancontact,Payment Logo,Unknown File,0
+"Breakpoint=769+, Type=Standard",Product Card | Cart Web,Unknown File,0
+"Breakpoint=320 - 479, Type=Beauty",Product Card | Cart Web,Unknown File,0
+"Sale=True, From (price)=True, Breakpoint=1280+",🚧 [deprecated] Product price,Unknown File,0
+"Device=MobileWeb/Apps, Images=No, Illustration=No",CCC Tiles (NCR),Unknown File,0
+Type=Standard,Address tile,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Platform=Desktop, Single colour=False",Colour Picker [Thumbnails],Unknown File,0
+"Type=Outfit, Size=375 - 479, Header=No",Carousel ,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Property 1=Owned items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Sale, Platform=Desktop",🚧 [DEPRACATED] .Pricing,Unknown File,0
+"Platform=Android, Type=Many images",.Image Gallery (deprecated),Unknown File,0
+"Type=Default, Sale=No, Plus Flag=No",Product Card | Horizontal (Outfits),Unknown File,0
+"Type=Beauty, Breakpoints=1280+, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+Size=Small,Plus Logo,Unknown File,0
+"Type=Beauty, Breakpoint=375 - 479",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Platform=Apps, Single colour=True",Colour Picker [Thumbnails],Unknown File,0
+"Breakpoint=Mobile, Paragraph=False, Link=False, Image=True",Sales Banner (Email),Unknown File,0
+Type=Cartes Bancaires,Payment Logo,Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=Off, Pay extra=Off, CC logo=1",Radio button (Payments),Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+Category=Bar,Detail - Box,Unknown File,0
+"Platform=Web, Description=01, Header=Yes",Detail - List,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Platform=Desktop, Rating=High",Reviews/Read/Overview,Unknown File,0
+"Platform=App & mWeb, Beauty=True, Sale=False, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Type=Beauty, Breakpoint=1280+",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Standard, Breakpoint=1024 - 1279",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=1280+, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Breakpoint=1280+, Property 2=Bought by user",Product Card | Wardrobe (Web) - Trade-in,Unknown File,0
+"Type=Beauty, Breakpoint=768 - 1023",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Standard, Breakpoints=480 - 767, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Breakpoint=480 - 767",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Beauty, Breakpoint=1024 - 1279",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+Opened=true,PDP Accordion Base,Unknown File,0
+"Type=Fashion, Sale=False, Flags=True, Delivery Type=None",Product Card Email,Unknown File,0
+"Type=Beauty, State=Default, Sale=False, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Type=Fashion - Bought on Zalando, Breakpoint=375 - 479",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+CPC,,Unknown File,0
+"Type=Default, Platform=Desktop",🚧 [DEPRACATED] .Pricing,Unknown File,0
+Property 1=Trade-in items card,Wardrobe | Overview Cards (App),Unknown File,0
+Type=Liked - Pre-owned,Product Card | Wardrobe (App),Unknown File,0
+Radio button expanded (Payments),,Unknown File,0
+"Device=App, Inverted=Yes, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Premise=Catalogue, Sold out=Off",Product Card Vertical,Unknown File,0
+"Platform=App, Description=02, Header=No",Detail - List,Unknown File,0
+"Device=640, Description=Yes, CTA=Yes",Collection Card (Email),Unknown File,0
+Price Style=Default Current Price,,Unknown File,0
+"Single Size=False, State=Open",Size Picker - Entry Point,Unknown File,0
+"Type=Beauty - Bought on Zalando, Breakpoint=768 - 1023",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+Price Style=Sale,,Unknown File,0
+"Type=Beauty, Delivery=Long distance, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Beauty, Breakpoint=480 - 767",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Branded, Breakpoint=1280+",Outfit Cards (Web),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Standard, Size=1280+, Header=No",Carousel ,Unknown File,0
+"Type=Beauty, Breakpoints=1024 - 1279, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Property 1=Owned items card - Empty,Wardrobe | Overview Cards (App),Unknown File,0
+"Breakpoint=Mobile, Insightful=False, Text review=True",Reviews/Read/Written Reviews,Unknown File,0
+"Breakpoint=769+, Type=Beauty",Product Card | Cart Web,Unknown File,0
+Property 1=Liked items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Platform=Web, Description=01, Header=No",Detail - List,Unknown File,0
+"Type=Eligible, Breakpoint=375 - 479",Product Card | Trade-in (Web),Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+Wardrobe | Title (Desktop web),,Unknown File,0
+"Breakpoint=Mobile, Paragraph=False, Link=False, Image=False",Sales Banner (Email),Unknown File,0
+"Platform=App, # Items=01, View All=Yes",Tile,Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Default, Breakpoint=480-767",Outfit Cards (Web),Unknown File,0
+"Type=Beauty, Sale=True, From (price)=True",Product Card | Catalogue (App),Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"State=Deselected, Type=Price, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Breakpoint=1280+",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+Type=Payconiq by Bancontact,Payment Logo,Unknown File,0
+"Type=Standard, Size=768 - 1023, Header=Yes",Carousel ,Unknown File,0
+"Platform=Android, Rows=One",(DEPRECATED) Colour Picker [MIN 2 Thumbnails],Unknown File,0
+Type=Cash on Delivery,Payment Logo,Unknown File,0
+"Type=Beauty, Colour=White, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Beauty - Bought on Zalando, Breakpoint=1280+",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Type=Beauty, Colour=White, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=Off, Pay extra=On, CC logo=1",Radio button (Payments),Unknown File,0
+"Type=Beauty, Colour=White, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+Claim Type=Product + %,Sustainability Pills,Unknown File,0
+"Type=Fashion - Bought on Zalando, Breakpoint=768 - 1023",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=On, Pay extra=Off, CC logo=1",Radio button (Payments),Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Breakpoint=Mobile, Paragraph=True, Link=True, Image=True",Sales Banner (Email),Unknown File,0
+"Device=640, Description=No, Link=No, Card Title=Short, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Sale=False, From (price)=True, Breakpoint=768 - 1023",🚧 [deprecated] Product price,Unknown File,0
+"Type=Vertical, State=Deselected, Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"State=Deselected, Type=Optional, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Device=Mobile, Description=Yes, CTA=Yes",Collection Card (Email),Unknown File,0
+"Type=Beauty, Colour=Black, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Beauty, Colour=Black, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Delivery=None, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Device=Mobile, Inverted=No, Products=No, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+"Plus member=off, Multiline=on",List-item Checkout | Plus,Unknown File,0
+"Type=Standard, State=Default, Sale=True, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Platform=Desktop, Beauty=True, Sale=False, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Sale=True, From (price)=False, Breakpoint=1024 - 1279",🚧 [deprecated] Product price,Unknown File,0
+"Type=Standard, Colour=White, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+Property 1=Owned items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+Type=Trade-in - Added,Product Card | Wardrobe (App),Unknown File,0
+"Type=Credit card, State=Off focus, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=True, Plus=True, Link=True",Incentive Banner,Unknown File,0
+"State=Deselected, Type=Price, Description=On, Plus=Off, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+Type=Owned - Beauty Sub,Product Card | Wardrobe (App),Unknown File,0
+"Type=Beauty, Colour=Black, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Breakpoint=Desktop, Icon=True, Info Button=False, Plus=False, Link=True",Incentive Banner,Unknown File,0
+Type=Twint,Payment Logo,Unknown File,0
+"Device=Mobile, Inverted=Yes, Products=No, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+"Device=640, Description=Yes, Link=Yes, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Type=Beauty, Colour=White, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=False, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Device=640, Inverted=Yes, Products=Yes, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+Property 1=Trade-in items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Type=Pre-owned, Breakpoint=375 - 479",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Beauty, Colour=Black, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Breakpoint=1024 - 1279",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Pre-owned, Breakpoint=768 - 1023",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+"Type=Pre-owned, Breakpoint=480 - 767",Product Card | Wardrobe (Web) - Liked,Unknown File,0
+Property 1=Liked items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Device=Big Desktop, Label Color=Yes",Filtered View Card,Unknown File,0
+"Type=AFC with item, Breakpoint=1024-1279",Outfit Cards (Web),Unknown File,0
+"Type=Vertical, State=Selected, Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Beauty, Delivery=None, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Credit card, State=On blur, CC logo=On, Message=None",Text input (Payments),Unknown File,0
+"Platform=App & mWeb, Beauty=True, Sale=True, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Pre-owned, Colour=White, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Pre-owned, Colour=Default, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Vertical, State=Deselected, Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Standard, Breakpoints=1024 - 1279, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Plus member=off, Multiline=Off",List-item Checkout | Plus,Unknown File,0
+"Breakpoint=Desktop, Insightful=True, Text review=True",Reviews/Read/Written Reviews,Unknown File,0
+"Type=Beauty, State=Default, Sale=True, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Type=Pre-owned, Colour=Black, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Sale=False, From (price)=False, Breakpoint=768 - 1023",🚧 [deprecated] Product price,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Brand=Sephora, Platform=iOS, Zalando logo=Off, Breakpoint=--",Brand experience sticky-bar,Unknown File,0
+"Type=Beauty - Bought on Zalando, Breakpoint=375 - 479",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Type=Standard, Size=480 - 767, Header=Yes",Carousel ,Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=Off, Breakpoint=1280+",Brand experience sticky-bar,Unknown File,0
+"Sale=False, From (price)=True, Breakpoint=1280+",🚧 [deprecated] Product price,Unknown File,0
+"Type=CVC, State=Off focus, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Pre-owned, Breakpoints=1280+, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Pre-owned, Colour=White, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Black, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Black, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Default, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=White, Breakpoint=375 - 479, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Black, Breakpoint=768 - 1023, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Default, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=White, Breakpoint=480 - 767, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Size=1024 - 1279, Header=Yes",Carousel ,Unknown File,0
+"Type=Beauty, Colour=Black, Sale=False, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Breakpoint=375 - 479, Property 2=Bought by user",Product Card | Wardrobe (Web) - Trade-in,Unknown File,0
+"Type=Standard, Colour=Default, Breakpoint=375 - 479, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+Product Card | Replenishment | Mini-Cart,,Unknown File,0
+"Type=Standard, Breakpoints=1024 - 1279, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Device=App/Mobile, Carousel=No",Collection Card,Unknown File,0
+Type=Maestro,Payment Logo,Unknown File,0
+"Type=Default, Breakpoint=1024-1279",Outfit Cards (Web),Unknown File,0
+Type=PayPal,Payment Logo,Unknown File,0
+"Type=Fashion, Sale=False, Flags=True, Delivery Type=Plus",Product Card Email,Unknown File,0
+"Type=Standard, Colour=White, Sale=True, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+Property 1=Liked items card - Empty,Wardrobe | Overview Cards (App),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Beauty, Sale=False, From (price)=True",Product Card | Catalogue (App),Unknown File,0
+"Type=Beauty, Sale=True, Not available=False",Product Card | Cart,Unknown File,0
+"Type=Pre-owned, Breakpoints=1024 - 1279, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Brand=Sephora, Platform=Android, Zalando logo=On, Breakpoint=--",Brand experience sticky-bar,Unknown File,0
+"Platform=Mobile web, Type=Single image",.Image Gallery (deprecated),Unknown File,0
+"Device=Desktop, Inverted=No, Live=No, Link=Yes",Want-it Tile,Unknown File,0
+"Type=Pre-owned, Colour=Default, Breakpoint=1280+, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Plus member=on, Multiline=Off",List-item Checkout | Plus,Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Placement=Home, Entry-point=Multi, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Property 1=Owned items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Device=640, Inverted=No, Products=No, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+"Device=Mobile web, Inverted=No, Live=No, Link=Yes",Want-it Tile,Unknown File,0
+"Device=Mobile, Inverted=Yes, Products=No, Description=No, Link=Yes",Showstopper (Email),Unknown File,0
+Type=SEPA - de.AT,Payment Logo,Unknown File,0
+Type=iDEAL,Payment Logo,Unknown File,0
+"Type=Beauty, Colour=Black, Sale=True, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Standard, Colour=Default, Sale=True, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+Type=Gift card,Payment Logo,Unknown File,0
+"Type=Beauty - Bought on Zalando, Breakpoint=480 - 767",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Breakpoint=320 - 479, Type=Pre-owned",Product Card | Cart Web,Unknown File,0
+"Type=Pre-owned, Sale=False, Not available=False",Product Card | Cart,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+Type=Visa Electron,Payment Logo,Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Platform=Desktop, Returned=False, Size Flag=False, Size Reco=False",Repurchase messaging,Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=True, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Fashion - Bought on Zalando, Breakpoint=1024 - 1279",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+Size=Medium,Plus flag,Unknown File,0
+"Type=Beauty, Sale=False, Flags=True, Delivery Type=Plus",Product Card Email,Unknown File,0
+"Breakpoint=Desktop, Icon=True, Info Button=True, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=Off, Breakpoint=375 - 1023",Brand experience sticky-bar,Unknown File,0
+"Type=Pre-owned, Colour=Default, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=White, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Pre-owned, Colour=Black, Breakpoint=1024 - 1279, Sale=False",Product Card | Reco Carousel (Web),Unknown File,0
+Wardrobe | Title (Tablet),,Unknown File,0
+"Sale=False, From (price)=True, Breakpoint=1024 - 1279",🚧 [deprecated] Product price,Unknown File,0
+"Type=Standard, Breakpoints=768 - 1023, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Platform=App & mWeb, Beauty=True, Sale=True, Price drop=True",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Device=App, Inverted=No, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+"Device=App, Inverted=No, Live=No, Link=No",Want-it Tile,Unknown File,0
+Platform=App & mWeb,"Brand + item name, pricing",Unknown File,0
+"Type=Fashion, Sale=True, Flags=True, Delivery Type=None",Product Card Email,Unknown File,0
+"Breakpoint=Mobile, Type=Standard",Incentive Banner,Unknown File,0
+Type=Sale,Flag,Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=On, Breakpoint=375 - 1023",Brand experience sticky-bar,Unknown File,0
+Type=AFC,Outfit Cards (App),Unknown File,0
+"Type=Beauty, Breakpoints=375 - 479, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Device=Mobile web, Inverted=No, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+"Type=Beauty, Sale=False, Flags=True, Delivery Type=None",Product Card Email,Unknown File,0
+"State=Deselected, Type=Price, Description=On, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"Type=Fashion - Bought on Zalando, Breakpoint=480 - 767",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Type=Fashion, Sale=False, Flags=True, Delivery Type=Long Distance",Product Card Email,Unknown File,0
+"Device=Desktop, Inverted=No, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+"Type=Beauty - Bought on Zalando, Breakpoint=1024 - 1279",Product Card | Wardrobe (Web) - Owned,Unknown File,0
+"Type=Beauty, Sale=False, Flags=True, Delivery Type=Long Distance",Product Card Email,Unknown File,0
+Type=Packstation,Address tile,Unknown File,0
+Property 1=Trade-in items card,Wardrobe | Overview Cards (App),Unknown File,0
+"Platform=App & mWeb, Plus membership=Star, Delivery type=Premium",Delivery tile,Unknown File,0
+"Device=Mobile web, Inverted=Yes, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Default, Sale=False",Product Card | Replenishment | Cart,Unknown File,0
+"Type=Vertical, State=Deselected, Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Pre-owned, Breakpoints=375 - 479, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Brand=Sephora, Platform=Android, Zalando logo=Off, Breakpoint=--",Brand experience sticky-bar,Unknown File,0
+"Platform=Web, Description=02, Header=No",Detail - List,Unknown File,0
+"Type=AFC, Breakpoint=375-479",Outfit Cards (Web),Unknown File,0
+HEADER,,Unknown File,0
+Message=Reference item,Size Advice,Unknown File,0
+"Platform=Desktop, Ratings=False, Reviews=False, Insightful=False, Pills=False",Reviews/Read/Entry Point,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Type=Default, Breakpoint=375-479",Outfit Cards (Web),Unknown File,0
+"Device=App, Inverted=Yes, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+Type=BLIK,Payment Logo,Unknown File,0
+"Type=Standard, Delivery=Long distance, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Device=640, Inverted=No, Products=No, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+Platform=App,Icon button - Edit,Unknown File,0
+"Type=AFC, Breakpoint=1024-1279",Outfit Cards (Web),Unknown File,0
+"Single Size=False, State=Low Stock",Size Picker - Entry Point,Unknown File,0
+"Type=Beauty, Breakpoints=1280+, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=375 - 479, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Device=640, Inverted=No, Products=Yes, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+"Device=Email 640px, Inverted=Yes, Live=No, Link=No",Want-it Tile,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"Type=Standard, Delivery=None, Sale=False, Not available=On",Product Card | Checkout,Unknown File,0
+"Platform=App & mWeb, Ratings=True, Reviews=False, Insightful=False, Pills=False",Reviews/Read/Entry Point,Unknown File,0
+"Type=AFC, Breakpoint=1280+",Outfit Cards (Web),Unknown File,0
+"Platform=Desktop, Beauty=False, Sale=True, Price drop=True",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Device=Big Desktop 1280+, Images=Yes, Illustration=No",CCC Tiles (NCR),Unknown File,0
+"State=Selected, Type=Price, Description=On, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"Platform=App, Real Data?=No",Detail - Tile,Unknown File,0
+Platform=mWeb,Template | Catalogue Product cards,Unknown File,0
+"Breakpoint=479+, Type=Standard",Product Card Order Details Webview,Unknown File,0
+"Type=Standard, Device=Ipad, Sale=False, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Type=Eligible, Breakpoint=1024 - 1279",Product Card | Trade-in (Web),Unknown File,0
+"Platform=iOS, Type=Single image",.Image Gallery (deprecated),Unknown File,0
+"Breakpoint=1200+, Type=Standard",Product Card Order Details Webview,Unknown File,0
+"Type=Credit card, State=On focus, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Type=Pre-owned, Colour=Black, Sale=False, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+Type=Mastercard,Payment Logo - square,Unknown File,0
+"Platform=App & mWeb, Type=Overlay",CCC (Communication),Unknown File,0
+"Device=App/Mobile, Label Color=No",Filtered View Card,Unknown File,0
+"Type=Standard, Colour=Default, Sale=True, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Pre-owned, State=Default, Sale=False, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Device=Mobile, Inverted=No, Products=No, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=On, Breakpoint=1280+",Brand experience sticky-bar,Unknown File,0
+"Platform=Desktop, # Items=03, View All=No",Tile,Unknown File,0
+"Plus member=on, Multiline=on",List-item Checkout | Plus,Unknown File,0
+"State=Deselected, Type=Price, Description=On, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=On, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+List-item Checkout | Payment method,,Unknown File,0
+"Device=Desktop, Inverted=Yes, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+"Type=Eligible, Breakpoint=768 - 1023",Product Card | Trade-in (Web),Unknown File,0
+"State=Deselected, Type=Optional, Description=On, Plus=On, Caption=On, Message=Error",Radio button (Checkout),Unknown File,0
+Type=Klarna,Payment Logo - square,Unknown File,0
+"Breakpoint=Mobile, Icon=True, Info Button=True, Plus=False, Link=False",Incentive Banner,Unknown File,0
+Property 1=Trade-in items card - No Eligible items,Wardrobe | Overview Cards (App),Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"Type=Eligible, Breakpoint=480 - 767",Product Card | Trade-in (Web),Unknown File,0
+Category=Description,Detail - Box,Unknown File,0
+"Device=Email 640px, Inverted=No, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Breakpoint=375 - 479, Property 2=Added by user",Product Card | Wardrobe (Web) - Trade-in,Unknown File,0
+"Type=Saved, Breakpoint=1280+",Outfit Cards (Web),Unknown File,0
+"Platform=Desktop web, Type=Overlay",CCC (Communication),Unknown File,0
+"Platform=App & mWeb, Plus membership=-, Delivery type=Standard",Delivery tile,Unknown File,0
+"Type=Beauty, Sale=False, Flags=False, Delivery Type=Long Distance",Product Card Email,Unknown File,0
+PDP | Beauty Sampling,,Unknown File,0
+"Type=Fashion, Sale=False, Flags=False, Delivery Type=Long Distance",Product Card Email,Unknown File,0
+"Type=Beauty, Sale=False, Flags=False, Delivery Type=Plus",Product Card Email,Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=False, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Beauty, Delivery=None, Sale=False, Not available=On",Product Card | Checkout,Unknown File,0
+"Type=Horizontal, State=Selected, Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Credit card, State=Off focus, CC logo=On, Message=Informative",Text input (Payments),Unknown File,0
+"Device=640, Inverted=No, Products=No, Description=No, Link=Yes",Showstopper (Email),Unknown File,0
+"Device=640, Description=Yes, Link=Yes, Card Title=Short, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Type=Vertical, State=Selected, Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Fashion, Sale=True, Flags=True, Delivery Type=Plus",Product Card Email,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+Property 1=Liked items card - Empty,Wardrobe | Overview Cards (App),Unknown File,0
+"Type=Horizontal, State=Selected, Flag=Off, Pay extra=Off, CC logo=1",Radio button (Payments),Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=False, Plus=True, Link=True",Incentive Banner,Unknown File,0
+Property 1=Owned items card - Empty,Wardrobe | Overview Cards (App),Unknown File,0
+"Type=Preowned, Sale=False, Flags=False, Delivery Type=None",Product Card Email,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Pre-owned, State=Default, Sale=True, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Type=Default, Breakpoint=768-1023",Outfit Cards (Web),Unknown File,0
+Property 1=Trade-in items card - No Eligible items,Wardrobe | Overview Cards (App),Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=False, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Beauty, Delivery=Plus Premium, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Standard, State=Default, Sale=False, Not available=On, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+Type=Swish,Payment Logo,Unknown File,0
+"Type=Credit card, State=On blur, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Device=Email 640px, Inverted=No, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+Price Style=Bold Current Price,,Unknown File,0
+Size=Large,Plus Logo,Unknown File,0
+"Type=Standard, Breakpoints=480 - 767, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Device=Mobile, Inverted=No, Products=Yes, Description=Yes, Link=Yes",Showstopper (Email),Unknown File,0
+"Type=Default Web, Status=Unchecked",Product card | Returns,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Sale=True, From (price)=False, Breakpoint=768 - 1023",🚧 [deprecated] Product price,Unknown File,0
+"Breakpoint=Mobile, Insightful=True, Text review=True",Reviews/Read/Written Reviews,Unknown File,0
+"Type=Beauty, Delivery=None, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+Viewport=Desktop Web,EA PDP Storytelling,Unknown File,0
+Type=EPS,Payment Logo,Unknown File,0
+"Type=Pre-owned, Sale=True, From (price)=False",Product Card | Catalogue (App),Unknown File,0
+"Placement=Home, Entry-point=Multi, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=False, Plus=True, Link=False",Incentive Banner,Unknown File,0
+"Type=Beauty, Colour=Black, Sale=True, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=True, Plus=True, Link=True",Incentive Banner,Unknown File,0
+"Sale=True, From (price)=True, Breakpoint=480 - 767",🚧 [deprecated] Product price,Unknown File,0
+"Breakpoint=Mobile, Icon=False, Info Button=False, Plus=True, Link=False",Incentive Banner,Unknown File,0
+"Platform=mWeb & apps, Status=Beauty - In stock",Size + Primary CTA + Wishlist,Unknown File,0
+"Breakpoint=Mobile, Icon=True, Info Button=False, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Credit card, State=Off focus, CC logo=Off, Message=Error",Text input (Payments),Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Device=Desktop, Inverted=Yes, Live=No, Link=Yes",Want-it Tile,Unknown File,0
+Property 1=Liked items card - Empty,Wardrobe | Overview Cards (App),Unknown File,0
+Property 1=Owned items card - Empty,Wardrobe | Overview Cards (App),Unknown File,0
+"Platform=App & mWeb, Sold & shipped=#supportthestores",Partner information,Unknown File,0
+"Type=CVC, State=On blur, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Device=Mobile web, Inverted=No, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Type=Saved, Breakpoint=375-479",Outfit Cards (Web),Unknown File,0
+"Type=Ineligible (Digital review), Breakpoint=1280+",Product Card | Trade-in (Web),Unknown File,0
+Type=Przelewy24,Payment Logo,Unknown File,0
+"Type=Branded, Breakpoint=1024-1279",Outfit Cards (Web),Unknown File,0
+Type=Ineligible (Digital review),Product Card | Trade-in (App),Unknown File,0
+Property 1=Trade-in items card - No Eligible items,Wardrobe | Overview Cards (App),Unknown File,0
+"Type=Branded, Breakpoint=375-479",Outfit Cards (Web),Unknown File,0
+Type=Default,Flag,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"State=Selected, Type=None, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Standard, Device=IOS, Sale=True, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Device=Desktop, Inverted=Yes, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Type=CVC, State=On focus, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Breakpoint=Mobile, Icon=True, Info Button=False, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Device=Mobile, Description=No, Link=No, Card Title=Short, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+Proposition=Beauty,PDP - Full page,Unknown File,0
+"Platform=Desktop, Rows=Three (Expanded)",(DEPRECATED) Colour Picker [MIN 2 Thumbnails],Unknown File,0
+"Type=Ineligible (Digital review), Breakpoint=375 - 479",Product Card | Trade-in (Web),Unknown File,0
+"Type=Pre-owned, Delivery=None, Sale=False, Not available=On",Product Card | Checkout,Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=True, Plus=False, Link=True",Incentive Banner,Unknown File,0
+"Type=Standard, Device=IOS, Sale=False, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Item available yet=False, Membership linked=false",Nike First Access,Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=True, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Beauty, Breakpoints=480 - 767, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=AFC, Breakpoint=480-767",Outfit Cards (Web),Unknown File,0
+Type=PostePay,Payment Logo,Unknown File,0
+"State=Hover (Web only), Type=Price, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+Type=Ineligible (Warehouse review),Product Card | Trade-in (App),Unknown File,0
+Type=SVEA,Payment Logo,Unknown File,0
+"Type=Saved, Breakpoint=1024-1279",Outfit Cards (Web),Unknown File,0
+"Type=CVC, State=Off focus, CC logo=Off, Message=Error",Text input (Payments),Unknown File,0
+"Type=Saved, Breakpoint=768-1023",Outfit Cards (Web),Unknown File,0
+"Type=Branded, Breakpoint=480-767",Outfit Cards (Web),Unknown File,0
+"Type=Ineligible (Warehouse review), Breakpoint=1280+",Product Card | Trade-in (Web),Unknown File,0
+"Type=AFC with item, Breakpoint=480-767",Outfit Cards (Web),Unknown File,0
+"Type=AFC with item, Breakpoint=768-1023",Outfit Cards (Web),Unknown File,0
+"Type=Saved, Breakpoint=480-767",Outfit Cards (Web),Unknown File,0
+"Type=Branded, Breakpoint=768-1023",Outfit Cards (Web),Unknown File,0
+"Type=AFC, Breakpoint=768-1023",Outfit Cards (Web),Unknown File,0
+"Platform=App & mWeb, Type=Inline",CCC (Communication),Unknown File,0
+"State=Deselected, Type=Price, Description=On, Plus=On, Caption=On, Message=Error",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=Off, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"Placement=Home, Entry-point=Single, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"State=Deselected, Type=Price, Description=Off, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"State=Disabled, Type=Optional, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=On, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=Off, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=On, Plus=Off, Caption=Off, Message=Error",Radio button (Checkout),Unknown File,0
+"Device=Mobile, Inverted=No, Products=No, Description=No, Link=Yes",Showstopper (Email),Unknown File,0
+"State=Deselected, Type=Optional, Description=On, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=On, Plus=Off, Caption=Off, Message=Informative",Radio button (Checkout),Unknown File,0
+"State=Disabled, Type=Price, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Hover (Web only), Type=Optional, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Device=Email, Inverted=No, Live=Yes, Link=No",Want-it Tile,Unknown File,0
+"State=Deselected, Type=Optional, Description=Off, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Selected, Type=Optional, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=Optional, Description=Off, Plus=On, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"State=Disabled, Type=None, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=Price, Description=Off, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=Optional, Description=On, Plus=Off, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=None, Description=On, Plus=Off, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=Price, Description=On, Plus=On, Caption=On, Message=Informative",Radio button (Checkout),Unknown File,0
+"State=Deselected, Type=Optional, Description=On, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"State=Hover (Web only), Type=None, Description=On, Plus=Off, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Device=Mobile, Inverted=No, Products=Yes, Description=No, Link=No",Showstopper (Email),Unknown File,0
+"Breakpoint=Desktop, Icon=True, Info Button=True, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Ineligible (Digital review), Breakpoint=1024 - 1279",Product Card | Trade-in (Web),Unknown File,0
+Type=Nexi,Payment Logo,Unknown File,0
+"Type=Ineligible (Warehouse review), Breakpoint=768 - 1023",Product Card | Trade-in (Web),Unknown File,0
+"Platform=Desktop, Rows=Two (Expanded)",(DEPRECATED) Colour Picker [MIN 2 Thumbnails],Unknown File,0
+"Type=Ineligible (Warehouse review), Breakpoint=1024 - 1279",Product Card | Trade-in (Web),Unknown File,0
+"Type=Ineligible (Digital review), Breakpoint=480 - 767",Product Card | Trade-in (Web),Unknown File,0
+"Type=Ineligible (Digital review), Breakpoint=768 - 1023",Product Card | Trade-in (Web),Unknown File,0
+"Type=Pre-owned, Delivery=Plus Premium, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Type=Ineligible (Warehouse review), Breakpoint=375 - 479",Product Card | Trade-in (Web),Unknown File,0
+"Type=Ineligible (Warehouse review), Breakpoint=480 - 767",Product Card | Trade-in (Web),Unknown File,0
+"Platform=Desktop, Type=Single image",.Image Gallery (deprecated),Unknown File,0
+"Breakpoint=Desktop, Type=Standard",Incentive Banner,Unknown File,0
+"Type=Default, Sale=True",Product Card | Replenishment | Cart,Unknown File,0
+"Type=Vertical, State=Hover (Web only), Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Platform=mWeb & apps, Status=Out of stock",Size + Primary CTA + Wishlist,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"Placement=Home, Entry-point=Multi, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+Type=Extra,MC - Payment List Item,Unknown File,0
+"Type=CVC, State=Disabled, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+Type=MobilePay,Payment Logo,Unknown File,0
+"Type=Fashion, Sale=True, Flags=True, Delivery Type=Long Distance",Product Card Email,Unknown File,0
+"Type=Vertical, State=Selected, Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Platform=Desktop, Ratings=True, Reviews=False, Insightful=False, Pills=False",Reviews/Read/Entry Point,Unknown File,0
+PDP Accordion / Highlights,,Unknown File,0
+"Type=Beauty, Sale=True, Flags=True, Delivery Type=Long Distance",Product Card Email,Unknown File,0
+"Type=Beauty, Sale=True, Flags=True, Delivery Type=None",Product Card Email,Unknown File,0
+"Type=Credit card, State=Disabled, CC logo=Off, Message=None",Text input (Payments),Unknown File,0
+"Type=Beauty, Sale=True, Flags=True, Delivery Type=Plus",Product Card Email,Unknown File,0
+"Type=Credit card, State=Off focus, CC logo=On, Message=Error",Text input (Payments),Unknown File,0
+"Type=Preowned, Sale=True, Flags=True, Delivery Type=None",Product Card Email,Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=Off, Pay extra=Off, CC logo=2",Radio button (Payments),Unknown File,0
+"Platform=App, # Items=03, View All=Yes",Tile,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Preowned, Sale=False, Flags=True, Delivery Type=None",Product Card Email,Unknown File,0
+"Type=Standard, Delivery=Plus Early Access, Sale=False, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Horizontal, State=Disabled, Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Standard, Sale=False, Not available=True",Product Card | Cart,Unknown File,0
+"Breakpoint=Desktop, Icon=True, Info Button=False, Plus=False, Link=False",Incentive Banner,Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=On, Pay extra=On, CC logo=2",Radio button (Payments),Unknown File,0
+"Device=Email, Inverted=No, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Type=Horizontal, State=Hover (Web only), Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Device=Email, Inverted=Yes, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Type=Credit card, State=Off focus, CC logo=On, Message=None",Text input (Payments),Unknown File,0
+"Type=Horizontal, State=Disabled, Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Disabled, Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Disabled, Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Hover (Web only), Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Standard, Breakpoints=768 - 1023, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Type=Credit card, State=Disabled, CC logo=On, Message=None",Text input (Payments),Unknown File,0
+"Type=Horizontal, State=Hover (Web only), Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Hover (Web only), Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Credit card, State=Off focus, CC logo=Off, Message=Informative",Text input (Payments),Unknown File,0
+"Type=Vertical, State=Disabled, Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Deselected, Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Selected, Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Hover (Web only), Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Selected, Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=CVC, State=Off focus, CC logo=Off, Message=Informative",Text input (Payments),Unknown File,0
+"Type=Horizontal, State=Selected, Flag=On, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Selected, Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Hover (Web only), Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Disabled, Flag=Off, Pay extra=Off, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Vertical, State=Disabled, Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Deselected, Flag=Off, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Disabled, Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Credit card, State=On focus, CC logo=On, Message=None",Text input (Payments),Unknown File,0
+"Type=Vertical, State=Hover (Web only), Flag=On, Pay extra=On, CC logo=5",Radio button (Payments),Unknown File,0
+"Type=Subcreation, Sale=False",Product Card | Replenishment | Cart,Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=On, Breakpoint=1024 - 1279",Brand experience sticky-bar,Unknown File,0
+"Type=Horizontal, State=Selected, Flag=Off, Pay extra=On, CC logo=1",Radio button (Payments),Unknown File,0
+"Type=Horizontal, State=Selected, Flag=On, Pay extra=Off, CC logo=1",Radio button (Payments),Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=On, Breakpoint=320 - 374",Brand experience sticky-bar,Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=Off, Breakpoint=1024 - 1279",Brand experience sticky-bar,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"Type=Beauty, Breakpoints=768 - 1023, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Default, Status=Checked",Product card | Returns,Unknown File,0
+"Brand=Sephora, Platform=Web, Zalando logo=Off, Breakpoint=320 - 374",Brand experience sticky-bar,Unknown File,0
+Type=Trustly,Payment Logo,Unknown File,0
+"Platform=Desktop, Sold & shipped=Zalando",Partner information,Unknown File,0
+"Breakpoint=Desktop, Icon=False, Info Button=False, Plus=True, Link=True",Incentive Banner,Unknown File,0
+"Type=Pre-owned, Sale=True, Not available=False",Product Card | Cart,Unknown File,0
+"Type=Pre-owned, Breakpoints=1280+, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+Type=Invoice - fi.FI,Payment Logo,Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Platform=App & mWeb, Returned=True, Size Flag=False, Size Reco=False",Repurchase messaging,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Platform=App, # Items=04, View All=Yes",Tile,Unknown File,0
+"Platform=App & mWeb, Plus membership=Opt-in, Delivery type=Premium",Delivery tile,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+"Type=Pre-owned, Sale=False, Not available=True",Product Card | Cart,Unknown File,0
+"Type=Beauty, Breakpoints=1024 - 1279, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Device=Desktop, Inverted=No, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Type=Pre-owned, Delivery=None, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Beauty, Sale=False, Not available=True",Product Card | Cart,Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+Message=Size flag - runs small,Size Advice,Unknown File,0
+"Breakpoint=Mobile, Paragraph=True, Link=True, Image=False",Sales Banner (Email),Unknown File,0
+"Type=Beauty, Breakpoints=1024 - 1279, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Type=Pre-owned, Breakpoints=1024 - 1279, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Type=Post Finance,Payment Logo,Unknown File,0
+"Type=Pre-owned, State=Default, Sale=False, Not available=On, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Device=Mobile, Inverted=No, Products=No, Description=No, Link=No",Showstopper (Email),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Breakpoint=1280+, Property 2=Added by user",Product Card | Wardrobe (Web) - Trade-in,Unknown File,0
+"Email Size=Mobile, Voucher=Yes, Countdown=Yes",Multi-Entry Banner (Email),Unknown File,0
+"Type=Pre-owned, Delivery=Long distance, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Device=Mobile web, Inverted=Yes, Live=No, Link=Yes",Want-it Tile,Unknown File,0
+"Platform=App & mWeb, Plus membership=-, Delivery type=LongDistance",Delivery tile,Unknown File,0
+"Premise=Order details, Not available / Sold out=Off",Product Card Horizontal,Unknown File,0
+"Type=Beauty, Size=1280+, Header=Yes",Carousel ,Unknown File,0
+"Premise=Wardrobe app (Favourite), Not available / Sold out=Off",Product Card Horizontal,Unknown File,0
+"Device=Mobile, Inverted=No, Products=Yes, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+"Platform=Apps, Follows Brand=true",Follow Brand,Unknown File,0
+"Breakpoint=Mobile, Paragraph=False, Link=True, Image=False",Sales Banner (Email),Unknown File,0
+"Platform=App, Description=03, Header=No",Detail - List,Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Device=640, Inverted=No, Products=Yes, Description=No, Link=No",Showstopper (Email),Unknown File,0
+"Breakpoint=769+, Type=Pre-owned",Product Card | Cart Web,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Breakpoint=Desktop 640, Paragraph=False, Link=True, Image=False",Sales Banner (Email),Unknown File,0
+"Device=MobileWeb/Apps, Images=No, Illustration=Yes",CCC Tiles (NCR),Unknown File,0
+Proposition=Sports,PDP - Full page,Unknown File,0
+"Platform=App & mWeb, Ratings=True, Reviews=True, Insightful=True, Pills=2 Rows",Reviews/Read/Entry Point,Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Type=Beauty, State=Default, Sale=False, Not available=On, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Email Size=Mobile, Voucher=No, Countdown=No",Multi-Entry Banner (Email),Unknown File,0
+Platform=Desktop,DSA Report a legal concern,Unknown File,0
+Type=Invoice - pl.PL,Payment Logo,Unknown File,0
+Proposition=Pre-owned,PDP - Full page,Unknown File,0
+"Email Size=640, Voucher=Yes, Countdown=Yes",Multi-Entry Banner (Email),Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Breakpoint=480 - 768, Type=Beauty",Product Card | Cart Web,Unknown File,0
+"Device=Big Desktop, Carousel=No",Collection Card,Unknown File,0
+"Device=Small Desktop, Carousel=Yes",Collection Card,Unknown File,0
+"Premise=Email, Sold out=Off",Product Card Vertical,Unknown File,0
+"Type=Standard, Breakpoints=768 - 1023, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Device=640, Inverted=No, Products=No, Description=No, Link=No",Showstopper (Email),Unknown File,0
+Type=Vipps,Payment Logo,Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+"Platform=App & mWeb, Plus membership=-, Delivery type=Min order value",Delivery tile,Unknown File,0
+"Platform=Web, Real Data?=Yes",Detail - Tile,Unknown File,0
+"Platform=Desktop, Sold & shipped=#supportthestores",Partner information,Unknown File,0
+"Sale=True, From (price)=True, Breakpoint=768 - 1023",🚧 [deprecated] Product price,Unknown File,0
+"Platform=Web, Description=03, Header=No",Detail - List,Unknown File,0
+"Breakpoint=Desktop 640, Paragraph=True, Link=True, Image=True",Sales Banner (Email),Unknown File,0
+Inverted=True,Showstopper (Desktop 1280+),Unknown File,0
+Viewport=Desktop Web,EA PDP Storytelling,Unknown File,0
+"Device=Small Desktop, Carousel=No",Collection Card,Unknown File,0
+"Device=Small Desktop, Label Color=Yes",Filtered View Card,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Platform=Desktop, Single colour=True",Colour Picker [Thumbnails],Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Premise=Wardrobe app (Favourite), Not available / Sold out=On",Product Card Horizontal,Unknown File,0
+"Breakpoint=Desktop 640, Paragraph=False, Link=False, Image=False",Sales Banner (Email),Unknown File,0
+"Device=Mobile, Description=Yes, Link=Yes, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Placement=Home, Entry-point=Multi, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+Type=Apple Pay,Payment Logo,Unknown File,0
+Type=Invoice - de.AT,Payment Logo,Unknown File,0
+"Platform=App & mWeb, Plus membership=-, Delivery type=Connected retail",Delivery tile,Unknown File,0
+"Breakpoint=Mobile, Paragraph=False, Link=True, Image=True",Sales Banner (Email),Unknown File,0
+"Platform=App, # Items=05, View All=Yes",Tile,Unknown File,0
+"Platform=Desktop, Plus membership=Opt-in, Delivery type=Premium",Delivery tile,Unknown File,0
+"Breakpoint=480 - 768, Type=Standard",Product Card | Cart Web,Unknown File,0
+"Platform=Desktop, # Items=04, View All=Yes",Tile,Unknown File,0
+"Platform=Desktop, # Items=03, View All=Yes",Tile,Unknown File,0
+"Platform=Desktop, Plus membership=Star, Delivery type=Premium",Delivery tile,Unknown File,0
+"Platform=App, # Items=02, View All=Yes",Tile,Unknown File,0
+"Type=Return to Partner, Status=Checked",Product card | Returns,Unknown File,0
+"Device=Mobile web, Inverted=Yes, Live=No, Link=No",Want-it Tile,Unknown File,0
+"Sale=True, From (price)=True, Breakpoint=1024 - 1279",🚧 [deprecated] Product price,Unknown File,0
+"Breakpoint=480 - 768, Type=Pre-owned",Product Card | Cart Web,Unknown File,0
+"Size=Web, Behavior=Default",Beauty Color picker tile,Unknown File,0
+"Platform=Desktop, Plus membership=-, Delivery type=Connected retail",Delivery tile,Unknown File,0
+"Sale=False, From (price)=True, Breakpoint=480 - 767",🚧 [deprecated] Product price,Unknown File,0
+"Device=Mobile, Description=No, Link=No, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+PDP Accordion / Ingredients,,Unknown File,0
+"Platform=Desktop, Ratings=True, Reviews=True, Insightful=True, Pills=1 Row",Reviews/Read/Entry Point,Unknown File,0
+"Platform=iOS, Type=Few images",.Image Gallery (deprecated),Unknown File,0
+"Platform=Desktop, Beauty=True, Sale=True, Price drop=True",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+Platform=Web 1280+,Template | Catalogue Product cards,Unknown File,0
+Type=Card,Payment Logo,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Type=Beauty, Colour=Default, Sale=True, From (price)=False",Product Card | Reco Carousel (App),Unknown File,0
+"Device=640, Inverted=No, Products=Yes, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+"Device=IOS, Size Picker=On",Carrousel | Shoppable,Unknown File,0
+"Email Size=640, Voucher=No, Countdown=No",Multi-Entry Banner (Email),Unknown File,0
+"Device=640, Description=No, CTA=No",Collection Card (Email),Unknown File,0
+"Email Size=Mobile, Voucher=No, Countdown=Yes",Multi-Entry Banner (Email),Unknown File,0
+"Breakpoint=Mobile, Paragraph=True, Link=False, Image=False",Sales Banner (Email),Unknown File,0
+"Device=640, Inverted=Yes, Products=No, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+"Device=640, Description=No, Link=Yes, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Type=Standard, State=Hover, Sale=False, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+"Type=Standard, Delivery=Long distance, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Type=Pre-owned, Breakpoints=768 - 1023, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Proposition=Designer,PDP - Full page,Unknown File,0
+"Breakpoint=Mobile, State=Selected 1",Reviews/Write/Attribute Scale,Unknown File,0
+"Placement=Home, Entry-point=Multi, Countdown=True, VoucherCode=False",Sales Banner (mWeb),Unknown File,0
+"Device=Mobile, Description=Yes, CTA=No",Collection Card (Email),Unknown File,0
+Plus logo lockup,,Unknown File,0
+"Premise=Shoppable, Sold out=Off",Product Card Vertical,Unknown File,0
+"Breakpoint=Mobile, Type=Eligible",Incentive Banner,Unknown File,0
+"Selection=Unselected, State=Default",List - Color Swatch,Unknown File,0
+Platform=Desktop,DSA Report a legal concern,Unknown File,0
+"State=Selected, Type=Price, Description=On, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+"Selection=Out of stock, State=Default",List - Color Swatch,Unknown File,0
+"Type=Return to Partner, Status=Unchecked",Product card | Returns,Unknown File,0
+"Device=640, Description=Yes, Link=Yes, Card Title=Short, Label Color=No",Filtered View Card (Email),Unknown File,0
+Proposition=Plus Early Access,PDP - Full page,Unknown File,0
+"Type=Pre-Owned, Size=375 - 479, Header=Yes",Carousel ,Unknown File,0
+"Platform=Desktop, Plus membership=-, Delivery type=LongDistance",Delivery tile,Unknown File,0
+"Device=640, Description=Yes, CTA=No",Collection Card (Email),Unknown File,0
+"Platform=Desktop, Plus membership=-, Delivery type=Standard",Delivery tile,Unknown File,0
+"Device=Small Desktop 1024, Images=Yes, Illustration=No",CCC Tiles (NCR),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Placement=Home, Entry-point=Multi, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+Type=Solo,Payment Logo,Unknown File,0
+"Type=Beauty, Device=IOS, Sale=True, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Platform=App & mWeb, Rating=Mid",Reviews/Read/Overview,Unknown File,0
+"Platform=App & mWeb, Ratings=True, Reviews=True, Insightful=True, Pills=1 Row",Reviews/Read/Entry Point,Unknown File,0
+"Premise=Outfits, Not available / Sold out=Off",Product Card Horizontal,Unknown File,0
+"Platform=Desktop, Status=Beauty - In stock",Size + Primary CTA + Wishlist,Unknown File,0
+"Device=Mobile, Description=No, CTA=No",Collection Card (Email),Unknown File,0
+"Breakpoint=Mobile, Type=Plus",Incentive Banner,Unknown File,0
+"Premise=Wardrobe web (Owned), Sold out=On",Product Card Vertical,Unknown File,0
+"Type=Pre-Owned, Size=1280+, Header=Yes",Carousel ,Unknown File,0
+"Type=Pre-owned, Breakpoints=480 - 767, Sale=False, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Type=Eletronic Cash,Payment Logo,Unknown File,0
+"Type=Pre-owned, State=Hover, Sale=False, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+Platform=Desktop,DSA Report a legal concern,Unknown File,0
+"Breakpoint=Desktop 640, Paragraph=True, Link=True, Image=False",Sales Banner (Email),Unknown File,0
+Message=Size flag - runs large,Size Advice,Unknown File,0
+"Device=Mobile, Description=Yes, Link=Yes, Card Title=Short, Label Color=No",Filtered View Card (Email),Unknown File,0
+Type=Visa,Payment Logo,Unknown File,0
+"Device=Mobile, Description=No, Link=Yes, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Device=640, Description=Yes, Link=No, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+Type=Saved,Outfit Cards (App),Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Standard, Size=480 - 767, Header=No",Carousel ,Unknown File,0
+"Breakpoint=Desktop, State=Selected 2",Reviews/Write/Attribute Scale,Unknown File,0
+"Device=Big Desktop 1280+, Images=No, Illustration=Yes",CCC Tiles (NCR),Unknown File,0
+"Platform=App & mWeb, Rating=Low",Reviews/Read/Overview,Unknown File,0
+"Type=Credit card, State=On hover, CC logo=On, Message=None",Text input (Payments),Unknown File,0
+"Breakpoint=Mobile, Insightful=True, Text review=False",Reviews/Read/Written Reviews,Unknown File,0
+"Email Size=640, Voucher=No, Countdown=Yes",Multi-Entry Banner (Email),Unknown File,0
+"Device=Mobile, Description=Yes, Link=Yes, Card Title=Short, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Breakpoint=Desktop, State=Selected 3",Reviews/Write/Attribute Scale,Unknown File,0
+Type=Third line,MC - Payment List Item,Unknown File,0
+"Device=Mobile, Description=Yes, Link=No, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Device=640, Description=No, Link=No, Card Title=Long, Label Color=Yes",Filtered View Card (Email),Unknown File,0
+"Placement=Home, Entry-point=Single, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Premise=Wardrobe web (Favourite), Sold out=On",Product Card Vertical,Unknown File,0
+"Breakpoint=Desktop, Insightful=True, Text review=False",Reviews/Read/Written Reviews,Unknown File,0
+"Platform=Desktop, Sold & shipped=Mixed",Partner information,Unknown File,0
+"Type=Color Swatch, State=Default, Selection=Deselected",Dropdown Trigger,Unknown File,0
+"Type=Beauty, State=Hover, Sale=False, Not available=Off, Wishlist State=Default",Product Card | Mini-Cart,Unknown File,0
+Type=Invoice - nl.NL,Payment Logo,Unknown File,0
+"Type=Standard, Breakpoints=480 - 767, Sale=False, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+Plus Sales Banner (Desktop web),,Unknown File,0
+"Platform=Desktop, Status=Fashion - In stock",Size + Primary CTA + Wishlist,Unknown File,0
+"Breakpoint=1024 - 1279, Property 2=Added by user",Product Card | Wardrobe (Web) - Trade-in,Unknown File,0
+"Type=Standard, Colour=Default, Sale=False, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Standard, State=Default, Sale=True, Not available=Off, Wishlist State=Added to wishlist",Product Card | Mini-Cart,Unknown File,0
+"Breakpoint=Mobile, State=Static",Reviews/Write/Attribute Scale,Unknown File,0
+"Breakpoint=Desktop, State=Static",Reviews/Write/Attribute Scale,Unknown File,0
+"Type=Standard, Device=Ipad, Sale=True, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Delivery count, Short",,Unknown File,0
+"Platform=Desktop, Returned=True, Size Flag=False, Size Reco=False",Repurchase messaging,Unknown File,0
+"Platform=Android, Type=Single image",.Image Gallery (deprecated),Unknown File,0
+"Premise=🔒Core🔒, Not available / Sold out=Off",Product Card Horizontal,Unknown File,0
+"Platform=App & mWeb, Ratings=True, Reviews=False, Insightful=True, Pills=1 Row",Reviews/Read/Entry Point,Unknown File,0
+"Type=Beauty, Sale=No, Plus Flag=No",Product Card | Horizontal (Outfits),Unknown File,0
+"Device=Big Desktop 1280+, Images=No, Illustration=No",CCC Tiles (NCR),Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Type=Beauty, Colour=White, Breakpoint=375 - 479, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+Type=iDEAL,Payment Logo,Unknown File,0
+"Device=640, Inverted=No, Products=Yes, Description=No, Link=Yes",Showstopper (Email),Unknown File,0
+"Breakpoint=Desktop, Type=Eligible",Incentive Banner,Unknown File,0
+"State=Selected, Type=None, Description=On, Plus=Off, Caption=On, Message=None",Radio button (Checkout),Unknown File,0
+"Type=Beauty, Sale=Yes, Plus Flag=Yes",Product Card | Horizontal (Outfits),Unknown File,0
+"Benefit available, Short",,Unknown File,0
+"Platform=App & mWeb, Plus membership=Superstar, Delivery type=Standard",Delivery tile,Unknown File,0
+Type=Invite-requested,Hyped Articles Message,Unknown File,0
+"Type=Standard, Device=IOS, Sale=True, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Type=Return to Partner Web, Status=Checked",Product card | Returns,Unknown File,0
+Type=Invite-won,Hyped Articles Message,Unknown File,0
+"Type=Standard, Delivery=Plus Premium, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+Type=SEPA - de.DE,Payment Logo,Unknown File,0
+Type=Eligible,Order Confirmation,Unknown File,0
+"MOV Free Delivery, Short",,Unknown File,0
+"Email Size=Mobile, Voucher=Yes, Countdown=No",Multi-Entry Banner (Email),Unknown File,0
+"State=Selected, Type=Price, Description=On, Plus=On, Caption=On, Message=Informative",Radio button (Checkout),Unknown File,0
+"Type=Beauty, Sale=Yes, Plus Flag=No",Product Card | Horizontal (Outfits),Unknown File,0
+Type=Twint,Payment Logo,Unknown File,0
+Type=EPS,Payment Logo,Unknown File,0
+"Device=Small Desktop 1024, Images=No, Illustration=No",CCC Tiles (NCR),Unknown File,0
+Message=(shoes only) true to size,Size Advice,Unknown File,0
+Type=American Express,Payment Logo,Unknown File,0
+Type=Bancontact,Payment Logo,Unknown File,0
+Type=Visa Electron,Payment Logo,Unknown File,0
+"State=Selected, Type=Price, Description=Off, Plus=On, Caption=Off, Message=None",Radio button (Checkout),Unknown File,0
+Type=Bank Transfer,Payment Logo,Unknown File,0
+"Size=Mobile, Behavior=Default",Beauty Color picker tile,Unknown File,0
+Platform=mWeb & Apps,DSA Report a legal concern,Unknown File,0
+Type=Gift card,Payment Logo,Unknown File,0
+Type=Vipps,Payment Logo,Unknown File,0
+Type=SEPA,Payment Logo,Unknown File,0
+Type=Trustly,Payment Logo,Unknown File,0
+Type=Invoice - nl.BE,Payment Logo,Unknown File,0
+"Type=Beauty, Device=IOS, Sale=False, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+Type=Cash on Delivery,Payment Logo,Unknown File,0
+"Platform=Mobile web, Type=Few images",.Image Gallery (deprecated),Unknown File,0
+"Placement=Home, Entry-point=Single, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Platform=App & mWeb, Sold & shipped=Mixed",Partner information,Unknown File,0
+Type=Eletronic Cash,Payment Logo,Unknown File,0
+"Platform=App & mWeb, Plus membership=Star, Delivery type=Standard",Delivery tile,Unknown File,0
+Type=SVEA,Payment Logo,Unknown File,0
+"Type=Beauty, Breakpoints=768 - 1023, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+Type=Maestro,Payment Logo,Unknown File,0
+Type=Swish,Payment Logo,Unknown File,0
+"Selection=Out of stock, State=Pressed",List - Color Swatch,Unknown File,0
+Type=Payconiq by Bancontact,Payment Logo,Unknown File,0
+Type=Cartes Bancaires,Payment Logo,Unknown File,0
+Type=Przelewy24,Payment Logo,Unknown File,0
+"Platform=Desktop web, Type=Inline",CCC (Communication),Unknown File,0
+Type=Invoice - fr.BE,Payment Logo,Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+Type=Invoice - dk.DK,Payment Logo,Unknown File,0
+Platform=Desktop,DSA Report a legal concern,Unknown File,0
+Type=SEPA - de.DE,Payment Logo,Unknown File,0
+Type=Solo,Payment Logo,Unknown File,0
+Type=PostePay,Payment Logo,Unknown File,0
+"Type=Standard, Delivery=Plus Early Access, Sale=True, Not available=Off",Product Card | Checkout,Unknown File,0
+"Premise=Wardrobe web (Favourite), Sold out=Off",Product Card Vertical,Unknown File,0
+Type=Post Finance,Payment Logo,Unknown File,0
+"Type=Standard, Size=768 - 1023, Header=No",Carousel ,Unknown File,0
+"Type=Beauty, Device=Ipad, Sale=True, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Platform=App & mWeb, Plus membership=Superstar, Delivery type=Premium",Delivery tile,Unknown File,0
+Type=Maksuturva,Payment Logo - square,Unknown File,0
+"Type=Beauty, Size=768 - 1023, Header=Yes",Carousel ,Unknown File,0
+"Device=Desktop, Inverted=Yes",Plus Want-it Tile,Unknown File,0
+"Type=Standard, Device=Ipad, Sale=False, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+Type=SEPA - de.AT,Payment Logo,Unknown File,0
+"Selection=Unselected, State=Pressed",List - Color Swatch,Unknown File,0
+Type=MobilePay,Payment Logo,Unknown File,0
+Claim Type=Component + %,Sustainability Pills,Unknown File,0
+Type=Card,Payment Logo,Unknown File,0
+"Breakpoint=Desktop, State=Selected 1",Reviews/Write/Attribute Scale,Unknown File,0
+Type=Nexi,Payment Logo,Unknown File,0
+"Type=Beauty, Device=Ipad, Sale=False, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+Type=Invoice - se.SE,Payment Logo,Unknown File,0
+"Paragraph=true, Carousel=true, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+Type=Invoice - it.CH,Payment Logo,Unknown File,0
+"Type=Beauty, Device=Ipad, Sale=True, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+Type=Discover,Payment Logo,Unknown File,0
+Inverted=False,Plus Showstopper (Desktop),Unknown File,0
+Type=BLIK,Payment Logo,Unknown File,0
+"Type=Standard, Breakpoints=480 - 767, Sale=True, From (price)=True",Product Card | Catalogue (Web),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+Type=Diners Club,Payment Logo,Unknown File,0
+Type=Invoice - it.IT,Payment Logo,Unknown File,0
+Type=Invoice - fr.FR,Payment Logo,Unknown File,0
+"Platform=Desktop, Plus membership=Star, Delivery type=Standard",Delivery tile,Unknown File,0
+"Type=Pre-Owned, Size=480 - 767, Header=Yes",Carousel ,Unknown File,0
+"Device=640, Inverted=Yes, Products=Yes, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+"Type=Beauty, Size=1024 - 1279, Header=No",Carousel ,Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Platform=Desktop, Follows Brand=false",Follow Brand,Unknown File,0
+"Type=Pre-Owned, Size=1024 - 1279, Header=Yes",Carousel ,Unknown File,0
+"Paragraph=false, Carousel=false, Follow Brand=true, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Pre-Owned, Size=768 - 1023, Header=Yes",Carousel ,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Type=Beauty, Colour=Black, Breakpoint=375 - 479, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=False, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Breakpoint=Desktop, Type=Plus",Incentive Banner,Unknown File,0
+"Type=Beauty, Size=375 - 479, Header=No",Carousel ,Unknown File,0
+"Type=Pre-Owned, Size=480 - 767, Header=No",Carousel ,Unknown File,0
+"Platform=Desktop, Rating=Mid",Reviews/Read/Overview,Unknown File,0
+Type=Invoice - fr.CH,Payment Logo,Unknown File,0
+"Placement=Home, Entry-point=Single, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Type=Outfit, Size=1280+, Header=No",Carousel ,Unknown File,0
+"Type=Beauty, Size=480 - 767, Header=Yes",Carousel ,Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Type=One size, Device=IOS, Sale=True, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=False, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+Type=Invoice - no.NO,Payment Logo,Unknown File,0
+"Breakpoint=480 - 767, Property 2=Added by user",Product Card | Wardrobe (Web) - Trade-in,Unknown File,0
+"Type=Standard, Size=1024 - 1279, Header=No",Carousel ,Unknown File,0
+"Type=Pre-Owned, Size=768 - 1023, Header=No",Carousel ,Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=1280+, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Type=Standard, Colour=White, Sale=False, From (price)=True",Product Card | Reco Carousel (App),Unknown File,0
+"Type=Beauty, Size=1280+, Header=No",Carousel ,Unknown File,0
+"Device=Mobile, Inverted=Yes, Products=Yes, Description=Yes, Link=No",Showstopper (Email),Unknown File,0
+"Platform=Web, Real Data?=No",Detail - Tile,Unknown File,0
+Type=Standard,Address tile,Unknown File,0
+"Platform=Desktop, Ratings=True, Reviews=False, Insightful=True, Pills=1 Row",Reviews/Read/Entry Point,Unknown File,0
+"Platform=Desktop, Beauty=True, Sale=True, Price drop=False",🚧 [DEPRECATED] Pricing + Item Details,Unknown File,0
+"Type=Pre-Owned, Size=1024 - 1279, Header=No",Carousel ,Unknown File,0
+Type=Invoice - de.DE,Payment Logo,Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+Product haptics,,Unknown File,0
+"Platform=Desktop, Ratings=True, Reviews=False, Insightful=True, Pills=2 Rows",Reviews/Read/Entry Point,Unknown File,0
+"Platform=App & mWeb, Plus membership=Opt-in, Delivery type=NoDelivery + Opt-in",Delivery tile,Unknown File,0
+"Type=Deselected, State=Default, Size=Mobile",🔌✏️  Color Swatch,Unknown File,0
+"Platform=Desktop, Sold & shipped=Connected retail",Partner information,Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=false",Showstopper (App),Unknown File,0
+"Type=Beauty, Colour=Default, Breakpoint=375 - 479, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Platform=App & mWeb, Plus membership=Opt-in, Delivery type=Standard",Delivery tile,Unknown File,0
+"Type=Beauty, Breakpoints=480 - 767, Sale=True, From (price)=False",Product Card | Catalogue (Web),Unknown File,0
+"Type=Beauty, Size=480 - 767, Header=No",Carousel ,Unknown File,0
+"Type=Standard, Colour=Black, Breakpoint=768 - 1023, Sale=True",Product Card | Reco Carousel (Web),Unknown File,0
+"Paragraph=true, Carousel=false, Follow Brand=true, Inverted=true",Showstopper (App),Unknown File,0
+"Type=Pre-Owned, Size=1280+, Header=No",Carousel ,Unknown File,0
+"Placement=Top Catalog, Entry-point=None, Countdown=True, VoucherCode=False",Sales Banner (Desktop web),Unknown File,0
+"Type=Beauty, Size=1024 - 1279, Header=Yes",Carousel ,Unknown File,0
+"Type=Color, Lines=Single, Selection=Deselected, State=Default",List - Controls,Unknown File,0
+"Placement=In-grid Catalog, Entry-point=None, Countdown=True, VoucherCode=True",Sales Banner (Desktop web),Unknown File,0
+"Platform=Desktop, Rating=Low",Reviews/Read/Overview,Unknown File,0
+"Type=Beauty, Size=768 - 1023, Header=No",Carousel ,Unknown File,0
+"Platform=Desktop, Ratings=True, Reviews=True, Insightful=True, Pills=2 Rows",Reviews/Read/Entry Point,Unknown File,0
+Type=Invoice - de.CH,Payment Logo,Unknown File,0
+"Device=Mobile, Description=No, Link=Yes, Card Title=Short, Label Color=No",Filtered View Card (Email),Unknown File,0
+"Type=Beauty, Device=IOS, Sale=False, From (price)=True",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Type=Pre-Owned, Size=375 - 479, Header=No",Carousel ,Unknown File,0
+Property 1=Saved outfits card,Wardrobe | Overview Cards (App),Unknown File,0
+"Type=One size, Device=IOS, Sale=False, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Type=Beauty, Device=IOS, Sale=True, From (price)=False",Product Card | Shoppable (App & Ipad),Unknown File,0
+"Paragraph=false, Carousel=true, Follow Brand=false, Inverted=true",Showstopper (App),Unknown File,0
