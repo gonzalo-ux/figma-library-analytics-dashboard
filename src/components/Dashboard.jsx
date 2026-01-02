@@ -267,23 +267,40 @@ export function Dashboard() {
     }
   }, [selectedPageId, configuredPages, handlePageSelect])
 
-  // Load version history data
+  // Load version history data for the current library
   useEffect(() => {
     const loadVersionHistory = async () => {
+      if (!selectedPageId) {
+        setVersionHistoryData(null)
+        return
+      }
+      
       try {
-        // version_history.json is stored at the root csv folder (not library-specific)
-        const response = await fetch('/csv/version_history.json')
+        // Load library-specific version_history.json
+        const versionHistoryPath = getCsvPath('version_history.json', selectedPageId)
+        console.log('Loading version history from:', versionHistoryPath)
+        const response = await fetch(versionHistoryPath)
         if (response.ok) {
           const data = await response.json()
           setVersionHistoryData(data)
+        } else {
+          // Fallback to root version_history.json if library-specific doesn't exist
+          const fallbackResponse = await fetch('/csv/version_history.json')
+          if (fallbackResponse.ok) {
+            const data = await fallbackResponse.json()
+            setVersionHistoryData(data)
+          } else {
+            setVersionHistoryData(null)
+          }
         }
       } catch (error) {
         console.error('Failed to load version history:', error)
+        setVersionHistoryData(null)
       }
     }
     
     loadVersionHistory()
-  }, [])
+  }, [selectedPageId, getCsvPath])
 
   const selectedPage = selectedPageId ? configuredPages.find(p => p.id === selectedPageId) : null
   const selectedPageLabel = selectedPage?.name || "Select a page to visualize data"
