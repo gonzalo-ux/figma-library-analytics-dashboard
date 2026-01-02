@@ -7,6 +7,7 @@ import {
   Tooltip as RechartsTooltip,
   ResponsiveContainer,
   Cell,
+  CartesianGrid,
 } from "recharts"
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "../ui/chart-container"
 import { useTheme } from "../../lib/useTheme"
@@ -36,7 +37,7 @@ export function BarChart({
   const colorArray = barColor ? [barColor] : CHART_COLORS
 
   // Grid color - use border color from theme
-  const gridColor = "hsl(var(--border))"
+  const gridColor = "var(--border)"
 
   const chartContent = !data || data.length === 0 ? (
     <div className="h-[400px] w-full flex items-center justify-center text-muted-foreground">
@@ -55,6 +56,7 @@ export function BarChart({
           layout={orientation}
           key={`bar-chart-${isDark}`}
         >
+          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
           {orientation === "vertical" ? (
             <>
               <XAxis
@@ -62,7 +64,7 @@ export function BarChart({
                 tickLine={false}
                 axisLine={{ stroke: gridColor, strokeWidth: 1 }}
                 tickMargin={8}
-                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
+                tick={{ fill: "var(--muted-foreground)", fontSize: 12 }}
                 tickFormatter={(value) => {
                   if (value >= 1000) {
                     return `${(value / 1000).toFixed(1)}k`
@@ -74,10 +76,10 @@ export function BarChart({
                 type="category"
                 dataKey={nameKey}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: gridColor, strokeWidth: 1 }}
                 tickMargin={8}
                 width={150}
-                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
+                tick={{ fill: "var(--muted-foreground)", fontSize: 12 }}
               />
             </>
           ) : (
@@ -88,14 +90,14 @@ export function BarChart({
                 tickLine={false}
                 axisLine={{ stroke: gridColor, strokeWidth: 1 }}
                 tickMargin={8}
-                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
+                tick={{ fill: "var(--muted-foreground)", fontSize: 12 }}
               />
               <YAxis
                 type="number"
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: gridColor, strokeWidth: 1 }}
                 tickMargin={8}
-                tick={{ fill: "hsl(var(--card-foreground))", fontSize: 12 }}
+                tick={{ fill: "var(--muted-foreground)", fontSize: 12 }}
                 tickFormatter={(value) => {
                   if (value >= 1000) {
                     return `${(value / 1000).toFixed(1)}k`
