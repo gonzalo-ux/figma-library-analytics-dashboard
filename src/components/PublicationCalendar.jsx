@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useMemo, useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { useTheme } from "../lib/useTheme"
 
@@ -9,6 +9,37 @@ import { useTheme } from "../lib/useTheme"
 export function PublicationCalendar({ versionData, title, description }) {
   const { isDark } = useTheme()
   const [hoveredCell, setHoveredCell] = useState(null)
+  
+  // Extract available years from version data
+  const availableYears = useMemo(() => {
+    if (!versionData || versionData.length === 0) return []
+    
+    const years = new Set()
+    versionData.forEach((version) => {
+      if (version.created_at) {
+        const year = new Date(version.created_at).getFullYear()
+        years.add(year)
+      }
+    })
+    
+    return Array.from(years).sort((a, b) => b - a) // Sort descending (most recent first)
+  }, [versionData])
+  
+  // Default to current year if it has data, otherwise use the most recent year with data
+  const defaultYear = useMemo(() => {
+    const currentYear = new Date().getFullYear()
+    if (availableYears.includes(currentYear)) {
+      return currentYear
+    }
+    return availableYears.length > 0 ? availableYears[0] : currentYear
+  }, [availableYears])
+  
+  const [selectedYear, setSelectedYear] = useState(defaultYear)
+  
+  // Update selected year when defaultYear changes (e.g., when data loads)
+  useEffect(() => {
+    setSelectedYear(defaultYear)
+  }, [defaultYear])
 
   // Process version data into daily counts
   const { dailyCounts, maxCount, weekData, monthLabels, totalPublications } = useMemo(() => {
@@ -16,84 +47,146 @@ export function PublicationCalendar({ versionData, title, description }) {
       return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [] }
     }
 
-    // Count publications per day
+    // Count publications per day for the selected year
     const counts = new Map()
     versionData.forEach((version) => {
       if (!version.created_at) return
       
       // Parse the timestamp and convert to YYYY-MM-DD
       const date = new Date(version.created_at)
-      const dateKey = date.toISOString().split('T')[0]
+      const year = date.getFullYear()
       
-      counts.set(dateKey, (counts.get(dateKey) || 0) + 1)
+      // Only count publications in the selected year
+      if (year === selectedYear) {
+        const dateKey = date.toISOString().split('T')[0]
+        counts.set(dateKey, (counts.get(dateKey) || 0) + 1)
+      }
     })
 
     // Find max count for color scaling
     const max = Math.max(...Array.from(counts.values()), 1)
 
-    // Generate last 365 days (52 weeks + a few days)
-    const today = new Date()
-    const oneYearAgo = new Date(today)
-    oneYearAgo.setFullYear(today.getFullYear() - 1)
+    // Generate calendar for selected year (Jan 1 to Dec 31)
+    // Start from January 1st of selected year (at midnight)
+    const jan1 = new Date(selectedYear, 0, 1)
+    jan1.setHours(0, 0, 0, 0)
+    // End on December 31st of selected year (at end of day)
+    const dec31 = new Date(selectedYear, 11, 31)
+    dec31.setHours(23, 59, 59, 999)
     
-    // Start from the Sunday before one year ago
-    const startDate = new Date(oneYearAgo)
+    // Start from the Sunday before or on Jan 1 (GitHub style)
+    const startDate = new Date(jan1)
+    startDate.setHours(0, 0, 0, 0) // Ensure we're at midnight to avoid timezone issues
     const dayOfWeek = startDate.getDay()
     startDate.setDate(startDate.getDate() - dayOfWeek)
+    
+    // End on the Saturday after or on Dec 31
+    const endDate = new Date(dec31)
+    endDate.setHours(23, 59, 59, 999) // End of day
+    const endDayOfWeek = endDate.getDay()
+    endDate.setDate(endDate.getDate() + (6 - endDayOfWeek))
 
-    // Generate all days
+    // Generate all days in the week range (including padding days)
     const days = []
     const currentDate = new Date(startDate)
+    currentDate.setHours(12, 0, 0, 0) // Use noon to avoid timezone issues
     
-    while (currentDate <= today) {
+    while (currentDate <= endDate) {
       const dateKey = currentDate.toISOString().split('T')[0]
+      const dayOfWeek = currentDate.getDay() // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      
+      // Compare dates at the same time (noon) to avoid timezone issues
+      const currentDateAtNoon = new Date(currentDate)
+      currentDateAtNoon.setHours(12, 0, 0, 0)
+      const jan1AtNoon = new Date(jan1)
+      jan1AtNoon.setHours(12, 0, 0, 0)
+      const dec31AtNoon = new Date(dec31)
+      dec31AtNoon.setHours(12, 0, 0, 0)
+      const isInYear = currentDateAtNoon >= jan1AtNoon && currentDateAtNoon <= dec31AtNoon
+      
       days.push({
         date: dateKey,
-        count: counts.get(dateKey) || 0,
-        dayOfWeek: currentDate.getDay(),
+        count: isInYear ? (counts.get(dateKey) || 0) : null, // null means hide this cell
+        dayOfWeek: dayOfWeek,
         month: currentDate.getMonth(),
         displayDate: new Date(currentDate),
+        isInYear: isInYear,
       })
       currentDate.setDate(currentDate.getDate() + 1)
     }
+    
 
-    // Group into weeks
+    // Group into weeks - structure each week so week[0] = Sunday, week[1] = Monday, etc.
+    // Since we start from a Sunday, we start a new week every time we encounter a Sunday
     const weeks = []
-    let currentWeek = []
+    let currentWeek = [null, null, null, null, null, null, null] // Initialize first week immediately
+    
+    // Verify first day is Sunday
+    if (days.length > 0 && days[0].dayOfWeek !== 0) {
+      console.error('First day is not Sunday!', days[0])
+    }
     
     days.forEach((day, index) => {
-      currentWeek.push(day)
-      
-      if (day.dayOfWeek === 6 || index === days.length - 1) {
+      // If we encounter a Sunday and it's not the first day, push the previous week and start a new one
+      if (day.dayOfWeek === 0 && index > 0) {
         weeks.push([...currentWeek])
-        currentWeek = []
+        currentWeek = [null, null, null, null, null, null, null]
       }
+      
+      // Place each day in the correct position based on its dayOfWeek
+      // day.dayOfWeek is 0-6 (Sunday-Saturday), which matches week array indices
+      // This ensures week[0] = Sunday, week[1] = Monday, etc.
+      // Verify we're not overwriting an existing day
+      if (currentWeek[day.dayOfWeek] !== null) {
+        console.warn('Overwriting day in week!', {
+          weekIndex: weeks.length,
+          dayOfWeek: day.dayOfWeek,
+          existing: currentWeek[day.dayOfWeek]?.date,
+          new: day.date
+        })
+      }
+      currentWeek[day.dayOfWeek] = day
     })
+    
+    // Push the last week
+    weeks.push([...currentWeek])
 
-    // Generate month labels
+    // Generate month labels - show label when first day of a new month appears in a week
     const labels = []
     let lastMonth = -1
     
     weeks.forEach((week, weekIndex) => {
-      const firstDay = week[0]
-      if (firstDay && firstDay.month !== lastMonth) {
-        labels.push({
-          month: firstDay.month,
-          weekIndex: weekIndex,
-          label: firstDay.displayDate.toLocaleDateString('en-US', { month: 'short' })
-        })
-        lastMonth = firstDay.month
+      // Find the first day in this week that is within the selected year
+      const firstDayInYear = week.find(d => d && d.isInYear)
+      if (firstDayInYear) {
+        // Check if this is the first day of a new month
+        const dayOfMonth = firstDayInYear.displayDate.getDate()
+        if (firstDayInYear.month !== lastMonth && dayOfMonth <= 7) {
+          labels.push({
+            month: firstDayInYear.month,
+            weekIndex: weekIndex,
+            label: firstDayInYear.displayDate.toLocaleDateString('en-US', { month: 'short' })
+          })
+          lastMonth = firstDayInYear.month
+        }
       }
     })
+
+    // Count total publications in the current year
+    const yearPublications = versionData.filter(version => {
+      if (!version.created_at) return false
+      const date = new Date(version.created_at)
+      return date >= jan1 && date <= dec31
+    }).length
 
     return {
       dailyCounts: counts,
       maxCount: max,
       weekData: weeks,
       monthLabels: labels,
-      totalPublications: versionData.length, // Total for the year
+      totalPublications: yearPublications, // Total for the selected year
     }
-  }, [versionData])
+  }, [versionData, selectedYear])
 
   // Get color for a cell based on count
   const getCellColor = (count) => {
@@ -143,7 +236,10 @@ export function PublicationCalendar({ versionData, title, description }) {
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="pt-0 pb-3">
-        <div className="relative overflow-hidden -mx-4">
+        <div className="relative -mx-4">
+          <div className="flex items-start gap-4 overflow-x-auto">
+            {/* Calendar section */}
+            <div className="flex-shrink-0 min-w-0">
           {/* Month labels */}
           <div className="flex gap-[3px] mb-1 ml-8">
             {monthLabels.map((label, index) => (
@@ -162,9 +258,9 @@ export function PublicationCalendar({ versionData, title, description }) {
           </div>
 
           {/* Calendar grid */}
-          <div className="flex gap-[3px] mt-4">
+          <div className="flex gap-[3px] mt-4 overflow-hidden">
             {/* Day labels */}
-            <div className="flex flex-col gap-[3px] mr-2 text-[11px] text-muted-foreground">
+            <div className="flex flex-col gap-[3px] mr-2 text-[11px] text-muted-foreground flex-shrink-0">
               <div style={{ height: '12px' }}></div>
               <div style={{ height: '12px' }}>{dayLabels[0]}</div>
               <div style={{ height: '12px' }}></div>
@@ -175,19 +271,23 @@ export function PublicationCalendar({ versionData, title, description }) {
             </div>
 
             {/* Weeks */}
-            <div className="flex gap-[3px]">
+            <div className="flex gap-[3px] overflow-hidden">
               {weekData.map((week, weekIndex) => (
                 <div key={`week-${weekIndex}`} className="flex flex-col gap-[3px]">
-                  {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => {
-                    const day = week.find(d => d.dayOfWeek === dayIndex)
+                  {[0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
+                    // week[0] = Sunday, week[1] = Monday, etc.
+                    const day = week[dayOfWeek]
                     
-                    if (!day) {
+                    // Render empty placeholder for days outside the year to maintain grid structure
+                    // This ensures visible days appear in the correct rows
+                    if (!day || !day.isInYear) {
                       return (
                         <div
-                          key={`empty-${dayIndex}`}
+                          key={`empty-${weekIndex}-${dayOfWeek}`}
                           style={{
                             width: '12px',
                             height: '12px',
+                            visibility: 'hidden', // Hide but maintain layout space
                           }}
                         />
                       )
@@ -256,50 +356,75 @@ export function PublicationCalendar({ versionData, title, description }) {
           </div>
 
           {/* Info below calendar - Fixed height */}
-          <div className="mt-3" style={{ minHeight: '44px' }}>
-            {/* Show total publications */}
-            <div className="text-sm text-muted-foreground mb-1">
-              <span className="font-medium text-foreground">{totalPublications}</span> publications in the last year
+          <div className="mt-3 flex items-start justify-between" style={{ minHeight: '44px' }}>
+            <div className="flex-1">
+              {/* Show total publications */}
+              <div className="text-sm text-muted-foreground mb-1">
+                <span className="font-medium text-foreground">{totalPublications}</span> publications in {selectedYear}
+              </div>
+              
+              {/* Show hovered cell info or placeholder */}
+              <div className="text-sm text-muted-foreground" style={{ minHeight: '20px' }}>
+                {hoveredCell ? (
+                  <>
+                    <span className="font-medium text-foreground">
+                      {hoveredCell.count} publication{hoveredCell.count !== 1 ? 's' : ''}
+                    </span>
+                    {' '}on {hoveredCell.displayDate.toLocaleDateString('en-US', { 
+                      weekday: 'short',
+                      month: 'short', 
+                      day: 'numeric', 
+                      year: 'numeric' 
+                    })}
+                  </>
+                ) : (
+                  <span className="opacity-0">Hover over a square</span>
+                )}
+              </div>
             </div>
-            
-            {/* Show hovered cell info or placeholder */}
-            <div className="text-sm text-muted-foreground" style={{ minHeight: '20px' }}>
-              {hoveredCell ? (
-                <>
-                  <span className="font-medium text-foreground">
-                    {hoveredCell.count} publication{hoveredCell.count !== 1 ? 's' : ''}
-                  </span>
-                  {' '}on {hoveredCell.displayDate.toLocaleDateString('en-US', { 
-                    weekday: 'short',
-                    month: 'short', 
-                    day: 'numeric', 
-                    year: 'numeric' 
-                  })}
-                </>
-              ) : (
-                <span className="opacity-0">Hover over a square</span>
-              )}
+
+            {/* Legend aligned to the right, top-aligned with publication counter */}
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span>Less</span>
+              <div className="flex gap-[3px]">
+                {/* Show the actual color levels: 0, 1, 3, 6, 11 */}
+                {[0, 1, 3, 6, 11].map((count, index) => (
+                  <div
+                    key={`legend-${index}`}
+                    style={{
+                      width: '12px',
+                      height: '12px',
+                      backgroundColor: getCellColor(count),
+                      borderRadius: '2px',
+                    }}
+                  />
+                ))}
+              </div>
+              <span>More</span>
             </div>
           </div>
-
-          {/* Legend aligned to the right */}
-          <div className="flex items-center justify-end gap-2 mt-1 text-xs text-muted-foreground">
-            <span>Less</span>
-            <div className="flex gap-[3px]">
-              {/* Show the actual color levels: 0, 1, 3, 6, 11 */}
-              {[0, 1, 3, 6, 11].map((count, index) => (
-                <div
-                  key={`legend-${index}`}
-                  style={{
-                    width: '12px',
-                    height: '12px',
-                    backgroundColor: getCellColor(count),
-                    borderRadius: '2px',
-                  }}
-                />
-              ))}
             </div>
-            <span>More</span>
+            
+            {/* Year selector - positioned to the right, aligned with calendar top */}
+            {availableYears.length > 0 && (
+              <div className="flex flex-col gap-1 mt-4 flex-shrink-0">
+                {availableYears.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => setSelectedYear(year)}
+                    className={`
+                      text-xs px-2 py-1 rounded transition-colors
+                      ${selectedYear === year
+                        ? 'bg-primary text-primary-foreground font-medium'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                      }
+                    `}
+                  >
+                    {year}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </CardContent>

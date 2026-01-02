@@ -320,6 +320,10 @@ export function Dashboard() {
 
   const selectedPage = selectedPageId ? configuredPages.find(p => p.id === selectedPageId) : null
   const selectedPageLabel = selectedPage?.name || "Select a page to visualize data"
+  
+  // Get library name for the selected page
+  const library = selectedPageId ? getLibraryForPage(config, selectedPageId) : null
+  const libraryName = library?.name || null
 
   // Calculate total components (matching DataTable logic)
   const totalComponents = useMemo(() => {
@@ -537,6 +541,11 @@ export function Dashboard() {
                               <ThemeEditor />
                               <CustomThemeEditor />
                               <ChangelogConfig />
+                            </div>
+                          )}
+                          {libraryName && (
+                            <div className="mb-4">
+                              <h2 className="text-xl font-semibold">Library: {libraryName}</h2>
                             </div>
                           )}
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
