@@ -1,6 +1,15 @@
 import React, { useMemo, useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { useTheme } from "../lib/useTheme"
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip as RechartsTooltip,
+} from "recharts"
+import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "./ui/chart-container"
+import { CHART_COLORS } from "../lib/chartColors"
 
 /**
  * GitHub-style contribution calendar for Figma library publications
@@ -42,9 +51,9 @@ export function PublicationCalendar({ versionData, title, description }) {
   }, [defaultYear])
 
   // Process version data into daily counts
-  const { dailyCounts, maxCount, weekData, monthLabels, totalPublications } = useMemo(() => {
+  const { dailyCounts, maxCount, weekData, monthLabels, totalPublications, topUsers } = useMemo(() => {
     if (!versionData || versionData.length === 0) {
-      return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [] }
+      return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [], topUsers: [] }
     }
 
     // Count publications per day for the selected year
@@ -179,12 +188,36 @@ export function PublicationCalendar({ versionData, title, description }) {
       return date >= jan1 && date <= dec31
     }).length
 
+    // Count publications per user for the selected year
+    const userCounts = new Map()
+    versionData.forEach((version) => {
+      if (!version.created_at || !version.user) return
+      
+      const date = new Date(version.created_at)
+      const year = date.getFullYear()
+      
+      if (year === selectedYear) {
+        const userId = version.user.id || version.user.handle
+        const userName = version.user.handle || 'Unknown'
+        userCounts.set(userId, {
+          name: userName,
+          count: (userCounts.get(userId)?.count || 0) + 1
+        })
+      }
+    })
+
+    // Get top 6 users
+    const topUsers = Array.from(userCounts.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 6)
+
     return {
       dailyCounts: counts,
       maxCount: max,
       weekData: weeks,
       monthLabels: labels,
       totalPublications: yearPublications, // Total for the selected year
+      topUsers: topUsers, // Top 6 users for the selected year
     }
   }, [versionData, selectedYear])
 
@@ -427,6 +460,81 @@ export function PublicationCalendar({ versionData, title, description }) {
             )}
           </div>
         </div>
+
+        {/* User Publications Donut Chart - below calendar, counter, and legend */}
+        {topUsers.length > 0 && (
+          <div className="mt-6">
+            <div className="text-sm font-medium text-foreground mb-2">
+              Top Contributors
+            </div>
+            <div className="flex items-center gap-4">
+              {/* User labels - left side */}
+              <div className="flex flex-col gap-2 min-w-[200px]">
+                {topUsers.map((user, index) => (
+                  <div key={user.name} className="flex items-center gap-2 text-sm">
+                    <div
+                      className="h-3 w-3 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }}
+                    />
+                    <span className="text-foreground flex-1 truncate">
+                      {user.name}
+                    </span>
+                    <span className="text-muted-foreground font-medium">
+                      {user.count}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Donut Chart - right side */}
+              <div className="flex-1 flex justify-center">
+                <div className="relative" style={{ height: '280px', width: '280px', minWidth: '280px' }}>
+                  <ShadcnChartContainer 
+                    config={{ value: { label: "Publications", color: "var(--chart-themed-1)" } }}
+                    className="h-full w-full"
+                    style={{ minWidth: '280px', minHeight: '280px' }}
+                  >
+                    <ResponsiveContainer width="100%" height="100%" minHeight={280}>
+                      <PieChart>
+                        <Pie
+                          data={topUsers}
+                          dataKey="count"
+                          nameKey="name"
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={70}
+                          outerRadius={100}
+                          stroke="transparent"
+                          strokeWidth={0}
+                        >
+                          {topUsers.map((entry, index) => (
+                            <Cell 
+                              key={`cell-${index}`} 
+                              fill={CHART_COLORS[index % CHART_COLORS.length]}
+                            />
+                          ))}
+                        </Pie>
+                        <RechartsTooltip 
+                          content={<ChartTooltipContent indicator="dot" />}
+                          cursor={{ fill: "transparent" }}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </ShadcnChartContainer>
+                  {/* Center text overlay showing total publications */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                    <div className="text-2xl font-bold text-foreground">
+                      {totalPublications}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      publications
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   )
