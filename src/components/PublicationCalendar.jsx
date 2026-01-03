@@ -54,9 +54,9 @@ export function PublicationCalendar({ versionData, title, description }) {
   }, [defaultYear])
 
   // Process version data into daily counts
-  const { dailyCounts, maxCount, weekData, monthLabels, totalPublications, topUsers, topMonths } = useMemo(() => {
+  const { dailyCounts, maxCount, weekData, monthLabels, totalPublications, topUsers, topMonths, topDays } = useMemo(() => {
     if (!versionData || versionData.length === 0) {
-      return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [], topUsers: [], topMonths: [] }
+      return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [], topUsers: [], topMonths: [], topDays: [] }
     }
 
     // Count publications per day for the selected year
@@ -243,6 +243,35 @@ export function PublicationCalendar({ versionData, title, description }) {
         publications: month.count // For tooltip
       }))
 
+    // Count publications per day of week for the selected year
+    const dayCounts = new Map()
+    versionData.forEach((version) => {
+      if (!version.created_at) return
+
+      const date = new Date(version.created_at)
+      const year = date.getFullYear()
+
+      if (year === selectedYear) {
+        const dayOfWeek = date.getDay() // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' })
+        dayCounts.set(dayOfWeek, {
+          dayOfWeek: dayOfWeek,
+          name: dayName,
+          count: (dayCounts.get(dayOfWeek)?.count || 0) + 1
+        })
+      }
+    })
+
+    // Get top 5 days
+    const topDays = Array.from(dayCounts.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5)
+      .map(day => ({
+        name: day.name,
+        value: day.count,
+        publications: day.count // For tooltip
+      }))
+
     return {
       dailyCounts: counts,
       maxCount: max,
@@ -251,6 +280,7 @@ export function PublicationCalendar({ versionData, title, description }) {
       totalPublications: yearPublications, // Total for the selected year
       topUsers: topUsers, // Top 6 users for the selected year
       topMonths: topMonths, // Top 5 months for the selected year
+      topDays: topDays, // Top 5 days for the selected year
     }
   }, [versionData, selectedYear])
 
@@ -473,22 +503,33 @@ export function PublicationCalendar({ versionData, title, description }) {
 
             {/* Year selector - positioned to the right, aligned with calendar top */}
             {availableYears.length > 0 && (
-              <div className="flex flex-col gap-1 flex-shrink-0 ml-2">
-                {availableYears.map((year) => (
-                  <button
-                    key={year}
-                    onClick={() => setSelectedYear(year)}
-                    className={`
-                      text-xs px-2 py-1 rounded transition-colors
-                      ${selectedYear === year
-                        ? 'bg-primary text-primary-foreground font-medium'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-                      }
-                    `}
-                  >
-                    {year}
-                  </button>
-                ))}
+              <div className="flex gap-2 flex-shrink-0 ml-2">
+                {(() => {
+                  // Split years into columns of max 5
+                  const columns = []
+                  for (let i = 0; i < availableYears.length; i += 5) {
+                    columns.push(availableYears.slice(i, i + 5))
+                  }
+                  return columns.map((column, colIndex) => (
+                    <div key={colIndex} className="flex flex-col gap-1">
+                      {column.map((year) => (
+                        <button
+                          key={year}
+                          onClick={() => setSelectedYear(year)}
+                          className={`
+                            text-xs px-2 py-1 rounded transition-colors
+                            ${selectedYear === year
+                              ? 'bg-primary text-primary-foreground font-medium'
+                              : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                            }
+                          `}
+                        >
+                          {year}
+                        </button>
+                      ))}
+                    </div>
+                  ))
+                })()}
               </div>
             )}
           </div>
@@ -496,73 +537,74 @@ export function PublicationCalendar({ versionData, title, description }) {
 
         {/* User Publications Donut Chart - below calendar, counter, and legend */}
         {topUsers.length > 0 && (
-          <div className="">
+          <div className="mt-4">
 
-            <div className="flex items-top gap-4">
+            <div className="flex items-top gap-4 justify-between">
 
-              {/* User labels - left side */}
-              <div className="flex flex-col gap-2 min-w-[200px]">
-                <div className="text-sm font-medium text-foreground mb-2">
-                  Top Contributors
-                </div>
-                {topUsers.map((user, index) => (
-                  <div key={user.name} className="flex items-center gap-2 text-sm">
-                    <div
-                      className="h-3 w-3 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }}
-                    />
-                    <span className="text-foreground flex-1 truncate">
-                      {user.name}
-                    </span>
-                    <span className="text-muted-foreground font-medium">
-                      {user.count}
-                    </span>
+              <div className="flex flex col">
+                {/* User labels - left side */}
+                <div className="flex flex-col gap-2 min-w-[200px]">
+                  <div className="text-sm font-medium text-foreground mb-2">
+                    Top Contributors
                   </div>
-                ))}
-              </div>
-
-              {/* Donut Chart - middle */}
-              <div className="flex-0 flex justify-center">
-                <div className="relative" style={{ height: '280px', width: '280px', minWidth: '280px' }}>
-                  <ShadcnChartContainer
-                    config={{ value: { label: "Publications", color: "var(--chart-themed-1)" } }}
-                    className="h-full w-full"
-                    style={{ minWidth: '280px', minHeight: '280px' }}
-                  >
-                    <ResponsiveContainer width="100%" height="100%" minHeight={280}>
-                      <PieChart>
-                        <Pie
-                          data={topUsers}
-                          dataKey="count"
-                          nameKey="name"
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={70}
-                          outerRadius={100}
-                          stroke="transparent"
-                          strokeWidth={0}
-                        >
-                          {topUsers.map((entry, index) => (
-                            <Cell
-                              key={`cell-${index}`}
-                              fill={CHART_COLORS[index % CHART_COLORS.length]}
-                            />
-                          ))}
-                        </Pie>
-                        <RechartsTooltip
-                          content={<ChartTooltipContent indicator="dot" />}
-                          cursor={{ fill: "transparent" }}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </ShadcnChartContainer>
-                  {/* Center text overlay showing total publications */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                    <div className="text-2xl font-bold text-foreground">
-                      {totalPublications}
+                  {topUsers.map((user, index) => (
+                    <div key={user.name} className="flex items-center gap-2 text-sm">
+                      <div
+                        className="h-3 w-3 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }}
+                      />
+                      <span className="text-foreground flex-1 truncate">
+                        {user.name}
+                      </span>
+                      <span className="text-muted-foreground font-medium">
+                        {user.count}
+                      </span>
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      publications
+                  ))}
+                </div>
+                {/* Donut Chart - middle */}
+                <div className="flex-0 flex justify-center">
+                  <div className="relative" style={{ height: '280px', width: '280px', minWidth: '280px' }}>
+                    <ShadcnChartContainer
+                      config={{ value: { label: "Publications", color: "var(--chart-themed-1)" } }}
+                      className="h-full w-full"
+                      style={{ minWidth: '280px', minHeight: '280px' }}
+                    >
+                      <ResponsiveContainer width="100%" height="100%" minHeight={280}>
+                        <PieChart>
+                          <Pie
+                            data={topUsers}
+                            dataKey="count"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={70}
+                            outerRadius={100}
+                            stroke="transparent"
+                            strokeWidth={0}
+                          >
+                            {topUsers.map((entry, index) => (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={CHART_COLORS[index % CHART_COLORS.length]}
+                              />
+                            ))}
+                          </Pie>
+                          <RechartsTooltip
+                            content={<ChartTooltipContent indicator="dot" />}
+                            cursor={{ fill: "transparent" }}
+                          />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </ShadcnChartContainer>
+                    {/* Center text overlay showing total publications */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                      <div className="text-2xl font-bold text-foreground">
+                        {totalPublications}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        publications
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -597,6 +639,70 @@ export function PublicationCalendar({ versionData, title, description }) {
                             {topMonths.map((entry, index) => (
                               <Cell
                                 key={`cell-month-${index}`}
+                                fill={CHART_COLORS[index % CHART_COLORS.length]}
+                              />
+                            ))}
+                            <LabelList
+                              dataKey="name"
+                              position="insideStart"
+                              fill="hsl(var(--foreground))"
+                              fontSize={13}
+                              fontWeight={600}
+                            />
+                          </RadialBar>
+                          <RechartsTooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length > 0) {
+                                const data = payload[0].payload
+                                return (
+                                  <div className="rounded-lg border bg-popover/95 backdrop-blur supports-[backdrop-filter]:bg-popover/60 p-2 shadow-md">
+                                    <div className="font-medium text-popover-foreground">{data.name}</div>
+                                    <div className="text-sm text-muted-foreground mt-0.5">
+                                      <span className="font-medium text-popover-foreground">{data.value}</span> publications
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            }}
+                            cursor={{ fill: "transparent" }}
+                          />
+                        </RadialBarChart>
+                      </ResponsiveContainer>
+                    </ShadcnChartContainer>
+                  </div>
+                </div>
+              )}
+
+              {/* Radial Chart - Top Days */}
+              {topDays.length > 0 && (
+                <div className="flex-0 flex justify-center">
+                  <div className="relative" style={{ height: '280px', width: '240px', minWidth: '240px' }}>
+                    <div className="text-sm font-medium text-foreground text-center">
+                      Top Days
+                    </div>
+                    <ShadcnChartContainer
+                      config={{ value: { label: "Publications", color: "var(--chart-themed-1)" } }}
+                      className="h-[240px] w-[240px]"
+                      style={{ minWidth: '240px', minHeight: '240px', width: '240px', height: '240px' }}
+                    >
+                      <ResponsiveContainer width={240} height={240}>
+                        <RadialBarChart
+                          data={topDays}
+                          innerRadius="30%"
+                          outerRadius="90%"
+                          startAngle={90}
+                          endAngle={-270}
+                        >
+                          <RadialBar
+                            dataKey="value"
+                            nameKey="name"
+                            minAngle={15}
+                            background={{ fill: "var(--muted)" }}
+                          >
+                            {topDays.map((entry, index) => (
+                              <Cell
+                                key={`cell-day-${index}`}
                                 fill={CHART_COLORS[index % CHART_COLORS.length]}
                               />
                             ))}
