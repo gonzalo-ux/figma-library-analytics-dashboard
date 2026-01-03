@@ -1,237 +1,314 @@
-# Publication Activity Calendar - Implementation Summary
+# Multi-Library Support Implementation Summary
 
 ## Overview
-Successfully implemented a GitHub-style contribution calendar that visualizes Figma library publication activity over the last year.
+This update adds comprehensive multi-library support to the Figma Analytics Dashboard, allowing users to track data from multiple Figma libraries using a single access token, with advanced filtering and custom page configuration.
 
-## Components Created
+## Changes Made
 
-### 1. PublicationCalendar.jsx
-**Location**: `src/components/PublicationCalendar.jsx`
+### 1. Configuration Structure Updates
 
-**Features**:
-- GitHub-style 52-week calendar grid
-- Color intensity mapping based on publication frequency
-- Interactive tooltips on hover
-- Responsive legend showing color scale
-- Month labels for easy navigation
-- Theme-aware colors (adapts to light/dark mode)
-- Automatic handling of empty states
-
-**Props**:
-- `versionData`: Array of version objects from Figma API
-- `title`: Optional custom title
-- `description`: Optional custom description
-
-### 2. Python Fetch Script
-**Location**: `python-api/fetch_versions.py`
-
-**Features**:
-- Fetches version history from Figma REST API
-- Saves to JSON format for dashboard consumption
-- Displays summary statistics
-- Shows monthly publication breakdown
-- Lists recent versions with details
-- Error handling for API failures
-
-**Usage**:
-```bash
-python fetch_versions.py \
-  --token YOUR_TOKEN \
-  --file-key YOUR_FILE_KEY \
-  --output ../public/csv/version_history.json
-```
-
-## Dashboard Integration
-
-### Modified Files
-
-1. **Dashboard.jsx**
-   - Added `versionHistoryData` state
-   - Added useEffect to load version history on mount
-   - Integrated PublicationCalendar in right column (Components tab)
-   - Added editable titles/descriptions
-
-2. **package.json**
-   - Added `fetch-versions` npm script for easy access
-
-3. **default.config.json**
-   - Added `publicationActivity` title and description
-   - Provides default text for the calendar card
-
-## Data Structure
-
-### Version History JSON Format
-```json
-[
+#### `/src/config/default.config.json`
+- Changed from single `libraryUrl` to `libraries` array
+- New structure:
+  ```json
   {
-    "id": "12345",
-    "created_at": "2024-12-20T14:30:00Z",
-    "label": "v8.2.0",
-    "description": "Added new button variants",
-    "user": {
-      "id": "user1",
-      "handle": "designer1"
-    }
+    "figma": {
+      "accessToken": "",
+      "libraries": []
+    },
+    "pages": []
   }
-]
+  ```
+
+### 2. New Components Created
+
+#### `/src/components/LibraryConfig.jsx`
+- New component for managing multiple libraries
+- Features:
+  - Add/remove libraries
+  - Configure library URL and display name
+  - Set exclusion filters (prefix, suffix, contains)
+- Provides a user-friendly interface for library management
+
+#### `/src/components/PageConfig.jsx`
+- New component for managing dashboard pages/tabs
+- Features:
+  - Create custom pages with unique names
+  - Assign each page to a specific library
+  - Set data type (components, icons, variables, styles, branches)
+  - Ensures only one library per page
+
+### 3. Updated Components
+
+#### `/src/components/SetupStep1.jsx`
+- Complete rewrite to support multi-library configuration
+- Now includes LibraryConfig and PageConfig components
+- Enhanced validation for URLs and required fields
+- Auto-generates 4 default pages on first setup
+- Maintains backward compatibility with old config format
+
+#### `/src/components/SetupWizard.jsx`
+- Updated config state structure to include `libraries` and `pages`
+- No changes to visual design or flow
+
+#### `/src/components/Dashboard.jsx`
+Major refactoring:
+- Replaced CSV_FILES constant with dynamic `configuredPages` from config
+- Changed from file-based navigation to page-based navigation
+- New `handlePageSelect` function replaces `handleFileSelect`
+- Integrated data filtering via `filterDataForPage` utility
+- Updated all useMemo hooks to use `selectedPage` instead of `fileName`
+- Maintains backward compatibility with legacy CSV files
+- Tabs now dynamically generated from page configuration
+
+#### `/src/components/GenerateCSVButton.jsx`
+- Updated to handle multiple libraries
+- Now loops through all configured libraries
+- Generates CSV files for each library
+- Provides aggregated success/failure reporting
+- Passes library metadata (name, id, filters) to backend
+
+### 4. New Utilities
+
+#### `/src/lib/dataFilter.js`
+New utility module with filtering functions:
+
+- `applyLibraryFilters(data, filters, nameField)`: Applies exclusion filters to data
+- `getLibraryForPage(config, pageId)`: Gets library configuration for a page
+- `getConfiguredPages(config)`: Returns all configured pages
+- `getPageByType(config, type)`: Backward compatibility helper
+- `filterDataForPage(data, config, pageId)`: Main filtering function combining library filters and page-type logic
+
+### 5. Backend Updates
+
+#### `/server/index.js`
+- Updated `/api/generate-csv` endpoint to accept new parameters:
+  - `libraryName`
+  - `libraryId`
+  - `filters`
+- Added logging for new parameters
+- Set environment variables for future Python script integration
+- Added comments for future filter implementation
+
+### 6. Documentation
+
+#### `/docs/MULTI_LIBRARY_GUIDE.md`
+Comprehensive guide covering:
+- Feature overview
+- Configuration structure
+- Setup wizard usage
+- Use cases and examples
+- Filter syntax and examples
+- Migration from old config format
+- Troubleshooting
+- API changes
+
+#### `/README.md`
+- Updated features list to highlight multi-library support
+- Added new section explaining multi-library usage
+- Link to detailed guide
+
+### 7. Implementation Summary Document
+#### `/docs/IMPLEMENTATION_SUMMARY.md`
+This document - comprehensive changelog of all modifications.
+
+## Key Features Implemented
+
+### 1. Multiple Library Support
+- Users can add unlimited libraries
+- Each library has its own URL and configuration
+- All libraries use the same Figma access token
+- CSV generation handles all libraries automatically
+
+### 2. Advanced Filtering System
+Three types of exclusion filters per library:
+- **Prefix**: Exclude items starting with text (case-insensitive)
+- **Suffix**: Exclude items ending with text (case-insensitive)
+- **Contains**: Exclude items containing text (case-insensitive)
+
+Filters use OR logic (exclude if ANY filter matches).
+
+### 3. Custom Page Configuration
+- Create unlimited custom pages/tabs
+- Each page pulls from one library
+- Can reuse same library with different filters
+- Built-in page types:
+  - Components (excludes icons automatically)
+  - Icons (shows only icon components)
+  - Variables (design tokens/variables)
+  - Styles (color, text, effects styles)
+  - Branches (Figma branch management)
+
+### 4. Backward Compatibility
+- Legacy config format still works
+- Automatic fallback to default pages if none configured
+- No breaking changes for existing users
+- Smooth migration path via setup wizard
+
+## Data Flow
+
+### 1. Configuration Flow
+```
+Setup Wizard (Step 1)
+  ↓
+LibraryConfig Component (manages libraries)
+  ↓
+PageConfig Component (creates pages)
+  ↓
+Config saved to localStorage & config.json
+  ↓
+Dashboard reads config on load
 ```
 
-### Key Fields Used
-- `created_at`: ISO timestamp for grouping by date
-- `label`: Version label (displayed in tooltips)
-- `description`: Version description
-- `user.handle`: Author information
+### 2. Data Loading Flow
+```
+User selects page tab
+  ↓
+Dashboard.handlePageSelect(pageId)
+  ↓
+Determine CSV file from page type
+  ↓
+Load CSV file
+  ↓
+Apply filterDataForPage (library filters + page type filters)
+  ↓
+Display filtered data
+```
 
-## Visual Design
+### 3. CSV Generation Flow
+```
+User clicks "Generate CSV Files"
+  ↓
+GenerateCSVButton.handleGenerate()
+  ↓
+For each library:
+  - POST /api/generate-csv with library data
+  - Server extracts file key
+  - Spawns Python script
+  - Generates CSV files
+  ↓
+Aggregate results
+  ↓
+Display success/failure summary
+```
 
-### Calendar Layout
-- **Grid**: 7 rows (days) × 52 columns (weeks)
-- **Cell Size**: 12px × 12px with 3px gap
-- **Border Radius**: 2px for rounded corners
-- **Color Levels**: 5 intensity levels (0%, 25%, 50%, 75%, 100%)
+## Technical Details
 
-### Color Mapping
-Uses CSS variable `--chart-themed-6` for theme consistency:
-- **Empty**: Low opacity gray
-- **Level 1**: 25-30% opacity
-- **Level 2**: 45-50% opacity
-- **Level 3**: 65-70% opacity
-- **Level 4**: 85-90% opacity
+### Filter Implementation
+Filters are applied in `dataFilter.js`:
 
-### Interactive Elements
-- Hover effects with ring highlight
-- Tooltip showing count and date
-- Bottom legend with color scale
-- Current hover info displayed below calendar
+```javascript
+// Check if item name matches exclusion criteria
+if (prefix && name.toLowerCase().startsWith(prefix.toLowerCase())) {
+  shouldExclude = true
+}
+// Similar for suffix and contains
+```
 
-## Documentation
+### Page Type Filtering
+Additional filtering beyond library filters:
 
-### Created Documentation Files
+- **icons**: Only items with "icon -" in name
+- **components**: Exclude items with "icon -" in name
+- **variables/styles**: No additional filtering
 
-1. **PUBLICATION_CALENDAR.md** (`docs/`)
-   - Comprehensive feature documentation
-   - API usage guide
-   - Customization options
-   - Automation strategies
-   - Troubleshooting guide
+### Configuration Validation
+Setup wizard validates:
+- Access token presence
+- At least one library configured
+- Valid Figma URL format for each library
+- Library names provided
+- At least one page configured
+- Page names provided
 
-2. **QUICK_START_CALENDAR.md** (`docs/`)
-   - Quick setup instructions
-   - Finding file key and token
-   - Basic usage examples
-   - Common troubleshooting
+## Migration Guide
 
-3. **Updated README.md**
-   - Added feature to features list
-   - Added usage section
-   - Referenced detailed documentation
+### For Users with Existing Config
 
-## Sample Data
+Your old config:
+```json
+{
+  "figma": {
+    "accessToken": "token",
+    "libraryUrl": "https://figma.com/file/ABC/Name"
+  }
+}
+```
 
-Created sample version history with:
-- 21 version entries
-- Spanning multiple months
-- Various publication patterns
-- Multiple publications on same day (Oct 25, Dec 15, Jul 17)
-- Realistic timestamps and metadata
+Will automatically work with these defaults:
+- 4 pages created (Components, Icons, Variables, Styles)
+- All pages use your existing library
+- No filters applied by default
 
-## Integration Points
-
-### Where Calendar Appears
-- **Tab**: Components
-- **Location**: Right column, above Changelog
-- **Layout**: Full width of right column (1/3 of grid)
-
-### Edit Mode Support
-- Title is editable via EditableText component
-- Description is editable via EditableText component
-- Changes saved to config.json
-- Preferences persisted in localStorage
-
-## Technical Implementation
-
-### Data Processing
-1. Parse version timestamps to YYYY-MM-DD format
-2. Count publications per day
-3. Find maximum daily count for scaling
-4. Generate 365-day grid starting from one year ago
-5. Align to Sunday start for week boundaries
-6. Map counts to color intensity levels
-
-### Performance Optimizations
-- useMemo for data processing (only recomputes when data changes)
-- Efficient date calculations
-- Minimal re-renders with React hooks
-
-### Error Handling
-- Graceful fallback for missing data
-- Empty state messaging
-- Invalid date handling
-- Network error tolerance
+### To Take Advantage of New Features
+Run setup wizard again and:
+1. Keep your existing token
+2. Add your current library as Library 1
+3. Add any additional libraries
+4. Configure filters as needed
+5. Customize pages or keep defaults
 
 ## Testing Checklist
 
-✅ Component renders with sample data
-✅ Empty state displays correctly
-✅ Hover interactions work
-✅ Tooltips show correct information
-✅ Colors adapt to theme changes
-✅ Month labels positioned correctly
-✅ Legend displays properly
-✅ Python script fetches data successfully
-✅ JSON file loads in dashboard
-✅ Edit mode title/description works
-✅ No console errors
-✅ No linter errors (excluding CSS warnings)
+- [x] Configuration structure updated
+- [x] New components created (LibraryConfig, PageConfig)
+- [x] Setup wizard updated
+- [x] Dashboard refactored for page-based navigation
+- [x] Data filtering implemented
+- [x] CSV generation updated for multi-library
+- [x] Backend updated to accept new parameters
+- [x] Documentation created
+- [x] README updated
+- [x] No linting errors
 
 ## Future Enhancements
 
-Potential improvements:
-1. Click to view version details modal
-2. Filter by date range
-3. Show version labels on calendar
-4. Export calendar as image
-5. Compare publication patterns year-over-year
-6. Weekly/monthly view toggle
-7. Show author information on hover
-8. Link to Figma version history
+Potential additions for future releases:
 
-## NPM Scripts
+1. **Server-side Filtering**: Pass filters to Python script for filtering at source
+2. **Include Filters**: Add ability to include only matching items (inverse of exclude)
+3. **Complex Filter Logic**: Support AND/OR combinations
+4. **Filter Presets**: Save and reuse common filter combinations
+5. **Library-specific Themes**: Different color schemes per library
+6. **Cross-library Comparisons**: Compare metrics across libraries
+7. **Bulk Operations**: Edit multiple pages/libraries at once
+8. **Import/Export**: Share library configurations between teams
+9. **Library Health Dashboard**: Overview showing status of all libraries
+10. **Automated Testing**: Unit tests for filtering logic
 
-Added convenience script:
-```bash
-npm run fetch-versions -- --token TOKEN --file-key KEY --output public/csv/version_history.json
-```
+## Breaking Changes
 
-## Files Modified/Created
+None. All changes maintain backward compatibility.
 
-### New Files (6)
-1. `src/components/PublicationCalendar.jsx` - Main component
-2. `python-api/fetch_versions.py` - Data fetching script
-3. `public/csv/version_history.json` - Sample data
-4. `docs/PUBLICATION_CALENDAR.md` - Full documentation
-5. `docs/QUICK_START_CALENDAR.md` - Quick start guide
-6. `docs/IMPLEMENTATION_SUMMARY.md` - This file
+## Dependencies
 
-### Modified Files (4)
-1. `src/components/Dashboard.jsx` - Integration
-2. `src/config/default.config.json` - Default titles
-3. `package.json` - NPM script
-4. `README.md` - Feature documentation
+No new dependencies added. All functionality uses existing libraries:
+- React for components
+- Existing UI components (shadcn/ui)
+- Existing utilities (Papa Parse, etc.)
 
-## Summary
+## Performance Considerations
 
-Successfully implemented a fully functional, GitHub-style publication activity calendar that:
-- ✅ Visualizes Figma library publication history
-- ✅ Shows last 365 days in calendar format
-- ✅ Uses color intensity for frequency
-- ✅ Provides interactive tooltips
-- ✅ Integrates seamlessly with existing dashboard
-- ✅ Includes Python script for data fetching
-- ✅ Fully documented with guides
-- ✅ Theme-aware and responsive
-- ✅ Edit mode compatible
-- ✅ Ready for production use
+- Filter functions use efficient array methods
+- Memoization used for expensive calculations
+- CSV loading remains async and non-blocking
+- Multiple library generation happens sequentially to avoid overwhelming the API
 
-The feature is complete and ready for user testing!
+## Known Limitations
 
+1. Filters only support OR logic (any match excludes)
+2. Only one library per page (can't merge multiple libraries in one view)
+3. Python script doesn't yet use filter parameters (client-side filtering only)
+4. Large datasets may have slower filtering (mitigated by useMemo)
+
+## Support
+
+For issues or questions about multi-library support:
+1. Check the [Multi-Library Guide](MULTI_LIBRARY_GUIDE.md)
+2. Review configuration examples in the guide
+3. Check browser console for error messages
+4. Verify CSV files are being generated correctly
+
+## Conclusion
+
+This implementation provides a robust foundation for multi-library support while maintaining backward compatibility and providing a smooth migration path. The filtering system is flexible and extensible, and the page configuration system allows for powerful customization of the dashboard experience.

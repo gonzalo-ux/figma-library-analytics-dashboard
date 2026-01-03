@@ -21,11 +21,13 @@ app.use(express.static(path.join(__dirname, '../public')))
  * Generate CSV files using Python API
  */
 app.post('/api/generate-csv', async (req, res) => {
-  const { token, libraryUrl } = req.body
+  const { token, libraryUrl, libraryName, libraryId } = req.body
 
   console.log('Received CSV generation request:', { 
     hasToken: !!token, 
     libraryUrl: libraryUrl,
+    libraryName: libraryName || 'N/A',
+    libraryId: libraryId || 'N/A',
     libraryUrlType: typeof libraryUrl,
     libraryUrlLength: libraryUrl?.length 
   })
@@ -80,13 +82,32 @@ app.post('/api/generate-csv', async (req, res) => {
   const pythonApiPath = process.env.PYTHON_API_PATH || 
     path.join(__dirname, '../python-api')
   
-  // Output directory for CSV files
-  const outputDir = path.join(__dirname, '../public/csv')
+  // Base output directory for CSV files
+  const baseOutputDir = path.join(__dirname, '../public/csv')
+  if (!fs.existsSync(baseOutputDir)) {
+    fs.mkdirSync(baseOutputDir, { recursive: true })
+  }
+  
+  // Create library-specific folder using library name
+  // Sanitize library name to be filesystem-safe
+  const sanitizeLibraryName = (name) => {
+    if (!name || typeof name !== 'string') {
+      return 'default'
+    }
+    // Replace invalid filesystem characters with underscores
+    return name.replace(/[^a-zA-Z0-9_-]/g, '_').trim() || 'default'
+  }
+  
+  const libraryFolderName = sanitizeLibraryName(libraryName)
+  const outputDir = path.resolve(path.join(baseOutputDir, libraryFolderName))
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true })
   }
   
   console.log(`Extracted file key: ${fileKey} from URL: ${cleanedUrl}`)
+  console.log(`Library name: ${libraryName || 'N/A'}`)
+  console.log(`Library folder: ${libraryFolderName}`)
+  console.log(`Output directory (absolute): ${outputDir}`)
 
   const pythonScript = path.join(pythonApiPath, 'main.py')
 
@@ -105,16 +126,20 @@ app.post('/api/generate-csv', async (req, res) => {
 
   return new Promise((resolve, reject) => {
     // Spawn Python process
+    // Pass library name to Python script for folder organization
     const pythonProcess = spawn('python3', [
       pythonScript,
       '--token', token,
       '--file-key', fileKey,
-      '--output-dir', outputDir
+      '--output-dir', outputDir,
+      '--library-name', libraryName || libraryFolderName
     ], {
       cwd: pythonApiPath,
       env: {
         ...process.env,
-        FIGMA_ACCESS_TOKEN: token
+        FIGMA_ACCESS_TOKEN: token,
+        LIBRARY_NAME: libraryName || '',
+        LIBRARY_ID: libraryId || ''
       }
     })
 
@@ -152,6 +177,15 @@ app.post('/api/generate-csv', async (req, res) => {
         'styles_usages_by_style.csv'
       ]
 
+      console.log(`Checking for CSV files in: ${outputDir}`)
+      console.log(`Output directory exists: ${fs.existsSync(outputDir)}`)
+      
+      // List all files in output directory for debugging
+      if (fs.existsSync(outputDir)) {
+        const filesInDir = fs.readdirSync(outputDir)
+        console.log(`Files found in output directory: ${filesInDir.join(', ')}`)
+      }
+
       const generatedFiles = []
       const filesWithData = []
       let totalRows = 0
@@ -172,11 +206,15 @@ app.post('/api/generate-csv', async (req, res) => {
           } catch (err) {
             console.error(`Error reading ${file}:`, err)
           }
+        } else {
+          console.log(`File not found: ${filePath}`)
         }
       }
 
       if (generatedFiles.length === 0) {
-        return reject(new Error('No CSV files were generated. Check Python script output.'))
+        console.error(`Python stdout: ${stdout}`)
+        console.error(`Python stderr: ${stderr}`)
+        return reject(new Error(`No CSV files were generated in ${outputDir}. Check Python script output above.`))
       }
 
       const message = filesWithData.length === 0

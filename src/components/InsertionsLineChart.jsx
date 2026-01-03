@@ -60,7 +60,7 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
   )
   
   // Grid color - use border color from theme
-  const gridColor = "hsl(var(--border))"
+  const gridColor = "var(--border)"
   
   // Helper to get stroke color for each area
   const getStrokeColor = (dataKey) => {
@@ -268,7 +268,7 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
             axisLine={{ stroke: gridColor, strokeWidth: 1 }}
             tickMargin={8}
             minTickGap={32}
-            tick={{ fill: "hsl(var(--card-foreground))" }}
+            tick={{ fill: "var(--muted-foreground)" }}
             tickFormatter={(value) => {
               const date = new Date(value)
               return date.toLocaleDateString("en-US", {
@@ -279,9 +279,9 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
           />
           <YAxis
             tickLine={false}
-            axisLine={false}
+            axisLine={{ stroke: gridColor, strokeWidth: 1 }}
             tickMargin={8}
-            tick={{ fill: "hsl(var(--card-foreground))" }}
+            tick={{ fill: "var(--muted-foreground)" }}
             tickFormatter={(value) => {
               if (value >= 1000) {
                 return `${(value / 1000).toFixed(1)}k`
