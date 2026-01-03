@@ -689,8 +689,68 @@ def generate_styles_usages_by_style_csv(output_dir: str, token: str, file_key: s
         print(f"✅ Generated: styles_usages_by_style.csv ({row_count} rows)")
 
 
+def fetch_version_history(token: str, file_key: str) -> List[Dict[str, Any]]:
+    """Fetch version history from Figma API with pagination support"""
+    url = f"{FIGMA_API_BASE}/files/{file_key}/versions"
+    headers = {"X-Figma-Token": token}
+    
+    print(f"\n📚 Fetching version history from Figma API for file: {file_key}")
+    
+    all_versions = []
+    page = 1
+    
+    while True:
+        params = {}
+        response = requests.get(url, headers=headers, params=params)
+        
+        if response.status_code != 200:
+            raise Exception(f"Figma API error: {response.status_code} - {response.text}")
+        
+        data = response.json()
+        versions = data.get("versions", [])
+        
+        if not versions:
+            break
+            
+        all_versions.extend(versions)
+        print(f"  Page {page}: Found {len(versions)} versions (total so far: {len(all_versions)})")
+        
+        # Check for pagination - Figma uses 'pagination' field
+        pagination = data.get("pagination", {})
+        next_page = pagination.get("next_page")
+        
+        if not next_page:
+            break
+            
+        # Update URL for next page
+        url = next_page
+        page += 1
+    
+    print(f"✅ Found {len(all_versions)} total versions across {page} page(s)")
+    return all_versions
+
+
+def generate_version_history_json(output_dir: str, token: str, file_key: str):
+    """Generate version_history.json file"""
+    filepath = os.path.join(output_dir, 'version_history.json')
+    
+    try:
+        versions = fetch_version_history(token, file_key)
+        
+        # Save to JSON file
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(versions, f, indent=2, ensure_ascii=False)
+        
+        print(f"✅ Generated: version_history.json ({len(versions)} versions)")
+        return len(versions)
+    except Exception as e:
+        print(f"⚠️  Failed to generate version_history.json: {str(e)}")
+        return 0
+
+
 def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_key: str):
-    """Generate all CSV files from Figma analytics data"""
+    """Generate all CSV files and version history from Figma analytics data"""
     
     # Ensure output directory exists
     print(f"\n📁 Output directory: {output_dir}")
@@ -723,6 +783,9 @@ def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_k
     generate_styles_actions_by_style_csv(output_dir, token, file_key, start_date, end_date)
     generate_styles_usages_by_style_csv(output_dir, token, file_key, start_date, end_date)
     
+    # Generate version history JSON file
+    generate_version_history_json(output_dir, token, file_key)
+    
     print("=" * 60)
     
     # Check if any files have data
@@ -750,9 +813,14 @@ def generate_csv_files(data: Dict[str, Any], output_dir: str, token: str, file_k
                     files_with_data += 1
                     total_rows += row_count
     
-    print(f"\n✅ All CSV files generated in: {output_dir}")
-    print(f"   Files with data: {files_with_data}/{len(csv_files)}")
-    print(f"   Total data rows: {total_rows}")
+    # Check if version_history.json was generated
+    version_history_path = os.path.join(output_dir, 'version_history.json')
+    version_history_generated = os.path.exists(version_history_path)
+    
+    print(f"\n✅ All CSV files and version history generated in: {output_dir}")
+    print(f"   CSV files with data: {files_with_data}/{len(csv_files)}")
+    print(f"   Total CSV data rows: {total_rows}")
+    print(f"   Version history: {'✅ Generated' if version_history_generated else '❌ Not generated'}")
     
     if files_with_data == 0:
         print("\n⚠️  WARNING: All CSV files are empty (headers only).")
