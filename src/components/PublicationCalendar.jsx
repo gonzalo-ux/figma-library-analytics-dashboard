@@ -18,11 +18,11 @@ import { CHART_COLORS } from "../lib/chartColors"
 export function PublicationCalendar({ versionData, title, description }) {
   const { isDark } = useTheme()
   const [hoveredCell, setHoveredCell] = useState(null)
-  
+
   // Extract available years from version data
   const availableYears = useMemo(() => {
     if (!versionData || versionData.length === 0) return []
-    
+
     const years = new Set()
     versionData.forEach((version) => {
       if (version.created_at) {
@@ -30,10 +30,10 @@ export function PublicationCalendar({ versionData, title, description }) {
         years.add(year)
       }
     })
-    
+
     return Array.from(years).sort((a, b) => b - a) // Sort descending (most recent first)
   }, [versionData])
-  
+
   // Default to current year if it has data, otherwise use the most recent year with data
   const defaultYear = useMemo(() => {
     const currentYear = new Date().getFullYear()
@@ -42,9 +42,9 @@ export function PublicationCalendar({ versionData, title, description }) {
     }
     return availableYears.length > 0 ? availableYears[0] : currentYear
   }, [availableYears])
-  
+
   const [selectedYear, setSelectedYear] = useState(defaultYear)
-  
+
   // Update selected year when defaultYear changes (e.g., when data loads)
   useEffect(() => {
     setSelectedYear(defaultYear)
@@ -60,11 +60,11 @@ export function PublicationCalendar({ versionData, title, description }) {
     const counts = new Map()
     versionData.forEach((version) => {
       if (!version.created_at) return
-      
+
       // Parse the timestamp and convert to YYYY-MM-DD
       const date = new Date(version.created_at)
       const year = date.getFullYear()
-      
+
       // Only count publications in the selected year
       if (year === selectedYear) {
         const dateKey = date.toISOString().split('T')[0]
@@ -82,13 +82,13 @@ export function PublicationCalendar({ versionData, title, description }) {
     // End on December 31st of selected year (at end of day)
     const dec31 = new Date(selectedYear, 11, 31)
     dec31.setHours(23, 59, 59, 999)
-    
+
     // Start from the Sunday before or on Jan 1 (GitHub style)
     const startDate = new Date(jan1)
     startDate.setHours(0, 0, 0, 0) // Ensure we're at midnight to avoid timezone issues
     const dayOfWeek = startDate.getDay()
     startDate.setDate(startDate.getDate() - dayOfWeek)
-    
+
     // End on the Saturday after or on Dec 31
     const endDate = new Date(dec31)
     endDate.setHours(23, 59, 59, 999) // End of day
@@ -99,11 +99,11 @@ export function PublicationCalendar({ versionData, title, description }) {
     const days = []
     const currentDate = new Date(startDate)
     currentDate.setHours(12, 0, 0, 0) // Use noon to avoid timezone issues
-    
+
     while (currentDate <= endDate) {
       const dateKey = currentDate.toISOString().split('T')[0]
       const dayOfWeek = currentDate.getDay() // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-      
+
       // Compare dates at the same time (noon) to avoid timezone issues
       const currentDateAtNoon = new Date(currentDate)
       currentDateAtNoon.setHours(12, 0, 0, 0)
@@ -112,7 +112,7 @@ export function PublicationCalendar({ versionData, title, description }) {
       const dec31AtNoon = new Date(dec31)
       dec31AtNoon.setHours(12, 0, 0, 0)
       const isInYear = currentDateAtNoon >= jan1AtNoon && currentDateAtNoon <= dec31AtNoon
-      
+
       days.push({
         date: dateKey,
         count: isInYear ? (counts.get(dateKey) || 0) : null, // null means hide this cell
@@ -123,25 +123,25 @@ export function PublicationCalendar({ versionData, title, description }) {
       })
       currentDate.setDate(currentDate.getDate() + 1)
     }
-    
+
 
     // Group into weeks - structure each week so week[0] = Sunday, week[1] = Monday, etc.
     // Since we start from a Sunday, we start a new week every time we encounter a Sunday
     const weeks = []
     let currentWeek = [null, null, null, null, null, null, null] // Initialize first week immediately
-    
+
     // Verify first day is Sunday
     if (days.length > 0 && days[0].dayOfWeek !== 0) {
       console.error('First day is not Sunday!', days[0])
     }
-    
+
     days.forEach((day, index) => {
       // If we encounter a Sunday and it's not the first day, push the previous week and start a new one
       if (day.dayOfWeek === 0 && index > 0) {
         weeks.push([...currentWeek])
         currentWeek = [null, null, null, null, null, null, null]
       }
-      
+
       // Place each day in the correct position based on its dayOfWeek
       // day.dayOfWeek is 0-6 (Sunday-Saturday), which matches week array indices
       // This ensures week[0] = Sunday, week[1] = Monday, etc.
@@ -156,14 +156,14 @@ export function PublicationCalendar({ versionData, title, description }) {
       }
       currentWeek[day.dayOfWeek] = day
     })
-    
+
     // Push the last week
     weeks.push([...currentWeek])
 
     // Generate month labels - show label when first day of a new month appears in a week
     const labels = []
     let lastMonth = -1
-    
+
     weeks.forEach((week, weekIndex) => {
       // Find the first day in this week that is within the selected year
       const firstDayInYear = week.find(d => d && d.isInYear)
@@ -192,10 +192,10 @@ export function PublicationCalendar({ versionData, title, description }) {
     const userCounts = new Map()
     versionData.forEach((version) => {
       if (!version.created_at || !version.user) return
-      
+
       const date = new Date(version.created_at)
       const year = date.getFullYear()
-      
+
       if (year === selectedYear) {
         const userId = version.user.id || version.user.handle
         const userName = version.user.handle || 'Unknown'
@@ -226,10 +226,10 @@ export function PublicationCalendar({ versionData, title, description }) {
     if (count === 0) {
       return 'var(--accent)' // Lightest for empty days
     }
-    
+
     // INVERTED: Less publications = darker, More publications = brighter
     // Use absolute thresholds instead of percentage for better granularity
-    
+
     // For better color distribution, use fixed buckets
     if (count === 1) {
       return 'var(--chart-themed-9)' // Darkest for just 1
@@ -269,178 +269,178 @@ export function PublicationCalendar({ versionData, title, description }) {
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="pt-0 pb-3">
-        <div className="relative -mx-4">
+        <div className="relative">
           <div className="flex items-start gap-4 overflow-x-auto">
             {/* Calendar section */}
             <div className="flex-shrink-0 min-w-0">
-          {/* Month labels */}
-          <div className="flex gap-[3px] mb-1 ml-8">
-            {monthLabels.map((label, index) => (
-              <div
-                key={`month-${index}`}
-                style={{
-                  position: 'absolute',
-                  left: `${32 + (label.weekIndex * 15)}px`,
-                  fontSize: '12px',
-                }}
-                className="text-muted-foreground"
-              >
-                {label.label}
-              </div>
-            ))}
-          </div>
-
-          {/* Calendar grid */}
-          <div className="flex gap-[3px] mt-4 overflow-hidden">
-            {/* Day labels */}
-            <div className="flex flex-col gap-[3px] mr-2 text-[11px] text-muted-foreground flex-shrink-0">
-              <div style={{ height: '12px' }}></div>
-              <div style={{ height: '12px' }}>{dayLabels[0]}</div>
-              <div style={{ height: '12px' }}></div>
-              <div style={{ height: '12px' }}>{dayLabels[1]}</div>
-              <div style={{ height: '12px' }}></div>
-              <div style={{ height: '12px' }}>{dayLabels[2]}</div>
-              <div style={{ height: '12px' }}></div>
-            </div>
-
-            {/* Weeks */}
-            <div className="flex gap-[3px] overflow-hidden">
-              {weekData.map((week, weekIndex) => (
-                <div key={`week-${weekIndex}`} className="flex flex-col gap-[3px]">
-                  {[0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
-                    // week[0] = Sunday, week[1] = Monday, etc.
-                    const day = week[dayOfWeek]
-                    
-                    // Render empty placeholder for days outside the year to maintain grid structure
-                    // This ensures visible days appear in the correct rows
-                    if (!day || !day.isInYear) {
-                      return (
-                        <div
-                          key={`empty-${weekIndex}-${dayOfWeek}`}
-                          style={{
-                            width: '12px',
-                            height: '12px',
-                            visibility: 'hidden', // Hide but maintain layout space
-                          }}
-                        />
-                      )
-                    }
-
-                    return (
-                      <div
-                        key={day.date}
-                        className="relative group"
-                        onMouseEnter={() => setHoveredCell(day)}
-                        onMouseLeave={() => setHoveredCell(null)}
-                      >
-                        <div
-                          style={{
-                            width: '12px',
-                            height: '12px',
-                            backgroundColor: getCellColor(day.count),
-                            borderRadius: '2px',
-                            cursor: 'pointer',
-                            transition: 'all 0.1s ease',
-                          }}
-                          className="hover:ring-2 hover:ring-foreground/30"
-                        />
-                        {/* GitHub-style tooltip - smart positioning */}
-                        {(() => {
-                          // Determine vertical position (top/bottom)
-                          const isTopRow = day.dayOfWeek <= 1
-                          const verticalClass = isTopRow ? 'top-full mt-2' : 'bottom-full mb-2'
-                          
-                          // Determine horizontal position (left/center/right)
-                          const totalWeeks = weekData.length
-                          let horizontalClass = 'left-1/2 -translate-x-1/2' // center by default
-                          
-                          if (weekIndex < 3) {
-                            // First 3 weeks - align left
-                            horizontalClass = 'left-0'
-                          } else if (weekIndex > totalWeeks - 4) {
-                            // Last 3 weeks - align right
-                            horizontalClass = 'right-0'
-                          }
-                          
-                          return (
-                            <div 
-                              className={`absolute px-3 py-2 bg-popover text-popover-foreground rounded-md shadow-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] border border-border ${verticalClass} ${horizontalClass}`}
-                            >
-                              <div className="font-semibold text-sm">
-                                {day.count} publication{day.count !== 1 ? 's' : ''}
-                              </div>
-                              <div className="text-muted-foreground text-xs mt-0.5">
-                                {day.displayDate.toLocaleDateString('en-US', { 
-                                  weekday: 'long',
-                                  month: 'long', 
-                                  day: 'numeric', 
-                                  year: 'numeric' 
-                                })}
-                              </div>
-                            </div>
-                          )
-                        })()}
-                      </div>
-                    )
-                  })}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Info below calendar - Fixed height */}
-          <div className="mt-3 flex items-start justify-between" style={{ minHeight: '44px' }}>
-            <div className="flex-1">
-              {/* Show total publications */}
-              <div className="text-sm text-muted-foreground mb-1">
-                <span className="font-medium text-foreground">{totalPublications}</span> publications in {selectedYear}
-              </div>
-              
-              {/* Show hovered cell info or placeholder */}
-              <div className="text-sm text-muted-foreground" style={{ minHeight: '20px' }}>
-                {hoveredCell ? (
-                  <>
-                    <span className="font-medium text-foreground">
-                      {hoveredCell.count} publication{hoveredCell.count !== 1 ? 's' : ''}
-                    </span>
-                    {' '}on {hoveredCell.displayDate.toLocaleDateString('en-US', { 
-                      weekday: 'short',
-                      month: 'short', 
-                      day: 'numeric', 
-                      year: 'numeric' 
-                    })}
-                  </>
-                ) : (
-                  <span className="opacity-0">Hover over a square</span>
-                )}
-              </div>
-            </div>
-
-            {/* Legend aligned to the right, top-aligned with publication counter */}
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>Less</span>
-              <div className="flex gap-[3px]">
-                {/* Show the actual color levels: 0, 1, 3, 6, 11 */}
-                {[0, 1, 3, 6, 11].map((count, index) => (
+              {/* Month labels */}
+              <div className="flex gap-[3px] mb-1 ml-8">
+                {monthLabels.map((label, index) => (
                   <div
-                    key={`legend-${index}`}
+                    key={`month-${index}`}
                     style={{
-                      width: '12px',
-                      height: '12px',
-                      backgroundColor: getCellColor(count),
-                      borderRadius: '2px',
+                      position: 'absolute',
+                      left: `${32 + (label.weekIndex * 15)}px`,
+                      fontSize: '12px',
                     }}
-                  />
+                    className="text-muted-foreground"
+                  >
+                    {label.label}
+                  </div>
                 ))}
               </div>
-              <span>More</span>
+
+              {/* Calendar grid */}
+              <div className="flex gap-[3px] mt-4 overflow-hidden">
+                {/* Day labels */}
+                <div className="flex flex-col gap-[3px] mr-2 text-[11px] text-muted-foreground flex-shrink-0">
+                  <div style={{ height: '12px' }}></div>
+                  <div style={{ height: '12px' }}>{dayLabels[0]}</div>
+                  <div style={{ height: '12px' }}></div>
+                  <div style={{ height: '12px' }}>{dayLabels[1]}</div>
+                  <div style={{ height: '12px' }}></div>
+                  <div style={{ height: '12px' }}>{dayLabels[2]}</div>
+                  <div style={{ height: '12px' }}></div>
+                </div>
+
+                {/* Weeks */}
+                <div className="flex gap-[3px] overflow-hidden">
+                  {weekData.map((week, weekIndex) => (
+                    <div key={`week-${weekIndex}`} className="flex flex-col gap-[3px]">
+                      {[0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
+                        // week[0] = Sunday, week[1] = Monday, etc.
+                        const day = week[dayOfWeek]
+
+                        // Render empty placeholder for days outside the year to maintain grid structure
+                        // This ensures visible days appear in the correct rows
+                        if (!day || !day.isInYear) {
+                          return (
+                            <div
+                              key={`empty-${weekIndex}-${dayOfWeek}`}
+                              style={{
+                                width: '12px',
+                                height: '12px',
+                                visibility: 'hidden', // Hide but maintain layout space
+                              }}
+                            />
+                          )
+                        }
+
+                        return (
+                          <div
+                            key={day.date}
+                            className="relative group"
+                            onMouseEnter={() => setHoveredCell(day)}
+                            onMouseLeave={() => setHoveredCell(null)}
+                          >
+                            <div
+                              style={{
+                                width: '12px',
+                                height: '12px',
+                                backgroundColor: getCellColor(day.count),
+                                borderRadius: '2px',
+                                cursor: 'pointer',
+                                transition: 'all 0.1s ease',
+                              }}
+                              className="hover:ring-2 hover:ring-foreground/30"
+                            />
+                            {/* GitHub-style tooltip - smart positioning */}
+                            {(() => {
+                              // Determine vertical position (top/bottom)
+                              const isTopRow = day.dayOfWeek <= 1
+                              const verticalClass = isTopRow ? 'top-full mt-2' : 'bottom-full mb-2'
+
+                              // Determine horizontal position (left/center/right)
+                              const totalWeeks = weekData.length
+                              let horizontalClass = 'left-1/2 -translate-x-1/2' // center by default
+
+                              if (weekIndex < 3) {
+                                // First 3 weeks - align left
+                                horizontalClass = 'left-0'
+                              } else if (weekIndex > totalWeeks - 4) {
+                                // Last 3 weeks - align right
+                                horizontalClass = 'right-0'
+                              }
+
+                              return (
+                                <div
+                                  className={`absolute px-3 py-2 bg-popover text-popover-foreground rounded-md shadow-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] border border-border ${verticalClass} ${horizontalClass}`}
+                                >
+                                  <div className="font-semibold text-sm">
+                                    {day.count} publication{day.count !== 1 ? 's' : ''}
+                                  </div>
+                                  <div className="text-muted-foreground text-xs mt-0.5">
+                                    {day.displayDate.toLocaleDateString('en-US', {
+                                      weekday: 'long',
+                                      month: 'long',
+                                      day: 'numeric',
+                                      year: 'numeric'
+                                    })}
+                                  </div>
+                                </div>
+                              )
+                            })()}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Info below calendar - Fixed height */}
+              <div className="mt-3 flex items-start justify-between" style={{ minHeight: '44px' }}>
+                <div className="flex-1">
+                  {/* Show total publications */}
+                  <div className="text-sm text-muted-foreground mb-1">
+                    <span className="font-medium text-foreground">{totalPublications}</span> publications in {selectedYear}
+                  </div>
+
+                  {/* Show hovered cell info or placeholder */}
+                  <div className="text-sm text-muted-foreground" style={{ minHeight: '20px' }}>
+                    {hoveredCell ? (
+                      <>
+                        <span className="font-medium text-foreground">
+                          {hoveredCell.count} publication{hoveredCell.count !== 1 ? 's' : ''}
+                        </span>
+                        {' '}on {hoveredCell.displayDate.toLocaleDateString('en-US', {
+                          weekday: 'short',
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
+                      </>
+                    ) : (
+                      <span className="opacity-0">Hover over a square</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Legend aligned to the right, top-aligned with publication counter */}
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span>Less</span>
+                  <div className="flex gap-[3px]">
+                    {/* Show the actual color levels: 0, 1, 3, 6, 11 */}
+                    {[0, 1, 3, 6, 11].map((count, index) => (
+                      <div
+                        key={`legend-${index}`}
+                        style={{
+                          width: '12px',
+                          height: '12px',
+                          backgroundColor: getCellColor(count),
+                          borderRadius: '2px',
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <span>More</span>
+                </div>
+              </div>
             </div>
-          </div>
-            </div>
-            
+
             {/* Year selector - positioned to the right, aligned with calendar top */}
             {availableYears.length > 0 && (
-              <div className="flex flex-col gap-1 mt-4 flex-shrink-0">
+              <div className="flex flex-col gap-1 flex-shrink-0 ml-2">
                 {availableYears.map((year) => (
                   <button
                     key={year}
@@ -463,13 +463,15 @@ export function PublicationCalendar({ versionData, title, description }) {
 
         {/* User Publications Donut Chart - below calendar, counter, and legend */}
         {topUsers.length > 0 && (
-          <div className="mt-6">
-            <div className="text-sm font-medium text-foreground mb-2">
-              Top Contributors
-            </div>
-            <div className="flex items-center gap-4">
+          <div className="">
+
+            <div className="flex items-top gap-4">
+
               {/* User labels - left side */}
               <div className="flex flex-col gap-2 min-w-[200px]">
+                <div className="text-sm font-medium text-foreground mb-2">
+                  Top Contributors
+                </div>
                 {topUsers.map((user, index) => (
                   <div key={user.name} className="flex items-center gap-2 text-sm">
                     <div
@@ -487,9 +489,9 @@ export function PublicationCalendar({ versionData, title, description }) {
               </div>
 
               {/* Donut Chart - right side */}
-              <div className="flex-1 flex justify-center">
+              <div className="flex-0 flex justify-center">
                 <div className="relative" style={{ height: '280px', width: '280px', minWidth: '280px' }}>
-                  <ShadcnChartContainer 
+                  <ShadcnChartContainer
                     config={{ value: { label: "Publications", color: "var(--chart-themed-1)" } }}
                     className="h-full w-full"
                     style={{ minWidth: '280px', minHeight: '280px' }}
@@ -508,13 +510,13 @@ export function PublicationCalendar({ versionData, title, description }) {
                           strokeWidth={0}
                         >
                           {topUsers.map((entry, index) => (
-                            <Cell 
-                              key={`cell-${index}`} 
+                            <Cell
+                              key={`cell-${index}`}
                               fill={CHART_COLORS[index % CHART_COLORS.length]}
                             />
                           ))}
                         </Pie>
-                        <RechartsTooltip 
+                        <RechartsTooltip
                           content={<ChartTooltipContent indicator="dot" />}
                           cursor={{ fill: "transparent" }}
                         />

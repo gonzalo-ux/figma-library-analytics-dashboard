@@ -31,11 +31,12 @@ export const CHART_COLORS_HSL = [
  * - Any other color format defined in CSS variables
  */
 export const CHART_COLORS_THEMED = [
-  "var(--chart-themed-1)",
-  "var(--chart-themed-2)",
   "var(--chart-themed-3)",
   "var(--chart-themed-4)",
   "var(--chart-themed-5)",
+  "var(--chart-themed-6)",
+  "var(--chart-themed-7)",
+  "var(--chart-themed-9)",
 ]
 
 /**
