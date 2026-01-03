@@ -7,6 +7,9 @@ import {
   Cell,
   ResponsiveContainer,
   Tooltip as RechartsTooltip,
+  RadialBarChart,
+  RadialBar,
+  LabelList,
 } from "recharts"
 import { ChartContainer as ShadcnChartContainer, ChartTooltipContent } from "./ui/chart-container"
 import { CHART_COLORS } from "../lib/chartColors"
@@ -51,9 +54,9 @@ export function PublicationCalendar({ versionData, title, description }) {
   }, [defaultYear])
 
   // Process version data into daily counts
-  const { dailyCounts, maxCount, weekData, monthLabels, totalPublications, topUsers } = useMemo(() => {
+  const { dailyCounts, maxCount, weekData, monthLabels, totalPublications, topUsers, topMonths } = useMemo(() => {
     if (!versionData || versionData.length === 0) {
-      return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [], topUsers: [] }
+      return { dailyCounts: new Map(), maxCount: 0, weekData: [], monthLabels: [], topUsers: [], topMonths: [] }
     }
 
     // Count publications per day for the selected year
@@ -211,6 +214,35 @@ export function PublicationCalendar({ versionData, title, description }) {
       .sort((a, b) => b.count - a.count)
       .slice(0, 6)
 
+    // Count publications per month for the selected year
+    const monthCounts = new Map()
+    versionData.forEach((version) => {
+      if (!version.created_at) return
+
+      const date = new Date(version.created_at)
+      const year = date.getFullYear()
+
+      if (year === selectedYear) {
+        const monthKey = date.getMonth() // 0-11
+        const monthName = date.toLocaleDateString('en-US', { month: 'short' })
+        monthCounts.set(monthKey, {
+          month: monthKey,
+          name: monthName,
+          count: (monthCounts.get(monthKey)?.count || 0) + 1
+        })
+      }
+    })
+
+    // Get top 5 months
+    const topMonths = Array.from(monthCounts.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5)
+      .map(month => ({
+        name: month.name,
+        value: month.count,
+        publications: month.count // For tooltip
+      }))
+
     return {
       dailyCounts: counts,
       maxCount: max,
@@ -218,6 +250,7 @@ export function PublicationCalendar({ versionData, title, description }) {
       monthLabels: labels,
       totalPublications: yearPublications, // Total for the selected year
       topUsers: topUsers, // Top 6 users for the selected year
+      topMonths: topMonths, // Top 5 months for the selected year
     }
   }, [versionData, selectedYear])
 
@@ -488,7 +521,7 @@ export function PublicationCalendar({ versionData, title, description }) {
                 ))}
               </div>
 
-              {/* Donut Chart - right side */}
+              {/* Donut Chart - middle */}
               <div className="flex-0 flex justify-center">
                 <div className="relative" style={{ height: '280px', width: '280px', minWidth: '280px' }}>
                   <ShadcnChartContainer
@@ -534,6 +567,70 @@ export function PublicationCalendar({ versionData, title, description }) {
                   </div>
                 </div>
               </div>
+
+              {/* Radial Chart - right side */}
+              {topMonths.length > 0 && (
+                <div className="flex-0 flex justify-center">
+                  <div className="relative" style={{ height: '280px', width: '240px', minWidth: '240px' }}>
+                    <div className="text-sm font-medium text-foreground text-center">
+                      Top Months
+                    </div>
+                    <ShadcnChartContainer
+                      config={{ value: { label: "Publications", color: "var(--chart-themed-1)" } }}
+                      className="h-[240px] w-[240px]"
+                      style={{ minWidth: '240px', minHeight: '240px', width: '240px', height: '240px' }}
+                    >
+                      <ResponsiveContainer width={240} height={240}>
+                        <RadialBarChart
+                          data={topMonths}
+                          innerRadius="30%"
+                          outerRadius="90%"
+                          startAngle={90}
+                          endAngle={-270}
+                        >
+                          <RadialBar
+                            dataKey="value"
+                            nameKey="name"
+                            minAngle={15}
+                            background={{ fill: "var(--muted)" }}
+                          >
+                            {topMonths.map((entry, index) => (
+                              <Cell
+                                key={`cell-month-${index}`}
+                                fill={CHART_COLORS[index % CHART_COLORS.length]}
+                              />
+                            ))}
+                            <LabelList
+                              dataKey="name"
+                              position="insideStart"
+                              fill="hsl(var(--foreground))"
+                              fontSize={13}
+                              fontWeight={600}
+                            />
+                          </RadialBar>
+                          <RechartsTooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length > 0) {
+                                const data = payload[0].payload
+                                return (
+                                  <div className="rounded-lg border bg-popover/95 backdrop-blur supports-[backdrop-filter]:bg-popover/60 p-2 shadow-md">
+                                    <div className="font-medium text-popover-foreground">{data.name}</div>
+                                    <div className="text-sm text-muted-foreground mt-0.5">
+                                      <span className="font-medium text-popover-foreground">{data.value}</span> publications
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            }}
+                            cursor={{ fill: "transparent" }}
+                          />
+                        </RadialBarChart>
+                      </ResponsiveContainer>
+                    </ShadcnChartContainer>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
