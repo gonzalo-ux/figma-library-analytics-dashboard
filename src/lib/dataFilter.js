@@ -22,7 +22,18 @@ export function applyIncludeFilters(data, filters, nameField = 'component_name')
   }
 
   return data.filter(item => {
-    const name = item[nameField] || ''
+    // For components: check component_set_name first, fallback to component_name if empty
+    // For variables: check both variable_name and variable_key
+    // For styles: use style_name
+    let name = ''
+    if (nameField === 'component_name') {
+      // For components: prefer component_set_name, fallback to component_name
+      name = (item.component_set_name && item.component_set_name.trim()) || item.component_name || ''
+    } else if (nameField === 'variable_name') {
+      name = item.variable_name || item.variable_key || ''
+    } else {
+      name = item[nameField] || ''
+    }
     const trimmedName = name.trim()
 
     // Check inclusion filters - item must match at least one to be included
@@ -63,7 +74,18 @@ export function applyLibraryFilters(data, filters, nameField = 'component_name')
   const { prefix, suffix, contains } = filters.exclude
 
   return data.filter(item => {
-    const name = item[nameField] || ''
+    // For components: check component_set_name first, fallback to component_name if empty
+    // For variables: check both variable_name and variable_key
+    // For styles: use style_name
+    let name = ''
+    if (nameField === 'component_name') {
+      // For components: prefer component_set_name, fallback to component_name
+      name = (item.component_set_name && item.component_set_name.trim()) || item.component_name || ''
+    } else if (nameField === 'variable_name') {
+      name = item.variable_name || item.variable_key || ''
+    } else {
+      name = item[nameField] || ''
+    }
     const trimmedName = name.trim()
 
     // If no filters are set, include all
@@ -168,13 +190,30 @@ export function filterDataForPage(data, config, pageId) {
 
   // Apply page filters if enabled
   if (page.useFilters && page.filters) {
+    // Determine the correct name field based on page type
+    let nameField = 'component_name' // default
+    if (page.type === 'variables') {
+      // For variables, check which field exists in the data
+      // Prefer variable_name, fallback to variable_key
+      if (filtered.length > 0 && filtered[0].variable_name) {
+        nameField = 'variable_name'
+      } else if (filtered.length > 0 && filtered[0].variable_key) {
+        nameField = 'variable_key'
+      } else {
+        nameField = 'variable_name' // default to variable_name
+      }
+    } else if (page.type === 'styles') {
+      nameField = 'style_name'
+    }
+    // For components and icons, use component_name (default)
+    
     // Step 1: Apply include filters (if any are set)
     // This narrows down to only items matching the include criteria
     const hasIncludeFilters = page.filters.include && 
       (page.filters.include.prefix || page.filters.include.suffix || page.filters.include.contains)
     
     if (hasIncludeFilters) {
-      filtered = applyIncludeFilters(filtered, page.filters)
+      filtered = applyIncludeFilters(filtered, page.filters, nameField)
     }
     
     // Step 2: Apply exclude filters (if any are set)
@@ -183,7 +222,7 @@ export function filterDataForPage(data, config, pageId) {
       (page.filters.exclude.prefix || page.filters.exclude.suffix || page.filters.exclude.contains)
     
     if (hasExcludeFilters) {
-      filtered = applyLibraryFilters(filtered, page.filters)
+      filtered = applyLibraryFilters(filtered, page.filters, nameField)
     }
   }
 

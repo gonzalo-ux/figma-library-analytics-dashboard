@@ -16,7 +16,7 @@ const chartConfig = {
   },
 }
 
-export function DetachmentsChart({ data, days = 90, title, description, headerActions }) {
+export function DetachmentsChart({ data, days = 90, title, description, headerActions, pageType }) {
   const { isDark } = useTheme()
   
   // Use single color for all bars
@@ -32,54 +32,62 @@ export function DetachmentsChart({ data, days = 90, title, description, headerAc
     const daysAgo = new Date(today)
     daysAgo.setDate(today.getDate() - days)
 
-    // Filter data from last N days and group by component_set_name (component names only, no variants)
-    // Exclude icon components and rows without component_set_name
-    const componentMap = new Map()
+    // Data is already filtered by filterDataForPage based on wizard configuration
+    // We just need to aggregate and display it
+    const itemMap = new Map()
 
     data.forEach((row) => {
       // Check if row has required columns
-      if (!row.week || !row.detachments || !row.component_name) {
+      if (!row.week || !row.detachments) {
         return
       }
 
-      // Skip icon components (component_name starts with "Icon -")
-      const componentName = row.component_name || ""
-      if (componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")) {
-        return
+      // Determine the item name based on available fields
+      // Data is already filtered, so we just need to aggregate
+      let itemName = ""
+      
+      if (row.component_set_name && row.component_set_name.trim()) {
+        // Components: use component_set_name for grouping
+        itemName = row.component_set_name.trim()
+      } else if (row.component_name && row.component_name.trim()) {
+        // Icons or components without set: use component_name
+        itemName = row.component_name.trim()
+      } else if (row.variable_name && row.variable_name.trim()) {
+        // Variables: use variable_name
+        itemName = row.variable_name.trim()
+      } else if (row.variable_key && row.variable_key.trim()) {
+        // Variables: fallback to variable_key
+        itemName = row.variable_key.trim()
+      } else if (row.style_name && row.style_name.trim()) {
+        // Styles: use style_name
+        itemName = row.style_name.trim()
       }
+      
+      if (!itemName) return
 
-      // Only include rows with a component_set_name (component name, not variants)
-      const componentSetName = row.component_set_name || ""
-      if (!componentSetName.trim()) {
-        return
-      }
-
-      // Parse the week date
       const weekDate = new Date(row.week)
       if (isNaN(weekDate.getTime())) {
         return
       }
 
-      // Filter by last N days
       if (weekDate >= daysAgo) {
         const detachments = parseFloat(row.detachments) || 0
-
-        if (componentMap.has(componentSetName)) {
-          componentMap.set(componentSetName, componentMap.get(componentSetName) + detachments)
+        if (itemMap.has(itemName)) {
+          itemMap.set(itemName, itemMap.get(itemName) + detachments)
         } else {
-          componentMap.set(componentSetName, detachments)
+          itemMap.set(itemName, detachments)
         }
       }
     })
 
     // Convert to array and sort by detachments (descending)
-    const componentsArray = Array.from(componentMap.entries())
+    const itemsArray = Array.from(itemMap.entries())
       .map(([name, total]) => ({ name, total }))
       .sort((a, b) => b.total - a.total)
       .slice(0, 10) // Get top 10
 
     // Transform to Recharts format
-    return componentsArray.map(item => ({
+    return itemsArray.map(item => ({
       name: item.name,
       detachments: item.total,
     }))

@@ -32,26 +32,56 @@ const chartConfig = {
   },
 }
 
-export function InsertionsLineChart({ data, variableData, textStylesData, days = 90, title, description, headerActions, areas }) {
+export function InsertionsLineChart({ data, variableData, textStylesData, days = 90, title, description, headerActions, areas, pageType, dateRange, pageConfig }) {
   const { isDark, themePreset } = useTheme()
   const baseGradientId = useId()
   
-  // Determine which areas to show based on available data
+  // Determine which areas to show based on page type and available data
   const activeAreas = useMemo(() => {
-    const result = []
-    if (data && data.length > 0) {
-      result.push({ dataKey: "components" })
-      result.push({ dataKey: "icons" })
-    }
-    if (variableData && variableData.length > 0) {
-      result.push({ dataKey: "variables" })
-    }
-    if (textStylesData && textStylesData.length > 0) {
-      result.push({ dataKey: "textStyles" })
-    }
     // If areas prop is provided, use it instead
-    return areas || result
-  }, [data, variableData, textStylesData, areas])
+    if (areas) {
+      return areas
+    }
+    
+    const result = []
+    
+    // Based on page type, show only relevant data
+    // Data is already filtered by filterDataForPage, so we just determine which area to show
+    if (pageType === 'components' || pageType === 'icons') {
+      // Components or icons page: show data from data prop (already filtered)
+      if (data && data.length > 0) {
+        // Check if the page has include filters - if so, treat as filtered content (works for any pattern)
+        const hasIncludeFilters = pageConfig?.useFilters && pageConfig?.filters?.include &&
+          (pageConfig.filters.include.prefix || pageConfig.filters.include.suffix || pageConfig.filters.include.contains)
+        const isFilteredPage = pageType === 'icons' || hasIncludeFilters
+        result.push({ dataKey: isFilteredPage ? "icons" : "components" })
+      }
+    } else if (pageType === 'variables') {
+      // For variables page, data prop contains variable data (already filtered)
+      if (data && data.length > 0) {
+        result.push({ dataKey: "variables" })
+      }
+    } else if (pageType === 'styles') {
+      // For styles page, data prop contains styles data (already filtered)
+      if (data && data.length > 0) {
+        result.push({ dataKey: "textStyles" })
+      }
+    } else {
+      // Default behavior: show all available data (for backward compatibility)
+      if (data && data.length > 0) {
+        result.push({ dataKey: "components" })
+        result.push({ dataKey: "icons" })
+      }
+      if (variableData && variableData.length > 0) {
+        result.push({ dataKey: "variables" })
+      }
+      if (textStylesData && textStylesData.length > 0) {
+        result.push({ dataKey: "textStyles" })
+      }
+    }
+    
+    return result
+  }, [data, variableData, textStylesData, areas, pageType])
   
   // Generate gradient IDs for each area
   const gradientIds = useMemo(() => 
@@ -74,30 +104,40 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
   }
 
   const chartData = useMemo(() => {
-    // Calculate date N days ago
-    const today = new Date()
-    const daysAgo = new Date(today)
-    daysAgo.setDate(today.getDate() - days)
+    // Use date range if provided, otherwise calculate from days
+    let startDate, endDate
+    if (dateRange && dateRange.startDate && dateRange.endDate) {
+      startDate = new Date(dateRange.startDate)
+      endDate = new Date(dateRange.endDate)
+      startDate.setHours(0, 0, 0, 0)
+      endDate.setHours(23, 59, 59, 999)
+    } else {
+      // Fallback to days calculation
+      endDate = new Date()
+      endDate.setHours(23, 59, 59, 999)
+      startDate = new Date(endDate)
+      startDate.setDate(endDate.getDate() - days)
+      startDate.setHours(0, 0, 0, 0)
+    }
 
-    // Process component data (separate components and icons)
+    // Process component/icon data
+    // Data is already filtered by filterDataForPage, so we just aggregate it by week
     const componentsWeekMap = new Map()
     const iconsWeekMap = new Map()
-    if (data && data.length > 0) {
+    if (data && data.length > 0 && (pageType === 'components' || pageType === 'icons')) {
+      // Check if the page has include filters - if so, all data is already filtered to match those filters
+      // This works for any naming pattern (Icons, Logos, Illustrations, etc.)
+      const hasIncludeFilters = pageConfig?.useFilters && pageConfig?.filters?.include &&
+        (pageConfig.filters.include.prefix || pageConfig.filters.include.suffix || pageConfig.filters.include.contains)
+      
+      // If page type is 'icons' OR page has include filters, treat all data as filtered content
+      // This allows the chart to work with any filter pattern, not just "Icon -"
+      const isFilteredPage = pageType === 'icons' || hasIncludeFilters
+      
       data.forEach((row) => {
-        // Check if row has required columns
-        if (!row.week || !row.insertions || !row.component_name) {
+        // Check if row has required columns (same as components page)
+        if (!row.week || row.insertions === undefined || row.insertions === null || !row.component_name) {
           return
-        }
-
-        const componentName = row.component_name || ""
-        const isIcon = componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")
-
-        // For non-icon components, only include rows with a component_set_name (not empty)
-        if (!isIcon) {
-          const componentSetName = row.component_set_name || ""
-          if (!componentSetName.trim()) {
-            return
-          }
         }
 
         // Parse the week date
@@ -106,24 +146,36 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
           return
         }
 
-        // Filter by last N days
-        if (weekDate >= daysAgo) {
+        // Filter by date range
+        if (weekDate >= startDate && weekDate <= endDate) {
           const weekKey = row.week
           const insertions = parseFloat(row.insertions) || 0
 
-          if (isIcon) {
-            // Add to icons map
+          if (isFilteredPage) {
+            // For filtered pages (icons, logos, illustrations, etc.): aggregate all insertions by week
+            // Works exactly like components page but for any filtered content - just sum all insertions per week
+            // Filtered items may not have component_set_name, so we aggregate all insertions together by week
             if (iconsWeekMap.has(weekKey)) {
               iconsWeekMap.set(weekKey, iconsWeekMap.get(weekKey) + insertions)
             } else {
               iconsWeekMap.set(weekKey, insertions)
             }
           } else {
-            // Add to components map
-            if (componentsWeekMap.has(weekKey)) {
-              componentsWeekMap.set(weekKey, componentsWeekMap.get(weekKey) + insertions)
-            } else {
-              componentsWeekMap.set(weekKey, insertions)
+            // For components page: exclude icons and aggregate by week
+            const componentName = row.component_name || ""
+            const isIcon = componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")
+            
+            if (!isIcon) {
+              // Only include rows with component_set_name (same logic as components page)
+              const componentSetName = row.component_set_name || ""
+              if (componentSetName.trim()) {
+                // Add to components map (excluding icons)
+                if (componentsWeekMap.has(weekKey)) {
+                  componentsWeekMap.set(weekKey, componentsWeekMap.get(weekKey) + insertions)
+                } else {
+                  componentsWeekMap.set(weekKey, insertions)
+                }
+              }
             }
           }
         }
@@ -131,11 +183,14 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
     }
 
     // Process variable data
+    // Data is already filtered by filterDataForPage
     const variablesWeekMap = new Map()
-    if (variableData && variableData.length > 0) {
-      variableData.forEach((row) => {
+    // For variables page, use data prop; for components page, use variableData prop
+    const varsData = pageType === 'variables' ? data : variableData
+    if (varsData && varsData.length > 0 && (pageType === 'variables' || !pageType)) {
+      varsData.forEach((row) => {
         // Check if row has required columns
-        if (!row.week || !row.insertions) {
+        if (!row.week || row.insertions === undefined || row.insertions === null) {
           return
         }
 
@@ -145,8 +200,8 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
           return
         }
 
-        // Filter by last N days
-        if (weekDate >= daysAgo) {
+        // Filter by date range
+        if (weekDate >= startDate && weekDate <= endDate) {
           const weekKey = row.week
           const insertions = parseFloat(row.insertions) || 0
 
@@ -159,36 +214,36 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
       })
     }
 
-    // Process text styles data (filter for TEXT type only)
+    // Process text styles data
+    // Data is already filtered by filterDataForPage
     const textStylesWeekMap = new Map()
-    if (textStylesData && textStylesData.length > 0) {
-      textStylesData.forEach((row) => {
+    // For styles page, use data prop; for components page, use textStylesData prop
+    const stylesDataToUse = pageType === 'styles' ? data : textStylesData
+    if (stylesDataToUse && stylesDataToUse.length > 0 && (pageType === 'styles' || !pageType)) {
+      stylesDataToUse.forEach((row) => {
         // Check if row has required columns
-        if (!row.week || !row.insertions || !row.style_type) {
+        if (!row.week || row.insertions === undefined || row.insertions === null) {
           return
         }
 
-        // Only include TEXT styles
-        const styleType = (row.style_type || "").trim()
-        if (styleType !== "TEXT") {
-          return
-        }
+        // For components page, only include TEXT styles; for styles page, include all (already filtered)
+        if (pageType === 'styles' || (row.style_type && (row.style_type || "").trim() === "TEXT")) {
+          // Parse the week date
+          const weekDate = new Date(row.week)
+          if (isNaN(weekDate.getTime())) {
+            return
+          }
 
-        // Parse the week date
-        const weekDate = new Date(row.week)
-        if (isNaN(weekDate.getTime())) {
-          return
-        }
+          // Filter by last N days
+          if (weekDate >= daysAgo) {
+            const weekKey = row.week
+            const insertions = parseFloat(row.insertions) || 0
 
-        // Filter by last N days
-        if (weekDate >= daysAgo) {
-          const weekKey = row.week
-          const insertions = parseFloat(row.insertions) || 0
-
-          if (textStylesWeekMap.has(weekKey)) {
-            textStylesWeekMap.set(weekKey, textStylesWeekMap.get(weekKey) + insertions)
-          } else {
-            textStylesWeekMap.set(weekKey, insertions)
+            if (textStylesWeekMap.has(weekKey)) {
+              textStylesWeekMap.set(weekKey, textStylesWeekMap.get(weekKey) + insertions)
+            } else {
+              textStylesWeekMap.set(weekKey, insertions)
+            }
           }
         }
       })
@@ -209,19 +264,21 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
         components: componentsWeekMap.get(week) || 0,
         icons: iconsWeekMap.get(week) || 0,
         variables: variablesWeekMap.get(week) || 0,
-        textStyles: textStylesWeekMap.get(week) || 0,
-      }))
+      textStyles: textStylesWeekMap.get(week) || 0,
+    }))
       .sort((a, b) => new Date(a.week) - new Date(b.week))
 
     // Convert to Recharts format - use ISO date string for proper formatting
-    return weeksArray.map(item => ({
+    const result = weeksArray.map(item => ({
       date: item.week,
       components: item.components,
       icons: item.icons,
       variables: item.variables,
       textStyles: item.textStyles,
     }))
-  }, [data, variableData, textStylesData, days])
+    
+    return result
+  }, [data, variableData, textStylesData, days, pageType, dateRange, pageConfig])
 
   const chartContent = !chartData || chartData.length === 0 ? (
       <div className="h-[300px] w-full flex items-center justify-center text-muted-foreground">

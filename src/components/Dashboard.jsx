@@ -136,6 +136,11 @@ export function Dashboard() {
         csvFileName = 'actions_by_component.csv'
         setFileName(csvFileName)
         break
+      case 'icons':
+        // Icons use the same CSV file as components, but are filtered differently in charts
+        csvFileName = 'actions_by_component.csv'
+        setFileName(csvFileName)
+        break
       case 'variables':
         csvFileName = 'variable_actions_by_variable.csv'
         setFileName(csvFileName)
@@ -622,6 +627,9 @@ export function Dashboard() {
                               variableData={variableInsertionsData}
                               textStylesData={stylesData}
                               days={days}
+                              pageType={selectedPage?.type}
+                              dateRange={dateRange}
+                              pageConfig={selectedPage}
                             />
                           </div>
 
@@ -675,6 +683,7 @@ export function Dashboard() {
                                     dataKey="insertions"
                                     nameKey="name"
                                     days={days}
+                                    pageType={selectedPage?.type}
                                   />
                                 </CardContent>
                               </Card>
@@ -842,6 +851,32 @@ export function Dashboard() {
                       </div>
                     ) : (
                       <>
+                        <div className="space-y-2">
+                          <div>
+                            <EditableText
+                              value={config?.content?.titles?.totalInsertions || "Total Insertions Over Time"}
+                              onChange={(value) => updatePreference('content.titles.totalInsertions', value)}
+                              as="h2"
+                              className="text-2xl font-semibold"
+                            />
+                            <EditableText
+                              value={config?.content?.descriptions?.totalInsertions || "Total insertions over time"}
+                              onChange={(value) => updatePreference('content.descriptions.totalInsertions', value)}
+                              as="p"
+                              className="text-sm text-muted-foreground mt-1"
+                            />
+                          </div>
+                          <InsertionsLineChart 
+                            data={data} 
+                            variableData={variableInsertionsData}
+                            textStylesData={stylesData}
+                            days={days}
+                            pageType={selectedPage?.type}
+                            dateRange={dateRange}
+                            pageConfig={selectedPage}
+                          />
+                        </div>
+
                         <div className="grid grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <div>
@@ -871,6 +906,7 @@ export function Dashboard() {
                                   dataKey="insertions"
                                   nameKey="name"
                                   days={days}
+                                  pageType={selectedPage?.type}
                                 />
                               </CardContent>
                             </Card>
@@ -904,6 +940,7 @@ export function Dashboard() {
                                   dataKey="detachments"
                                   nameKey="name"
                                   days={days}
+                                  pageType={selectedPage?.type}
                                 />
                               </CardContent>
                             </Card>

@@ -16,9 +16,12 @@ export function ChartFactory({
   description,
   headerActions,
   orientation = 'vertical',
+  pageType,
   ...props
 }) {
   // Process data for charts that need it (like BarChart with component data)
+  // Data is already filtered by filterDataForPage based on wizard configuration
+  // We just need to aggregate and display it
   const processedData = React.useMemo(() => {
     if (!data || data.length === 0) return []
     
@@ -27,38 +30,54 @@ export function ChartFactory({
       return data
     }
     
-    // Otherwise, process component data similar to ChartContainer
+    // Otherwise, process data based on what fields are available
+    // Data is already filtered by the wizard, so we just aggregate it
     const today = new Date()
     const daysAgo = new Date(today)
     daysAgo.setDate(today.getDate() - (days || 90))
     
-    const componentMap = new Map()
+    const itemMap = new Map()
     
     data.forEach((row) => {
-      if (!row.week || !row[dataKey] || !row.component_name) return
+      if (!row.week || !row[dataKey]) return
       
-      const componentName = row.component_name || ""
-      if (componentName.trim().startsWith("Icon -") || componentName.trim().toLowerCase().includes("icon -")) {
-        return
+      // Determine the item name based on available fields
+      // Data is already filtered, so we just need to aggregate
+      let itemName = ""
+      
+      if (row.component_set_name && row.component_set_name.trim()) {
+        // Components: use component_set_name for grouping
+        itemName = row.component_set_name.trim()
+      } else if (row.component_name && row.component_name.trim()) {
+        // Icons or components without set: use component_name
+        itemName = row.component_name.trim()
+      } else if (row.variable_name && row.variable_name.trim()) {
+        // Variables: use variable_name
+        itemName = row.variable_name.trim()
+      } else if (row.variable_key && row.variable_key.trim()) {
+        // Variables: fallback to variable_key
+        itemName = row.variable_key.trim()
+      } else if (row.style_name && row.style_name.trim()) {
+        // Styles: use style_name
+        itemName = row.style_name.trim()
       }
       
-      const componentSetName = row.component_set_name || ""
-      if (!componentSetName.trim()) return
+      if (!itemName) return
       
       const weekDate = new Date(row.week)
       if (isNaN(weekDate.getTime())) return
       
       if (weekDate >= daysAgo) {
         const value = parseFloat(row[dataKey]) || 0
-        if (componentMap.has(componentSetName)) {
-          componentMap.set(componentSetName, componentMap.get(componentSetName) + value)
+        if (itemMap.has(itemName)) {
+          itemMap.set(itemName, itemMap.get(itemName) + value)
         } else {
-          componentMap.set(componentSetName, value)
+          itemMap.set(itemName, value)
         }
       }
     })
     
-    return Array.from(componentMap.entries())
+    return Array.from(itemMap.entries())
       .map(([name, total]) => ({ [nameKey]: name, [dataKey]: total }))
       .sort((a, b) => b[dataKey] - a[dataKey])
       .slice(0, 10)
