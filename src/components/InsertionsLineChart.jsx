@@ -371,7 +371,7 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
               fillOpacity={1}
             />
           ))}
-          <RechartsLegend content={<ChartLegendContent />} />
+          <RechartsLegend content={<ChartLegendContent />} wrapperStyle={{ bottom: '-16px' }} />
         </AreaChart>
       </ResponsiveContainer>
     </ChartContainer>
@@ -395,7 +395,7 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
           )}
         </CardHeader>
       )}
-      <CardContent>
+      <CardContent className="pb-12">
         {chartContent}
       </CardContent>
     </Card>
