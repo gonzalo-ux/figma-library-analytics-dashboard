@@ -13,25 +13,6 @@ import { ChartContainer, ChartTooltipContent, ChartLegendContent } from "./ui/ch
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { useTheme } from "../lib/useTheme"
 
-const chartConfig = {
-  components: {
-    label: "Components",
-    color: "var(--chart-themed-6)",
-  },
-  icons: {
-    label: "Icons",
-    color: "var(--chart-themed-2)",
-  },
-  variables: {
-    label: "Variables",
-    color: "var(--chart-themed-4)",
-  },
-  textStyles: {
-    label: "Text Styles",
-    color: "var(--chart-themed-3)",
-  },
-}
-
 export function InsertionsLineChart({ data, variableData, textStylesData, days = 90, title, description, headerActions, areas, pageType, dateRange, pageConfig }) {
   const { isDark, themePreset } = useTheme()
   const baseGradientId = useId()
@@ -92,16 +73,32 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
   // Grid color - use border color from theme
   const gridColor = "var(--border)"
   
-  // Helper to get stroke color for each area
+  // Always use var(--chart-themed-6) for all areas regardless of data type
+  const CHART_COLOR = "var(--chart-themed-6)"
+  
+  // Helper to get stroke color for each area - always uses themed-6
   const getStrokeColor = (dataKey) => {
-    return chartConfig[dataKey]?.color || "var(--chart-themed-4)"
+    return CHART_COLOR
   }
   
-  // Helper to get themed color by index for gradients (starts at 4)
+  // Helper to get themed color for gradients - always uses themed-6
   const getGradientColor = (index) => {
-    const dataKey = activeAreas[index]?.dataKey
-    return chartConfig[dataKey]?.color || `var(--chart-themed-${4 + index})`
+    return CHART_COLOR
   }
+  
+  // Generate dynamic chart config for ChartContainer based on active areas
+  // All areas use the same color since they live on separate pages
+  const chartConfig = useMemo(() => {
+    const config = {}
+    activeAreas.forEach((area) => {
+      if (area.dataKey) {
+        config[area.dataKey] = {
+          color: CHART_COLOR,
+        }
+      }
+    })
+    return config
+  }, [activeAreas])
 
   const chartData = useMemo(() => {
     // Use date range if provided, otherwise calculate from days
@@ -169,7 +166,6 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
               // Only include rows with component_set_name (same logic as components page)
               const componentSetName = row.component_set_name || ""
               if (componentSetName.trim()) {
-                // Add to components map (excluding icons)
                 if (componentsWeekMap.has(weekKey)) {
                   componentsWeekMap.set(weekKey, componentsWeekMap.get(weekKey) + insertions)
                 } else {
@@ -234,8 +230,8 @@ export function InsertionsLineChart({ data, variableData, textStylesData, days =
             return
           }
 
-          // Filter by last N days
-          if (weekDate >= daysAgo) {
+          // Filter by date range
+          if (weekDate >= startDate && weekDate <= endDate) {
             const weekKey = row.week
             const insertions = parseFloat(row.insertions) || 0
 

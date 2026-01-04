@@ -34,10 +34,10 @@
       "publicationActivity": "Publication Activity"
     },
     "descriptions": {
-      "totalInsertions": "Total insertions by component sets over time (excluding icons)",
-      "topInsertions": "Components with the most insertions in the last {days} days (excluding icons)",
-      "topDetachments": "Components with the most detachments in the last {days} days (excluding icons)",
-      "componentsList": "View and explore your data in tabular format (sorted by insertions, excluding icons)",
+      "totalInsertions": "Total insertions over time",
+      "topInsertions": "Components with the most insertions in the last {days} days",
+      "topDetachments": "Components with the most detachments in the last {days} days",
+      "componentsList": "View and explore your data in tabular format (sorted by insertions)",
       "teamInstances": "Distribution of component instances across teams (top 10 teams shown, rest grouped as Other)",
       "changelog": "Component library version history and updates",
       "publicationActivity": "Library publication history over the last year"

@@ -616,7 +616,7 @@ export function Dashboard() {
                                 className="text-2xl font-semibold"
                               />
                               <EditableText
-                                value={config?.content?.descriptions?.totalInsertions || "Total insertions by component sets over time (excluding icons)"}
+                                value={config?.content?.descriptions?.totalInsertions || "Total insertions over time"}
                                 onChange={(value) => updatePreference('content.descriptions.totalInsertions', value)}
                                 as="p"
                                 className="text-sm text-muted-foreground mt-1"
@@ -664,7 +664,7 @@ export function Dashboard() {
                                   className="text-2xl font-semibold"
                                 />
                                 <EditableText
-                                  value={(config?.content?.descriptions?.topInsertions || "Components with the most insertions in the last {days} days (excluding icons)").replace('{days}', days)}
+                                  value={(config?.content?.descriptions?.topInsertions || "Components with the most insertions in the last {days} days").replace('{days}', days)}
                                   onChange={(value) => updatePreference('content.descriptions.topInsertions', value)}
                                   as="p"
                                   className="text-sm text-muted-foreground mt-1"
@@ -698,7 +698,7 @@ export function Dashboard() {
                                   className="text-2xl font-semibold"
                                 />
                                 <EditableText
-                                  value={(config?.content?.descriptions?.topDetachments || "Components with the most detachments in the last {days} days (excluding icons)").replace('{days}', days)}
+                                  value={(config?.content?.descriptions?.topDetachments || "Components with the most detachments in the last {days} days").replace('{days}', days)}
                                   onChange={(value) => updatePreference('content.descriptions.topDetachments', value)}
                                   as="p"
                                   className="text-sm text-muted-foreground mt-1"
@@ -732,7 +732,7 @@ export function Dashboard() {
                                 className="text-2xl font-semibold"
                               />
                               <EditableText
-                                value={config?.content?.descriptions?.componentsList || "View and explore your data in tabular format (sorted by insertions, excluding icons)"}
+                                value={config?.content?.descriptions?.componentsList || "View and explore your data in tabular format (sorted by insertions)"}
                                 onChange={(value) => updatePreference('content.descriptions.componentsList', value)}
                                 as="p"
                                 className="text-sm text-muted-foreground mt-1"
@@ -887,7 +887,7 @@ export function Dashboard() {
                                 className="text-2xl font-semibold"
                               />
                               <EditableText
-                                value={(config?.content?.descriptions?.topInsertions || "Components with the most insertions in the last {days} days (excluding icons)").replace('{days}', days)}
+                                value={(config?.content?.descriptions?.topInsertions || "Components with the most insertions in the last {days} days").replace('{days}', days)}
                                 onChange={(value) => updatePreference('content.descriptions.topInsertions', value)}
                                 as="p"
                                 className="text-sm text-muted-foreground mt-1"
@@ -921,7 +921,7 @@ export function Dashboard() {
                                 className="text-2xl font-semibold"
                               />
                               <EditableText
-                                value={(config?.content?.descriptions?.topDetachments || "Components with the most detachments in the last {days} days (excluding icons)").replace('{days}', days)}
+                                value={(config?.content?.descriptions?.topDetachments || "Components with the most detachments in the last {days} days").replace('{days}', days)}
                                 onChange={(value) => updatePreference('content.descriptions.topDetachments', value)}
                                 as="p"
                                 className="text-sm text-muted-foreground mt-1"
@@ -956,7 +956,7 @@ export function Dashboard() {
                               className="text-2xl font-semibold"
                             />
                             <EditableText
-                              value={config?.content?.descriptions?.componentsList || "View and explore your data in tabular format (sorted by insertions, excluding icons)"}
+                              value={config?.content?.descriptions?.componentsList || "View and explore your data in tabular format (sorted by insertions)"}
                               onChange={(value) => updatePreference('content.descriptions.componentsList', value)}
                               as="p"
                               className="text-sm text-muted-foreground mt-1"
