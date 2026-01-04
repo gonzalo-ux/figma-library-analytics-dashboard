@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react"
 import Papa from "papaparse"
-import { FileText, Component, Bolt, Smile, Type } from "lucide-react"
+import { FileText, Component, Bolt, Smile, Type, Pipette, Zap, Grid2x2 } from "lucide-react"
 import { Button } from "./ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { ChartContainer } from "./ChartContainer"
@@ -40,6 +40,10 @@ export function Dashboard() {
   const [variableInsertionsData, setVariableInsertionsData] = useState(null)
   const [stylesData, setStylesData] = useState(null)
   const [versionHistoryData, setVersionHistoryData] = useState(null)
+  // Separate state for totals - always contains full unfiltered data (independent from chart data)
+  const [componentsDataForTotals, setComponentsDataForTotals] = useState(null)
+  const [variablesDataForTotals, setVariablesDataForTotals] = useState(null)
+  const [stylesDataForTotals, setStylesDataForTotals] = useState(null)
   const [fileName, setFileName] = useState("")
   const [selectedPageId, setSelectedPageId] = useState("")
   const [error, setError] = useState("")
@@ -323,6 +327,106 @@ export function Dashboard() {
     loadVersionHistory()
   }, [selectedPageId]) // Only depend on selectedPageId, read config directly
 
+  // Load full unfiltered data for totals calculation (separate from chart data to avoid breaking chart logic)
+  // Only depends on selectedPageId to avoid interfering with chart loading
+  useEffect(() => {
+    const loadDataForTotals = async () => {
+      if (!selectedPageId) {
+        return
+      }
+
+      // Read config and configuredPages directly to avoid dependency issues
+      const currentConfig = loadConfigSync()
+      const currentPages = getConfiguredPages(currentConfig)
+      const page = currentPages.find(p => p.id === selectedPageId)
+      if (!page || page.type === "branches") {
+        return
+      }
+
+      // Helper to get CSV path inline to avoid dependency on getCsvPath callback
+      const getCsvPathInline = (fileName, pageId) => {
+        if (!pageId || !currentConfig) {
+          return `/csv/${fileName}`
+        }
+        
+        const library = getLibraryForPage(currentConfig, pageId)
+        if (!library || !library.name) {
+          return `/csv/${fileName}`
+        }
+        
+        const sanitizeLibraryName = (name) => {
+          if (!name || typeof name !== 'string') {
+            return 'default'
+          }
+          return name.replace(/[^a-zA-Z0-9_-]/g, '_').trim() || 'default'
+        }
+        
+        const libraryFolder = sanitizeLibraryName(library.name)
+        return `/csv/${libraryFolder}/${fileName}`
+      }
+
+      try {
+        // Load full unfiltered components data for totals
+        const componentsPath = getCsvPathInline('actions_by_component.csv', selectedPageId)
+        const componentsResponse = await fetch(componentsPath)
+        if (componentsResponse.ok) {
+          const componentsText = await componentsResponse.text()
+          Papa.parse(componentsText, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (componentsResults) => {
+              if (componentsResults.errors.length === 0) {
+                // Store full unfiltered data for totals (no filters applied)
+                setComponentsDataForTotals(componentsResults.data)
+              }
+            },
+            error: () => {}
+          })
+        }
+
+        // Load full unfiltered variables data for totals
+        const variablePath = getCsvPathInline('variable_actions_by_variable.csv', selectedPageId)
+        const variableResponse = await fetch(variablePath)
+        if (variableResponse.ok) {
+          const variableText = await variableResponse.text()
+          Papa.parse(variableText, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (variableResults) => {
+              if (variableResults.errors.length === 0) {
+                // Store full unfiltered data for totals
+                setVariablesDataForTotals(variableResults.data)
+              }
+            },
+            error: () => {}
+          })
+        }
+
+        // Load full unfiltered styles data for totals
+        const stylesPath = getCsvPathInline('styles_actions_by_style.csv', selectedPageId)
+        const stylesResponse = await fetch(stylesPath)
+        if (stylesResponse.ok) {
+          const stylesText = await stylesResponse.text()
+          Papa.parse(stylesText, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (stylesResults) => {
+              if (stylesResults.errors.length === 0) {
+                // Store full unfiltered data for totals
+                setStylesDataForTotals(stylesResults.data)
+              }
+            },
+            error: () => {}
+          })
+        }
+      } catch (error) {
+        console.error('Failed to load data for totals:', error)
+      }
+    }
+
+    loadDataForTotals()
+  }, [selectedPageId]) // Only depend on selectedPageId to avoid interfering with chart loading
+
   const selectedPage = selectedPageId ? configuredPages.find(p => p.id === selectedPageId) : null
   const selectedPageLabel = selectedPage?.name || "Select a page to visualize data"
   
@@ -330,18 +434,19 @@ export function Dashboard() {
   const library = selectedPageId ? getLibraryForPage(config, selectedPageId) : null
   const libraryName = library?.name || null
 
-  // Calculate total components (matching DataTable logic)
+  // Calculate total components - counts all unique components regardless of date range
+  // Uses full unfiltered data for totals
   const totalComponents = useMemo(() => {
-    if (!data || data.length === 0 || selectedPage?.type !== "components") {
+    if (!componentsDataForTotals || componentsDataForTotals.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
     // Filter and count unique component_set_name values, excluding icons
     const componentSetSet = new Set()
 
-    data.forEach((row) => {
+    componentsDataForTotals.forEach((row) => {
       // Check if row has required columns
-      if (!row.week || !row.insertions || !row.component_name) {
+      if (!row.component_name) {
         return
       }
 
@@ -357,69 +462,48 @@ export function Dashboard() {
         return
       }
 
-      // Parse the week date
-      const weekDate = new Date(row.week)
-      if (isNaN(weekDate.getTime())) {
-        return
-      }
-
-      // Filter by date range
-      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
-        componentSetSet.add(componentSetName)
-      }
+      componentSetSet.add(componentSetName)
     })
 
     return componentSetSet.size
-  }, [data, dateRange, selectedPage])
+  }, [componentsDataForTotals, selectedPage])
 
-  // Calculate total variables (from variableInsertionsData)
+  // Calculate total variables - counts all unique variables regardless of date range
+  // Uses full unfiltered data for totals
   const totalVariables = useMemo(() => {
-    if (!variableInsertionsData || variableInsertionsData.length === 0 || selectedPage?.type !== "components") {
+    if (!variablesDataForTotals || variablesDataForTotals.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
     // Filter and count unique variable_name values
     const variableSet = new Set()
 
-    variableInsertionsData.forEach((row) => {
-      // Check if row has required columns
-      if (!row.week || !row.insertions) {
-        return
-      }
-
+    variablesDataForTotals.forEach((row) => {
       // Get variable identifier (variable_name or variable_key)
       const variableName = row.variable_name || row.variable_key || ""
       if (!variableName.trim()) {
         return
       }
 
-      // Parse the week date
-      const weekDate = new Date(row.week)
-      if (isNaN(weekDate.getTime())) {
-        return
-      }
-
-      // Filter by date range
-      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
-        variableSet.add(variableName)
-      }
+      variableSet.add(variableName)
     })
 
     return variableSet.size
-  }, [variableInsertionsData, dateRange, selectedPage])
+  }, [variablesDataForTotals, selectedPage])
 
-  // Calculate total icons (components whose names start with "Icon -")
+  // Calculate total icons - counts all unique icons regardless of date range
+  // Uses full unfiltered data for totals
   const totalIcons = useMemo(() => {
-    if (!data || data.length === 0 || selectedPage?.type !== "components") {
+    if (!componentsDataForTotals || componentsDataForTotals.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
     // Filter and count unique component_name values that are icons
     const iconSet = new Set()
 
-    data.forEach((row) => {
+    componentsDataForTotals.forEach((row) => {
       // Check if row has required columns
-      if (!row.week || !row.insertions || !row.component_name) {
+      if (!row.component_name) {
         return
       }
 
@@ -429,33 +513,25 @@ export function Dashboard() {
         return
       }
 
-      // Parse the week date
-      const weekDate = new Date(row.week)
-      if (isNaN(weekDate.getTime())) {
-        return
-      }
-
-      // Filter by date range
-      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
-        iconSet.add(componentName)
-      }
+      iconSet.add(componentName)
     })
 
     return iconSet.size
-  }, [data, dateRange, selectedPage])
+  }, [componentsDataForTotals, selectedPage])
 
-  // Calculate total text styles (styles with style_type === "TEXT")
+  // Calculate total text styles - counts all unique text styles regardless of date range
+  // Uses full unfiltered data for totals
   const totalTextStyles = useMemo(() => {
-    if (!stylesData || stylesData.length === 0 || selectedPage?.type !== "components") {
+    if (!stylesDataForTotals || stylesDataForTotals.length === 0 || selectedPage?.type !== "components") {
       return 0
     }
 
     // Filter and count unique style_name values that are TEXT type
     const textStyleSet = new Set()
 
-    stylesData.forEach((row) => {
+    stylesDataForTotals.forEach((row) => {
       // Check if row has required columns
-      if (!row.week || !row.insertions || !row.style_name || !row.style_type) {
+      if (!row.style_name || !row.style_type) {
         return
       }
 
@@ -465,20 +541,95 @@ export function Dashboard() {
         return
       }
 
-      // Parse the week date
-      const weekDate = new Date(row.week)
-      if (isNaN(weekDate.getTime())) {
-        return
-      }
-
-      // Filter by date range
-      if (weekDate >= dateRange.startDate && weekDate <= dateRange.endDate) {
-        textStyleSet.add(row.style_name)
-      }
+      textStyleSet.add(row.style_name)
     })
 
     return textStyleSet.size
-  }, [stylesData, dateRange, selectedPage])
+  }, [stylesDataForTotals, selectedPage])
+
+  // Calculate total color styles - counts all unique color styles (FILL) regardless of date range
+  // Uses full unfiltered data for totals
+  const totalColorStyles = useMemo(() => {
+    if (!stylesDataForTotals || stylesDataForTotals.length === 0 || selectedPage?.type !== "components") {
+      return 0
+    }
+
+    // Filter and count unique style_name values that are FILL type
+    const colorStyleSet = new Set()
+
+    stylesDataForTotals.forEach((row) => {
+      // Check if row has required columns
+      if (!row.style_name || !row.style_type) {
+        return
+      }
+
+      // Only include FILL styles
+      const styleType = (row.style_type || "").trim()
+      if (styleType !== "FILL") {
+        return
+      }
+
+      colorStyleSet.add(row.style_name)
+    })
+
+    return colorStyleSet.size
+  }, [stylesDataForTotals, selectedPage])
+
+  // Calculate total effect styles - counts all unique effect styles (EFFECT) regardless of date range
+  // Uses full unfiltered data for totals
+  const totalEffectStyles = useMemo(() => {
+    if (!stylesDataForTotals || stylesDataForTotals.length === 0 || selectedPage?.type !== "components") {
+      return 0
+    }
+
+    // Filter and count unique style_name values that are EFFECT type
+    const effectStyleSet = new Set()
+
+    stylesDataForTotals.forEach((row) => {
+      // Check if row has required columns
+      if (!row.style_name || !row.style_type) {
+        return
+      }
+
+      // Only include EFFECT styles
+      const styleType = (row.style_type || "").trim()
+      if (styleType !== "EFFECT") {
+        return
+      }
+
+      effectStyleSet.add(row.style_name)
+    })
+
+    return effectStyleSet.size
+  }, [stylesDataForTotals, selectedPage])
+
+  // Calculate total layout guide styles - counts all unique layout guide styles (GRID) regardless of date range
+  // Uses full unfiltered data for totals
+  const totalLayoutGuideStyles = useMemo(() => {
+    if (!stylesDataForTotals || stylesDataForTotals.length === 0 || selectedPage?.type !== "components") {
+      return 0
+    }
+
+    // Filter and count unique style_name values that are GRID type
+    const layoutGuideStyleSet = new Set()
+
+    stylesDataForTotals.forEach((row) => {
+      // Check if row has required columns
+      if (!row.style_name || !row.style_type) {
+        return
+      }
+
+      // Only include GRID styles
+      const styleType = (row.style_type || "").trim()
+      if (styleType !== "GRID") {
+        return
+      }
+
+      layoutGuideStyleSet.add(row.style_name)
+    })
+
+    return layoutGuideStyleSet.size
+  }, [stylesDataForTotals, selectedPage])
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -537,23 +688,16 @@ export function Dashboard() {
             <>
             <div className="w-full space-y-6 mt-6">
                 {selectedPage?.type === "components" ? (
-                      <div className="grid grid-cols-3 gap-6">
-                        {/* Left side - 2/3 width */}
-                        <div className="col-span-2 space-y-6">
-                          {isEditMode && (
-                            <div className="space-y-4">
-                              <TypographyEditor />
-                              <ThemeEditor />
-                              <CustomThemeEditor />
-                              <ChangelogConfig />
-                            </div>
-                          )}
-                          {libraryName && (
-                            <div className="mb-4">
-                              <h2 className="text-xl font-semibold">Library: {libraryName}</h2>
-                            </div>
-                          )}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      <>
+                        {/* Library name - full width */}
+                        {libraryName && (
+                          <div>
+                            <h2 className="text-2xl font-semibold">Library: {libraryName}</h2>
+                          </div>
+                        )}
+                        
+                        {/* Total cards - full width row */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
                             <Card>
                               <CardContent className="p-6">
                                 <div className="flex items-center gap-4">
@@ -606,8 +750,60 @@ export function Dashboard() {
                                 </div>
                               </CardContent>
                             </Card>
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Pipette className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Color Styles</span>
+                                    <span className="text-3xl font-bold text-primary">{totalColorStyles}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Zap className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Effect Styles</span>
+                                    <span className="text-3xl font-bold text-primary">{totalEffectStyles}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                            <Card>
+                              <CardContent className="p-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-muted">
+                                    <Grid2x2 className="h-6 w-6 text-primary" />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm text-muted-foreground">Total Layout Guide Styles</span>
+                                    <span className="text-3xl font-bold text-primary">{totalLayoutGuideStyles}</span>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
                           </div>
-                          <div className="space-y-2">
+                          
+                          {/* Main content grid - 2/3 left, 1/3 right */}
+                          <div className="grid grid-cols-3 gap-6">
+                            {/* Left side - 2/3 width */}
+                            <div className="col-span-2 space-y-6">
+                              {isEditMode && (
+                                <div className="space-y-4">
+                                  <TypographyEditor />
+                                  <ThemeEditor />
+                                  <CustomThemeEditor />
+                                  <ChangelogConfig />
+                                </div>
+                              )}
+                              <div className="space-y-2">
                             <div>
                               <EditableText
                                 value={config?.content?.titles?.totalInsertions || "Total Insertions Over Time"}
@@ -821,34 +1017,35 @@ export function Dashboard() {
                               )}
                             </>
                           )}
-                        </div>
-
-                        {/* Right side - 1/3 width */}
-                        <div className="col-span-1">
-                          {/* Changelog */}
-                          <div className="space-y-2">
-                            <div>
-                              <EditableText
-                                value={config?.content?.titles?.changelog || "Changelog"}
-                                onChange={(value) => updatePreference('content.titles.changelog', value)}
-                                as="h2"
-                                className="text-2xl font-semibold"
-                              />
-                              <EditableText
-                                value={config?.content?.descriptions?.changelog || "Component library version history and updates"}
-                                onChange={(value) => updatePreference('content.descriptions.changelog', value)}
-                                as="p"
-                                className="text-sm text-muted-foreground mt-1"
-                              />
                             </div>
-                            <Card>
-                              <CardContent>
-                                <ChangelogTable />
-                              </CardContent>
-                            </Card>
+
+                          {/* Right side - 1/3 width */}
+                          <div className="col-span-1">
+                            {/* Changelog - aligned with Total Insertions Over Time */}
+                            <div className="space-y-2">
+                              <div>
+                                <EditableText
+                                  value={config?.content?.titles?.changelog || "Changelog"}
+                                  onChange={(value) => updatePreference('content.titles.changelog', value)}
+                                  as="h2"
+                                  className="text-2xl font-semibold"
+                                />
+                                <EditableText
+                                  value={config?.content?.descriptions?.changelog || "Component library version history and updates"}
+                                  onChange={(value) => updatePreference('content.descriptions.changelog', value)}
+                                  as="p"
+                                  className="text-sm text-muted-foreground mt-1"
+                                />
+                              </div>
+                              <Card>
+                                <CardContent>
+                                  <ChangelogTable />
+                                </CardContent>
+                              </Card>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </>
                     ) : (
                       <>
                         <div className="space-y-2">
